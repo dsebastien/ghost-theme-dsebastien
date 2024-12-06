@@ -18,8 +18,8 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const easyimport = require('postcss-easy-import');
 
-const REPO = 'TryGhost/Source';
-const REPO_READONLY = 'TryGhost/Source';
+const REPO = 'dsebastien/ghost-theme-dsebastien';
+const REPO_READONLY = 'dsebastien/ghost-theme-dsebastien';
 const CHANGELOG_PATH = path.join(process.cwd(), '.', 'changelog.md');
 
 function serve(done) {
