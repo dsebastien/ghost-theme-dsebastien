@@ -23,6 +23,7 @@ projectFilesBackup
 
 content/
 dist/
+src/assets/built/
 
 config.json
 changelog.md

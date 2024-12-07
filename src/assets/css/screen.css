@@ -2794,15 +2794,6 @@ figcaption a {
     list-style-type: none;
 }
 
-.gh-footer-copyright {
-    text-align: right;
-    white-space: nowrap;
-}
-
-.gh-footer-copyright a {
-    text-decoration: underline;
-}
-
 /* 21.3. Footer signup */
 
 .gh-footer-signup {
