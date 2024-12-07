@@ -1,5 +1,6 @@
 # TODO
-- [ ] Review the gulpfile release task
+- [ ] Add release-it
+- [ ] Add commitizen etc
 - [ ] Dev script should update what's used by the docker-compose file
 - [ ] Index.html improvements
 - [ ] Newsletter page
