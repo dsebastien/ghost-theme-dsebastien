@@ -4,6 +4,7 @@ The Ghost theme used for https://dsebastien.net.
 
 
 ## Development
+The package.json file in the `src` directory is only for Ghost. Project dependencies and scripts should be defined in the root `package.json` file.
 
 ```bash
 # install dependencies

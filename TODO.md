@@ -1,3 +1,34 @@
 # TODO
-- [ ] Make sure the files are copied where needed for the docker-compose file
 - [ ] Review the gulpfile release task
+- [ ] Dev script should update what's used by the docker-compose file
+- [ ] Index.html improvements
+- [ ] Newsletter page
+- [ ] Newsletter archive page
+- [ ] Posts list organized by content pillar (cfr content strategy)
+- [ ] Free content page
+- [ ] Free content page link in nav
+- [ ] Logo in top left of the header
+- [ ] Subscribe button in header
+- [ ] Add a "back to top" link at the bottom of the page
+- [ ] Improve footer
+    - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
+    - [ ] CTA for newsletter + signup form
+    - [ ] Social links
+    - [ ] Gradient background
+    - [ ] Sections in columns (similar to knowii.net)
+        - [ ] About
+        - [ ] About: link to about page
+        - [ ] Newsletter: link to newsletter page
+        - [ ] Free content: link to free content page
+        - [ ] Contact: link to contact page
+    - [ ] Resources
+        - [ ] Knowledge Management: Link to PKM page
+        - [ ] Courses
+        - [ ] Coaching
+        - [ ] Blog
+    - [ ] Knowledge Management
+        - [ ] OSK
+        - [ ] OSC
+        - [ ] ...
+- [ ] Start page built in theme
+    - [ ] No header (?)
