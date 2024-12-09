@@ -67,13 +67,60 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
+    <!-- WARNING: Waiting for a fix by Gumroad for this issue: https://twitter.com/dSebastien/status/1856760739945492938
+    <script src="https://gumroad.com/js/gumroad.js"></script>
+    -->
+
+    <!-- EthicalAds -->
+    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Sébastien Dubois",
+            "alternateName": "Sébastien Dubois's Website",
+            "description": "I help mid-career professionals optimize their personal knowledge management for clarity and growth.",
+            "publisher": {
+                "@context": "https://schema.org/",
+                "@type": "Person",
+                "name": "Sébastien Dubois",
+                "familyName": "Dubois",
+                "givenName": "Sébastien",
+                "image": "https://www.dsebastien.net/content/images/size/w2000/2024/04/Seb-2022.jpg",
+                "url": "https://x.com/dSebastien",
+                "sameAs": [
+                    "https://www.linkedin.com/in/sebastiend/",
+                    "https://bsky.app/profile/dsebastien.net",
+                    "https://pkm.social/@dsebastien",
+                    "https://github.com/dsebastien",
+                    "https://dsebastien.medium.com/",
+                    "https://dev.to/dsebastien",
+                    "https://www.youtube.com/@dsebastien",
+                    "https://www.twitch.tv/dsebastien",
+                    "https://stackoverflow.com/users/226630/dsebastien",
+                    "https://www.facebook.com/trankill",
+                    "https://dsebastien.hashnode.dev/",
+                    "https://www.reddit.com/user/lechtitseb/"
+                ],
+                "jobTitle": "Knowledge Management & Productivity Mentor",
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "DeveloPassion",
+                    "url": "https://developassion.be"
+                }
+            },
+            "url": "https://www.dsebastien.net"
+        }
+    </script>
+
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
 
 </head>
-<body class="antialiased {{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
+<body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
 
-<div class="gh-viewport">
+<div class="gh-viewport antialiased">
     
     {{> "components/navigation" navigationLayout=@custom.navigation_layout}}
 

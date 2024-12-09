@@ -1,11 +1,8 @@
 # TODO
-- [ ] Add release-it
-- [ ] Add commitizen etc
-- [ ] Dev script should update what's used by the docker-compose file
-- [ ] Index.html improvements
+- [ ] Add fontawesome or similar to use icons (without the CDN!)
 - [ ] Newsletter page
 - [ ] Newsletter archive page
-- [ ] Posts list organized by content pillar (cfr content strategy)
+- [ ] Articles page with posts lists organized by content pillar (cfr content strategy)
 - [ ] Free content page
 - [ ] Free content page link in nav
 - [ ] Logo in top left of the header
@@ -33,3 +30,6 @@
         - [ ] ...
 - [ ] Start page built in theme
     - [ ] No header (?)
+- [ ] Add release-it
+- [ ] Add commitizen etc
+- [ ] Use custom fonts properly: https://ghost.org/docs/themes/custom-settings/#setting-up-support-for-custom-fonts
