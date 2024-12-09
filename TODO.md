@@ -1,4 +1,5 @@
 # TODO
+- [ ] Remove show_images_in_feed and associated code (won't be used!)
 - [ ] Rework home.hbs and integrate homepage HTML
 - [ ] Remove settings and associated styles (i.e., hardcode MY style)
 - [ ] Add fontawesome or similar to use icons (without the CDN!)
@@ -35,3 +36,4 @@
 - [ ] Add release-it
 - [ ] Add commitizen etc
 - [ ] Use custom fonts properly: https://ghost.org/docs/themes/custom-settings/#setting-up-support-for-custom-fonts
+- [ ] Explore "feed" notion for Ghost theme

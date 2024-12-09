@@ -1,11 +1,10 @@
 {{!--
     Parameters:
     * feed (index, home, archive, recent)
-    * postFeedStyle (list, grid)
     * showTitle (true, false)
 --}}
 
-<section class="gh-container is-{{#match postFeedStyle "List"}}list{{else}}grid{{/match}} has-sidebar{{#unless @custom.show_images_in_feed}} no-image{{/unless}} gh-outer">
+<section class="gh-container is-grid has-sidebar gh-outer">
     <div class="gh-container-inner gh-inner">
         
         {{#if showTitle}}

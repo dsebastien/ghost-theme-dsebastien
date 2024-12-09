@@ -117,21 +117,6 @@
                 "group": "homepage",
                 "visibility": "header_style:[Highlight, Magazine]"
             },
-            "post_feed_style": {
-                "type": "select",
-                "options": [
-                    "List",
-                    "Grid"
-                ],
-                "default": "List",
-                "group": "homepage"
-            },
-            "show_images_in_feed": {
-                "type": "boolean",
-                "default": true,
-                "group": "homepage",
-                "visibility": "post_feed_style:List"
-            },
             "show_author": {
                 "type": "boolean",
                 "default": true,
