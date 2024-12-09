@@ -21,11 +21,9 @@ production stylesheet in assets/built/screen.css
   8.1. Magazine layout
   8.2. Highlight layout
   8.3. Classic layout
-9. CTA
 10. Featured posts
 11. Container
   11.1. With sidebar
-  11.2. Without sidebar
 12. Post list
   12.1. List style
   12.2. Grid style
@@ -549,54 +547,7 @@ button.gh-form-input {
     color: #15171a;
 }
 
-/* 6.2. Navigation layouts */
-
-/*
-======================================================================
-LOGO   Home About Collection Author Portal             Login Subscribe
-======================================================================
-*/
-
-.gh-navigation.is-left-logo .gh-navigation-inner {
-    grid-template-columns: auto 1fr auto;
-}
-
-@media (min-width: 768px) {
-    .gh-navigation.is-left-logo .gh-navigation-logo:not(:has(img)) {
-        top: -2px;
-    }
-}
-
-@media (min-width: 992px) {
-    .gh-navigation.is-left-logo .gh-navigation-menu {
-        margin-right: 100px;
-        margin-left: 16px;
-    }
-}
-
-/*
-======================================================================
-Home About Collection            LOGO                  Login Subscribe
-======================================================================
-*/
-
-.gh-navigation.is-middle-logo .gh-navigation-inner {
-    grid-template-columns: 1fr auto 1fr;
-}
-
-.gh-navigation.is-middle-logo .gh-navigation-brand {
-    grid-column-start: 2;
-}
-
-.gh-navigation.is-middle-logo .gh-navigation-actions {
-    gap: 28px;
-}
-
-@media (min-width: 992px) {
-    .gh-navigation.is-middle-logo .gh-navigation-menu {
-        margin-right: 64px;
-    }
-}
+/* 6.2. Navigation layout */
 
 /*
 ======================================================================
@@ -1403,47 +1354,6 @@ Search                         LOGO                    Login Subscribe
     background-color: #fff;
 }
 
-/* 9. CTA
-/* ---------------------------------------------------------- */
-
-.gh-cta {
-    display: none;
-    margin-top: max(4vw, 40px);
-}
-
-.gh-header:is(.is-highlight, .is-magazine) + .gh-cta {
-    display: block;
-}
-
-.gh-cta-inner {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 36px;
-    padding: clamp(48px, 3.64vw + 33.45px, 80px) clamp(40px, 2.73vw + 29.09px, 64px);
-    text-align: center;
-    background-color: var(--color-lighter-gray);
-}
-
-.gh-cta-content {
-    max-width: 640px;
-}
-
-.gh-cta-title {
-    font-size: clamp(2.8rem,1.36vw + 2.25rem,4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.021em;
-}
-
-.gh-cta-description {
-    margin-top: 12px;
-    font-size: 1.8rem;
-    line-height: 1.4;
-    letter-spacing: -0.015em;
-}
 
 /* 10. Featured posts
 /* ---------------------------------------------------------- */
@@ -1574,7 +1484,7 @@ Search                         LOGO                    Login Subscribe
     column-gap: var(--grid-gap);
 }
 
-:is(.gh-featured, .gh-cta) + .gh-container {
+:is(.gh-featured) + .gh-container {
     margin-top: max(4vw, 40px);
 }
 
@@ -1639,31 +1549,6 @@ Search                         LOGO                    Login Subscribe
     width: 1px;
     height: 100%;
     background-color: var(--color-border);
-}
-
-/* 11.2. Without sidebar */
-
-.gh-container:not(.has-sidebar) :is(.gh-container-title, .gh-main, .gh-more) {
-    grid-column: 3 / span 12;
-}
-
-.gh-container.is-list.no-image:not(.has-sidebar) :is(.gh-container-title, .gh-main, .gh-more) {
-    grid-column: 4 / span 10;
-}
-
-.gh-header:is(.is-highlight, .is-magazine) ~ .gh-container.is-grid:not(.has-sidebar) :is(.gh-container-title, .gh-main, .gh-more) {
-    grid-column: 1 / -1;
-}
-
-@media (max-width: 1199px) {
-    .gh-container-inner {
-        display: block;
-        overflow: hidden;
-    }
-
-    .gh-container.has-sidebar .gh-sidebar {
-        display: none;
-    }
 }
 
 /* 12. Post list
@@ -2729,7 +2614,7 @@ figcaption a {
     border-radius: 0;
 }
 
-.has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-cta-title {
+.has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) {
     font-size: 4.8rem;
 }
 

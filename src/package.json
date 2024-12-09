@@ -48,15 +48,6 @@
         },
         "card_assets": true,
         "custom": {
-            "navigation_layout": {
-                "type": "select",
-                "options": [
-                    "Logo in the middle",
-                    "Logo on the left",
-                    "Stacked"
-                ],
-                "default": "Logo in the middle"
-            },
             "site_background_color": {
                 "type": "color",
                 "default": "#ffffff"
@@ -149,11 +140,6 @@
             "show_publish_date": {
                 "type": "boolean",
                 "default": true,
-                "group": "homepage"
-            },
-            "show_publication_info_sidebar": {
-                "type": "boolean",
-                "default": false,
                 "group": "homepage"
             },
             "show_post_metadata": {

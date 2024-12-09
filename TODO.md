@@ -1,4 +1,6 @@
 # TODO
+- [ ] Rework home.hbs and integrate homepage HTML
+- [ ] Remove settings and associated styles (i.e., hardcode MY style)
 - [ ] Add fontawesome or similar to use icons (without the CDN!)
 - [ ] Newsletter page
 - [ ] Newsletter archive page
@@ -11,7 +13,7 @@
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
-    - [ ] Social links
+    - [ ] Hardcode Social links and add icons
     - [ ] Gradient background
     - [ ] Sections in columns (similar to knowii.net)
         - [ ] About
