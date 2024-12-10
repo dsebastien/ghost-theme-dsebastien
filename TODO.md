@@ -1,19 +1,11 @@
 # TODO
 
+- [ ] Add Tailwind color theme
+
 - [ ] Rework home.hbs and integrate homepage HTML
 - [ ] Blog page
-- [ ] Remove settings and associated styles (i.e., hardcode MY style)
-- [ ] Add fontawesome or similar to use icons (without the CDN!)
-- [ ] Newsletter page
-- [ ] Newsletter archive page
-- [ ] Articles page with posts lists organized by content pillar (cfr content strategy)
-- [ ] Free content page
-- [ ] Free content page link in nav
-- [ ] Logo in top left of the header
-- [ ] Subscribe button in header
 
-
-Show featured posts on blog page
+Show featured posts on blog page on desktop
 {{#get "posts" filter="featured:true" include="authors" limit=limit as |featured|}}
     <section class="gh-featured gh-outer">
         <div class="gh-featured-inner gh-inner">
@@ -27,6 +19,16 @@ Show featured posts on blog page
     </section>
 {{/get}}
 
+
+- [ ] Remove settings and associated styles (i.e., hardcode MY style)
+- [ ] Add fontawesome or similar to use icons (without the CDN!)
+- [ ] Newsletter page
+- [ ] Newsletter archive page
+- [ ] Articles page with posts lists organized by content pillar (cfr content strategy)
+- [ ] Free content page
+- [ ] Free content page link in nav
+- [ ] Logo in top left of the header
+- [ ] Subscribe button in header
 
 
 - [ ] Add a "back to top" link at the bottom of the page

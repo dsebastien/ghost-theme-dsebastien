@@ -51,11 +51,11 @@
 /* ---------------------------------------------------------- */
 
 *, *::before, *::after {
-    box-sizing: border-box;
+    @apply box-border;
 }
 
 * {
-    margin: 0;
+    @apply m-0;
 }
 
 html {
@@ -64,18 +64,15 @@ html {
 
 body {
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply antialiased;
 }
 
 img, picture, video, canvas, svg {
-    display: block;
-    height: auto;
-    max-width: 100%;
+    @apply block h-auto max-w-full;
 }
 
 iframe {
-    display: block;
+    @apply block;
 }
 
 input, button, textarea, select {
@@ -83,7 +80,7 @@ input, button, textarea, select {
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
+    @apply break-words;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -105,62 +102,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
+    @apply no-underline;
     color: var(--color-darker-gray);
-    text-decoration: none;
 }
 
 a:hover {
-    opacity: 0.8;
+    @apply opacity-80;
 }
 
 .gh-button {
-    display: inline-flex;
+    @apply inline-flex items-center justify-center cursor-pointer border-0;
     gap: 0.4em;
-    align-items: center;
-    justify-content: center;
     padding: 0.8em 1.4em;
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.004em;
     line-height: 1;
     color: var(--color-white);
-    cursor: pointer;
     background-color: var(--ghost-accent-color);
-    border: 0;
     border-radius: 100px;
 }
 
 .gh-button:hover {
-    opacity: 0.95;
+    @apply opacity-95;
 }
 
 .gh-icon-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    @apply inline-flex items-center justify-center p-0 border-0 outline-none cursor-pointer bg-transparent;
     width: 32px;
     height: 32px;
-    padding: 0;
     color: var(--color-darker-gray);
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-    outline: none;
 }
 
 .gh-icon-button:hover :is(svg, span) {
-    opacity: 0.8;
+    @apply opacity-80;
 }
 
 .gh-icon-button svg {
-    width: 20px;
-    height: 20px;
+    @apply w-5 h-5;
 }
 
 .gh-form {
-    display: flex;
-    align-items: center;
-    position: relative;
+    @apply flex items-center relative;
     max-width: 560px;
     width: 100%;
     height: 56px;
@@ -173,7 +156,7 @@ a:hover {
 }
 
 .gh-form.success {
-    pointer-events: none;
+    @apply pointer-events-none;
 }
 
 .gh-form.error {
@@ -190,18 +173,12 @@ a:hover {
 }
 
 .gh-form-input {
-    position: absolute;
-    inset: 0;
+    @apply absolute w-full h-full inset-0 border-0 bg-transparent outline-none;
     padding-inline: 26px;
-    width: 100%;
-    height: 100%;
     font-size: inherit;
     letter-spacing: inherit;
     line-height: 1.1;
-    border: 0;
     border-radius: 40px;
-    background-color: transparent;
-    outline: none;
     transition: 0.3s ease-in-out;
 }
 
@@ -215,12 +192,12 @@ button.gh-form-input {
 }
 
 .gh-form.gh-form.success .gh-form-input {
-    opacity: 0.5;
+    @apply opacity-50;
 }
 
 .has-light-text .gh-form-input,
 .gh-footer.has-accent-color .gh-form-input {
-    color: #fff;
+    @apply text-white;
 }
 
 .has-light-text .gh-form-input::placeholder,
@@ -230,10 +207,9 @@ button.gh-form-input {
 }
 
 button.gh-form-input {
+    @apply text-left cursor-pointer;
     padding-inline-start: 56px;
-    text-align: left;
     color: var(--color-secondary-text);
-    cursor: pointer;
 }
 
 :is(.has-serif-title,.has-mono-title):not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) button.gh-form-input {
@@ -241,7 +217,7 @@ button.gh-form-input {
 }
 
 .gh-form .gh-button {
-    position: absolute;
+    @apply absolute;
     right: 6px;
     padding-inline: 32px;
     height: 44px;
@@ -249,7 +225,7 @@ button.gh-form-input {
 }
 
 .gh-form > svg {
-    position: relative;
+    @apply relative;
     left: 22px;
     width: 20px;
     height: 20px;
@@ -261,28 +237,24 @@ button.gh-form-input {
 }
 
 .gh-form .gh-button svg {
-    display: none;
-    position: absolute;
-    margin-top: 1px;
+    @apply hidden absolute mt-[1px];
 }
 
 .gh-form:is(.loading, .success) .gh-button span {
-    visibility: hidden;
+    @apply hidden;
 }
 
 .gh-form.loading .gh-button svg:first-of-type {
-    display: block;
+    @apply block;
 }
 
 .gh-form.success .gh-button svg:last-of-type {
-    display: block;
+    @apply block;
 }
 
 .gh-form [data-members-error] {
-    position: absolute;
-    top: 100%;
+    @apply absolute top-full w-full;
     margin-top: 10px;
-    width: 100%;
     font-size: 1.4rem;
     line-height: 1.4;
 }
@@ -297,12 +269,11 @@ button.gh-form-input {
     }
 
     .gh-form .gh-button span span {
-        display: none;
+        @apply hidden;
     }
 
     .gh-form .gh-button span svg {
-        display: inline;
-        position: static;
+        @apply inline static;
         margin-top: 2px;
         width: 20px;
         height: 20px;
@@ -313,10 +284,7 @@ button.gh-form-input {
 /* ---------------------------------------------------------- */
 
 .gh-viewport {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    @apply relative flex flex-col min-h-screen;
 }
 
 .gh-outer {
@@ -324,17 +292,16 @@ button.gh-form-input {
 }
 
 .gh-outer .gh-outer {
-    padding: 0;
+    @apply p-0;
 }
 
 .gh-inner {
-    margin: 0 auto;
+    @apply mx-auto w-full;
     max-width: var(--container-width);
-    width: 100%;
 }
 
 .gh-main {
-    flex-grow: 1;
+    @apply flex-grow;
 }
 
 .gh-canvas,
@@ -369,7 +336,7 @@ button.gh-form-input {
 /* ---------------------------------------------------------- */
 
 .gh-navigation {
-    height: 100px;
+    @apply h-[100px];
     font-size: 1.5rem;
     font-weight: 550;
     background-color: var(--background-color);
@@ -377,15 +344,13 @@ button.gh-form-input {
 }
 
 .gh-navigation :is(.gh-navigation-logo, a:not(.gh-button), .gh-icon-button) {
-    color: inherit;
+    @apply text-inherit;
 }
 
 .gh-navigation-inner {
-    display: grid;
+    @apply grid h-full items-center;
     grid-auto-flow: row dense;
     column-gap: 24px;
-    align-items: center;
-    height: 100%;
 }
 
 .gh-navigation-brand {
@@ -393,36 +358,29 @@ button.gh-form-input {
 }
 
 .gh-navigation-logo {
-    position: relative;
+    @apply relative whitespace-nowrap;
     font-family: var(--gh-font-heading, var(--font-sans));
     font-size: calc(2.4rem * var(--factor, 1));
     font-weight: 725;
     letter-spacing: -0.015em;
-    white-space: nowrap;
 }
 
 .gh-navigation-logo img {
-    max-height: 40px;
+    @apply max-h-[40px];
 }
 
 .gh-navigation-menu {
-    display: flex;
+    @apply flex items-center;
     gap: 24px;
-    align-items: center;
 }
 
 .gh-navigation .nav {
-    display: inline-flex;
+    @apply inline-flex items-center p-0 m-0 whitespace-nowrap list-none;
     gap: 28px;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    white-space: nowrap;
-    list-style: none;
 }
 
 .gh-navigation .gh-more-toggle {
-    position: relative;
+    @apply relative;
     margin: 0 -6px;
     font-size: inherit;
     text-transform: inherit;
@@ -434,10 +392,8 @@ button.gh-form-input {
 }
 
 .gh-navigation-actions {
-    display: flex;
+    @apply flex items-center justify-end;
     gap: 24px;
-    align-items: center;
-    justify-content: flex-end;
     background-color: var(--background-color);
 }
 
@@ -446,10 +402,8 @@ button.gh-form-input {
 }
 
 .gh-navigation-members {
-    display: flex;
+    @apply flex items-center whitespace-nowrap;
     gap: 20px;
-    align-items: center;
-    white-space: nowrap;
 }
 
 .gh-navigation-members .gh-button {
@@ -458,33 +412,31 @@ button.gh-form-input {
 }
 
 .gh-search {
-    margin-right: -2px;
-    margin-left: -2px;
+    @apply mr-[-2px] ml-[-2px];
 }
 
 @media (max-width: 767px) {
     .gh-navigation-logo {
-        white-space: normal;
+        @apply whitespace-normal;
     }
 
     .gh-navigation-members {
-        flex-direction: column-reverse;
+        @apply flex-col-reverse w-full;
         gap: 16px;
-        width: 100%;
     }
 
     .gh-navigation-actions .gh-search {
-        display: none;
+        @apply hidden;
     }
 }
 
 @media (min-width: 768px) {
     .gh-navigation-brand .gh-search {
-        display: none;
+        @apply hidden;
     }
 
     .gh-navigation:not(.is-dropdown-loaded) .gh-navigation-menu .nav > li {
-        opacity: 0;
+        @apply opacity-0;
     }
 }
 
@@ -509,8 +461,7 @@ Search                         LOGO                    Login Subscribe
 */
 
 .gh-navigation.is-stacked {
-    position: relative;
-    height: auto;
+    @apply relative h-auto;
 }
 
 .gh-navigation.is-stacked .gh-navigation-inner {
@@ -518,8 +469,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-navigation.is-stacked .gh-navigation-brand {
-    display: flex;
-    align-items: center;
+    @apply flex items-center;
     grid-row-start: 1;
     grid-column-start: 2;
     min-height: 80px;
@@ -533,13 +483,11 @@ Search                         LOGO                    Login Subscribe
 
 @media (min-width: 992px) {
     .gh-navigation.is-stacked .gh-navigation-inner {
-        padding: 0;
+        @apply p-0;
     }
 
     .gh-navigation.is-stacked .gh-navigation-brand {
-        display: flex;
-        align-items: center;
-        height: 80px;
+        @apply flex items-center h-80px;
     }
 
     .gh-navigation.is-stacked .gh-navigation-menu {
@@ -552,10 +500,8 @@ Search                         LOGO                    Login Subscribe
 
     .gh-navigation.is-stacked .gh-navigation-menu::before,
     .gh-navigation.is-stacked .gh-navigation-menu::after {
-        position: absolute;
+        @apply absolute left-0 w-full;
         top: 80px;
-        left: 0;
-        width: 100%;
         height: 1px;
         content: "";
         background-color: var(--color-border);
@@ -572,28 +518,23 @@ Search                         LOGO                    Login Subscribe
     }
 
     .gh-navigation.is-stacked .gh-navigation-actions .gh-search {
-        display: flex;
+        @apply flex w-auto;
         gap: 10px;
-        width: auto;
     }
 }
 
 /* 6.3. Dropdown menu */
 
 .gh-dropdown {
-    position: absolute;
+    @apply absolute right-[-16px] text-left bg-white opacity-0;
     top: 100%;
-    right: -16px;
     z-index: 90;
     width: 200px;
     padding: 12px 0;
     margin-top: 24px;
-    text-align: left;
     visibility: hidden;
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 7px 20px -5px rgb(0 0 0 / 0.15);
-    opacity: 0;
     transition: opacity 0.3s, transform 0.2s;
     transform: translate3d(0, 6px, 0);
 }
@@ -604,25 +545,21 @@ Search                         LOGO                    Login Subscribe
 }
 
 .is-dropdown-mega .gh-dropdown {
-    display: grid;
+    @apply grid w-auto;
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: column;
     column-gap: 40px;
-    width: auto;
     padding: 20px 32px;
 }
 
 .is-dropdown-open .gh-dropdown {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
+    @apply visible opacity-100 transform-translate-y-0;
 }
 
 .gh-dropdown li a {
-    display: block;
+    @apply block whitespace-normal;
     padding: 7px 20px;
     line-height: 1.5;
-    white-space: normal;
     color: #15171a !important;
 }
 
@@ -633,11 +570,7 @@ Search                         LOGO                    Login Subscribe
 /* 6.4. Mobile menu */
 
 .gh-burger {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    display: none;
+    @apply flex justify-center items-center relative;
     margin-right: -7px;
     margin-left: 4px;
 }
@@ -648,20 +581,20 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-burger svg:last-child {
-    display: none;
+    @apply hidden;
 }
 
 .is-open .gh-burger svg:first-child {
-    display: none;
+    @apply hidden;
 }
 
 .is-open .gh-burger svg:last-child {
-    display: block;
+    @apply block;
 }
 
 @media (max-width: 767px) {
     .gh-burger {
-        display: flex;
+        @apply flex;
     }
 
     #gh-navigation {
@@ -675,10 +608,9 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation .gh-navigation-brand {
-        display: grid;
+        @apply grid items-center;
         grid-template-columns: 1fr auto auto;
         grid-column-start: 1;
-        align-items: center;
         height: 64px;
     }
 
@@ -688,10 +620,9 @@ Search                         LOGO                    Login Subscribe
 
     #gh-navigation .gh-navigation-menu,
     #gh-navigation .gh-navigation-actions {
-        position: fixed;
+        @apply fixed opacity-0;
         justify-content: center;
         visibility: hidden;
-        opacity: 0;
     }
 
     #gh-navigation .gh-navigation-menu {
@@ -712,8 +643,7 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation .nav li {
-        opacity: 0;
-        transform: translateY(-4px);
+        @apply opacity-0 transform-translate-y-[-4px];
     }
 
     #gh-navigation .gh-navigation-actions {
@@ -721,12 +651,12 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation :is(.gh-button, a[data-portal="signin"]) {
-        opacity: 0;
+        @apply opacity-0;
         transform: translateY(8px);
     }
 
     #gh-navigation .gh-button {
-        width: 100%;
+        @apply w-full;
         font-size: 1.75rem;
         text-transform: none;
     }
@@ -740,46 +670,35 @@ Search                         LOGO                    Login Subscribe
     }
 
     .is-open#gh-navigation {
-        position: fixed;
-        inset: 0;
+        @apply fixed inset-0 h-full overflow-y-scroll;
         z-index: 3999999;
-        height: 100%;
-        overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
     }
 
     .is-open#gh-navigation .gh-navigation-menu,
     .is-open#gh-navigation .gh-navigation-actions {
-        position: static;
+        @apply static opacity-100;
         visibility: visible;
-        opacity: 1;
     }
 
     .is-open#gh-navigation .nav {
-        display: flex;
-        flex-direction: column;
+        @apply flex flex-col;
     }
 
     .is-open#gh-navigation .nav li {
-        opacity: 1;
+        @apply opacity-100;
         transition: transform 0.2s, opacity 0.2s;
         transform: translateY(0);
     }
 
     .is-open#gh-navigation .gh-navigation-actions {
-        position: sticky;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: inline-flex;
-        flex-direction: column;
+        @apply sticky right-0 bottom-0 left-0 inline-flex flex-col items-center;
         gap: 12px;
-        align-items: center;
         padding: var(--container-gap) 0;
     }
 
     .is-open#gh-navigation :is(.gh-button, a[data-portal="signin"]) {
-        opacity: 1;
+        @apply opacity-100;
         transition: transform 0.4s, opacity 0.4s;
         transition-delay: 0.2s;
         transform: translateY(0);
@@ -790,7 +709,7 @@ Search                         LOGO                    Login Subscribe
     }
 
     .is-open#gh-main {
-        opacity: 0;
+        @apply opacity-0;
     }
 }
 
@@ -798,39 +717,31 @@ Search                         LOGO                    Login Subscribe
 /* ---------------------------------------------------------- */
 
 .gh-card {
-    position: relative;
+    @apply relative;
 }
 
 .gh-card-link {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    @apply flex flex-col gap-5;
 }
 
 .gh-card-link:hover {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .gh-card-image {
-    position: relative;
-    flex-shrink: 0;
-    aspect-ratio: 16 / 9;
+    @apply relative flex-shrink-0 aspect-video;
 }
 
 .gh-card-image img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    @apply absolute inset-0 w-full h-full object-cover;
 }
 
 .gh-card-wrapper {
-    flex-grow: 1;
+    @apply flex-grow;
 }
 
 .gh-card-tag {
-    display: none;
+    @apply hidden;
     margin-bottom: 4px;
     font-size: 1.2rem;
     font-weight: 500;
@@ -846,7 +757,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-link:hover .gh-card-title {
-    opacity: 0.8;
+    @apply opacity-80;
 }
 
 .gh-card-excerpt {
@@ -870,9 +781,8 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-meta svg {
-    position: relative;
+    @apply relative inline-block;
     top: 1px;
-    display: inline-block;
     width: 12px;
     height: 12px;
     margin-right: 2px;
@@ -899,7 +809,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-inner {
-    overflow: hidden;
+    @apply overflow-hidden;
 }
 
 .gh-featured-title {
@@ -913,7 +823,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed {
-    display: grid;
+    @apply grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--grid-gap);
 }
@@ -924,19 +834,17 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card-link {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
+    @apply flex flex-row-reverse items-start;
 }
 
 .gh-featured-feed .gh-card-image {
+    @apply aspect-square;
     width: 72px;
-    aspect-ratio: 1;
 }
 
 @container featured-card (width < 240px) {
     .gh-featured-feed .gh-card-image {
-        display: none;
+        @apply hidden;
     }
 }
 
@@ -964,7 +872,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card-excerpt {
-    display: none;
+    @apply hidden;
 }
 
 .gh-featured-feed .gh-card-meta:not(:empty) {
@@ -972,12 +880,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card::before {
-    position: absolute;
-    top: 0;
+    @apply absolute top-0 h-full w-[1px];
     left: calc(var(--grid-gap) / -2);
     content: "";
-    width: 1px;
-    height: 100%;
     background-color: var(--color-border);
 }
 
@@ -987,14 +892,13 @@ Search                         LOGO                    Login Subscribe
     }
 
     .gh-viewport > .gh-featured .gh-featured-feed .gh-card:nth-child(4) {
-        display: none;
+        @apply hidden;
     }
 }
 
 @media (max-width: 767px) {
     .gh-viewport > .gh-featured .gh-featured-feed {
-        display: flex;
-        flex-direction: column;
+        @apply flex flex-col;
     }
 }
 
@@ -1002,12 +906,11 @@ Search                         LOGO                    Login Subscribe
 /* ---------------------------------------------------------- */
 
 .gh-container {
-    flex-grow: 1;
-    margin-top: 64px;
+    @apply flex-grow mt-[64px];
 }
 
 .gh-container-inner {
-    display: grid;
+    @apply grid;
     grid-template-columns: repeat(16, 1fr);
     column-gap: var(--grid-gap);
 }
@@ -1018,13 +921,12 @@ Search                         LOGO                    Login Subscribe
 
 .gh-navigation + .gh-container .gh-container-title,
 :is(.paged, .tag-template, .author-template) .gh-container:not(.has-sidebar) .gh-container-title {
-    display: none;
+    @apply hidden;
 }
 
 .gh-more {
-    display: none;
+    @apply hidden mt-[48px];
     grid-column: 1 / -1;
-    margin-top: 48px;
     font-size: calc(1.9rem * var(--factor, 1));
     font-weight: 725;
     letter-spacing: -0.014em;
@@ -1035,12 +937,11 @@ Search                         LOGO                    Login Subscribe
 }
 
 .home-template .gh-feed:has(> :nth-child(12):last-child) ~ .gh-more {
-    display: block;
+    @apply block;
 }
 
 .gh-more a {
-    display: flex;
-    align-items: center;
+    @apply flex items-center;
     gap: 4px;
 }
 
@@ -1051,7 +952,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-more svg {
-    margin-top: 0;
+    @apply mt-0;
 }
 
 /* 11.1. With sidebar */
@@ -1066,12 +967,10 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.has-sidebar .gh-main::after {
-    position: absolute;
-    top: 0;
+    @apply absolute top-0 h-full;
     right: calc(var(--grid-gap) / -2);
     content: "";
     width: 1px;
-    height: 100%;
     background-color: var(--color-border);
 }
 
@@ -1079,18 +978,18 @@ Search                         LOGO                    Login Subscribe
 /* ---------------------------------------------------------- */
 
 .gh-container-title {
+    @apply uppercase;
     grid-column: 1 / -1;
     margin-bottom: calc(var(--grid-gap) / 2);
     padding-bottom: 12px;
     font-size: 1.2rem;
     font-weight: 550;
     letter-spacing: 0.025em;
-    text-transform: uppercase;
     border-bottom: 1px solid var(--color-border);
 }
 
 .gh-container:not(:has(.gh-card)) .gh-container-title {
-    display: none;
+    @apply hidden;
 }
 
 .gh-container .gh-feed {
@@ -1104,14 +1003,13 @@ Search                         LOGO                    Login Subscribe
 /* 12.2. Grid style */
 
 .gh-container.is-grid .gh-feed {
-    display: grid;
+    @apply grid overflow-hidden;
     grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
     row-gap: calc(var(--grid-gap) * 1.5);
-    overflow: hidden;
 }
 
 .gh-container.is-grid .gh-card::before {
-    position: absolute;
+    @apply absolute;
     top: calc(var(--grid-gap) / -2);
     right: calc(var(--grid-gap) / -2);
     left: calc(var(--grid-gap) / -2);
@@ -1121,12 +1019,10 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.is-grid .gh-card::after {
-    position: absolute;
-    top: 0;
+    @apply absolute top-0 h-full;
     left: calc(var(--grid-gap) / -2);
     content: "";
     width: 1px;
-    height: 100%;
     background-color: var(--color-border);
 }
 
@@ -1138,8 +1034,7 @@ Search                         LOGO                    Login Subscribe
 
 @media (max-width: 576px) {
     .gh-container.is-grid .gh-feed {
-        display: flex;
-        flex-direction: column;
+        @apply flex flex-col;
     }
 }
 
@@ -1854,7 +1749,7 @@ figcaption a {
 }
 
 .gh-archive.has-image .gh-archive-inner {
-    align-items: center;
+    @apply items-center;
     grid-column: 1 / -1;
 }
 
@@ -1863,27 +1758,23 @@ figcaption a {
 }
 
 .gh-archive .gh-article-image {
-    grid-column: auto;
-    margin-top: 0;
+    @apply col-auto mt-0;
 }
 
 :is(.tag-template, .author-template) .gh-container {
-    margin-top: 0;
+    @apply mt-0;
 }
 
 .author-template .gh-archive-inner {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+    @apply flex flex-row-reverse justify-end;
     gap: 24px;
 }
 
 .author-template .gh-article-image {
-    margin-top: 0;
+    @apply mt-0 object-cover;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    object-fit: cover;
 }
 
 .author-template .gh-article-title {
@@ -1891,7 +1782,7 @@ figcaption a {
 }
 
 .gh-author-meta {
-    display: flex;
+    @apply flex;
     gap: 10px;
     margin-top: 14px;
     font-size: 1.5rem;
@@ -1904,9 +1795,8 @@ figcaption a {
 }
 
 .gh-author-social {
-    display: flex;
+    @apply flex items-center;
     gap: 10px;
-    align-items: center;
     padding-left: 3px;
 }
 
@@ -1917,19 +1807,17 @@ figcaption a {
 
 @media (max-width: 1199px) {
     .gh-archive {
-        display: block;
+        @apply block;
     }
 }
 
 @media (max-width: 767px) {
     .gh-archive-inner {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-start;
+        @apply flex flex-col-reverse items-start;
     }
 
     .author-template .gh-archive-inner {
-        flex-direction: column-reverse;
+        @apply flex-col-reverse;
     }
 }
 
@@ -2523,21 +2411,15 @@ figcaption a {
 }
 
 .pswp--css_animation .pswp__preloader__cut {
-    position: relative;
+    @apply relative overflow-hidden;
     width: 7px;
     height: 14px;
-    overflow: hidden;
 }
 
 .pswp--css_animation .pswp__preloader__donut {
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
+    @apply absolute top-0 left-0 box-border bg-transparent m-0;
     width: 14px;
     height: 14px;
-    margin: 0;
-    background: none;
     border: 2px solid var(--color-white);
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -2546,11 +2428,7 @@ figcaption a {
 
 @media screen and (max-width: 1024px) {
     .pswp__preloader {
-        position: relative;
-        top: auto;
-        left: auto;
-        float: right;
-        margin: 0;
+        @apply relative top-auto left-auto float-right m-0;
     }
 }
 
@@ -2579,17 +2457,12 @@ figcaption a {
 }
 
 .pswp__ui {
+    @apply visible opacity-1 subpixel-antialiased;
     z-index: 1550;
-    visibility: visible;
-    opacity: 1;
-    -webkit-font-smoothing: auto;
 }
 
 .pswp__top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    @apply absolute top-0 left-0 w-full;
     height: 44px;
 }
 
@@ -2604,16 +2477,16 @@ figcaption a {
 
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
-    visibility: visible;
+    @apply visible;
 }
 
 .pswp__ui--idle .pswp__top-bar {
-    opacity: 0;
+    @apply opacity-0;
 }
 
 .pswp__ui--idle .pswp__button--arrow--left,
 .pswp__ui--idle .pswp__button--arrow--right {
-    opacity: 0;
+    @apply opacity-0;
 }
 
 .pswp__ui--hidden .pswp__top-bar,
@@ -2626,7 +2499,7 @@ figcaption a {
 .pswp__ui--one-slide .pswp__button--arrow--left,
 .pswp__ui--one-slide .pswp__button--arrow--right,
 .pswp__ui--one-slide .pswp__counter {
-    display: none;
+    @apply hidden;
 }
 
 .pswp__element--disabled {
@@ -2634,5 +2507,5 @@ figcaption a {
 }
 
 .pswp--minimal--dark .pswp__top-bar {
-    background: none;
+    @apply bg-transparent;
 }
