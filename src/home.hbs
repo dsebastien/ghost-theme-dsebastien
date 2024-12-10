@@ -2,435 +2,144 @@
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
 <style>
-body {
-  font-family: 'Inter', sans-serif !important;
-color: #333 !important;
-}
-
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
-}
-
-h2 {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-}
-
-h3 {
-    font-size: 1.5rem !important;
-    font-weight: 600 !important;
-}
-
-  
-.gh-article-header {
-  margin-bottom: 0;
-}
-
-.gh-footer {
-  margin-top: 4vw;
-}
-
-  .benefits, .approach-steps, .offerings-grid {
-    margin-top: 2rem;
-}
-  
- section {
-   padding-top: 2rem;
-            margin-bottom: 4rem;
-        }
-
-  .hero {
-            text-align: center;
-    padding: 1rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 2rem;
-            line-height: 1.5;
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .hero a.cta {
-            display: inline-block;
-            background: #fd3585;
-            color: #ffffff;
-            text-decoration: none;
-            padding-left: 6rem;
-            padding-right: 6rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            border-radius: 4px;
-            font-size: 1.5rem;
-            transition: background 0.3s ease;
-        }
-
-        .hero a.cta:hover {
-            background: #e32d76;
-        }
-
-        .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: space-between;
-        }
-
-        .benefit-item {
-            flex: 1 1 calc(33% - 2rem);
-            min-width: 250px;
-        }
-
-        .benefit-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .about {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .about img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .approach-steps {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .step {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 4px;
-        }
-
-        .step h4 {
-            margin-top: 0;
-            color: #fd3585;
-        }
-
-        .testimonials {
-            background: #f3f3f3;
-            padding: 2rem 1.5rem;
-            border-radius: 4px;
-        }
-
-        .testimonials h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #fd3585;
-        }
-
-        .testimonial {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-
-        /* Offerings */
-        .offerings-section {
-            margin-top: 4rem;
-        }
-
-        .offerings-section h2 {
-            text-align: center;
-            color: #fd3585;
-            margin-bottom: 2rem;
-        }
-
-        .offerings-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .offering {
-            background: #f9f9f9;
-            border-radius: 4px;
-            padding: 1.5rem;
-        }
-
-        .offering h3 {
-            margin-top: 0;
-            color: #fd3585;
-        }
-
-        .offering p {
-            line-height: 1.4;
-        }
-
-        .offering a {
-            display: inline-block;
-            margin-top: 1rem;
-            text-decoration: underline;
-            color: #fd3585;
-        }
-
-  .endsection h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #fd3585;
-  }
-
-  .endsection p {
-    text-align: center;
-            font-size: 2rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-
-  .endsection div {
-    display: flex;
-            flex-direction: column;
-            align-items: center;
-  }
-
-        @media (max-width: 768px) {
-            .benefits {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .about {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .about img {
-                margin-bottom: 1rem;
-            }
-
-          .offerings-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .gh-footer {
+        margin-top: 4vw;
+    }
 </style>
 
-<h1 class="text-6xl font-bold text-center pt-24">Turn Your Knowledge Into Your Strategic Advantage</h1>
+<main class="gh-main homepage">
+    <article class="gh-article">
+        <header class="gh-article-header gh-canvas">
+            <h1 class="gh-article-title is-title !text-center">Turn Your Knowledge Into Your Strategic Advantage</h1>
+        </header>
 
-<!-- Hero -->
-<section class="hero">
-            <p>You’re a professional ready to make sense of the endless information at your fingertips. I’ll help you build a Knowledge Management system that frees you from overwhelm, boosts your thinking, and powers intentional career and life decisions.</p>
-            <a href="/start" class="cta">Start Here →</a>
-</section>
+        <section class="gh-content gh-canvas is-body">
+            <!-- Hero -->
+            <section class="hero">
+                        <p>You're a professional ready to make sense of the endless information at your fingertips. I’ll help you build a Knowledge Management system that frees you from overwhelm, boosts your thinking, and powers intentional career and life decisions.</p>
+                        <a href="/start" class="cta gh-button">Start Here ✨</a>
+            </section>
 
-<!-- Benefits -->
-        <section>
-            <div class="benefits">
+            <!-- Benefits -->
+            <section class="benefits">
                 <div class="benefit-item">
-                    <h3>Clear Thinking</h3>
+                    <h2>Clear Thinking</h2>
                     <p>Transform scattered notes and research into actionable insights that guide your decisions.</p>
                 </div>
                 <div class="benefit-item">
-                    <h3>Focused Growth</h3>
+                    <h2>Focused Growth</h2>
                     <p>Build a “second brain” that supports continuous learning, skill-building, and professional advancement.</p>
                 </div>
                 <div class="benefit-item">
-                    <h3>Intentional Living</h3>
+                    <h2>Intentional Living</h2>
                     <p>Free your mind from clutter, align your work with your values, and find balance and fulfillment.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-<!-- About/Intro -->
-<section>
-            <div class="about">
+            <!-- About/Intro -->
+            <section class="about">
                 <img src="{{asset "images/seb.jpg"}}" alt="Sébastien Dubois" />
                 <div class="about-text">
-                    <h2 style="color:#fd3585;">Hi, I’m Sébastien</h2>
-                    <p>For years, as an entrepreneur, author, and coach, I’ve tackled complex problems by mastering knowledge management. Now, I’m here to help you do the same. Let’s replace information overload with clarity, creativity, and a sustainable approach to growth—both in your career and your life.</p>
-                    <p><a href="/about" style="color:#fd3585; text-decoration:underline;">Learn More About My Story →</a></p>
+                    <h2>Hi, I'm Sébastien ✨</h2>
+                    <p>For years, as an entrepreneur, author, and coach, I've tackled complex problems by mastering knowledge management. Now, I'm here to help you do the same. Let's replace information overload with clarity, creativity, and a sustainable approach to growth—both in your career and your life.</p>
+                    <p><a href="/about" style="text-decoration:underline;">Learn More About My Story</a></p>
                 </div>
-            </div>
+            </section>
+
+            <!-- Approach/Steps -->
+            <section class="approach">
+                <h2 style="text-align:center; margin-bottom:2rem; text-">My Approach to Personal Knowledge Management 🦉</h2>
+                <div class="approach-steps">
+                    <div class="step">
+                        <h3>Foundations</h3>
+                        <p>Grasp the core principles of capturing, organizing, and synthesizing knowledge for immediate clarity.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Tools & Techniques</h3>
+                        <p>Find the right frameworks and digital tools (like Obsidian) to transform raw info into interconnected insights.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Thinking & Writing</h3>
+                        <p>Use writing, journaling, and mental models to refine your thinking, solve problems, and innovate confidently.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Real-World Application</h3>
+                        <p>Apply PKM principles to professional scenarios—improve collaboration, strategy, and personal branding.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Zen Productivity</h3>
+                        <p>Integrate all the above into a balanced, intentional lifestyle. Achieve more by focusing on what truly matters.</p>
+                    </div>
+                </div>
+                <p style="text-align:center; margin-top:2rem;">
+                    <a href="/start" style="color:#fd3585; text-decoration:underline;">Learn More About My Approach →</a>
+                </p>
+            </section>
+
+            <!-- How I Can Help You Further (Products & Services) -->
+            <section class="offerings">
+                <h2>How I Can Help You Further 🙏</h2>
+                <div class="offerings-grid">
+                    <div class="offering">
+                        <h3>Obsidian Starter Kit 🪨</h3>
+                        <p>A ready-made <a href="https://obsidian.md" target="_blank">Obsidian</a> vault with organized workflows, templates, and a user guide—perfect for getting started fast.</p>
+                        <a href="https://developassion.gumroad.com/l/obsidian-starter-kit">Get the Obsidian Starter Kit</a>
+                    </div>
+                    <div class="offering">
+                        <h3>Knowledge Worker Kit 🚀</h3>
+                        <p>An all-in-one package with community access, guides, and all future workshops and sessions. It includes all my other products as free bonuses!</p>
+                        <a href="https://developassion.gumroad.com/l/knowledge-worker-kit">Explore the Knowledge Worker Kit</a>
+                    </div>
+                    <div class="offering">
+                        <h3>Obsidian Starter Course 💎</h3>
+                        <p>Master Obsidian and essential note-taking techniques in 2+ hours of guided video content, helping you become proficient more quickly.</p>
+                        <a href="https://developassion.gumroad.com/l/obsidian-starter-course">Watch the Obsidian Starter Course</a>
+                    </div>
+                    <div class="offering">
+                        <h3>Knowledge Management for Beginners 📖</h3>
+                        <p>Build a solid foundation in PKM with structured lessons, guiding you from absolute beginner to confident organizer.</p>
+                        <a href="https://developassion.gumroad.com/l/knowledge-management-for-beginners">Learn Now</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials">
+                <h2>What Others Are Saying 📣</h2>
+                
+                <blockquote>Sebastien's writing is exceptional and I look forward to each new article — <span>Richard Elliott</span></blockquote>
+                <blockquote>Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement — <span>Julien Dambron</span></blockquote>
+                <blockquote>I just had a coaching session with Sébastien Dubois, and it was an incredibly helpful experience. Sébastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner.. — <span>Anonymous</span></blockquote>      
+                <blockquote> very good starting point for your Personal Knowledge Management — <span>Fredrik Nordstrom</span></blockquote>
+                <blockquote>I just had a coaching session with Sébastien Dubois, and it was an incredibly helpful experience. Sébastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner.. — <span>Anonymous</span></blockquote>
+                <blockquote>A very good starting point for your Personal Knowledge Management — <span>Fredrik Nordstrom</span></blockquote>
+                <blockquote>This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory. Overall, this has been a joy to adopt as a work tool — <span>Dwayne Appleby</span></blockquote>
+                <blockquote>Great content - got me up to speed with what I was looking for fast ! Sébastien answered some questions by mail also which was much appreciated ! Thanks — <span>Sam Gonzales</span></blockquote>
+                <blockquote>Extremely comprehensive and most worthwhile! — <span>Mike Nall</span></blockquote>
+            </section>
+
+            <!-- CTA -->
+            <section class="cta">
+                <h2>Ready to Get Started? 🚀</h2>
+                <p>Reshape how you think, learn, and grow. Begin by exploring the Start Page and my content.</p>
+                <ul>
+                    <li><a href="/start" target="_blank" class="cta">Visit the Start Page 🚀</a></li>
+                    <li><a href="/blog" target="_blank" class="cta">Read my Articles ✍️</a></li>
+                    <li><a href="/tag/newsletter" target="_blank" class="cta">Read my Newsletters 💌</a></li>
+                    <li><a href="/courses" target="_blank" class="cta">Discover my Courses</a></li>
+                    <li><a href="/books" target="_blank" class="cta">Check out my Books 📖</a></li>
+                    <li><a href="https://www.youtube.com/@dsebastien" target="_blank" class="cta">Watch my Videos 📽️</a></li>
+                    <li><a href="https://notes.dsebastien.net" target="_blank" class="cta">Look at my Public Notes</a></li>
+                    <li><a href="/projects" target="_blank" class="cta">Explore my Projects</a></li>
+                    <li><a href="https://developassion.gumroad.com/l/pkm-coaching" target="_blank" class="cta">Book a Coaching Session with me 🧑‍🎓</a></li>
+                </ul>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="cta-newsletter">
+                <h2>Subscribe to the Newsletter 💌</h2>
+                {{> "email-subscription" email_field_id="footer-email"}}
+            </section>
         </section>
-
-<!-- Approach/Steps -->
-<section>
-            <h2 style="text-align:center; margin-bottom:2rem; color:#fd3585;">My Approach to Personal Knowledge Management</h2>
-            <div class="approach-steps">
-                <div class="step">
-                    <h4>Foundations</h4>
-                    <p>Grasp the core principles of capturing, organizing, and synthesizing knowledge for immediate clarity.</p>
-                </div>
-                <div class="step">
-                    <h4>Tools & Techniques</h4>
-                    <p>Find the right frameworks and digital tools (like Obsidian) to transform raw info into interconnected insights.</p>
-                </div>
-                <div class="step">
-                    <h4>Thinking & Writing</h4>
-                    <p>Use writing, journaling, and mental models to refine your thinking, solve problems, and innovate confidently.</p>
-                </div>
-                <div class="step">
-                    <h4>Real-World Application</h4>
-                    <p>Apply PKM principles to professional scenarios—improve collaboration, strategy, and personal branding.</p>
-                </div>
-                <div class="step">
-                    <h4>Zen Productivity</h4>
-                    <p>Integrate all the above into a balanced, intentional lifestyle. Achieve more by focusing on what truly matters.</p>
-                </div>
-            </div>
-            <p style="text-align:center; margin-top:2rem;">
-                <a href="/start" style="color:#fd3585; text-decoration:underline;">Learn More About My Approach →</a>
-            </p>
-        </section>
-
-<!-- How I Can Help You Further (Products & Services) -->
-        <section class="offerings-section">
-            <h2>How I Can Help You Further</h2>
-            <div class="offerings-grid">
-                <div class="offering">
-                    <h3>Obsidian Starter Kit 🪨</h3>
-                    <p>A ready-made Obsidian vault with organized workflows, templates, and a user guide—perfect for getting started fast.</p>
-                    <a href="https://developassion.gumroad.com/l/obsidian-starter-kit">Get the Obsidian Starter Kit</a>
-                </div>
-                <div class="offering">
-                    <h3>Knowledge Worker Kit 🚀</h3>
-                    <p>An all-in-one package with community access, guides, and all future workshops and sessions. It includes all my other products as free bonuses!</p>
-                    <a href="https://developassion.gumroad.com/l/knowledge-worker-kit">Explore the Knowledge Worker Kit</a>
-                </div>
-<div class="offering">
-            <h3>Obsidian Starter Course 💎</h3>
-            <p>Master Obsidian and essential note-taking techniques in 2+ hours of guided video content, helping you become proficient more quickly.</p>
-            <a href="https://developassion.gumroad.com/l/obsidian-starter-course">Watch the Obsidian Starter Course</a>
-        </div>
-        <div class="offering">
-            <h3>Knowledge Management for Beginners 📖</h3>
-            <p>Build a solid foundation in PKM with structured lessons, guiding you from absolute beginner to confident organizer.</p>
-            <a href="https://developassion.gumroad.com/l/knowledge-management-for-beginners">Learn Now</a>
-        </div>
-              
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="testimonials">
-            <h2>What Others Are Saying 📣</h2>
-          <div class="testimonial">
-                <p>"Sebastien's writing is exceptional and I look forward to each new article"</p>
-                <p>— Richard Elliott</p>
-            </div>
-
-            <div class="testimonial">
-                <p>"Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement"</p>
-                <p>— Julien Dambron</p>
-            </div>
-          
-            <div class="testimonial">
-                <p>"I just had a coaching session with Sébastien Dubois, and it was an incredibly helpful experience. Sébastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner.."</p>
-                <p>— Anonymous</p>
-            </div>
-
-          <div class="testimonial">
-                <p>"A very good starting point for your Personal Knowledge Management."</p>
-                <p>— Fredrik Nordstrom</p>
-            </div>
-
-          <div class="testimonial">
-                <p>"This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory. Overall, this has been a joy to adopt as a work tool"</p>
-                <p>— Dwayne Appleby</p>
-            </div>
-
-          <div class="testimonial">
-                <p>"Great content - got me up to speed with what I was looking for fast ! Sébastien answered some questions by mail also which was much appreciated ! Thanks"</p>
-                <p>— Sam Gonzales</p>
-            </div>
-
-          <div class="testimonial">
-                <p>"Extremely comprehensive and most worthwhile!"</p>
-                <p>— Mike Nall</p>
-            </div>
-
-        </section>
-
-<!-- CTA -->
-        <section class="endsection">
-            <h2>Ready to Get Started? 🚀</h2>
-            <p>Reshape how you think, learn, and grow. Begin by exploring the Start Page and my content.</p>
-            <ul>
-                <li><a href="/start" target="_blank" class="cta">Visit the Start Page 🚀</a></li>
-                <li><a href="/blog" target="_blank" class="cta">Read my Articles ✍️</a></li>
-              <li><a href="/tag/newsletter" target="_blank" class="cta">Read my Newsletters 💌</a></li>
-              <li><a href="/courses" target="_blank" class="cta">Discover my Courses</a></li>
-              <li><a href="/books" target="_blank" class="cta">Check out my Books 📖</a></li>
-              <li><a href="https://www.youtube.com/@dsebastien" target="_blank" class="cta">Watch my Videos 📽️</a></li>
-              <li><a href="https://notes.dsebastien.net" target="_blank" class="cta">Look at my Public Notes</a></li>
-              <li><a href="/projects" target="_blank" class="cta">Explore my Projects</a></li>
-              <li><a href="https://developassion.gumroad.com/l/pkm-coaching" target="_blank" class="cta">Book a Coaching Session with me 🧑‍🎓</a></li>
-</ul>
-</section>
-
-<!-- Subscribe now -->
-        <section class="endsection">
-  <h2>Subscribe to the newsletter 💌</h2>
-          <p>Get practical guidance and mental models to master your knowledge, sharpen your thinking, and live intentionally.</p>
-
-          <div>
-<form class="gh-form" data-members-form="">
-    <input class="gh-form-input" id="header-email" type="email" placeholder="me@example.com" required="" data-members-email="">
-    <button class="gh-button" type="submit" aria-label="Subscribe">
-        <span><span>Subscribe</span> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></span>
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
-    <g stroke-linecap="round" stroke-width="2" fill="currentColor" stroke="none" stroke-linejoin="round" class="nc-icon-wrapper">
-        <g class="nc-loop-dots-4-24-icon-o">
-            <circle cx="4" cy="12" r="3"></circle>
-            <circle cx="12" cy="12" r="3"></circle>
-            <circle cx="20" cy="12" r="3"></circle>
-        </g>
-        <style data-cap="butt">
-            .nc-loop-dots-4-24-icon-o{--animation-duration:0.8s}
-            .nc-loop-dots-4-24-icon-o *{opacity:.4;transform:scale(.75);animation:nc-loop-dots-4-anim var(--animation-duration) infinite}
-            .nc-loop-dots-4-24-icon-o :nth-child(1){transform-origin:4px 12px;animation-delay:-.3s;animation-delay:calc(var(--animation-duration)/-2.666)}
-            .nc-loop-dots-4-24-icon-o :nth-child(2){transform-origin:12px 12px;animation-delay:-.15s;animation-delay:calc(var(--animation-duration)/-5.333)}
-            .nc-loop-dots-4-24-icon-o :nth-child(3){transform-origin:20px 12px}
-            @keyframes nc-loop-dots-4-anim{0%,100%{opacity:.4;transform:scale(.75)}50%{opacity:1;transform:scale(1)}}
-        </style>
-    </g>
-</svg>        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
-    <style>
-        .checkmark {
-            width: 40px;
-            height: 40px;
-            display: block;
-            stroke-width: 2.5;
-            stroke: currentColor;
-            stroke-miterlimit: 10;
-        }
-
-        .checkmark__check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
-        }
-
-        @keyframes stroke {
-            100% { stroke-dashoffset: 0; }
-        }
-    </style>
-</svg>    </button>
-    <p data-members-error=""></p>
-</form>
-            </div>
-</section>
+</article>
+</main>

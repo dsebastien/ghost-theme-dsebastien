@@ -1,7 +1,6 @@
 # TODO
 
 - [ ] Add Tailwind color theme
-
 - [ ] Rework home.hbs and integrate homepage HTML
 - [ ] Blog page
 
@@ -21,14 +20,25 @@ Show featured posts on blog page on desktop
 
 
 - [ ] Remove settings and associated styles (i.e., hardcode MY style)
-- [ ] Add fontawesome or similar to use icons (without the CDN!)
 - [ ] Newsletter page
+- [ ] Replace all links pointing to /tag/newsletter with the path to the newsletter theme template
+
 - [ ] Newsletter archive page
 - [ ] Articles page with posts lists organized by content pillar (cfr content strategy)
 - [ ] Free content page
 - [ ] Free content page link in nav
 - [ ] Logo in top left of the header
 - [ ] Subscribe button in header
+
+Blog page
+		- [ ] Start with featured posts (all!)
+		- [ ] Include list of posts per section with a "Show more" button pointing to the tag page
+			- [ ] Match the content pillars
+	- [ ] Newsletter page
+		- [ ] Include description and subscription form
+		- [ ] Include CTA to Unlock all past editions
+		- [ ] List past newsletter editions
+
 
 
 - [ ] Add a "back to top" link at the bottom of the page
@@ -56,3 +66,11 @@ Show featured posts on blog page on desktop
 - [ ] Add release-it
 - [ ] Add commitizen etc
 - [ ] Explore "feed" notion for Ghost theme
+- [ ] Add icons: https://ghost.org/tutorials/add-social-media-icons/
+- [ ] Create and use custom font with icons: https://fontello.com/ and https://stackoverflow.com/questions/74789159/how-includes-only-a-few-icons-from-bootstrap-icons
+- [ ] Switch to Tailwind for breakpoints instead of pure CSS media queries
+
+In footer.hbs
+<nav class="gh-footer-menu">
+    {{navigation type="secondary"}}
+</nav>

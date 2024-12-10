@@ -1,15 +1,11 @@
 @import "tailwindcss";
 
-/* 0. Tailwind configuration
+/* 1. Variables & Tailwind configuration
 /* ---------------------------------------------------------- */
 
 @plugin "@tailwindcss/typography";
 
-@theme {
-    --breakpoint-3xl: 1920px;
-}
-
-/* 1. Variables
+/* Variables
 /* ---------------------------------------------------------- */
 
 :root {
@@ -42,10 +38,10 @@
     --color-dark-border: rgb(255 255 255 / 0.5);
 }
 
-/* 2. Fonts
-/* ---------------------------------------------------------- */
-
-/* Fonts are preloaded and defined in default.hbs to avoid layout shift */
+@theme {
+    --breakpoint-3xl: 1920px;
+    --font-display: var(--font-sans);
+}
 
 /* 3. Resets
 /* ---------------------------------------------------------- */
@@ -63,8 +59,7 @@ html {
 }
 
 body {
-    line-height: 1.6;
-    @apply antialiased;
+    @apply antialiased leading-relaxed;
 }
 
 img, picture, video, canvas, svg {
@@ -84,15 +79,27 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    line-height: 1.2;
+    @apply leading-tight font-bold;
+}
+
+ul {
+    @apply list-disc;
+}
+
+ul ul {
+    list-style-type: circle;
+}
+
+ul ul ul {
+    list-style-type: circle;
 }
 
 /* 4. Globals
 /* ---------------------------------------------------------- */
 
 body {
+    @apply text-2xl;
     font-family: var(--gh-font-body, var(--font-sans));
-    font-size: 1.6rem;
     background-color: var(--background-color);
     color: var(--color-primary-text);
 }
@@ -111,16 +118,11 @@ a:hover {
 }
 
 .gh-button {
-    @apply inline-flex items-center justify-center cursor-pointer border-0;
-    gap: 0.4em;
+    @apply inline-flex items-center justify-center cursor-pointer border-0 gap-1.5 leading-none font-semibold text-2xl rounded-lg;
     padding: 0.8em 1.4em;
-    font-size: 1.5rem;
-    font-weight: 600;
     letter-spacing: -0.004em;
-    line-height: 1;
     color: var(--color-white);
     background-color: var(--ghost-accent-color);
-    border-radius: 100px;
 }
 
 .gh-button:hover {
@@ -128,9 +130,7 @@ a:hover {
 }
 
 .gh-icon-button {
-    @apply inline-flex items-center justify-center p-0 border-0 outline-none cursor-pointer bg-transparent;
-    width: 32px;
-    height: 32px;
+    @apply inline-flex items-center justify-center p-0 border-0 outline-none cursor-pointer bg-transparent w-[32px] h-[32px];
     color: var(--color-darker-gray);
 }
 
@@ -139,18 +139,11 @@ a:hover {
 }
 
 .gh-icon-button svg {
-    @apply w-5 h-5;
+    @apply w-8 h-8;
 }
 
 .gh-form {
-    @apply flex items-center relative;
-    max-width: 560px;
-    width: 100%;
-    height: 56px;
-    font-size: 1.7rem;
-    font-weight: 450;
-    letter-spacing: -0.008em;
-    border-radius: 40px;
+    @apply flex items-center relative max-w-[560px] w-full h-[56px] font-medium text-3xl tracking-tighter rounded-md;
     background-color: var(--color-lighter-gray);
     transition: background-color 0.2s ease;
 }
@@ -160,7 +153,7 @@ a:hover {
 }
 
 .gh-form.error {
-    box-shadow: 0 0 0 1px red;
+    @apply ring-1 ring-red-500;
 }
 
 .gh-form:hover {
@@ -173,12 +166,10 @@ a:hover {
 }
 
 .gh-form-input {
-    @apply absolute w-full h-full inset-0 border-0 bg-transparent outline-none;
+    @apply absolute w-full h-full inset-0 border-0 bg-transparent outline-none leading-tight rounded-lg;
     padding-inline: 26px;
     font-size: inherit;
     letter-spacing: inherit;
-    line-height: 1.1;
-    border-radius: 40px;
     transition: 0.3s ease-in-out;
 }
 
@@ -217,23 +208,18 @@ button.gh-form-input {
 }
 
 .gh-form .gh-button {
-    @apply absolute;
-    right: 6px;
+    @apply absolute right-[6px] h-[44px];
     padding-inline: 32px;
-    height: 44px;
     font-size: inherit;
 }
 
 .gh-form > svg {
-    @apply relative;
-    left: 22px;
-    width: 20px;
-    height: 20px;
+    @apply relative left-[22px] w-[20px] h-[20px];
     color: var(--color-secondary-text);
 }
 
 :is(.has-serif-title,.has-mono-title):not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-form > svg {
-    left: 16px;
+    @apply left-[16px];
 }
 
 .gh-form .gh-button svg {
@@ -253,15 +239,12 @@ button.gh-form-input {
 }
 
 .gh-form [data-members-error] {
-    @apply absolute top-full w-full;
-    margin-top: 10px;
-    font-size: 1.4rem;
-    line-height: 1.4;
+    @apply absolute top-full w-full mt-[10px] text-2xl leading-normal;
 }
 
 @media (max-width: 576px) {
     .gh-form {
-        font-size: 1.6rem;
+        @apply text-2xl;
     }
 
     .gh-form .gh-button {
@@ -273,10 +256,7 @@ button.gh-form-input {
     }
 
     .gh-form .gh-button span svg {
-        @apply inline static;
-        margin-top: 2px;
-        width: 20px;
-        height: 20px;
+        @apply inline static w-5 h-5 mt-[2px];
     }
 }
 
@@ -306,39 +286,34 @@ button.gh-form-input {
 
 .gh-canvas,
 .kg-width-full.kg-content-wide {
-    --main: min(var(--content-width, 720px), 100% - var(--container-gap) * 2);
-    --wide: minmax(0, calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2));
-    --full: minmax(var(--container-gap), 1fr);
-
-    display: grid;
-    grid-template-columns:
-        [full-start] var(--full)
-        [wide-start] var(--wide)
-        [main-start] var(--main) [main-end]
-        var(--wide) [wide-end]
-        var(--full) [full-end];
+    @apply grid;
+    grid-template-columns: 
+        [full-start] minmax(var(--container-gap), 1fr)
+        [wide-start] minmax(0, calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2))
+        [main-start] min(var(--content-width, 720px), calc(100% - var(--container-gap) * 2)) [main-end]
+        minmax(0, calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2)) [wide-end]
+        minmax(var(--container-gap), 1fr) [full-end];
 }
 
 .gh-canvas > * {
-    grid-column: main;
+    @apply col-[main];
 }
 
 .kg-width-wide,
 .kg-content-wide > div {
-    grid-column: wide;
+    @apply col-[wide];
 }
 
 .kg-width-full {
-    grid-column: full;
+    @apply col-[full];
 }
 
 /* 6. Navigation
 /* ---------------------------------------------------------- */
 
 .gh-navigation {
-    @apply h-[100px];
+    @apply h-[100px] font-medium;
     font-size: 1.5rem;
-    font-weight: 550;
     background-color: var(--background-color);
     color: var(--color-darker-gray);
 }
@@ -354,14 +329,13 @@ button.gh-form-input {
 }
 
 .gh-navigation-brand {
-    line-height: 1;
+    @apply leading-none;
 }
 
 .gh-navigation-logo {
-    @apply relative whitespace-nowrap;
+    @apply relative whitespace-nowrap font-bold;
     font-family: var(--gh-font-heading, var(--font-sans));
     font-size: calc(2.4rem * var(--factor, 1));
-    font-weight: 725;
     letter-spacing: -0.015em;
 }
 
@@ -370,13 +344,11 @@ button.gh-form-input {
 }
 
 .gh-navigation-menu {
-    @apply flex items-center;
-    gap: 24px;
+    @apply flex items-center gap-6;
 }
 
 .gh-navigation .nav {
-    @apply inline-flex items-center p-0 m-0 whitespace-nowrap list-none;
-    gap: 28px;
+    @apply inline-flex items-center p-0 m-0 whitespace-nowrap list-none gap-9 font-semibold;
 }
 
 .gh-navigation .gh-more-toggle {
@@ -387,13 +359,11 @@ button.gh-form-input {
 }
 
 .gh-navigation .gh-more-toggle svg {
-    width: 24px;
-    height: 24px;
+    @apply w-6 h-6;
 }
 
 .gh-navigation-actions {
-    @apply flex items-center justify-end;
-    gap: 24px;
+    @apply flex items-center justify-end gap-6;
     background-color: var(--background-color);
 }
 
@@ -402,13 +372,12 @@ button.gh-form-input {
 }
 
 .gh-navigation-members {
-    @apply flex items-center whitespace-nowrap;
-    gap: 20px;
+    @apply flex items-center whitespace-nowrap gap-8;
 }
 
 .gh-navigation-members .gh-button {
+    @apply font-semibold;
     font-size: inherit;
-    font-weight: 600;
 }
 
 .gh-search {
@@ -421,8 +390,7 @@ button.gh-form-input {
     }
 
     .gh-navigation-members {
-        @apply flex-col-reverse w-full;
-        gap: 16px;
+        @apply flex-col-reverse w-full gap-4;
     }
 
     .gh-navigation-actions .gh-search {
@@ -453,13 +421,6 @@ button.gh-form-input {
 
 /* 6.2. Navigation layout */
 
-/*
-======================================================================
-Search                         LOGO                    Login Subscribe
-                 Home About Collection Author Portal
-======================================================================
-*/
-
 .gh-navigation.is-stacked {
     @apply relative h-auto;
 }
@@ -469,10 +430,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-navigation.is-stacked .gh-navigation-brand {
-    @apply flex items-center;
+    @apply flex items-center min-h-20;
     grid-row-start: 1;
     grid-column-start: 2;
-    min-height: 80px;
 }
 
 @media (max-width: 767px) {
@@ -487,28 +447,26 @@ Search                         LOGO                    Login Subscribe
     }
 
     .gh-navigation.is-stacked .gh-navigation-brand {
-        @apply flex items-center h-80px;
+        @apply flex items-center h-[80px];
     }
 
     .gh-navigation.is-stacked .gh-navigation-menu {
+        @apply h-[60px];
         grid-row-start: 2;
         grid-column: 1 / 4;
         justify-content: center;
-        height: 60px;
         margin: 0 48px;
     }
 
     .gh-navigation.is-stacked .gh-navigation-menu::before,
     .gh-navigation.is-stacked .gh-navigation-menu::after {
-        @apply absolute left-0 w-full;
-        top: 80px;
-        height: 1px;
+        @apply absolute left-0 w-full top-28 h-px;
         content: "";
         background-color: var(--color-border);
     }
 
     .gh-navigation.is-stacked .gh-navigation-menu::after {
-        top: 140px;
+        @apply top-[140px];
     }
 
     .gh-navigation.is-stacked .gh-navigation-actions {
@@ -518,30 +476,24 @@ Search                         LOGO                    Login Subscribe
     }
 
     .gh-navigation.is-stacked .gh-navigation-actions .gh-search {
-        @apply flex w-auto;
-        gap: 10px;
+        @apply flex w-auto gap-2.5;
     }
 }
 
 /* 6.3. Dropdown menu */
 
 .gh-dropdown {
-    @apply absolute right-[-16px] text-left bg-white opacity-0;
-    top: 100%;
+    @apply absolute top-full right-[-16px] w-[200px] mt-6 text-left bg-white opacity-0 rounded-sm;
     z-index: 90;
-    width: 200px;
     padding: 12px 0;
-    margin-top: 24px;
     visibility: hidden;
-    border-radius: 5px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04), 0 7px 20px -5px rgb(0 0 0 / 0.15);
     transition: opacity 0.3s, transform 0.2s;
     transform: translate3d(0, 6px, 0);
 }
 
 .gh-dropdown.is-left {
-    right: auto;
-    left: -16px;
+    @apply right-auto left-[-16px];
 }
 
 .is-dropdown-mega .gh-dropdown {
@@ -553,7 +505,8 @@ Search                         LOGO                    Login Subscribe
 }
 
 .is-dropdown-open .gh-dropdown {
-    @apply visible opacity-100 transform-translate-y-0;
+    @apply visible opacity-100;
+    transform: translateX(0);
 }
 
 .gh-dropdown li a {
@@ -570,14 +523,11 @@ Search                         LOGO                    Login Subscribe
 /* 6.4. Mobile menu */
 
 .gh-burger {
-    @apply flex justify-center items-center relative;
-    margin-right: -7px;
-    margin-left: 4px;
+    @apply visible md:hidden flex justify-center items-center relative mr-[-7px] ml-1;
 }
 
 .gh-burger svg {
-    width: 24px;
-    height: 24px;
+    @apply w-6 h-6;
 }
 
 .gh-burger svg:last-child {
@@ -598,20 +548,19 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation {
-        height: 64px;
+        @apply h-16;
     }
 
     #gh-navigation .gh-navigation-inner {
+        @apply gap-12;
         grid-template-rows: auto 1fr auto;
         grid-template-columns: 1fr;
-        gap: 48px;
     }
 
     #gh-navigation .gh-navigation-brand {
-        @apply grid items-center;
+        @apply grid items-center h-16;
         grid-template-columns: 1fr auto auto;
         grid-column-start: 1;
-        height: 64px;
     }
 
     #gh-navigation .gh-navigation-logo {
@@ -620,9 +569,7 @@ Search                         LOGO                    Login Subscribe
 
     #gh-navigation .gh-navigation-menu,
     #gh-navigation .gh-navigation-actions {
-        @apply fixed opacity-0;
-        justify-content: center;
-        visibility: hidden;
+        @apply fixed opacity-0 justify-center invisible;
     }
 
     #gh-navigation .gh-navigation-menu {
@@ -631,23 +578,22 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation .nav {
-        gap: 20px;
-        align-items: center;
+        @apply gap-7 items-center;
         line-height: 1.4;
     }
 
     #gh-navigation .nav a {
+        @apply font-semibold normal-case;
         font-size: 1.75rem;
-        font-weight: 600;
-        text-transform: none;
     }
 
     #gh-navigation .nav li {
-        @apply opacity-0 transform-translate-y-[-4px];
+        @apply opacity-0;
+        transform: translateY(-4px);
     }
 
     #gh-navigation .gh-navigation-actions {
-        text-align: center;
+        @apply text-center;
     }
 
     #gh-navigation :is(.gh-button, a[data-portal="signin"]) {
@@ -656,9 +602,8 @@ Search                         LOGO                    Login Subscribe
     }
 
     #gh-navigation .gh-button {
-        @apply w-full;
+        @apply w-full normal-case;
         font-size: 1.75rem;
-        text-transform: none;
     }
 
     #gh-navigation a[data-portal="signin"] {
@@ -677,8 +622,7 @@ Search                         LOGO                    Login Subscribe
 
     .is-open#gh-navigation .gh-navigation-menu,
     .is-open#gh-navigation .gh-navigation-actions {
-        @apply static opacity-100;
-        visibility: visible;
+        @apply static opacity-100 visible;
     }
 
     .is-open#gh-navigation .nav {
@@ -692,8 +636,7 @@ Search                         LOGO                    Login Subscribe
     }
 
     .is-open#gh-navigation .gh-navigation-actions {
-        @apply sticky right-0 bottom-0 left-0 inline-flex flex-col items-center;
-        gap: 12px;
+        @apply sticky right-0 bottom-0 left-0 inline-flex flex-col items-center gap-3;
         padding: var(--container-gap) 0;
     }
 
@@ -741,17 +684,14 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-tag {
-    @apply hidden;
-    margin-bottom: 4px;
+    @apply hidden font-medium mb-1 uppercase;
     font-size: 1.2rem;
-    font-weight: 500;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
 }
 
 .gh-card-title {
+    @apply font-bold;
     font-size: calc(1.9rem * var(--factor, 1));
-    font-weight: 725;
     letter-spacing: -0.014em;
     line-height: 1.3;
 }
@@ -761,9 +701,8 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-excerpt {
+    @apply overflow-y-hidden mt-2;
     display: -webkit-box;
-    overflow-y: hidden;
-    margin-top: 8px;
     font-size: 1.45rem;
     line-height: 1.4;
     -webkit-line-clamp: 2;
@@ -771,41 +710,35 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-meta {
-    align-items: center;
-    padding-bottom: 1px;
+    @apply font-medium items-center pb-px;
     font-size: 1.25rem;
-    font-weight: 500;
     line-height: 1.4;
     letter-spacing: -0.004em;
     color: var(--color-secondary-text);
 }
 
 .gh-card-meta svg {
-    @apply relative inline-block;
-    top: 1px;
-    width: 12px;
-    height: 12px;
-    margin-right: 2px;
+    @apply relative inline-block top-px w-3 h-3 mr-0.5;
 }
 
 .gh-card-meta:not(:empty) {
-    margin-top: 8px;
+    @apply mt-2;
 }
 
 .gh-card-author + .gh-card-date::before {
+    @apply mr-1;
     content: "—";
-    margin-right: 4px;
 }
 
 /* 10. Featured posts
 /* ---------------------------------------------------------- */
 
 .gh-featured {
-    margin-top: 100px;
+    @apply mt-[100px];
 }
 
 .gh-navigation + .gh-featured {
-    margin-top: 64px;
+    @apply mt-16;
 }
 
 .gh-featured-inner {
@@ -813,12 +746,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-title {
-    margin-bottom: 20px;
-    padding-bottom: 12px;
+    @apply font-medium uppercase mb-5 pb-3;
     font-size: 1.2rem;
-    font-weight: 550;
     letter-spacing: 0.025em;
-    text-transform: uppercase;
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -838,8 +768,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card-image {
-    @apply aspect-square;
-    width: 72px;
+    @apply aspect-square w-[72px];
 }
 
 @container featured-card (width < 240px) {
@@ -850,7 +779,7 @@ Search                         LOGO                    Login Subscribe
 
 @container featured-card (240px <= width <= 270px) {
     .gh-featured-feed .gh-card-image {
-        width: 64px;
+        @apply w-16;
     }
 }
 
@@ -860,8 +789,8 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card-title {
+    @apply font-bold;
     font-size: 1.6rem;
-    font-weight: 650;
     letter-spacing: -0.011em;
 }
 
@@ -876,7 +805,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-featured-feed .gh-card-meta:not(:empty) {
-    margin-top: 8px;
+    @apply mt-2;
 }
 
 .gh-featured-feed .gh-card::before {
@@ -925,10 +854,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-more {
-    @apply hidden mt-[48px];
+    @apply hidden mt-12 font-bold;
     grid-column: 1 / -1;
     font-size: calc(1.9rem * var(--factor, 1));
-    font-weight: 725;
     letter-spacing: -0.014em;
 }
 
@@ -941,14 +869,11 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-more a {
-    @apply flex items-center;
-    gap: 4px;
+    @apply flex items-center gap-1;
 }
 
 .gh-more svg {
-    margin-top: -1px;
-    width: 18px;
-    height: 18px;
+    @apply mt-[-1px] w-[18px] h-[18px];
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-more svg {
@@ -958,8 +883,8 @@ Search                         LOGO                    Login Subscribe
 /* 11.1. With sidebar */
 
 .gh-container.has-sidebar .gh-main {
+    @apply relative;
     grid-column: 1 / span 12;
-    position: relative;
 }
 
 .gh-container.has-sidebar .gh-sidebar {
@@ -967,10 +892,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.has-sidebar .gh-main::after {
-    @apply absolute top-0 h-full;
+    @apply absolute top-0 h-full w-px;
     right: calc(var(--grid-gap) / -2);
     content: "";
-    width: 1px;
     background-color: var(--color-border);
 }
 
@@ -978,12 +902,10 @@ Search                         LOGO                    Login Subscribe
 /* ---------------------------------------------------------- */
 
 .gh-container-title {
-    @apply uppercase;
+    @apply uppercase font-medium pb-3;
     grid-column: 1 / -1;
     margin-bottom: calc(var(--grid-gap) / 2);
-    padding-bottom: 12px;
     font-size: 1.2rem;
-    font-weight: 550;
     letter-spacing: 0.025em;
     border-bottom: 1px solid var(--color-border);
 }
@@ -997,7 +919,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container .gh-card-meta:not(:empty) {
-    margin-top: 12px;
+    @apply mt-3;
 }
 
 /* 12.2. Grid style */
@@ -1009,20 +931,18 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.is-grid .gh-card::before {
-    @apply absolute;
+    @apply absolute h-px;
     top: calc(var(--grid-gap) / -2);
     right: calc(var(--grid-gap) / -2);
     left: calc(var(--grid-gap) / -2);
     content: "";
-    height: 1px;
     background-color: var(--color-border);
 }
 
 .gh-container.is-grid .gh-card::after {
-    @apply absolute top-0 h-full;
+    @apply absolute top-0 h-full w-px;
     left: calc(var(--grid-gap) / -2);
     content: "";
-    width: 1px;
     background-color: var(--color-border);
 }
 
@@ -1047,107 +967,86 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-sidebar-title {
+    @apply font-medium uppercase pb-3;
     grid-column: 1 / -1;
     margin-bottom: calc(var(--grid-gap) / 2);
-    padding-bottom: 12px;
     font-size: 1.2rem;
-    font-weight: 550;
     letter-spacing: 0.025em;
-    text-transform: uppercase;
     border-bottom: 1px solid var(--color-border);
 }
 
 .gh-about {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @apply flex flex-col justify-center items-center text-center min-h-[380px];
     padding: 48px 24px;
-    min-height: 380px;
-    text-align: center;
     background-color: var(--color-lighter-gray);
 }
 
 .gh-about-icon {
-    margin-bottom: 24px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    @apply mb-6 w-[60px] h-[60px] rounded-full;
 }
 
 .gh-about-title {
+    @apply font-bold;
     font-size: calc(2.4rem * var(--factor, 1));
-    font-weight: 700;
     letter-spacing: -0.019em;
 }
 
 .gh-about-description {
-    margin-top: 12px;
+    @apply mt-3;
     font-size: 1.45rem;
     line-height: 1.4;
 }
 
 .gh-about .gh-button {
-    margin-top: 32px;
+    @apply mt-8;
 }
 
 .gh-recommendations {
-    margin-top: 48px;
+    @apply mt-12;
 }
 
 .gh-recommendations .recommendations {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+    @apply flex flex-col m-0 p-0 list-none gap-6;
 }
 
 .gh-recommendations .recommendation:first-child {
-    margin-top: 4px;
+    @apply mt-1;
 }
 
 .gh-recommendations .recommendation a {
-    display: grid;
+    @apply grid;
     grid-template-columns: 24px auto;
     gap: 4px 12px;
 }
 
 .gh-recommendations .recommendation a:hover {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .gh-recommendations .recommendation-favicon {
+    @apply w-full rounded;
     grid-row: span 2;
-    width: 100%;
-    border-radius: 4px;
 }
 
 .gh-recommendations .recommendation-title {
-    margin-top: -2px;
+    @apply mt-[-2px] font-bold;
     font-size: 1.5rem;
-    font-weight: 650;
     letter-spacing: -0.009em;
 }
 
 .gh-recommendations .recommendation a:hover .recommendation-title {
-    opacity: 0.8;
+    @apply opacity-80;
 }
 
 .gh-recommendations .recommendation-url {
-    order: 1;
-    overflow: hidden;
+    @apply order-1 overflow-hidden text-ellipsis;
     font-size: 1.4rem;
     line-height: 1.25;
     color: var(--color-secondary-text);
-    text-overflow: ellipsis;
 }
 
 .gh-recommendations .recommendation-description {
-    display: -webkit-box;
-    display: none;
-    overflow-y: hidden;
+    @apply hidden overflow-y-hidden;
     grid-column: 2;
     font-size: 1.4rem;
     line-height: 1.4;
@@ -1157,28 +1056,18 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-recommendations button {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    margin-top: 24px;
-    padding: 0;
-    cursor: pointer;
+    @apply inline-flex cursor-pointer items-center mt-6 gap-0.5 p-0 border-0 font-medium uppercase bg-transparent;
     font-size: 1.2rem;
-    font-weight: 550;
     letter-spacing: 0.025em;
-    text-transform: uppercase;
-    background-color: transparent;
-    border: 0;
     color: var(--color-darker-gray);
 }
 
 .gh-recommendations button svg {
-    margin-top: -1px;
-    width: 12px;
+    @apply mt-[-1px] w-3;
 }
 
 .gh-recommendations button:hover {
-    opacity: 0.8;
+    @apply opacity-80;
 }
 
 /* 14. Post/page
@@ -1188,7 +1077,6 @@ Search                         LOGO                    Login Subscribe
 
 .gh-article {
     --container-width: 1120px;
-
     word-break: break-word;
 }
 
@@ -1197,55 +1085,44 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-article-tag {
-    margin-bottom: 12px;
+    @apply uppercase mb-3 font-medium;
     font-size: 1.3rem;
-    font-weight: 500;
     letter-spacing: 0.01em;
-    text-transform: uppercase;
     color: var(--ghost-accent-color);
 }
 
 .gh-article-title {
+    @apply capitalize leading-tight;
     font-size: calc(clamp(3.4rem, 1.36vw + 2.85rem, 4.6rem) * var(--factor, 1));
     line-height: 1.1;
     letter-spacing: -0.022em;
-    text-transform: capitalize;
 }
 
 .gh-article-excerpt {
+    @apply max-w-[720px];
     margin-top: clamp(12px, 0.45vw + 10.18px, 16px);
-    max-width: 720px;
     font-size: clamp(1.7rem, 0.23vw + 1.61rem, 1.9rem);
     line-height: 1.45;
     letter-spacing: -0.018em;
 }
 
 .gh-article-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    margin-left: 6px;
+    @apply flex mt-5 ml-1.5 gap-2 items-center;
 }
 
 .gh-article-author-image {
-    display: flex;
-    margin-right: 8px;
+    @apply flex mr-2;
 }
 
 .gh-article-author-image a {
-    position: relative;
+    @apply relative w-14 h-14 overflow-hidden rounded-full;
     margin: 0 -8px;
-    width: 56px;
-    height: 56px;
-    overflow: hidden;
     background-color: var(--color-light-gray);
-    border-radius: 50%;
     border: 3px solid var(--background-color);
 }
 
 .gh-article-author-image a:first-child {
-    z-index: 10;
+    @apply z-10;
 }
 
 .gh-article-author-image a:nth-child(2) {
@@ -1257,40 +1134,35 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-article-author-image :is(img, svg) {
-    position: absolute;
+    @apply absolute w-full h-full object-cover;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .gh-article-meta-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    @apply flex flex-col gap-1;
 }
 
 .gh-article-author-name {
+    @apply font-bold;
     font-size: 1.6rem;
-    font-weight: 650;
     letter-spacing: -0.013em;
 }
 
 .gh-article-meta-content {
+    @apply font-medium;
     font-size: 1.35rem;
-    font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.006em;
     color: var(--color-secondary-text);
 }
 
 .gh-article-image {
+    @apply mt-10;
     grid-column: wide;
-    margin-top: 40px;
 }
 
 .gh-article-image img {
-    width: 100%;
+    @apply w-full;
 }
 
 /* 14.2. Page template */
@@ -1302,15 +1174,15 @@ Search                         LOGO                    Login Subscribe
 /* 14.3. Page without header */
 
 .page-template .gh-content:only-child > *:first-child:not(.kg-width-full) {
-    margin-top: 64px;
+    @apply mt-16;
 }
 
 .page-template .gh-content > *:last-child:not(.kg-width-full) {
-    margin-bottom: 6vw;
+    @apply mb-[6vw];
 }
 
 .page-template .gh-footer {
-    margin-top: 0;
+    @apply mt-0;
 }
 
 /* 15. Content
@@ -1327,13 +1199,13 @@ headings, text, images and lists. We deal with cards lower down. */
 
 /* Default vertical spacing */
 .gh-content > * + * {
+    @apply mb-0;
     margin-top: calc(28px * var(--content-spacing-factor, 1));
-    margin-bottom: 0;
 }
 
 /* Remove space between full-width cards */
 .gh-content > .kg-width-full + .kg-width-full:not(.kg-width-full.kg-card-hascaption + .kg-width-full) {
-    margin-top: 0;
+    @apply mt-0;
 }
 
 /* Add back a top margin to all headings,
@@ -1344,12 +1216,10 @@ unless a heading is the very first element in the post content */
 
 /* Add drop cap setting */
 .post-template .gh-content.drop-cap > p:first-of-type:first-letter {
+    @apply float-left leading-none font-bold;
     margin :0 0.2em 0em 0;
     font-size: 3.1em;
-    float:left;
-    line-height: 1;
     margin-left: -1px;
-    font-weight: 700;
 }
 
 .has-serif-body.post-template:not([class*=" gh-font-body"]):not([class^="gh-font-body"]) .gh-content.drop-cap > p:first-of-type:first-letter {
@@ -1363,7 +1233,7 @@ unless a heading is the very first element in the post content */
 
 /* A larger margin before/after dividers, blockquotes and embeds */
 .gh-content > :is(hr, blockquote, iframe) {
-    position: relative;
+    @apply relative;
     margin-top: calc(48px * var(--content-spacing-factor, 1)) !important;
 }
 
@@ -1388,8 +1258,8 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content a {
+    @apply underline;
     color: var(--ghost-accent-color);
-    text-decoration: underline;
 }
 
 .gh-content .kg-callout-card .kg-callout-text,
@@ -1410,11 +1280,11 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content :is(ul, ol) {
-    padding-left: 28px;
+    @apply pl-7;
 }
 
 .gh-content :is(li + li, li :is(ul, ol)) {
-    margin-top: 8px;
+    @apply mt-2;
 }
 
 .gh-content ol ol li {
@@ -1426,33 +1296,30 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content hr {
-    width: 100%;
+    @apply w-full border-0;
     height: 1px;
     background-color: var(--color-border);
-    border: 0;
 }
 
 .gh-content .gh-table {
-    overflow-x: scroll;
+    @apply overflow-x-scroll;
     -webkit-overflow-scrolling: touch;
 }
 
 .gh-content .gh-table table {
-    width: 100%;
+    @apply w-full whitespace-nowrap;
     font-family: var(--font-sans);
     font-size: 1.5rem;
-    white-space: nowrap;
     vertical-align: top;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
 .gh-content .gh-table table th {
+    @apply font-bold uppercase;
     font-size: 1.2rem;
-    font-weight: 700;
     color: var(--color-darkgrey);
     text-align: left;
-    text-transform: uppercase;
     letter-spacing: 0.2px;
 }
 
@@ -1463,31 +1330,28 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content .gh-table table :is(th, td):first-child {
-    padding-left: 0;
+    @apply pl-0;
 }
 
 .gh-content .gh-table table :is(th, td):last-child {
-    padding-right: 0;
+    @apply pr-0;
 }
 
 .gh-content pre {
-    overflow: auto;
-    padding: 16px;
+    @apply overflow-auto p-4 rounded-md;
     font-size: 1.5rem;
     line-height: 1.5em;
     background: var(--color-lighter-gray);
-    border-radius: 6px;
     font-family: var(--font-mono);
 }
 
 .gh-content :not(pre) > code {
+    @apply font-normal rounded;
     vertical-align: baseline;
     padding: 0.15em 0.4em;
-    font-weight: 400;
     font-size: 0.95em;
     line-height: 1em;
     background: var(--color-lighter-gray);
-    border-radius: 0.25em;
     font-family: var(--font-mono);
 }
 
@@ -1515,24 +1379,20 @@ unless a heading is the very first element in the post content */
 /* Image */
 
 .kg-image {
-    margin-right: auto;
-    margin-left: auto;
+    @apply mr-auto ml-auto;
 }
 
 /* Embed */
 
 .kg-embed-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    @apply flex flex-col w-full items-center;
 }
 
 /* Gallery */
 
 .kg-image[width][height],
 .kg-gallery-image {
-    cursor: pointer;
+    @apply cursor-pointer;
 }
 
 .kg-image-card a:hover,
@@ -1543,8 +1403,8 @@ unless a heading is the very first element in the post content */
 /* Toggle */
 
 .kg-card.kg-toggle-card .kg-toggle-heading-text {
+    @apply font-bold;
     font-size: 2rem;
-    font-weight: 700;
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .kg-toggle-card .kg-toggle-heading-text {
@@ -1558,7 +1418,7 @@ unless a heading is the very first element in the post content */
 /* Callout */
 
 .kg-callout-card.kg-card {
-    border-radius: 0.25em;
+    @apply rounded;
 }
 
 .kg-callout-card-accent a {
@@ -1568,22 +1428,22 @@ unless a heading is the very first element in the post content */
 /* Blockquote */
 
 blockquote:not([class]) {
-    padding-left: 2rem;
+    @apply pl-8;
     border-left: 4px solid var(--ghost-accent-color);
 }
 
 blockquote.kg-blockquote-alt {
+    @apply font-normal;
     font-style: normal;
-    font-weight: 400;
     color: var(--color-secondary-text);
 }
 
 /* Button */
 
 .kg-card.kg-button-card .kg-btn {
+    @apply text-center;
     height: unset;
     padding: .6em 1.2em;
-    text-align: center;
     font-size: 1em;
     line-height: 1.2em;
 }
@@ -1605,11 +1465,11 @@ blockquote.kg-blockquote-alt {
 /* Bookmark */
 
 .kg-bookmark-card .kg-bookmark-container {
-    border-radius: 0.25em !important;
+    @apply !rounded-lg;
 }
 
 .kg-bookmark-card .kg-bookmark-container:hover {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .kg-bookmark-card a.kg-bookmark-container,
@@ -1643,12 +1503,12 @@ blockquote.kg-blockquote-alt {
 /* Product */
 
 .kg-product-card.kg-card .kg-product-card-image {
-    margin-bottom: 12px;
+    @apply mb-3;
 }
 
 .kg-product-card.kg-card a.kg-product-card-button {
+    @apply mt-3;
     height: 2.8em;
-    margin-top: 12px;
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .kg-product-card.kg-card .kg-product-card-title {
@@ -1678,16 +1538,14 @@ blockquote.kg-blockquote-alt {
 }
 
 .kg-file-card.kg-card .kg-file-card-filesize::before {
-    margin-right: 6px;
-    margin-left: 6px;
+    @apply mx-1.5;
 }
 
 /* Caption */
 
 figcaption {
-    margin-top: 12px;
+    @apply mt-3 text-center;
     font-size: 1.4rem;
-    text-align: center;
 }
 
 .kg-card.kg-width-full figcaption {
@@ -1703,7 +1561,7 @@ figcaption a {
 /* ---------------------------------------------------------- */
 
 .gh-comments {
-    margin-top: 48px;
+    @apply mt-12;
 }
 
 /* 18. Recent posts
@@ -1736,7 +1594,7 @@ figcaption a {
 }
 
 .gh-archive.has-image {
-    margin-top: 48px;
+    @apply mt-12;
 }
 
 .gh-archive-inner {
@@ -1766,15 +1624,11 @@ figcaption a {
 }
 
 .author-template .gh-archive-inner {
-    @apply flex flex-row-reverse justify-end;
-    gap: 24px;
+    @apply flex flex-row-reverse justify-end gap-6;
 }
 
 .author-template .gh-article-image {
-    @apply mt-0 object-cover;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    @apply mt-0 object-cover h-32 w-32 rounded-full;
 }
 
 .author-template .gh-article-title {
@@ -1782,9 +1636,7 @@ figcaption a {
 }
 
 .gh-author-meta {
-    @apply flex;
-    gap: 10px;
-    margin-top: 14px;
+    @apply flex gap-[10px] mt-[14px];
     font-size: 1.5rem;
     font-weight: 550;
     color: var(--color-secondary-text);
@@ -1795,14 +1647,11 @@ figcaption a {
 }
 
 .gh-author-social {
-    @apply flex items-center;
-    gap: 10px;
-    padding-left: 3px;
+    @apply flex items-center pl-[3px] gap-2.5;
 }
 
 .gh-author-social svg {
-    width: 20px;
-    height: 20px;
+    @apply w-5 h-5;
 }
 
 @media (max-width: 1199px) {
@@ -1854,7 +1703,7 @@ figcaption a {
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-form {
-    border-radius: 0;
+    @apply rounded-none;
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-card-title {
@@ -1904,23 +1753,23 @@ figcaption a {
 }
 
 .has-serif-body:not([class*=" gh-font-body"]):not([class^="gh-font-body"]) .gh-article-excerpt {
-    letter-spacing: 0;
+    @apply leading-relaxed;
 }
 
 .has-serif-body:not([class*=" gh-font-body"]):not([class^="gh-font-body"]) .gh-footer-signup-subhead {
-    letter-spacing: 0;
+    @apply leading-relaxed;
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) :is(.gh-button, .gh-form, .gh-form-input) {
-    border-radius: 0;
+    @apply rounded-none;
 }
 
 .has-mono-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) :is(.gh-button) {
-    border-radius: 0;
+    @apply rounded-none;
 }
 
 .has-mono-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) :is(.gh-form) {
-    border-radius: 0;
+    @apply rounded-none;
 }
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) {
@@ -1947,165 +1796,114 @@ figcaption a {
 }
 
 .gh-footer.has-accent-color .gh-footer-bar {
-    border-top: 0;
+    @apply border-t-0;
 }
 
 .gh-footer.has-accent-color .gh-button {
-    background-color: #fff;
+    @apply bg-white;
     color: #15171a;
 }
 
 /* 21.2. Footer bar */
 
 .gh-footer-bar {
-    display: grid;
+    @apply grid items-center font-medium gap-x-8 mb-[100px];
     grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    column-gap: 32px;
-    margin-bottom: 100px;
     padding-block: 28px;
-    font-weight: 550;
     border-block: 1px solid var(--color-border);
 }
 
 .gh-footer-logo {
-    position: relative;
+    @apply relative font-bold w-full text-center lg:text-left;
     font-family: var(--gh-font-heading, var(--font-sans));
     font-size: calc(2.4rem * var(--factor, 1));
-    font-weight: 725;
     letter-spacing: -0.015em;
-    white-space: nowrap;
 }
 
 .gh-footer-logo img {
-    max-height: 40px;
+    @apply max-h-10;
 }
 
 .gh-footer-menu .nav {
-    display: flex;
-    justify-content: center;
+    @apply flex justify-center flex-wrap m-0 p-0 list-none;
     gap: 8px 28px;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
 }
 
 /* 21.3. Footer signup */
 
 .gh-footer-signup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 160px;
-    text-align: center;
+    @apply flex flex-col items-center text-center pb-[160px];
 }
 
 .gh-footer-signup-header {
+    @apply font-bold;
     font-size: calc(clamp(2.8rem,1.36vw + 2.25rem,4rem) * var(--factor, 1));
-    font-weight: 700;
     letter-spacing: -0.03em;
 }
 
 .gh-footer-signup-subhead {
-    margin-top: 12px;
-    max-width: 640px;
-    font-size: 1.8rem;
-    font-weight: 450;
-    line-height: 1.4;
-    letter-spacing: -0.014em;
-    opacity: 0.75;
+    @apply opacity-75 mt-3 max-w-[640px] font-medium tracking-wide text-3xl;
 }
 
 .gh-footer-signup .gh-form {
-    margin-top: 40px;
+    @apply mt-10;
 }
 
 @media (max-width: 991px) {
     .gh-footer-bar {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+        @apply flex flex-col gap-5;
     }
 }
 
-/* 22. Lightbox
+/* Lightbox
 /* ---------------------------------------------------------- */
 
 .pswp {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3999999;
-    display: none;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    -ms-touch-action: none;
-    touch-action: none;
-    outline: none;
-    backface-visibility: hidden;
+    @apply absolute top-0 left-0 z-[3999999] hidden w-full h-full overflow-hidden touch-none outline-none backface-hidden;
     -webkit-text-size-adjust: 100%;
 }
 
 .pswp img {
-    max-width: none;
+    @apply max-w-none;
 }
 
 .pswp--animate_opacity {
-    opacity: 0.001;
+    @apply opacity-5;
     transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
     will-change: opacity;
 }
 
 .pswp--open {
-    display: block;
+    @apply block;
 }
 
 .pswp--zoom-allowed .pswp__img {
-    cursor: zoom-in;
+    @apply cursor-zoom-in;
 }
 
 .pswp--zoomed-in .pswp__img {
-    cursor: grab;
+    @apply cursor-grab;
 }
 
 .pswp--dragging .pswp__img {
-    cursor: grabbing;
+    @apply cursor-grab;
 }
 
 .pswp__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @apply absolute top-0 left-0 w-full h-full opacity-0 backface-hidden;
     background-color: rgba(0, 0, 0, 0.85);
-    opacity: 0;
     transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
     transform: translateZ(0);
-    backface-visibility: hidden;
     will-change: opacity;
 }
 
 .pswp__scroll-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    @apply absolute top-0 left-0 w-full h-full overflow-hidden;
 }
 
 .pswp__container,
 .pswp__zoom-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    touch-action: none;
-    backface-visibility: hidden;
+    @apply absolute top-0 right-0 bottom-0 left-0 touch-none backface-hidden;
 }
 
 .pswp__container,
@@ -2116,8 +1914,7 @@ figcaption a {
 }
 
 .pswp__zoom-wrap {
-    position: absolute;
-    width: 100%;
+    @apply absolute w-full;
     transition: transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
     transform-origin: left top;
 }
@@ -2128,24 +1925,15 @@ figcaption a {
 }
 
 .pswp__item {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
+    @apply absolute top-0 right-0 bottom-0 left-0 overflow-hidden;
 }
 
 .pswp__img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
+    @apply absolute top-0 left-0 w-auto h-auto;
 }
 
 .pswp__img--placeholder {
-    backface-visibility: hidden;
+    @apply backface-hidden;
 }
 
 .pswp__img--placeholder--blank {
@@ -2153,22 +1941,17 @@ figcaption a {
 }
 
 .pswp--ie .pswp__img {
-    top: 0;
-    left: 0;
+    @apply top-0 left-0;
     width: 100% !important;
     height: auto !important;
 }
 
 .pswp__error-msg {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
+    @apply absolute top-1/2 left-0 w-full text-center;
     margin-top: -8px;
     font-size: 14px;
     line-height: 16px;
     color: var(--color-secondary-text);
-    text-align: center;
 }
 
 .pswp__error-msg a {
@@ -2177,46 +1960,32 @@ figcaption a {
 }
 
 .pswp__button {
-    position: relative;
-    display: block;
-    float: right;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    appearance: none;
-    cursor: pointer;
-    background: none;
-    border: 0;
+    @apply relative block float-right w-[44px] h-[44px] p-0 m-0 overflow-visible appearance-none cursor-pointer bg-transparent border-none;
     box-shadow: none;
     transition: opacity 0.2s;
 }
 
 .pswp__button:focus,
 .pswp__button:hover {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .pswp__button:active {
-    outline: none;
-    opacity: 0.9;
+    @apply outline-none opacity-90;
 }
 
 .pswp__button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
+    @apply p-0 border-0;
 }
 
 .pswp__ui--over-close .pswp__button--close {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .pswp__button,
 .pswp__button--arrow--left::before,
 .pswp__button--arrow--right::before {
-    width: 44px;
-    height: 44px;
+    @apply w-[44px] h-[44px];
     background: url("../images/default-skin.png") 0 0 no-repeat;
     background-size: 264px 88px;
 }
@@ -2230,7 +1999,7 @@ figcaption a {
 
     .pswp--svg .pswp__button--arrow--left,
     .pswp--svg .pswp__button--arrow--right {
-        background: none;
+        @apply bg-transparent;
     }
 }
 
@@ -2243,11 +2012,11 @@ figcaption a {
 }
 
 .pswp__button--fs {
-    display: none;
+    @apply hidden;
 }
 
 .pswp--supports-fs .pswp__button--fs {
-    display: block;
+    @apply block;
 }
 
 .pswp--fs .pswp__button--fs {
@@ -2255,12 +2024,12 @@ figcaption a {
 }
 
 .pswp__button--zoom {
-    display: none;
+    @apply hidden;
     background-position: -88px 0;
 }
 
 .pswp--zoom-allowed .pswp__button--zoom {
-    display: block;
+    @apply block;
 }
 
 .pswp--zoomed-in .pswp__button--zoom {
@@ -2269,82 +2038,61 @@ figcaption a {
 
 .pswp--touch .pswp__button--arrow--left,
 .pswp--touch .pswp__button--arrow--right {
-    visibility: hidden;
+    @apply hidden;
 }
 
 .pswp__button--arrow--left,
 .pswp__button--arrow--right {
-    position: absolute;
-    top: 50%;
-    width: 70px;
-    height: 100px;
-    margin-top: -50px;
-    background: none;
+    @apply absolute top-1/2 w-[70px] h-[100px] mt-[-50px] bg-transparent;
 }
 
 .pswp__button--arrow--left {
-    left: 0;
+    @apply left-0;
 }
 
 .pswp__button--arrow--right {
-    right: 0;
+    @apply right-0;
 }
 
 .pswp__button--arrow--left::before,
 .pswp__button--arrow--right::before {
-    position: absolute;
-    top: 35px;
-    width: 32px;
-    height: 30px;
+    @apply absolute top-[35px] w-[32px] h-[30px];
     content: "";
 }
 
 .pswp__button--arrow--left::before {
-    left: 6px;
+    @apply left-[6px];
     background-position: -138px -44px;
 }
 
 .pswp__button--arrow--right::before {
-    right: 6px;
+    @apply right-[6px];
     background-position: -94px -44px;
 }
 
 .pswp__counter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 44px;
+    @apply absolute top-0 left-0 font-bold h-[44px];
     padding: 0 15px;
     font-size: 11px;
-    font-weight: 700;
     line-height: 44px;
     color: var(--color-white);
     user-select: none;
 }
 
 .pswp__caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    min-height: 44px;
+    @apply absolute bottom-0 left-0 w-full min-h-[44px];
 }
 
 .pswp__caption__center {
-    max-width: 420px;
+    @apply mx-auto max-w-[420px] leading-relaxed text-center;
     padding: 25px 15px 30px;
-    margin: 0 auto;
     font-size: 11px;
-    line-height: 1.6;
     color: var(--color-white);
-    text-align: center;
 }
 
 .pswp__caption__center .post-caption-title {
-    margin-bottom: 7px;
+    @apply uppercase font-medium mb-[7px];
     font-size: 15px;
-    font-weight: 500;
-    text-transform: uppercase;
 }
 
 .pswp__caption__center .post-caption-meta-item + .post-caption-meta-item::before {
@@ -2353,34 +2101,26 @@ figcaption a {
 }
 
 .pswp__caption--empty {
-    display: none;
+    @apply hidden;
 }
 
 .pswp__caption--fake {
-    visibility: hidden;
+    @apply invisible;
 }
 
 .pswp__preloader {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 44px;
-    height: 44px;
-    margin-left: -22px;
-    opacity: 0;
+    @apply absolute top-0 left-1/2 opacity-0 w-[44px] h-[44px] ml-[-22px];
     transition: opacity 0.25s ease-out;
     direction: ltr;
     will-change: opacity;
 }
 
 .pswp__preloader__icn {
-    width: 20px;
-    height: 20px;
-    margin: 12px;
+    @apply w-5 h-5 m-3;
 }
 
 .pswp__preloader--active {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .pswp__preloader--active .pswp__preloader__icn {
@@ -2388,7 +2128,7 @@ figcaption a {
 }
 
 .pswp--css_animation .pswp__preloader--active {
-    opacity: 1;
+    @apply opacity-100;
 }
 
 .pswp--css_animation .pswp__preloader--active .pswp__preloader__icn {
@@ -2400,30 +2140,18 @@ figcaption a {
 }
 
 .pswp--css_animation .pswp__preloader__icn {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 14px;
-    height: 14px;
-    margin: 0;
-    background: none;
-    opacity: 0.75;
+    @apply absolute top-[15px] left-[15px] w-[14px] h-[14px] m-0 bg-transparent opacity-75;
 }
 
 .pswp--css_animation .pswp__preloader__cut {
-    @apply relative overflow-hidden;
-    width: 7px;
-    height: 14px;
+    @apply relative overflow-hidden w-[7px] h-[14px];
 }
 
 .pswp--css_animation .pswp__preloader__donut {
-    @apply absolute top-0 left-0 box-border bg-transparent m-0;
-    width: 14px;
-    height: 14px;
+    @apply absolute top-0 left-0 box-border bg-transparent m-0 w-[14px] h-[14px] rounded-full;
     border: 2px solid var(--color-white);
     border-bottom-color: transparent;
     border-left-color: transparent;
-    border-radius: 50%;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2462,15 +2190,14 @@ figcaption a {
 }
 
 .pswp__top-bar {
-    @apply absolute top-0 left-0 w-full;
-    height: 44px;
+    @apply absolute top-0 left-0 w-full h-[44px];
 }
 
 .pswp__caption,
 .pswp__top-bar,
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
-    backface-visibility: hidden;
+    @apply backface-hidden;
     transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
     will-change: opacity;
 }
@@ -2493,7 +2220,7 @@ figcaption a {
 .pswp__ui--hidden .pswp__caption,
 .pswp__ui--hidden .pswp__button--arrow--left,
 .pswp__ui--hidden .pswp__button--arrow--right {
-    opacity: 0.001;
+    @apply opacity-5;
 }
 
 .pswp__ui--one-slide .pswp__button--arrow--left,
@@ -2508,4 +2235,125 @@ figcaption a {
 
 .pswp--minimal--dark .pswp__top-bar {
     @apply bg-transparent;
+}
+
+
+/* Homepage
+/* ---------------------------------------------------------- */
+.homepage h2 {
+    @apply !text-4xl !font-semibold text-center;
+}
+
+.homepage h3 {
+    @apply !text-3xl !font-semibold;
+}
+
+.homepage .gh-article-header {
+    @apply !mb-0;
+}
+
+.homepage section {
+    @apply mt-16;
+}
+
+/* Hero */
+.homepage .hero {
+    @apply mt-0 text-center flex flex-col items-center px-6 py-4;
+}
+
+.homepage .hero p {
+    @apply text-4xl leading-relaxed max-w-4xl break-words;
+}
+
+.homepage .hero a.cta {
+    @apply mt-12 !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
+}
+  
+
+/* Benefits */
+.homepage .benefits {
+    @apply flex flex-col items-stretch md:inline-flex md:flex-wrap gap-8;
+}
+
+.homepage .benefit-item {
+    @apply flex-1 min-w-[250px];
+}
+
+.homepage .benefits > .benefit-item > h2 {
+    @apply !text-3xl !text-left;
+}
+
+/* About */
+.homepage .about {
+    @apply flex flex-col md:flex-row gap-8 md:flex-wrap items-center;
+}
+
+.homepage .about img {
+    @apply w-64 h-64 object-cover rounded-full;
+}
+
+.homepage .about h2 {
+    @apply text-center md:text-left;
+}
+
+.homepage .about-text {
+    @apply flex-1 text-center md:text-left;
+}
+
+/* Approach */
+.homepage .approach-steps {
+    @apply flex flex-col gap-8;
+}
+
+.homepage .step {
+    @apply bg-gray-100 p-8 rounded-lg;
+}
+
+/* Offerings */
+.homepage .offerings-grid {
+    @apply mt-8 grid gap-8 grid-cols-1 md:grid-cols-2;
+}
+
+.homepage .offering {
+    @apply bg-gray-100 p-8 rounded-lg;
+}
+
+.homepage .offering p {
+    @apply mt-4 leading-8;
+}
+
+.homepage .offering a {
+    @apply inline-block mt-4 underline;
+}
+
+.homepage .testimonials {
+    @apply bg-gray-100 p-8 rounded-lg;
+}
+
+.homepage .testimonials h2 {
+    @apply text-center mb-8;
+}
+
+.homepage .testimonials blockquote {
+    @apply mt-12;
+}
+
+.homepage .testimonials blockquote > span {
+    @apply font-medium;
+}
+
+.homepage .cta h2 {
+    @apply text-center mb-8;
+}
+
+.homepage .cta p {
+    @apply text-center mb-8;
+}
+
+.homepage .cta ul {
+    @apply flex flex-col items-center list-none;
+}
+
+.homepage .cta-newsletter {
+    @apply !mt-16 flex flex-col items-center gap-4;
 }
