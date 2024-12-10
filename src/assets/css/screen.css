@@ -1,52 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Table of contents
-/* ------------------------------------------------------------
-
-This is a development CSS file which is built to a minified
-production stylesheet in assets/built/screen.css
-
-1. Variables
-2. Fonts
-3. Resets
-4. Globals
-5. Layout
-6. Navigation
-  6.1. Navigation styles
-  6.2. Navigation layouts
-  6.3. Dropdown menu
-  6.4. Mobile menu
-7. Card
-8. Header
-  8.1. Magazine layout
-  8.2. Highlight layout
-  8.3. Classic layout
-10. Featured posts
-11. Container
-  11.1. With sidebar
-12. Post list
-  12.1. List style
-  12.2. Grid style
-  12.3. No image list
-13. Sidebar
-14. Post/page
-  14.1. Article
-  14.2. Page template
-  14.3. Page without header
-15. Content
-16. Cards
-17. Comments
-18. Recent posts
-19. Archive
-20. Design settings
-21. Footer
-  21.1. Footer styles
-  21.2. Footer bar
-  21.3. Footer signup
-22. Lightbox
-
-*/
+@theme {
+    --breakpoint-3xl: 1920px;
+}
 
 /* 1. Variables
 /* ---------------------------------------------------------- */
