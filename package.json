@@ -29,6 +29,7 @@
     "contributors": "https://github.com/dsebastien/ghost-theme-dsebastien/graphs/contributors",
     "devDependencies": {
         "@tailwindcss/cli": "^4.0.0-beta.6",
+        "@tailwindcss/typography": "0.5.15",
         "@tryghost/release-utils": "0.8.1",
         "beeper": "2.1.0",
         "concurrently": "9.1.0",
