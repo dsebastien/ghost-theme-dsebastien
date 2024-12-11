@@ -10,6 +10,9 @@
                         <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
                         <a class="top-link" href="#obsidian">Obsidian</a>, 
                         <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
+                        <a class="top-link" href="#learning">Learning</a>, 
+                        <a class="top-link" href="#personal-development">Personal Development</a>, 
+                        <a class="top-link" href="#mental-health">Mental Health</a>, 
                         <a class="top-link" href="#productivity">Productivity</a>, 
                         and <a class="top-link" href="#personal-organization">Personal Organization</a>.</p>
                 </header>
@@ -19,7 +22,7 @@
             <div class="gh-container-inner gh-inner">
                 <main class="gh-main">
                     <!-- Recent -->
-                    <h2 class="!mb-8 text-4xl font-bold">Recent</h2>
+                    <h2 class="!mt-0 section-title">Recent</h2>
                     <div class="gh-feed mt-4">
                         {{#get "posts" filter="tag:blog" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -34,7 +37,7 @@
                     </div>
 
                     <!-- Personal Knowledge Management -->
-                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Personal Knowledge Management</h2>
+                    <h2 class="section-title">Personal Knowledge Management</h2>
                     <div id="personal-knowledge-management" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:personal-knowledge-management" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -49,7 +52,7 @@
                     </div>
 
                     <!-- Obsidian -->
-                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Obsidian</h2>
+                    <h2 class="section-title">Obsidian</h2>
                     <div id="obsidian" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:obsidian" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -64,7 +67,7 @@
                     </div>
 
                     <!-- Knowledge Work -->
-                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Knowledge Work</h2>
+                    <h2 class="section-title">Knowledge Work</h2>
                     <div id="knowledge-work" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:knowledge-work" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -79,7 +82,7 @@
                     </div>
 
                     <!-- Productivity -->
-                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Productivity</h2>
+                    <h2 class="section-title">Productivity</h2>
                     <div id="productivity" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:productivity" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -93,8 +96,53 @@
                         </div>
                     </div>
 
+                    <!-- Learning -->
+                    <h2 class="section-title">Learning</h2>
+                    <div id="learning" class="gh-feed mt-4">
+                        {{#get "posts" filter="tag:learning" limit=6 as |recent|}}
+                            {{#foreach recent}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+
+                        <div class="">
+                            <a href="/tag/learning">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
+                    </div>
+
+                    <!-- Personal Development -->
+                    <h2 class="section-title">Personal Development</h2>
+                    <div id="personal-development" class="gh-feed mt-4">
+                        {{#get "posts" filter="tag:personal-development" limit=6 as |recent|}}
+                            {{#foreach recent}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+
+                        <div class="">
+                            <a href="/tag/personal-development">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
+                    </div>
+
+                    <!-- Mental Health -->
+                    <h2 class="section-title">Mental Health</h2>
+                    <div id="mental-health" class="gh-feed mt-4">
+                        {{#get "posts" filter="tag:mental-health" limit=6 as |recent|}}
+                            {{#foreach recent}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+
+                        <div class="">
+                            <a href="/tag/mental-health">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
+                    </div>
+
                     <!-- Personal Organization -->
-                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Personal Organization</h2>
+                    <h2 class="section-title">Personal Organization</h2>
                     <div id="personal-organization" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:personal-organization" limit=6 as |recent|}}
                             {{#foreach recent}}
@@ -108,53 +156,8 @@
                         </div>
                     </div>
                 </main>
-                <aside class="gh-sidebar">
-                    <div class="gh-sidebar-inner">
-                        <section class="gh-about">
-                            {{#if @site.icon}}
-                                <img class="gh-about-icon" src="{{@site.icon}}" alt="{{@site.title}}" loading="lazy">
-                            {{/if}}
-                            <h3 class="gh-about-title is-title">{{@site.title}}</h3>
-                            {{#if @site.description}}
-                                <p class="gh-about-description is-body">{{@site.description}}</p>
-                            {{/if}}
-                                {{#if @site.members_enabled}}
-                                    {{#unless @member}}
-                                        <button class="gh-button" data-portal="signup">Subscribe</button>
-                                    {{else}}
-                                        {{#if @site.paid_members_enabled}}
-                                            {{#unless @member.paid}}
-                                                <button class="gh-button" data-portal="upgrade">Upgrade</button>
-                                            {{/unless}}
-                                        {{/if}}
-                                {{/unless}}
-                            {{/if}}
-                        </section>
 
-                        <!-- Featured -->
-                        <section class="gh-recommendations">
-                            <h4 class="gh-sidebar-title">Featured</h4>
-                            <ul class="!list-none">
-                                {{#get "posts" filter="featured:true" limit=10}}
-                                    {{#foreach posts}}
-                                        <li>➤&nbsp;<a href="{{url}}">
-                                            {{title}}
-                                        </a></li>
-                                    {{/foreach}}
-                                {{/get}}
-                            </ul>
-                        </section>
-
-                        <!-- Recommendations -->
-                        {{#if @site.recommendations_enabled}}
-                            <section class="gh-recommendations">
-                                <h4 class="gh-sidebar-title">Recommendations</h4>
-                                {{recommendations}}
-                                <button data-portal="recommendations">See More {{> "icons/arrow"}}</button>
-                            </section>
-                        {{/if}}
-                    </div>
-                </aside>
+                {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=true}}
             </div>
         </section>
     </article>
