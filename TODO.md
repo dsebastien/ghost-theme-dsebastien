@@ -1,16 +1,6 @@
 # TODO
 
 - [ ] Padding top on mobile (gh-navigation)
-- [ ] Blog page
-    - [ ] Include description and subscription form
-    - [ ] Start with featured posts
-    - [ ] Include list of posts organized by content pillar with a "Show more" button pointing to the tag page
-    - [ ] Include CTA to Unlock all past editions
-- [ ] Free content page
-- [ ] Free content page link in nav
-- [ ] Newsletter page
-    - [ ] Replace all links pointing to /tag/newsletter with the path to the newsletter theme template
-- [ ] Newsletter archive page
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
@@ -31,10 +21,13 @@
         - [ ] OSK
         - [ ] OSC
         - [ ] ...
+- [ ] Newsletter page
+    - [ ] Replace all links pointing to /tag/newsletter with the 
+    - [ ] Include description and subscription formpath to the newsletter theme template
+- [ ] Newsletter archive page
 - [ ] Add release-it
 - [ ] Add commitizen etc
 - [ ] Add icons: https://ghost.org/tutorials/add-social-media-icons/
 - [ ] Create and use custom font with icons: https://fontello.com/ and https://stackoverflow.com/questions/74789159/how-includes-only-a-few-icons-from-bootstrap-icons
 - [ ] Switch to Tailwind for breakpoints instead of pure CSS media queries
-- [ ] Add a TOC to all blog posts:https://grantwinney.com/creating-a-table-of-contents-for-your-blog/
 - [ ] Explore "feed" notion

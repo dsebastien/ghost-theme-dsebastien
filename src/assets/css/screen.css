@@ -119,7 +119,6 @@ a:hover {
 
 a.top-link {
     @apply underline;
-    color: var(--ghost-accent-color) !important;
 }
 
 .gh-button {
@@ -889,6 +888,7 @@ button.gh-form-input {
 }
 
 .gh-container.has-sidebar .gh-sidebar {
+    @apply hidden md:block;
     grid-column: 13 / -1;
 }
 
