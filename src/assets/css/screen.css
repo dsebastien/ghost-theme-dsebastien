@@ -312,7 +312,7 @@ button.gh-form-input {
 /* ---------------------------------------------------------- */
 
 .gh-navigation {
-    @apply relative h-auto font-medium !pt-8;
+    @apply relative h-auto font-medium;
     font-size: 1.5rem;
     background-color: var(--background-color);
     color: var(--color-darker-gray);
