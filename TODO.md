@@ -24,10 +24,9 @@
 - [ ] Newsletter page
     - [ ] Replace all links pointing to /tag/newsletter with the 
     - [ ] Include description and subscription formpath to the newsletter theme template
-- [ ] Newsletter archive page
+    - [ ] Add optional subscription form in sidebar.hbs and display it on the newsletter page (also on the blog!)
 - [ ] Add release-it
 - [ ] Add commitizen etc
 - [ ] Add icons: https://ghost.org/tutorials/add-social-media-icons/
 - [ ] Create and use custom font with icons: https://fontello.com/ and https://stackoverflow.com/questions/74789159/how-includes-only-a-few-icons-from-bootstrap-icons
 - [ ] Switch to Tailwind for breakpoints instead of pure CSS media queries
-- [ ] Explore "feed" notion
