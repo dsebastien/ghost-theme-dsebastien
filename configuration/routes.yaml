@@ -16,7 +16,7 @@ collections:
   /newsletter/:
     permalink: /newsletter/{slug}/
     template: index
-    filter: primary_tag:newletter
+    filter: primary_tag:newsletter
 taxonomies:
   tag: /tag/{slug}/
   author: /author/{slug}/

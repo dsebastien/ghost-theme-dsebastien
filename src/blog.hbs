@@ -8,6 +8,7 @@
                     <h1 class="gh-article-title is-title">Articles</h1>
                     <p class="gh-article-excerpt">Explore my articles about
                         <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
+                        <a class="top-link" href="#obsidian">Obsidian</a>, 
                         <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
                         <a class="top-link" href="#productivity">Productivity</a>, 
                         and <a class="top-link" href="#personal-organization">Personal Organization</a>.</p>
@@ -25,9 +26,14 @@
                                 {{> "post-card"}}
                             {{/foreach}}
                         {{/get}}
+
+                        <div class="">
+                            <a href="/tag/blog">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
                     </div>
 
-                    <!-- PKM -->
+                    <!-- Personal Knowledge Management -->
                     <h2 class="!mt-16 !mb-8 text-4xl font-bold">Personal Knowledge Management</h2>
                     <div id="personal-knowledge-management" class="gh-feed mt-4">
                         {{#get "posts" filter="tag:personal-knowledge-management" limit=6 as |recent|}}
@@ -37,7 +43,22 @@
                         {{/get}}
                         
                         <div class="">
-                            <a href="/tag/personal-knowledge-management">See all {{> "icons/arrow"}}</a>
+                            <a href="/tag/personal-knowledge-management">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
+                    </div>
+
+                    <!-- Obsidian -->
+                    <h2 class="!mt-16 !mb-8 text-4xl font-bold">Obsidian</h2>
+                    <div id="obsidian" class="gh-feed mt-4">
+                        {{#get "posts" filter="tag:obsidian" limit=6 as |recent|}}
+                            {{#foreach recent}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+                        
+                        <div class="">
+                            <a href="/tag/obsidian">See More {{> "icons/arrow"}}</a>
                             <hr class="!my-8"/>
                         </div>
                     </div>
@@ -52,7 +73,7 @@
                         {{/get}}
 
                         <div class="">
-                            <a href="/tag/knowledge-work">See all {{> "icons/arrow"}}</a>
+                            <a href="/tag/knowledge-work">See More {{> "icons/arrow"}}</a>
                             <hr class="!my-8"/>
                         </div>
                     </div>
@@ -67,7 +88,7 @@
                         {{/get}}
 
                         <div class="">
-                            <a href="/tag/productivity">See all {{> "icons/arrow"}}</a>
+                            <a href="/tag/productivity">See More {{> "icons/arrow"}}</a>
                             <hr class="!my-8"/>
                         </div>
                     </div>
@@ -82,7 +103,7 @@
                         {{/get}}
 
                         <div class="">
-                            <a href="/tag/personal-organization">See all {{> "icons/arrow"}}</a>
+                            <a href="/tag/personal-organization">See More {{> "icons/arrow"}}</a>
                             <hr class="!my-8"/>
                         </div>
                     </div>
@@ -129,7 +150,7 @@
                             <section class="gh-recommendations">
                                 <h4 class="gh-sidebar-title">Recommendations</h4>
                                 {{recommendations}}
-                                <button data-portal="recommendations">See all {{> "icons/arrow"}}</button>
+                                <button data-portal="recommendations">See More {{> "icons/arrow"}}</button>
                             </section>
                         {{/if}}
                     </div>
