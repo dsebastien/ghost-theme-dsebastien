@@ -1,12 +1,18 @@
-<header id="gh-navigation" class="gh-navigation is-stacked {{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer">
+<header id="gh-navigation" class="gh-navigation {{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer">
     <div class="gh-navigation-inner gh-inner">
 
         <div class="gh-navigation-brand">
             <a class="gh-navigation-logo is-title" href="{{@site.url}}">
                 {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}">
+                    <div class="flex items-center gap-2">
+                        <img class="rounded-full !w-16 !h-16 !max-h-16 !max-w-16 object-cover" src="{{@site.logo}}" alt="{{@site.title}}">
+                        {{@site.title}}
+                    </div>
                 {{else}}
-                    {{@site.title}}
+                    <div class="flex items-center gap-2">
+                        <img class="rounded-full !w-16 !h-16 !max-h-16 !max-w-16 object-cover" src="{{asset "images/developassion-logo.png"}}" alt="{{@site.title}}">
+                        {{@site.title}}
+                    </div>
                 {{/if}}
             </a>
             {{> "search-toggle"}}

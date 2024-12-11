@@ -312,7 +312,7 @@ button.gh-form-input {
 /* ---------------------------------------------------------- */
 
 .gh-navigation {
-    @apply h-[100px] font-medium;
+    @apply relative h-auto font-medium !pt-8 md:!pt-auto;
     font-size: 1.5rem;
     background-color: var(--background-color);
     color: var(--color-darker-gray);
@@ -421,36 +421,32 @@ button.gh-form-input {
 
 /* 6.2. Navigation layout */
 
-.gh-navigation.is-stacked {
-    @apply relative h-auto;
-}
-
-.gh-navigation.is-stacked .gh-navigation-inner {
+.gh-navigation .gh-navigation-inner {
     grid-template-columns: 1fr auto 1fr;
 }
 
-.gh-navigation.is-stacked .gh-navigation-brand {
+.gh-navigation .gh-navigation-brand {
     @apply flex items-center min-h-20;
     grid-row-start: 1;
     grid-column-start: 2;
 }
 
 @media (max-width: 767px) {
-    .gh-navigation.is-stacked .gh-navigation-brand {
+    .gh-navigation .gh-navigation-brand {
         min-height: unset;
     }
 }
 
 @media (min-width: 992px) {
-    .gh-navigation.is-stacked .gh-navigation-inner {
+    .gh-navigation .gh-navigation-inner {
         @apply p-0;
     }
 
-    .gh-navigation.is-stacked .gh-navigation-brand {
+    .gh-navigation .gh-navigation-brand {
         @apply flex items-center h-[80px];
     }
 
-    .gh-navigation.is-stacked .gh-navigation-menu {
+    .gh-navigation .gh-navigation-menu {
         @apply h-[60px];
         grid-row-start: 2;
         grid-column: 1 / 4;
@@ -458,24 +454,24 @@ button.gh-form-input {
         margin: 0 48px;
     }
 
-    .gh-navigation.is-stacked .gh-navigation-menu::before,
-    .gh-navigation.is-stacked .gh-navigation-menu::after {
+    .gh-navigation .gh-navigation-menu::before,
+    .gh-navigation .gh-navigation-menu::after {
         @apply absolute left-0 w-full top-28 h-px;
         content: "";
         background-color: var(--color-border);
     }
 
-    .gh-navigation.is-stacked .gh-navigation-menu::after {
+    .gh-navigation .gh-navigation-menu::after {
         @apply top-[140px];
     }
 
-    .gh-navigation.is-stacked .gh-navigation-actions {
+    .gh-navigation .gh-navigation-actions {
         grid-row-start: 1;
         grid-column: 1 / 4;
         justify-content: space-between;
     }
 
-    .gh-navigation.is-stacked .gh-navigation-actions .gh-search {
+    .gh-navigation .gh-navigation-actions .gh-search {
         @apply flex w-auto gap-2.5;
     }
 }
