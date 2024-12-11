@@ -2416,3 +2416,7 @@ figcaption a {
 .blog h2.section-title {
     @apply !mt-16 !mb-8 text-4xl font-bold;
 }
+
+.blog .gh-archive-inner {
+    @apply !pb-8;
+}
