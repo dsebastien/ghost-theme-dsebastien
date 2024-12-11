@@ -2237,6 +2237,27 @@ figcaption a {
     @apply bg-transparent;
 }
 
+/* Hero
+/* ---------------------------------------------------------- */
+.hero {
+    @apply mt-0 text-center flex flex-col items-center px-6 py-4;
+}
+
+.hero p {
+    @apply text-4xl leading-relaxed max-w-4xl break-words;
+}
+
+.hero a.cta {
+    @apply mt-12 !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
+}
+
+
+/* CTA Newsletter
+/* ---------------------------------------------------------- */
+.cta-newsletter {
+    @apply !mt-16 flex flex-col items-center gap-4;
+}
+
 
 /* Homepage
 /* ---------------------------------------------------------- */
@@ -2255,20 +2276,6 @@ figcaption a {
 .homepage section {
     @apply mt-16;
 }
-
-/* Hero */
-.homepage .hero {
-    @apply mt-0 text-center flex flex-col items-center px-6 py-4;
-}
-
-.homepage .hero p {
-    @apply text-4xl leading-relaxed max-w-4xl break-words;
-}
-
-.homepage .hero a.cta {
-    @apply mt-12 !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
-}
-  
 
 /* Benefits */
 .homepage .benefits {
@@ -2306,7 +2313,7 @@ figcaption a {
 }
 
 .homepage .step {
-    @apply bg-gray-100 p-8 rounded-lg;
+    @apply bg-gray-100 p-8 rounded-lg shadow-lg;
 }
 
 /* Offerings */
@@ -2315,7 +2322,7 @@ figcaption a {
 }
 
 .homepage .offering {
-    @apply bg-gray-100 p-8 rounded-lg;
+    @apply bg-gray-100 p-8 rounded-lg shadow-lg;
 }
 
 .homepage .offering p {
@@ -2327,7 +2334,7 @@ figcaption a {
 }
 
 .homepage .testimonials {
-    @apply bg-gray-100 p-8 rounded-lg;
+    @apply bg-gray-100 p-8 rounded-lg shadow-lg;
 }
 
 .homepage .testimonials h2 {
@@ -2354,6 +2361,50 @@ figcaption a {
     @apply flex flex-col items-center list-none;
 }
 
-.homepage .cta-newsletter {
-    @apply !mt-16 flex flex-col items-center gap-4;
+/* Start Page
+/* ---------------------------------------------------------- */
+.start-page h2 {
+    @apply !text-4xl !font-semibold text-center;
+}
+
+.start-page h3 {
+    @apply !text-3xl !font-semibold;
+}
+
+.start-page .gh-article-header {
+    @apply !mb-0;
+}
+
+.start-page section {
+    @apply mt-16;
+}
+
+
+/* Steps */
+.start-page .step {
+    @apply bg-gray-100 mt-12 rounded-lg shadow-lg p-8 md:p-12 xl:p-24;
+}
+
+.start-page .step strong {
+    @apply inline-block mb-2 font-semibold;
+}
+
+.start-page .recommended-resources {
+    @apply bg-gray-200 mt-12 rounded-lg shadow-lg p-8 border-l-pink-500 border-l-4;
+}
+
+.start-page .recommended-resources h4 {
+    @apply mt-0 mb-2 font-semibold;
+}
+
+.start-page .further-learning p {
+    @apply text-center mb-8;
+}
+
+.start-page .further-learning > div {
+    @apply flex flex-col items-center text-white;
+}
+
+.start-page .further-learning > div > a.cta {
+    @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
 }
