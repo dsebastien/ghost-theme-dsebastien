@@ -1,4 +1,8 @@
 routes:
+  /:
+    template: home
+  /blog/:
+    template: blog
   /start/:
     template: start
 collections:

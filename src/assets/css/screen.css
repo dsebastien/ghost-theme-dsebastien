@@ -43,7 +43,7 @@
     --font-display: var(--font-sans);
 }
 
-/* 3. Resets
+/* Resets
 /* ---------------------------------------------------------- */
 
 *, *::before, *::after {
@@ -2403,4 +2403,12 @@ figcaption a {
 
 .start-page .further-learning > div > a.cta {
     @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
+}
+
+/* Blog
+/* ---------------------------------------------------------- */
+
+.blog a.top-link {
+    @apply underline;
+    color: var(--ghost-accent-color) !important;
 }
