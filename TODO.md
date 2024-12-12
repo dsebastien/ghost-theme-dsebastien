@@ -1,15 +1,8 @@
 # TODO
+- [ ] Fix problem with sidebar (bottom never accessible)
 - [ ] Improve footer
-    - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
-    - [ ] CTA for newsletter + signup form
-    - [ ] Hardcode Social links and add icons (cfr Ghost guide for using icons)
     - [ ] Gradient background
-    - [ ] Sections in columns (similar to knowii.net)
-        - [ ] About
-        - [ ] About: link to about page
-        - [ ] Newsletter: link to newsletter page
-        - [ ] Free content: link to free content page
-        - [ ] Contact: link to contact page
+    - [ ] Free content: link to free content page
     - [ ] Resources
         - [ ] Knowledge Management: Link to PKM page
         - [ ] Courses
