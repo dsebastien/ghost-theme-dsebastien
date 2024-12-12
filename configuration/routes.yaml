@@ -7,6 +7,8 @@ routes:
     template: newsletter  
   /start/:
     template: start
+  /all-articles/:
+    template: all-articles
 collections:
   /:
     permalink: /{slug}/
