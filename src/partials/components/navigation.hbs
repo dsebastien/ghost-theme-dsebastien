@@ -6,12 +6,12 @@
                 {{#if @site.logo}}
                     <div class="flex items-center gap-2">
                         <img class="rounded-full !w-16 !h-16 !max-h-16 !max-w-16 object-cover" src="{{@site.logo}}" alt="{{@site.title}}">
-                        {{@site.title}}
+                        <span class="hidden xs:block">{{@site.title}}</span>
                     </div>
                 {{else}}
                     <div class="flex items-center gap-2">
                         <img class="rounded-full !w-16 !h-16 !max-h-16 !max-w-16 object-cover" src="{{asset "images/developassion-logo.png"}}" alt="{{@site.title}}">
-                        {{@site.title}}
+                        <span class="hidden xs:block">{{@site.title}}</span>
                     </div>
                 {{/if}}
             </a>

@@ -1,5 +1,4 @@
 # TODO
-- [ ] Blog sidenav issue (grid + aside vs scrollbar on mobile)
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form

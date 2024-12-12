@@ -39,6 +39,7 @@
 }
 
 @theme {
+    --breakpoint-xs: 480px;
     --breakpoint-3xl: 1920px;
     --font-display: var(--font-sans);
 }
@@ -839,7 +840,7 @@ button.gh-form-input {
 }
 
 .gh-container-inner {
-    @apply grid;
+    @apply flex flex-col md:grid;
     grid-template-columns: repeat(16, 1fr);
     column-gap: var(--grid-gap);
 }
@@ -892,8 +893,9 @@ button.gh-form-input {
     grid-column: 13 / -1;
 }
 
+/* Sidebar border separating the grid and the aside */
 .gh-container.has-sidebar .gh-main::after {
-    @apply absolute top-0 h-full w-px;
+    @apply hidden sm:block absolute top-0 h-full w-px;
     right: calc(var(--grid-gap) / -2);
     content: "";
     background-color: var(--color-border);
