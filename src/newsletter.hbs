@@ -36,7 +36,7 @@
                     <!-- Recent Editions -->
                     <h2 class="!mt-0 section-title">Recent Editions</h2>
                     <div class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:newsletter" limit=24 as |recent|}}
+                        {{#get "posts" filter="tag:newsletter" limit=12 as |recent|}}
                             {{#foreach recent}}
                                 {{> "post-card"}}
                             {{/foreach}}
