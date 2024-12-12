@@ -1,17 +1,16 @@
-<footer class="gh-footer gh-outer bg-gray-800 border-t border-gray-400 shadow-[0_-1px_3px_rgba(0,0,0,0.3)]">
-    <div class="gh-footer-inner gh-inner py-12 md:py-20 max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 md:gap-16">
+<footer class="gh-footer gh-outer bg-gray-700 border-t-4 border-t-gray-800 border-solid xl:rounded-t-xl xl:!mx-32">
+    <div class="gh-footer-inner gh-inner py-12 md:py-20 max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-12 md:gap-16">
             <!-- About Column -->
-            <div class="space-y-8 md:space-y-10 sm:col-span-2 md:col-span-1 text-center md:text-left">
-                <span class="gh-footer-logo is-title block">
-                    {{#if @site.logo}}
-                        <img src="{{@site.logo}}" alt="{{@site.title}}" class="h-12 md:h-16 object-contain mx-auto md:mx-0">
-                    {{else}}
-                        <span class="!text-3xl md:!text-5xl font-bold text-gray-100">{{@site.title}}</span>
-                    {{/if}}
-                </span>
-                <p class="!text-lg md:!text-2xl text-gray-200 font-medium max-w-md mx-auto md:mx-0">{{@site.description}}</p>
-                <div class="flex items-center justify-center md:justify-start pt-4 gap-8 md:gap-10">
+            <div class="space-y-8 md:space-y-10 flex-1 flex-shrink-0">
+                <div class="gh-footer-logo flex flex-col xl:flex-row items-center gap-4">
+                    <img src="{{asset "assets/images/developassion-logo.png"}}" alt="{{@site.title}}" class="h-12 md:h-16">
+                    <span class="!text-4xl md:!text-5xl font-bold text-gray-100">{{@site.title}}</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <p class="!mt-4 !text-2xl text-gray-200 font-medium max-w-md xl:max-w-none text-center xl:text-left">{{@site.description}}</p>
+                </div>
+                <div class="flex flex-row items-center justify-center pt-4 gap-8 md:gap-10">
                     <a href="https://x.com/@dsebastien" 
                        class="!text-white hover:!text-gray-200">
                         {{> "icons/x"}}
@@ -41,23 +40,27 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="mt-0 text-center md:text-left">
-                <h3 class="font-semibold !text-xl md:!text-3xl text-gray-100 mb-3 md:mb-5">Quick Links</h3>
-                <ul class="space-y-2 md:space-y-3.5">
-                    <li><a href="{{@site.url}}" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">Home</a></li>
-                    <li><a href="/about" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">About</a></li>
-                    <li><a href="/uses" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">Uses</a></li>
-                </ul>
+            <div class="mt-0 text-center md:text-center flex-1 flex md:items-center justify-center">
+                <div>
+                    <h3 class="font-semibold !text-3xl md:!text-4xl text-gray-100 mb-3 md:mb-5">Quick Links</h3>
+                    <ul class="space-y-4 md:space-y-6 !list-none text-2xl md:!text-3xl">
+                        <li><a href="{{@site.url}}" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Home</a></li>
+                        <li><a href="/about" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">About</a></li>
+                        <li><a href="/uses" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Uses</a></li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Resources -->
-            <div class="mt-0 text-center md:text-left">
-                <h3 class="font-semibold !text-xl md:!text-3xl text-gray-100 mb-3 md:mb-5">Resources</h3>
-                <ul class="space-y-2 md:space-y-3.5">
-                    <li><a href="/start" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">Start</a></li>
-                    <li><a href="/blog" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">Blog</a></li>
-                    <li><a href="/newsletter" class="!text-lg md:!text-2xl !text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-start w-full">Newsletter</a></li>
-                </ul>
+            <div class="mt-0 text-center md:text-center flex-1 flex md:items-center justify-center">
+                <div>
+                    <h3 class="font-semibold !text-3xl md:!text-4xl text-gray-100 mb-3 md:mb-5">Resources</h3>
+                    <ul class="space-y-4 md:space-y-6 !list-none text-2xl md:!text-3xl">
+                        <li><a href="/start" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Start</a></li>
+                        <li><a href="/blog" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Blog</a></li>
+                        <li><a href="/newsletter" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Newsletter</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
