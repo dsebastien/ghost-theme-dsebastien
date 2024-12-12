@@ -8,7 +8,7 @@
 </style>
 
 <main class="gh-main gh-outer all-tags-page">
-    {{#get "tags" include="count.posts" limit="all" order="name asc"}}
+    {{#get "tags" include="count.posts" limit="all" order="count.posts desc,name asc"}}
         <header class="!mt-24 gh-article-header gh-canvas hero">
             <h1 class="gh-article-title is-title text-center text-4xl font-bold">
                 All Tags 🏷️
@@ -24,21 +24,15 @@
                             <article>
                                 <h2 class="text-2xl font-semibold !mb-2">
                                     <a href="{{url}}" class="capitalize">{{name}}</a>
-                                    {{#if count.posts}}
-                                        <span class="text-gray-500 text-lg ml-2">({{count.posts}} posts)</span>
-                                    {{/if}}
                                 </h2>
                                 
                                 {{#if description}}
-                                    <p class="text-gray-600 text-xl">{{description}}</p>
+                                    <p class="text-gray-600">{{description}}</p>
                                 {{/if}}
 
-                                {{#if accent_color}}
-                                    <div class="!mt-4">
-                                        <span class="inline-block w-4 h-4 rounded-full mr-2" style="background-color: {{accent_color}}"></span>
-                                        <span class="text-gray-500 text-md">{{accent_color}}</span>
-                                    </div>
-                                {{/if}}
+                                <div class="!mt-8">
+                                    Total posts: {{count.posts}}
+                                </div>
                             </article>
                         </li>
                     {{/foreach}}
