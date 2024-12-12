@@ -42,7 +42,7 @@
                                         <div class="flex flex-wrap gap-2">
                                             <span>Tags:&nbsp;</span>
                                             {{#foreach tags}}
-                                                <a href="{{url}}" class="hover:text-primary transition-colors">{{name}}</a>
+                                                <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>
                                                 {{#unless @last}}, {{/unless}}
                                             {{/foreach}}
                                         </div>
