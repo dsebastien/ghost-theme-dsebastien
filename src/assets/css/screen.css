@@ -327,7 +327,7 @@ button.gh-form-input {
 }
 
 .gh-navigation-inner {
-    @apply grid h-full items-center;
+    @apply grid h-full items-center mt-4 md:mt-0;
     grid-auto-flow: row dense;
     column-gap: 24px;
 }

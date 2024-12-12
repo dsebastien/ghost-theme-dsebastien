@@ -1,6 +1,5 @@
 # TODO
-
-- [ ] Padding top on mobile (gh-navigation)
+- [ ] Blog sidenav issue (grid + aside vs scrollbar on mobile)
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
