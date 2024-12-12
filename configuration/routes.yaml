@@ -3,6 +3,8 @@ routes:
     template: home
   /blog/:
     template: blog
+  /newsletter/:
+    template: newsletter  
   /start/:
     template: start
 collections:

@@ -1,0 +1,55 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<style>
+    .gh-footer {
+        margin-top: 4vw;
+    }
+</style>
+
+<main class="gh-main gh-outer newsletter-page">
+
+        <header class="gh-article-header gh-canvas">
+            <h1 class="gh-article-title is-title text-center text-4xl font-bold mt-8 mb-4">
+                DeveloPassion's Newsletter
+            </h1>
+        </header>
+
+        {{!-- Logged-out users --}}
+        {{#unless @member}}
+            <section class="gh-content gh-canvas is-body">
+                <!-- Hero / Intro Section -->
+            <section class="hero !mt-0">
+                <h2>Turn Information Overload into Insight</h2>
+                <p class="max-w-xl mx-auto">
+                    Join my newsletter and discover practical methods, tools, and frameworks to build a sustainable personal knowledge system.
+                    Free members get new editions, supporters gain archive access for newsletter editions and blog posts. Curious minds enjoy all that plus access to the private community and to me ❤️
+                </p>
+                <a href="#/portal/signup" class="mt-6 cta gh-button">View Membership Options</a>
+            </section>
+        </section>
+        {{/unless}}
+
+        <section class="gh-container is-grid has-sidebar gh-outer">
+            <div class="gh-container-inner gh-inner">
+                <main class="gh-main">
+                    <!-- Recent Editions -->
+                    <h2 class="!mt-0 section-title">Recent Editions</h2>
+                    <div class="gh-feed mt-4">
+                        {{#get "posts" filter="tag:newsletter" limit=24 as |recent|}}
+                            {{#foreach recent}}
+                                {{> "post-card"}}
+                            {{/foreach}}
+                        {{/get}}
+
+                        <div class="">
+                            <a href="/tag/newsletter">See More {{> "icons/arrow"}}</a>
+                            <hr class="!my-8"/>
+                        </div>
+                    </div>
+                </main>
+
+                {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=false}}
+            </div>
+        </section>
+</main>

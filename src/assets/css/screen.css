@@ -2420,3 +2420,13 @@ figcaption a {
 .blog .gh-archive-inner {
     @apply !pb-8;
 }
+
+/* Newsletter
+/* ---------------------------------------------------------- */
+.newsletter-page section {
+    @apply mt-16;
+}
+
+.newsletter-page h2.section-title {
+    @apply !mt-16 !mb-8 text-4xl font-bold;
+}

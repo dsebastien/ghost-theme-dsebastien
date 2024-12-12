@@ -2,159 +2,158 @@
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
 <main class="gh-main gh-outer blog">
-        <section class="gh-inner !mt-32">
-            <h1 class="gh-article-title is-title">Articles</h1>
-            <p class="gh-article-excerpt">Explore my articles about
-                <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
-                <a class="top-link" href="#obsidian">Obsidian</a>, 
-                <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
-                <a class="top-link" href="#learning">Learning</a>, 
-                <a class="top-link" href="#personal-development">Personal Development</a>, 
-                <a class="top-link" href="#mental-health">Mental Health</a>, 
-                <a class="top-link" href="#productivity">Productivity</a>, 
-                and <a class="top-link" href="#personal-organization">Personal Organization</a>.</p>
-        </section>
-        <section class="gh-container is-grid has-sidebar gh-outer">
-            <div class="gh-container-inner gh-inner">
-                <main class="gh-main">
-                    <!-- Recent -->
-                    <h2 class="!mt-0 section-title">Recent</h2>
-                    <div class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:blog" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+    <section class="gh-inner !mt-32">
+        <h1 class="gh-article-title is-title">Articles</h1>
+        <p class="gh-article-excerpt">Explore my articles about
+            <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
+            <a class="top-link" href="#obsidian">Obsidian</a>, 
+            <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
+            <a class="top-link" href="#learning">Learning</a>, 
+            <a class="top-link" href="#personal-development">Personal Development</a>, 
+            <a class="top-link" href="#mental-health">Mental Health</a>, 
+            <a class="top-link" href="#productivity">Productivity</a>, 
+            and <a class="top-link" href="#personal-organization">Personal Organization</a>.</p>
+    </section>
+    <section class="gh-container is-grid has-sidebar gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <main class="gh-main">
+                <!-- Recent -->
+                <h2 class="!mt-0 section-title">Recent</h2>
+                <div class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:blog" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/blog">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/blog">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Personal Knowledge Management -->
-                    <h2 class="section-title">Personal Knowledge Management</h2>
-                    <div id="personal-knowledge-management" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:personal-knowledge-management" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
-                        
-                        <div class="">
-                            <a href="/tag/personal-knowledge-management">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                <!-- Personal Knowledge Management -->
+                <h2 class="section-title">Personal Knowledge Management</h2>
+                <div id="personal-knowledge-management" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:personal-knowledge-management" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
+                    
+                    <div class="">
+                        <a href="/tag/personal-knowledge-management">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Obsidian -->
-                    <h2 class="section-title">Obsidian</h2>
-                    <div id="obsidian" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:obsidian" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
-                        
-                        <div class="">
-                            <a href="/tag/obsidian">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                <!-- Obsidian -->
+                <h2 class="section-title">Obsidian</h2>
+                <div id="obsidian" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:obsidian" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
+                    
+                    <div class="">
+                        <a href="/tag/obsidian">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Knowledge Work -->
-                    <h2 class="section-title">Knowledge Work</h2>
-                    <div id="knowledge-work" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:knowledge-work" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Knowledge Work -->
+                <h2 class="section-title">Knowledge Work</h2>
+                <div id="knowledge-work" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:knowledge-work" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/knowledge-work">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/knowledge-work">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Productivity -->
-                    <h2 class="section-title">Productivity</h2>
-                    <div id="productivity" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:productivity" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Productivity -->
+                <h2 class="section-title">Productivity</h2>
+                <div id="productivity" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:productivity" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/productivity">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/productivity">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Learning -->
-                    <h2 class="section-title">Learning</h2>
-                    <div id="learning" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:learning" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Learning -->
+                <h2 class="section-title">Learning</h2>
+                <div id="learning" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:learning" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/learning">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/learning">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Personal Development -->
-                    <h2 class="section-title">Personal Development</h2>
-                    <div id="personal-development" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:personal-development" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Personal Development -->
+                <h2 class="section-title">Personal Development</h2>
+                <div id="personal-development" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:personal-development" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/personal-development">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/personal-development">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Mental Health -->
-                    <h2 class="section-title">Mental Health</h2>
-                    <div id="mental-health" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:mental-health" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Mental Health -->
+                <h2 class="section-title">Mental Health</h2>
+                <div id="mental-health" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:mental-health" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/mental-health">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/mental-health">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
+                </div>
 
-                    <!-- Personal Organization -->
-                    <h2 class="section-title">Personal Organization</h2>
-                    <div id="personal-organization" class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:personal-organization" limit=6 as |recent|}}
-                            {{#foreach recent}}
-                                {{> "post-card"}}
-                            {{/foreach}}
-                        {{/get}}
+                <!-- Personal Organization -->
+                <h2 class="section-title">Personal Organization</h2>
+                <div id="personal-organization" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:personal-organization" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
 
-                        <div class="">
-                            <a href="/tag/personal-organization">See More {{> "icons/arrow"}}</a>
-                            <hr class="!my-8"/>
-                        </div>
+                    <div class="">
+                        <a href="/tag/personal-organization">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
                     </div>
-                </main>
+                </div>
+            </main>
 
-                {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=true}}
-            </div>
-        </section>
-    </article>
+            {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=true}}
+        </div>
+    </section>
 </main>
