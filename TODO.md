@@ -1,4 +1,7 @@
 # TODO
+- [ ] Everything page
+- [ ] Sidebar: link to everything page
+- [ ] Blog end: link to everything page
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
