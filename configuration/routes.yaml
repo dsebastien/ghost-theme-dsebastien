@@ -9,6 +9,8 @@ routes:
     template: start
   /all-articles/:
     template: all-articles
+  /all-tags/:
+    template: all-tags
 collections:
   /:
     permalink: /{slug}/

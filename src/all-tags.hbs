@@ -1,0 +1,51 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<style>
+    .gh-footer {
+        margin-top: 4vw;
+    }
+</style>
+
+<main class="gh-main gh-outer all-tags-page">
+    {{#get "tags" include="count.posts" limit="all" order="name asc"}}
+        <header class="!mt-24 gh-article-header gh-canvas hero">
+            <h1 class="gh-article-title is-title text-center text-4xl font-bold">
+                All Tags 🏷️
+            </h1>
+            <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{tags.length}} tags 🤯</p>
+        </header>
+
+        <section class="gh-content gh-canvas is-body">
+            {{#if tags}}
+                <ul class="!mx-8 space-y-8 !list-none">
+                    {{#foreach tags}}
+                        <li class="border-b border-gray-200 py-8">
+                            <article>
+                                <h2 class="text-2xl font-semibold !mb-2">
+                                    <a href="{{url}}" class="capitalize">{{name}}</a>
+                                    {{#if count.posts}}
+                                        <span class="text-gray-500 text-lg ml-2">({{count.posts}} posts)</span>
+                                    {{/if}}
+                                </h2>
+                                
+                                {{#if description}}
+                                    <p class="text-gray-600 text-xl">{{description}}</p>
+                                {{/if}}
+
+                                {{#if accent_color}}
+                                    <div class="!mt-4">
+                                        <span class="inline-block w-4 h-4 rounded-full mr-2" style="background-color: {{accent_color}}"></span>
+                                        <span class="text-gray-500 text-md">{{accent_color}}</span>
+                                    </div>
+                                {{/if}}
+                            </article>
+                        </li>
+                    {{/foreach}}
+                </ul>
+            {{else}}
+                <p class="text-gray-600">No tags found.</p>
+            {{/if}}
+        </section>
+    {{/get}}
+</main> 

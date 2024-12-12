@@ -1,4 +1,5 @@
 # TODO
+- [ ] all-articles, all-tags
 - [ ] Sidebar: link to all articles and all tags page
 - [ ] Blog end: link to all articles and all tags page
 - [ ] Improve footer
