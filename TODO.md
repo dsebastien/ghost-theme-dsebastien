@@ -1,4 +1,5 @@
 # TODO
+- [ ] Fix problem with hbs and package.json and update the website
 - [ ] Fix problem with sidebar (bottom never accessible)
 - [ ] Improve footer
     - [ ] Gradient background
