@@ -176,10 +176,12 @@
             </section>
 
             <!-- Newsletter -->
+            {{#unless member}}
             <section class="cta-newsletter">
                 <h2>Subscribe to the Newsletter 💌</h2>
                 {{> "email-subscription" email_field_id="footer-email"}}
             </section>
+            {{/unless}}
         </section>
     </article>
 </main>

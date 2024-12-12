@@ -2,7 +2,7 @@
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
-    - [ ] Hardcode Social links and add icons
+    - [ ] Hardcode Social links and add icons (cfr Ghost guide for using icons)
     - [ ] Gradient background
     - [ ] Sections in columns (similar to knowii.net)
         - [ ] About
@@ -19,6 +19,7 @@
         - [ ] OSK
         - [ ] OSC
         - [ ] ...
+- [ ] Add about page. For social links, include icons and display as a grid
 - [ ] Add release-it
 - [ ] Add commitizen etc
 - [ ] Add icons: https://ghost.org/tutorials/add-social-media-icons/
