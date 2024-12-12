@@ -41,7 +41,7 @@
                                     <div class="mt-2">    
                                         <span>Tags:&nbsp;</span>
                                         {{#foreach tags}}
-                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}}, {{/unless}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
                                         {{/foreach}}
                                     </div>
                                 {{/if}}
@@ -51,8 +51,8 @@
                 {{/foreach}}
             </ul>
         {{else}}
-                <p class="text-gray-600">No articles found.</p>
-            {{/if}}
+            <p class="text-gray-600">No articles found.</p>
+        {{/if}}
         </section>
     {{/get}}
 </main> 
