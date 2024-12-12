@@ -1,7 +1,4 @@
 # TODO
-- [ ] all-articles, all-tags
-- [ ] Sidebar: link to all articles and all tags page
-- [ ] Blog end: link to all articles and all tags page
 - [ ] Improve footer
     - [ ] Title such as "Sébastien Dubois | Knowledge Management Coach
     - [ ] CTA for newsletter + signup form
