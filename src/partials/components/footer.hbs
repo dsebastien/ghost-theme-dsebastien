@@ -1,3 +1,11 @@
+  <!-- Newsletter -->
+{{#unless member}}
+    <section class="!mt-32 cta-newsletter">
+        <h2>Subscribe to the Newsletter 💌</h2>
+        {{> "email-subscription" email_field_id="footer-email"}}
+    </section>
+{{/unless}}
+
 <footer class="gh-footer gh-outer bg-gray-700 border-t-4 border-t-gray-800 border-solid xl:rounded-t-xl xl:!mx-32">
     <div class="gh-footer-inner gh-inner py-12 md:py-20 max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row gap-12 md:gap-16">
@@ -17,15 +25,15 @@
                         {{> "icons/x"}}
                         <span class="sr-only">X</span>
                     </a>
-                    <a href="https://www.youtube.com/@dsebastien" 
-                       class="!text-red-500">
-                        {{> "icons/youtube"}}
-                        <span class="sr-only">YouTube</span>
-                    </a>
                     <a href="https://bsky.app/profile/dsebastien.net" 
                        class="!text-white hover:!text-blue-400">
                         {{> "icons/bluesky"}}
                         <span class="sr-only">Bluesky</span>
+                    </a>
+                    <a href="https://www.youtube.com/@dsebastien" 
+                       class="!text-red-500">
+                        {{> "icons/youtube"}}
+                        <span class="sr-only">YouTube</span>
                     </a>
                     <a href="https://www.linkedin.com/in/sebastiend" 
                        class="!text-white hover:!text-blue-400">
@@ -41,33 +49,38 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="mt-0 text-center md:text-center flex-1 shrink flex md:items-center justify-center">
+            <div class="footer-link-group">
                 <div>
-                    <h3 class="font-semibold !text-3xl md:!text-4xl text-gray-100 mb-3 md:mb-5">Quick Links</h3>
-                    <ul class="space-y-4 md:space-y-6 !list-none text-2xl md:!text-3xl">
-                        <li><a href="{{@site.url}}" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Home</a></li>
-                        <li><a href="/about" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">About</a></li>
-                        <li><a href="/uses" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Uses</a></li>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/blog" class="footer-link">Blog</a></li>
+                        <li><a href="/newsletter" class="footer-link">Newsletter</a></li>
+                        <li><a href="/about" class="footer-link">About</a></li>
+                        <li><a href="/now" class="footer-link">Now</a></li>
+                        <li><a href="/projects" class="footer-link">Projects</a></li>
+                        <li><a href="/uses" class="footer-link">Uses</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Resources -->
-            <div class="mt-0 text-center md:text-center flex-1 shrink flex md:items-center justify-center">
+            <div class="footer-link-group">
                 <div>
-                    <h3 class="font-semibold !text-3xl md:!text-4xl text-gray-100 mb-3 md:mb-5">Resources</h3>
-                    <ul class="space-y-4 md:space-y-6 !list-none text-2xl md:!text-3xl">
-                        <li><a href="/start" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Start</a></li>
-                        <li><a href="/blog" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Blog</a></li>
-                        <li><a href="/newsletter" class="!text-gray-200 hover:text-primary transition-colors duration-200 hover:translate-x-0.5 inline-flex transform justify-center md:justify-center w-full">Newsletter</a></li>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/start" class="footer-link">Start</a></li>
+                        <li><a href="/courses" class="footer-link">Courses</a></li>
+                        <li><a href="https://developassion.gumroad.com" class="footer-link">Products</a></li>
+                        <li><a href="/books" class="footer-link">Books</a></li>
+                        <li><a href="https://developassion.gumroad.com/l/pkm-coaching" class="footer-link">Coaching</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="!mt-12 md:mt-16 pt-6 md:pt-8 border-t border-gray-400">
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
-                <p class="!text-base md:!text-xl text-gray-200">&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+            <div class="mt-4 text-center">
+                <p class="md:!text-2xl text-gray-200">&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
             </div>
         </div>
     </div>
