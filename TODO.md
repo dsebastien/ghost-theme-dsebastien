@@ -1,14 +1,9 @@
 # TODO
-- [ ] Fix problem with hbs and package.json and update the website
 - [ ] Fix problem with sidebar (bottom never accessible)
 - [ ] Improve footer
+    - [ ] Add more links
     - [ ] Gradient background
     - [ ] Free content: link to free content page
-    - [ ] Resources
-        - [ ] Knowledge Management: Link to PKM page
-        - [ ] Courses
-        - [ ] Coaching
-        - [ ] Blog
     - [ ] Knowledge Management
         - [ ] OSK
         - [ ] OSC

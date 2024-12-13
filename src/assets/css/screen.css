@@ -165,8 +165,7 @@ a.top-link {
     background-color: rgb(0 0 0 / 0.065);
 }
 
-.has-light-text .gh-form:hover,
-.gh-footer.has-accent-color .gh-form:hover {
+.has-light-text .gh-form:hover .gh-form:hover {
     background-color: rgb(255 255 255 / 0.15);
 }
 
@@ -1184,10 +1183,6 @@ button.gh-form-input {
     @apply mb-[6vw];
 }
 
-.page-template .gh-footer {
-    @apply mt-0;
-}
-
 /* 15. Content
 /* ---------------------------------------------------------- */
 
@@ -1299,8 +1294,7 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content hr {
-    @apply w-full border-0;
-    height: 1px;
+    @apply w-full border-0 h-px;
     background-color: var(--color-border);
 }
 
@@ -1310,12 +1304,9 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content .gh-table table {
-    @apply w-full whitespace-nowrap;
+    @apply w-full whitespace-nowrap align-top border-collapse border-spacing-0;
     font-family: var(--font-sans);
     font-size: 1.5rem;
-    vertical-align: top;
-    border-spacing: 0;
-    border-collapse: collapse;
 }
 
 .gh-content .gh-table table th {
@@ -1349,8 +1340,7 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content :not(pre) > code {
-    @apply font-normal rounded;
-    vertical-align: baseline;
+    @apply font-normal rounded align-baseline;
     padding: 0.15em 0.4em;
     font-size: 0.95em;
     line-height: 1em;
@@ -1425,7 +1415,7 @@ unless a heading is the very first element in the post content */
 }
 
 .kg-callout-card-accent a {
-    text-decoration: underline;
+    @apply underline;
 }
 
 /* Blockquote */
@@ -1437,7 +1427,6 @@ blockquote:not([class]) {
 
 blockquote.kg-blockquote-alt {
     @apply font-normal;
-    font-style: normal;
     color: var(--color-secondary-text);
 }
 
@@ -1490,7 +1479,7 @@ blockquote.kg-blockquote-alt {
 }
 
 .kg-bookmark-card .kg-bookmark-description {
-    max-height: none;
+    @apply max-h-none;
     margin-top: 0.3em;
     font-size: 0.8em;
 }
@@ -1556,8 +1545,8 @@ figcaption {
 }
 
 figcaption a {
+    @apply underline;
     color: var(--ghost-accent-color);
-    text-decoration: underline;
 }
 
 /* 17. Comments
@@ -1571,11 +1560,11 @@ figcaption a {
 /* ---------------------------------------------------------- */
 
 .post-template .gh-container {
-    margin-top: 120px;
+    @apply mt-[120px];
 }
 
 .post-template .gh-container-inner {
-    display: block;
+    @apply block;
 }
 
 .post-template .gh-container.is-grid .gh-feed {
@@ -1583,14 +1572,14 @@ figcaption a {
 }
 
 .post-template .gh-container .gh-container-title {
-    display: block;
+    @apply block;
 }
 
 /* 19. Archive
 /* ---------------------------------------------------------- */
 
 .gh-archive {
-    display: grid;
+    @apply grid;
     grid-template-columns: repeat(16, 1fr);
     gap: var(--grid-gap);
     margin-block: 80px 24px;
@@ -1601,7 +1590,7 @@ figcaption a {
 }
 
 .gh-archive-inner {
-    display: grid;
+    @apply grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--grid-gap);
     grid-column: 1 / -1;
@@ -1733,10 +1722,6 @@ figcaption a {
     letter-spacing: -0.009em;
 }
 
-.has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-footer-signup-header {
-    letter-spacing: -0.019em;
-}
-
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) .gh-article-title {
     letter-spacing: -0.019em;
 }
@@ -1759,10 +1744,6 @@ figcaption a {
     @apply leading-relaxed;
 }
 
-.has-serif-body:not([class*=" gh-font-body"]):not([class^="gh-font-body"]) .gh-footer-signup-subhead {
-    @apply leading-relaxed;
-}
-
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) :is(.gh-button, .gh-form, .gh-form-input) {
     @apply rounded-none;
 }
@@ -1777,85 +1758,6 @@ figcaption a {
 
 .has-serif-title:not([class*=" gh-font-heading"]):not([class^="gh-font-heading"]) {
     font-size: 4.8rem;
-}
-
-/* 21. Footer
-/* ---------------------------------------------------------- */
-
-.gh-footer {
-    margin-top: 12vw;
-    font-size: 1.5rem;
-    color: var(--color-darker-gray);
-}
-
-.gh-footer a:not(.gh-button) {
-    color: inherit;
-}
-
-/* 21.1 Footer styles */
-
-.gh-footer.has-accent-color {
-    background-color: var(--ghost-accent-color);
-}
-
-.gh-footer.has-accent-color .gh-footer-bar {
-    @apply border-t-0;
-}
-
-.gh-footer.has-accent-color .gh-button {
-    @apply bg-white;
-    color: #15171a;
-}
-
-/* 21.2. Footer bar */
-
-.gh-footer-bar {
-    @apply grid items-center font-medium gap-x-8 mb-[100px];
-    grid-template-columns: 1fr auto 1fr;
-    padding-block: 28px;
-    border-block: 1px solid var(--color-border);
-}
-
-.gh-footer-logo {
-    @apply relative font-bold w-full text-center lg:text-left;
-    font-family: var(--gh-font-heading, var(--font-sans));
-    font-size: calc(2.4rem * var(--factor, 1));
-    letter-spacing: -0.015em;
-}
-
-.gh-footer-logo img {
-    @apply max-h-10;
-}
-
-.gh-footer-menu .nav {
-    @apply flex justify-center flex-wrap m-0 p-0 list-none;
-    gap: 8px 28px;
-}
-
-/* 21.3. Footer signup */
-
-.gh-footer-signup {
-    @apply flex flex-col items-center text-center pb-[160px];
-}
-
-.gh-footer-signup-header {
-    @apply font-bold;
-    font-size: calc(clamp(2.8rem,1.36vw + 2.25rem,4rem) * var(--factor, 1));
-    letter-spacing: -0.03em;
-}
-
-.gh-footer-signup-subhead {
-    @apply opacity-75 mt-3 max-w-[640px] font-medium tracking-wide text-3xl;
-}
-
-.gh-footer-signup .gh-form {
-    @apply mt-10;
-}
-
-@media (max-width: 991px) {
-    .gh-footer-bar {
-        @apply flex flex-col gap-5;
-    }
 }
 
 /* Lightbox
@@ -2258,7 +2160,11 @@ figcaption a {
 /* CTA Newsletter
 /* ---------------------------------------------------------- */
 .cta-newsletter {
-    @apply !mt-16 flex flex-col items-center gap-4;
+    @apply !my-16 flex flex-col items-center gap-4;
+}
+
+.cta-newsletter h2 {
+    @apply !text-4xl !font-semibold text-center;
 }
 
 
@@ -2409,7 +2315,7 @@ figcaption a {
 }
 
 .start-page .further-learning > div > a.cta {
-    @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline;
+    @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline text-center;
 }
 
 /* Blog
@@ -2431,4 +2337,48 @@ figcaption a {
 
 .newsletter-page h2.section-title {
     @apply !mt-16 !mb-8 text-4xl font-bold;
+}
+
+/* Footer
+/* ---------------------------------------------------------- */
+.gh-footer {
+    margin-top: 4vw;
+    font-size: 1.5rem;
+    color: var(--color-darker-gray);
+}
+
+.gh-footer.has-accent-color {
+    background-color: var(--ghost-accent-color);
+}
+
+.gh-footer.has-accent-color .gh-button {
+    @apply bg-white;
+    color: #15171a;
+}
+
+.gh-footer-logo {
+    @apply relative font-bold w-full text-center lg:text-left;
+    font-family: var(--gh-font-heading, var(--font-sans));
+    font-size: calc(2.4rem * var(--factor, 1));
+    letter-spacing: -0.015em;
+}
+
+.gh-footer-logo img {
+    @apply max-h-10;
+}
+
+.footer-link-group {
+    @apply mt-0 text-center md:text-center flex-1 shrink flex justify-center;
+}
+
+.footer-link-group > div > h3 {
+    @apply font-semibold !text-3xl md:!text-4xl text-gray-100 mb-3 md:mb-5;
+}
+
+.footer-link-group > div > ul {
+    @apply space-y-0 md:space-y-2 !list-none text-2xl md:!text-3xl;
+}
+
+.footer-link {
+    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-center md:justify-center w-full;
 }
