@@ -1,4 +1,9 @@
 # TODO
+- [ ] Add one landing page per product
+- [ ] Add one page per content pillar
+- [ ] Add one landing page per persona (cfr content strategy)
+- [ ] Verify pages for SEO
+    - [ ] If needed create those as actual pages using the corresponding template and ignore all info in the tpls
 - [ ] Fix problem with sidebar (bottom never accessible)
 - [ ] Improve footer
     - [ ] Add more links
