@@ -2186,16 +2186,29 @@ figcaption a {
     @apply mt-16;
 }
 
-/* Benefits */
-.homepage .benefits {
-    @apply flex flex-col items-stretch md:inline-flex md:flex-wrap gap-8;
+/* The Enemy */
+.homepage .enemy {
+    @apply flex flex-col gap-8;
 }
 
-.homepage .benefit-item {
+.homepage .enemy-item {
     @apply flex-1 min-w-[250px];
 }
 
-.homepage .benefits > .benefit-item > h2 {
+.homepage .enemy > .enemy-item > h2 {
+    @apply !text-3xl !text-left;
+}
+
+/* Identity */
+.homepage .identity {
+    @apply flex flex-col gap-8;
+}
+
+.homepage .identity-item {
+    @apply flex-1 min-w-[250px];
+}
+
+.homepage .identity > .identity-item > h2 {
     @apply !text-3xl !text-left;
 }
 
@@ -2318,6 +2331,36 @@ figcaption a {
     @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline text-center;
 }
 
+.start-page .community {
+    @apply !bg-gray-100 p-8 rounded-lg shadow-xl flex flex-col gap-8;
+}
+
+.start-page .community h2 {
+    @apply text-center mb-0;
+}
+
+.start-page .community p {
+    @apply text-center mb-8;
+}
+
+.start-page .community .community-benefit {
+    @apply flex-1 min-w-[250px];
+}
+
+.start-page .community > .community-benefit > h3 {
+    @apply !text-3xl text-center;
+}
+
+.start-page .community > .community-benefit > p {
+    @apply !text-3xl;
+}
+
+.start-page .community > .community-cta {
+    @apply text-center;
+}
+
+
+
 /* Blog
 /* ---------------------------------------------------------- */
 
@@ -2368,7 +2411,7 @@ figcaption a {
 }
 
 .footer-link-group {
-    @apply mt-0 text-center md:text-center flex-1 shrink flex justify-center;
+    @apply mt-0 flex-1 shrink flex justify-center;
 }
 
 .footer-link-group > div > h3 {
@@ -2376,9 +2419,9 @@ figcaption a {
 }
 
 .footer-link-group > div > ul {
-    @apply space-y-0 md:space-y-2 !list-none text-2xl md:!text-3xl;
+    @apply space-y-0 md:space-y-2 !list-none text-2xl md:!text-3xl items-start justify-start;
 }
 
 .footer-link {
-    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-center md:justify-center w-full;
+    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full;
 }
