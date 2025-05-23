@@ -104,6 +104,28 @@
         }
     </script>
 
+    <!-- Knowii Chat integration (Circle.so) -->
+    <script>
+        (function (w,d,s,o,f,js,fjs) {
+            w['circleWidget']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+            js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', 'mw', 'https://www.knowii.net/external/widget.js'));
+
+        mw('init', {
+            community_public_uid: 'f3a9e07f',
+            brand_color_dark: '#f9f9f9',
+            brand_color_light: '#fd3585',
+            default_appearance: 'light'
+        });
+
+        // Optional: pass in a default space slug and/or post slug
+        // mw('setDefaults', {
+        //   space_slug: '',
+        //   post_slug: ''
+        // });
+</script>
+
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
 

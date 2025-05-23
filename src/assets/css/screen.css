@@ -2308,7 +2308,7 @@ figcaption a {
 }
 
 .start-page .step strong {
-    @apply inline-block mb-2 font-semibold;
+    @apply inline-block mt-2 font-semibold;
 }
 
 .start-page .recommended-resources {
@@ -2424,4 +2424,11 @@ figcaption a {
 
 .footer-link {
     @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full;
+}
+
+/* Knowii Chat integration (Circle.so)
+/* ---------------------------------------------------------- */
+.circle-widget-trigger {
+    @apply left-8! right-auto!;
+    background-color: var(--ghost-accent-color) !important;
 }
