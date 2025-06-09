@@ -5,10 +5,10 @@
     <section class="gh-inner !mt-32">
         <h1 class="gh-article-title is-title">Articles ✍️</h1>
         <p class="gh-article-excerpt">Explore my articles about
-            <a class="top-link" href="#ai">AI</a>, 
-            <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
             <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
             <a class="top-link" href="#obsidian">Obsidian</a>, 
+            <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
+            <a class="top-link" href="#ai">AI</a>,
             <a class="top-link" href="#learning">Learning</a>, 
             <a class="top-link" href="#personal-development">Personal Development</a>, 
             <a class="top-link" href="#mental-health">Mental Health</a>, 
@@ -74,6 +74,21 @@
 
                     <div class="">
                         <a href="/tag/knowledge-work">See More {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
+                    </div>
+                </div>
+
+                <!-- AI -->
+                <h2 class="section-title">AI</h2>
+                <div id="ai" class="gh-feed mt-4">
+                    {{#get "posts" filter="tag:ai" limit=6 as |recent|}}
+                        {{#foreach recent}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    {{/get}}
+                    
+                    <div class="">
+                        <a href="/tag/obsidian">See More {{> "icons/arrow"}}</a>
                         <hr class="!my-8"/>
                     </div>
                 </div>
