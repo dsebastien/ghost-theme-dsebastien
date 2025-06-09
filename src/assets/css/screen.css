@@ -1183,6 +1183,12 @@ button.gh-form-input {
     @apply mb-[6vw];
 }
 
+
+.signature-links {
+    @apply list-none! pl-0!;
+}
+
+
 /* 15. Content
 /* ---------------------------------------------------------- */
 
