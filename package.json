@@ -29,8 +29,8 @@
     "bugs": "https://github.com/dsebastien/ghost-theme-dsebastien/issues",
     "contributors": "https://github.com/dsebastien/ghost-theme-dsebastien/graphs/contributors",
     "devDependencies": {
-        "@tailwindcss/cli": "^4.0.0-beta.6",
-        "@tailwindcss/typography": "0.5.15",
+        "@tailwindcss/cli": "4.1.11",
+        "@tailwindcss/typography": "0.5.16",
         "@tryghost/release-utils": "0.8.1",
         "beeper": "2.1.0",
         "concurrently": "9.1.0",
@@ -41,7 +41,7 @@
         "gulp-uglify": "3.0.2",
         "gulp-zip": "5.1.0",
         "pump": "3.0.0",
-        "tailwindcss": "^4.0.0-beta.6"
+        "tailwindcss": "4.1.11"
     },
     "browserslist": [
         "defaults"
