@@ -2,38 +2,227 @@
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
 <main class="gh-main gh-outer all-tags-page">
-    {{#get "tags" include="count.posts" limit="all" order="count.posts desc,name asc"}}
+    {{!-- Get total count for header --}}
+    {{#get "tags" include="count.posts" limit="1"}}
         <header class="!mt-24 gh-article-header gh-canvas hero">
             <h1 class="gh-article-title is-title text-center text-4xl font-bold">
                 All Tags 🏷️
             </h1>
-            <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{tags.length}} tags 🤯</p>
+            <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{meta.pagination.total}} tags 🤯</p>
         </header>
-
-        <section class="gh-content gh-canvas is-body">
-            {{#if tags}}
-                <ul class="!mx-8 space-y-8 !list-none">
-                    {{#foreach tags}}
-                        <li class="border-b border-gray-200 py-8">
-                            <article>
-                                <h2 class="text-2xl font-semibold !mb-2">
-                                    <a href="{{url}}" class="capitalize">{{name}}</a>
-                                </h2>
-                                
-                                {{#if description}}
-                                    <p class="text-gray-600">{{description}}</p>
-                                {{/if}}
-
-                                <div class="!mt-8">
-                                    Total posts: {{count.posts}}
-                                </div>
-                            </article>
-                        </li>
-                    {{/foreach}}
-                </ul>
-            {{else}}
-                <p class="text-gray-600">No tags found.</p>
-            {{/if}}
-        </section>
     {{/get}}
+
+    <section class="gh-content gh-canvas is-body">
+        <ul class="!mx-8 space-y-8 !list-none">
+            {{!-- Batch 1: Tags 1-100 --}}
+            {{#get "tags" include="count.posts" limit="100" page="1" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 2: Tags 101-200 --}}
+            {{#get "tags" include="count.posts" limit="100" page="2" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 3: Tags 201-300 --}}
+            {{#get "tags" include="count.posts" limit="100" page="3" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 4: Tags 301-400 --}}
+            {{#get "tags" include="count.posts" limit="100" page="4" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 5: Tags 401-500 --}}
+            {{#get "tags" include="count.posts" limit="100" page="5" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 6: Tags 501-600 --}}
+            {{#get "tags" include="count.posts" limit="100" page="6" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 7: Tags 601-700 --}}
+            {{#get "tags" include="count.posts" limit="100" page="7" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 8: Tags 701-800 --}}
+            {{#get "tags" include="count.posts" limit="100" page="8" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 9: Tags 801-900 --}}
+            {{#get "tags" include="count.posts" limit="100" page="9" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 10: Tags 901-1000 --}}
+            {{#get "tags" include="count.posts" limit="100" page="10" order="count.posts desc,name asc"}}
+                {{#foreach tags}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{name}}</a>
+                            </h2>
+                            
+                            {{#if description}}
+                                <p class="text-gray-600">{{description}}</p>
+                            {{/if}}
+
+                            <div class="!mt-8">
+                                Total posts: {{count.posts}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+        </ul>
+    </section>
 </main> 

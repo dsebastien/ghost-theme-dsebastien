@@ -2,17 +2,20 @@
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
 <main class="gh-main gh-outer all-articles-page">
-        {{#get "posts" filter="tag:blog" include="tags" limit="all" order="published_at desc"}}
+    {{!-- Get total count for header --}}
+    {{#get "posts" filter="tag:blog" limit="1"}}
         <header class="!mt-24 gh-article-header gh-canvas hero">
             <h1 class="gh-article-title is-title text-center text-4xl font-bold">
                 All Articles ✍️
             </h1>
-            <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{posts.length}} articles and counting... 🎉</p>
+            <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{meta.pagination.total}} articles and counting... 🎉</p>
         </header>
+    {{/get}}
 
-        <section class="gh-content gh-canvas is-body">
-        {{#if posts}}
-            <ul class="!mx-8 space-y-8 !list-decimal text-2xl">
+    <section class="gh-content gh-canvas is-body">
+        <ul class="!mx-8 space-y-8 !list-decimal text-2xl">
+            {{!-- Batch 1: Posts 1-100 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="1" order="published_at desc"}}
                 {{#foreach posts}}
                     <li class="border-b border-gray-200 py-8">
                         <article>
@@ -43,10 +46,313 @@
                         </article>
                     </li>
                 {{/foreach}}
-            </ul>
-        {{else}}
-            <p class="text-gray-600">No articles found.</p>
-        {{/if}}
-        </section>
-    {{/get}}
+            {{/get}}
+
+            {{!-- Batch 2: Posts 101-200 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="2" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 3: Posts 201-300 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="3" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 4: Posts 301-400 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="4" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 5: Posts 401-500 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="5" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 6: Posts 501-600 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="6" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 7: Posts 601-700 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="7" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 8: Posts 701-800 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="8" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 9: Posts 801-900 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="9" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+
+            {{!-- Batch 10: Posts 901-1000 --}}
+            {{#get "posts" filter="tag:blog" include="tags" limit="100" page="10" order="published_at desc"}}
+                {{#foreach posts}}
+                    <li class="border-b border-gray-200 py-8">
+                        <article>
+                            <h2 class="text-2xl font-semibold !mb-2">
+                                <a href="{{url}}" class="capitalize">{{title}}</a>
+                            </h2>
+                            
+                            {{#if excerpt}}
+                                <p class="text-gray-600">{{excerpt}}</p>
+                            {{/if}}
+                            
+                            <div class="!mt-8 text-md text-gray-500">
+                                <div>
+                                    <time datetime="{{date format="YYYY-MM-DD"}}">
+                                        {{date format="MMMM DD, YYYY"}}
+                                    </time>
+                                </div>
+
+                                {{#if tags}}
+                                    <div class="mt-2">    
+                                        <span>Tags:&nbsp;</span>
+                                        {{#foreach tags}}
+                                            <a href="{{url}}" class="hover:text-primary transition-colors capitalize">{{name}}</a>{{#unless @last}},&nbsp;{{/unless}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </article>
+                    </li>
+                {{/foreach}}
+            {{/get}}
+        </ul>
+    </section>
 </main> 
