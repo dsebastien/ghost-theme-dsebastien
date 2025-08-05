@@ -34,7 +34,7 @@
         "@tryghost/release-utils": "0.8.1",
         "beeper": "2.1.0",
         "concurrently": "9.1.0",
-        "gscan": "4.46.0",
+        "gscan": "5.0.0",
         "gulp": "4.0.2",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
