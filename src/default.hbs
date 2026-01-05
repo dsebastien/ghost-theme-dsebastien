@@ -79,6 +79,42 @@
         });
     </script>
 
+    {{!-- Generic script to replace specific links with custom URLs --}}
+    <script>
+        /**
+         * Replace all links matching a specific URL with a new URL
+         * @param {string} sourceUrl - The URL to search for and replace
+         * @param {string} targetUrl - The URL to replace it with
+         */
+        function replaceLinkUrl(sourceUrl, targetUrl) {
+            document.addEventListener('DOMContentLoaded', function() {
+                // Escape special characters for use in querySelector
+                var escapedSource = sourceUrl.replace(/[[\](){}*+?.,\\^$|#\s]/g, '\\$&');
+
+                // Find all links that exactly match the source URL
+                var links = document.querySelectorAll('a');
+
+                links.forEach(function(link) {
+                    if (link.href === sourceUrl) {
+                        link.href = targetUrl;
+                    }
+                });
+            });
+        }
+
+        replaceLinkUrl(
+            'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit',
+            'https://obsidianstarterkit.com'
+        );
+
+        replaceLinkUrl(
+            'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners',
+            'https://knowledge-management-for-beginners.com'
+        );
+
+
+    </script>
+
     <!-- EthicalAds -->
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
