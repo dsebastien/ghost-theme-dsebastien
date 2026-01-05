@@ -20,6 +20,9 @@ services:
       - ./content:/var/lib/ghost/content
       # Map the theme files for development
       - ./src:/var/lib/ghost/content/themes/dsebastien
+      # Map configuration files
+      - ./configuration/routes.yaml:/var/lib/ghost/content/settings/routes.yaml
+      - ./configuration/redirects.yaml:/var/lib/ghost/content/settings/redirects.yaml
   ghost-db:
     image: mariadb:latest
     restart: always
