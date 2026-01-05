@@ -59,62 +59,6 @@
 
     <script src="https://gumroad.com/js/gumroad.js"></script>
 
-    {{!-- Script to replace store.dsebastien.net links with Gumroad store (to enable Gumroad's widget) --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Find all links on the page
-            var links = document.querySelectorAll('a[href*="store.dsebastien.net"]');
-
-            // Replace each link
-            links.forEach(function(link) {
-                var oldHref = link.href;
-                // Handle both https://store.dsebastien.net and store.dsebastien.net
-                var newHref = oldHref.replace(/https?:\/\/store\.dsebastien\.net/g, 'https://developassion.gumroad.com')
-                                     .replace(/^store\.dsebastien\.net/g, 'https://developassion.gumroad.com');
-                link.href = newHref;
-
-                // Enable Gumroad overlay checkout
-                //link.setAttribute('data-gumroad-overlay-checkout', 'true');
-            });
-        });
-    </script>
-
-    {{!-- Generic script to replace specific links with custom URLs --}}
-    <script>
-        /**
-         * Replace all links matching a specific URL with a new URL
-         * @param {string} sourceUrl - The URL to search for and replace
-         * @param {string} targetUrl - The URL to replace it with
-         */
-        function replaceLinkUrl(sourceUrl, targetUrl) {
-            document.addEventListener('DOMContentLoaded', function() {
-                // Escape special characters for use in querySelector
-                var escapedSource = sourceUrl.replace(/[[\](){}*+?.,\\^$|#\s]/g, '\\$&');
-
-                // Find all links that exactly match the source URL
-                var links = document.querySelectorAll('a');
-
-                links.forEach(function(link) {
-                    if (link.href === sourceUrl) {
-                        link.href = targetUrl;
-                    }
-                });
-            });
-        }
-
-        replaceLinkUrl(
-            'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit',
-            'https://obsidianstarterkit.com'
-        );
-
-        replaceLinkUrl(
-            'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners',
-            'https://knowledge-management-for-beginners.com'
-        );
-
-
-    </script>
-
     <!-- EthicalAds -->
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
@@ -202,6 +146,62 @@
 
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
+
+{{!-- Link replacement scripts - placed at end of body to ensure all content is loaded --}}
+{{!-- Script to replace store.dsebastien.net links with Gumroad store (to enable Gumroad's widget) --}}
+<script>
+    // Find all links on the page
+    var links = document.querySelectorAll('a[href*="store.dsebastien.net"]');
+
+    // Replace each link
+    links.forEach(function(link) {
+        var oldHref = link.href;
+        // Handle both https://store.dsebastien.net and store.dsebastien.net
+        var newHref = oldHref.replace(/https?:\/\/store\.dsebastien\.net/g, 'https://developassion.gumroad.com')
+                             .replace(/^store\.dsebastien\.net/g, 'https://developassion.gumroad.com');
+        link.href = newHref;
+
+        // Enable Gumroad overlay checkout
+        //link.setAttribute('data-gumroad-overlay-checkout', 'true');
+    });
+</script>
+
+{{!-- Generic script to replace specific links with custom URLs --}}
+<script>
+    /**
+     * Replace all links matching a specific URL with a new URL
+     * @param {string} sourceUrl - The URL to search for and replace
+     * @param {string} targetUrl - The URL to replace it with
+     */
+    function replaceLinkUrl(sourceUrl, targetUrl) {
+        // Find all links that exactly match the source URL
+        var links = document.querySelectorAll('a');
+
+        links.forEach(function(link) {
+            if (link.href === sourceUrl) {
+                link.href = targetUrl;
+            }
+        });
+    }
+
+    // Replace Obsidian Starter Kit notes link with dedicated domain
+    replaceLinkUrl(
+        'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit',
+        'https://obsidianstarterkit.com'
+    );
+
+    // Replace Knowledge Management for Beginners notes link with dedicated domain
+    replaceLinkUrl(
+        'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners',
+        'https://knowledge-management-for-beginners.com'
+    );
+
+    // Replace Knowledge Management for Beginners Gumroad link with dedicated domain
+    replaceLinkUrl(
+        'https://developassion.gumroad.com/l/knowledge-management-for-beginners',
+        'https://knowledge-management-for-beginners.com'
+    );
+</script>
 
 {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
 {{ghost_foot}}
