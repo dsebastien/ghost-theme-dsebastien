@@ -7,7 +7,7 @@
         "tailwind": "rm -rf ./src/assets/built && npx @tailwindcss/cli --input ./src/assets/css/screen.css --output ./src/assets/built/screen.css",
         "dev": "npx concurrently \"cd src && npx gulp\" \"npm run tailwind -- --watch\"",
         "serve": "npx concurrently \"docker-compose up\" \"npm run dev\"",
-        "zip": "rm -rf ./dist &&npm run tailwind -- --minify && cd src && npx gulp zip",
+        "zip": "rm -rf ./dist && npm run tailwind -- --minify && cd src && npx gulp zip",
         "test": "cd src && npx gscan .",
         "test:ci": "cd src && npx gscan --fatal --verbose .",
         "pretest": "npm run tailwind && cd src && npx gulp build"
