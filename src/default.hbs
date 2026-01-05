@@ -174,32 +174,82 @@
      * @param {string} targetUrl - The URL to replace it with
      */
     function replaceLinkUrl(sourceUrl, targetUrl) {
-        // Find all links that exactly match the source URL
+        // Find all links that match the source URL (including with query params/hash)
         var links = document.querySelectorAll('a');
 
         links.forEach(function(link) {
-            if (link.href === sourceUrl) {
-                link.href = targetUrl;
+            // Check if the link starts with the source URL
+            if (link.href === sourceUrl || link.href.startsWith(sourceUrl + '?') || link.href.startsWith(sourceUrl + '#')) {
+                // Preserve query parameters and hash fragments
+                var suffix = link.href.substring(sourceUrl.length);
+                link.href = targetUrl + suffix;
             }
         });
     }
 
-    // Replace Obsidian Starter Kit notes link with dedicated domain
     replaceLinkUrl(
-        'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit',
-        'https://obsidianstarterkit.com'
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit",
+        "https://obsidianstarterkit.com"
     );
 
-    // Replace Knowledge Management for Beginners notes link with dedicated domain
     replaceLinkUrl(
-        'https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners',
-        'https://knowledge-management-for-beginners.com'
+        "https://notes.dsebastien.net/20+Actions/23+Projects/Obsidian+Starter+Course/Obsidian+Starter+Course",
+        "https://developassion.gumroad.com/l/obsidian-starter-course"
     );
 
-    // Replace Knowledge Management for Beginners Gumroad link with dedicated domain
     replaceLinkUrl(
-        'https://developassion.gumroad.com/l/knowledge-management-for-beginners',
-        'https://knowledge-management-for-beginners.com'
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners",
+        "https://knowledge-management-for-beginners.com"
+    );
+
+    replaceLinkUrl(
+        "https://developassion.gumroad.com/l/knowledge-management-for-beginners",
+        "https://knowledge-management-for-beginners.com"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Worker+Kit",
+        "https://store.dsebastien.net/l/knowledge-worker-kit"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Voice+AI",
+        "https://voice-ai.knowii.net"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Community",
+        "https://developassion.gumroad.com/l/knowii"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Newsletters/DeveloPassion's+Newsletter+037+-+Less+is+more#Personal+Knowledge+Management+Library",
+        "https://developassion.gumroad.com/l/PersonalKnowledgeManagementLibrary"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Personal+Knowledge+Management+Coaching",
+        "https://developassion.gumroad.com/l/pkm-coaching"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/AI+Ghostwriter+Guide",
+        "https://developassion.gumroad.com/l/ai-ghostwriter-guide"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Dev+Concepts",
+        "https://dev-concepts.dev"
+    );
+
+    replaceLinkUrl(
+        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Affiliate+Program",
+        "https://www.dsebastien.net/knowii-affiliate-program/"
+    );
+
+    replaceLinkUrl(
+        "https://newsletter.dsebastien.net",
+        "https://www.dsebastien.net/newsletter"
     );
 </script>
 
