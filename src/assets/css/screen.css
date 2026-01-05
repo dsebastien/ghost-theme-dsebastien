@@ -2245,7 +2245,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .homepage .offering {
-    @apply bg-gray-100 p-8 rounded-lg shadow-lg;
+    @apply relative bg-gray-100 p-8 rounded-lg shadow-lg;
+}
+
+.homepage .offering .badge {
+    @apply absolute top-0 right-0 bg-pink-600 text-white text-sm font-bold px-4 py-2 rounded-bl-lg rounded-tr-lg;
+}
+
+.homepage .offering .badge-value {
+    @apply bg-green-600;
 }
 
 .homepage .offering p {
@@ -2432,4 +2440,354 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .circle-widget-trigger {
     @apply left-8! right-auto!;
     background-color: var(--ghost-accent-color) !important;
+}
+
+/* Conversion Optimization Styles
+/* ---------------------------------------------------------- */
+
+/* Home Page - Hero Enhancements */
+.hero .hero-stats {
+    @apply text-lg md:text-xl mb-6 text-gray-600 flex flex-wrap justify-center gap-2 md:gap-4;
+}
+
+.hero .stat-separator {
+    @apply hidden md:inline;
+}
+
+.hero .hero-value-prop {
+    @apply mt-8 text-2xl md:text-3xl font-semibold max-w-4xl;
+}
+
+.hero .hero-cta-group {
+    @apply mt-12 flex flex-col md:flex-row gap-4 md:gap-6 items-center;
+}
+
+.hero .hero-cta-group a.cta.primary {
+    @apply bg-pink-600 hover:bg-pink-700 text-white !py-6 !px-16 md:!px-24 text-2xl md:text-3xl no-underline rounded-lg transition-colors;
+}
+
+.hero .hero-cta-group a.cta.secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 !py-6 !px-16 md:!px-24 text-2xl md:text-3xl no-underline rounded-lg transition-colors;
+}
+
+.hero .hero-social-proof {
+    @apply mt-6 text-lg md:text-xl text-gray-600;
+}
+
+/* Home Page - Results Proof Section */
+.homepage .results-proof {
+    @apply bg-gradient-to-r from-pink-50 to-purple-50 p-8 md:p-12 rounded-lg shadow-lg;
+}
+
+.homepage .results-proof h2 {
+    @apply mb-8;
+}
+
+.homepage .results-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8;
+}
+
+.homepage .result-stat {
+    @apply text-center p-6 bg-white rounded-lg shadow-md;
+}
+
+.homepage .result-stat .stat-number {
+    @apply text-4xl md:text-5xl font-bold text-pink-600 mb-2;
+}
+
+.homepage .result-stat .stat-label {
+    @apply text-lg text-gray-600;
+}
+
+/* Home Page - Offering Featured (Bestseller) */
+.homepage .offering-featured {
+    @apply relative bg-gradient-to-br from-pink-100 to-purple-100 p-8 md:p-12 rounded-lg shadow-2xl border-4 border-pink-500 mb-8;
+}
+
+.homepage .offering-featured .badge {
+    @apply absolute top-0 right-0 bg-pink-600 text-white text-sm font-bold px-4 py-2 rounded-bl-lg rounded-tr-lg;
+}
+
+.homepage .offering-featured h3 {
+    @apply !text-left !text-3xl md:!text-4xl !mt-0 mb-4;
+}
+
+.homepage .offering-featured .value-prop {
+    @apply text-2xl md:text-3xl text-gray-700 mb-6;
+}
+
+.homepage .offering-featured .pricing {
+    @apply mb-6 flex flex-col md:flex-row md:items-center md:gap-4;
+}
+
+.homepage .offering-featured .price-main {
+    @apply text-3xl md:text-4xl font-bold text-pink-600;
+}
+
+.homepage .offering-featured .price-savings {
+    @apply text-lg text-gray-600;
+}
+
+.homepage .offering-featured .benefits-quick {
+    @apply !list-none space-y-3 mb-6 !pl-0;
+}
+
+.homepage .offering-featured .benefits-quick li {
+    @apply text-xl md:text-2xl leading-relaxed;
+}
+
+.homepage .offering-featured .cta-large {
+    @apply inline-block bg-pink-600 hover:bg-pink-700 text-white !py-6 !px-12 text-2xl font-bold no-underline rounded-lg transition-colors shadow-lg;
+}
+
+.homepage .offering-featured .guarantee {
+    @apply mt-4 text-xl text-gray-600 text-center;
+}
+
+/* Home Page - Offerings Updates */
+.homepage .offerings-intro {
+    @apply text-xl text-gray-600 text-center mb-8;
+}
+
+.homepage .offering .offering-price {
+    @apply mt-4 text-2xl font-bold text-pink-600;
+}
+
+.homepage .offerings-cta {
+    @apply mt-12 text-center;
+}
+
+.homepage .offerings-cta .link-prominent {
+    @apply text-2xl text-pink-600 hover:text-pink-700 font-semibold underline;
+}
+
+/* Home Page - Risk Reversal Section */
+.homepage .risk-reversal {
+    @apply bg-gradient-to-r from-green-50 to-teal-50 p-8 md:p-12 rounded-lg shadow-lg;
+}
+
+.homepage .risk-reversal h2 {
+    @apply mb-8;
+}
+
+.homepage .risk-reversal .guarantee-box {
+    @apply bg-white p-8 rounded-lg shadow-md text-center;
+}
+
+.homepage .risk-reversal .guarantee-icon {
+    @apply text-6xl mb-4;
+}
+
+.homepage .risk-reversal .guarantee-box h3 {
+    @apply !text-2xl md:!text-3xl mb-4 !text-center;
+}
+
+.homepage .risk-reversal .guarantee-box p {
+    @apply text-lg text-gray-700;
+}
+
+.homepage .risk-reversal .support-info {
+    @apply mt-6 text-center;
+}
+
+.homepage .risk-reversal .support-info p {
+    @apply text-lg text-gray-700;
+}
+
+/* Start Page - Quick Win Box */
+.start-page .quick-win {
+    @apply bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-lg shadow-lg border-l-4 border-yellow-500 mt-8;
+}
+
+.start-page .quick-win h3 {
+    @apply !text-2xl md:!text-3xl mb-4 !text-left;
+}
+
+.start-page .quick-win p {
+    @apply text-lg mb-4;
+}
+
+.start-page .privacy-note {
+    @apply mt-4 text-sm text-gray-600 text-center;
+}
+
+/* Start Page - Progress Tracking */
+.journey-progress {
+    @apply mt-12 mb-16 text-center;
+}
+
+.journey-progress .progress-bar {
+    @apply flex justify-center items-center gap-2 md:gap-4 mb-4 flex-wrap;
+}
+
+.journey-progress .progress-step {
+    @apply flex flex-col items-center gap-2;
+}
+
+.journey-progress .progress-step > span:first-child {
+    @apply w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-pink-600 text-white rounded-full text-xl md:text-2xl font-bold;
+}
+
+.journey-progress .step-label {
+    @apply text-sm md:text-base text-gray-600 hidden md:block;
+}
+
+.journey-progress > p {
+    @apply text-lg text-gray-600;
+}
+
+/* Start Page - Step Enhancements */
+.start-page .step .step-meta {
+    @apply flex justify-between items-center mb-4 flex-wrap gap-4;
+}
+
+.start-page .step .step-number {
+    @apply bg-pink-600 text-white px-4 py-2 rounded-full font-bold text-lg;
+}
+
+.start-page .step .step-time {
+    @apply text-gray-600 text-lg;
+}
+
+.start-page .step .step-value {
+    @apply bg-gradient-to-r from-pink-50 to-purple-50 border-l-4 border-pink-500 p-6 rounded-lg mt-6 mb-8 shadow-md;
+}
+
+.start-page .step .step-value strong {
+    @apply text-pink-600;
+}
+
+.start-page .step h4 {
+    @apply !text-2xl font-semibold mt-6 mb-4;
+}
+
+/* Start Page - Step Success Indicators */
+.start-page .step-success {
+    @apply bg-green-100 border-l-4 border-green-500 p-6 rounded-lg mb-6 mt-6;
+}
+
+.start-page .step-success strong {
+    @apply block mb-4 text-xl;
+}
+
+.start-page .step-success ul {
+    @apply space-y-2;
+}
+
+.start-page .step-success ul li {
+    @apply text-lg;
+}
+
+/* Start Page - Product Recommendations */
+.start-page .recommended-resources h4 {
+    @apply !text-3xl !font-bold mb-6;
+}
+
+.start-page .product-recommendation {
+    @apply bg-white p-6 rounded-lg shadow-md border-2 border-pink-200;
+}
+
+.start-page .product-recommendation h5 {
+    @apply !text-3xl font-bold mb-6 text-pink-600;
+}
+
+.start-page .product-recommendation p {
+    @apply mb-4 text-xl;
+}
+
+.start-page .product-rec-pricing {
+    @apply my-4;
+}
+
+.start-page .product-rec-pricing .price {
+    @apply text-3xl font-bold text-pink-600;
+}
+
+.start-page .btn-product {
+    @apply inline-block bg-pink-600 hover:bg-pink-700 text-white !py-4 !px-8 text-xl font-bold no-underline rounded-lg transition-colors;
+}
+
+.start-page .recommended-resources .alternative {
+    @apply mt-4 text-center text-base text-gray-600 italic;
+}
+
+/* Start Page - Success Stories */
+.start-page .success-story {
+    @apply my-12 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-lg shadow-lg;
+}
+
+.start-page .success-story blockquote {
+    @apply !border-l-4 !border-blue-500 !pl-6 !italic;
+}
+
+.start-page .success-story blockquote p {
+    @apply text-xl leading-relaxed;
+}
+
+.start-page .success-story blockquote footer {
+    @apply mt-4 flex flex-col gap-2;
+}
+
+.start-page .success-story blockquote footer strong {
+    @apply text-lg font-bold;
+}
+
+.start-page .success-story blockquote footer .result {
+    @apply text-base text-gray-600;
+}
+
+/* Start Page - Transformation Timeline */
+.transformation-timeline {
+    @apply mt-16 mb-16 bg-gradient-to-r from-purple-50 to-pink-50 p-8 md:p-12 rounded-lg shadow-lg;
+}
+
+.transformation-timeline h2 {
+    @apply !text-3xl md:!text-4xl mb-8 text-center;
+}
+
+.transformation-timeline .timeline {
+    @apply flex justify-center items-center gap-4 md:gap-8 mb-8 flex-wrap;
+}
+
+.transformation-timeline .timeline-point {
+    @apply flex flex-col items-center gap-2 p-4;
+}
+
+.transformation-timeline .timeline-point .time {
+    @apply bg-purple-600 text-white px-4 py-2 rounded-full font-bold text-base md:text-lg;
+}
+
+.transformation-timeline .timeline-point .milestone {
+    @apply text-base md:text-lg text-gray-700 text-center;
+}
+
+.transformation-timeline .timeline-cta {
+    @apply text-center text-lg md:text-xl;
+}
+
+.transformation-timeline .timeline-cta a {
+    @apply text-pink-600 hover:text-pink-700 font-semibold underline;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .hero .hero-stats {
+        @apply text-base;
+    }
+    
+    .hero .hero-value-prop {
+        @apply text-xl;
+    }
+    
+    .homepage .offering-featured {
+        @apply p-6;
+    }
+    
+    .homepage .offering-featured h3 {
+        @apply !text-2xl;
+    }
+    
+    .start-page .progress-step .step-label {
+        @apply hidden;
+    }
 }
