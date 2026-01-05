@@ -57,9 +57,27 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <!-- WARNING: Waiting for a fix by Gumroad for this issue: https://twitter.com/dSebastien/status/1856760739945492938
     <script src="https://gumroad.com/js/gumroad.js"></script>
-    -->
+
+    {{!-- Script to replace store.dsebastien.net links with Gumroad store (to enable Gumroad's widget) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all links on the page
+            var links = document.querySelectorAll('a[href*="store.dsebastien.net"]');
+
+            // Replace each link
+            links.forEach(function(link) {
+                var oldHref = link.href;
+                // Handle both https://store.dsebastien.net and store.dsebastien.net
+                var newHref = oldHref.replace(/https?:\/\/store\.dsebastien\.net/g, 'https://developassion.gumroad.com')
+                                     .replace(/^store\.dsebastien\.net/g, 'https://developassion.gumroad.com');
+                link.href = newHref;
+
+                // Enable Gumroad overlay checkout
+                //link.setAttribute('data-gumroad-overlay-checkout', 'true');
+            });
+        });
+    </script>
 
     <!-- EthicalAds -->
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
@@ -124,7 +142,7 @@
         //   space_slug: '',
         //   post_slug: ''
         // });
-</script>
+    </script>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
