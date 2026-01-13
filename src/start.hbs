@@ -26,6 +26,14 @@
                 <p>6 steps to knowledge mastery</p>
             </div>
 
+            <!-- Newsletter -->
+            {{#unless member}}
+                <section class="!mt-32 cta-newsletter">
+                    <h2>Subscribe to the Newsletter 💌</h2>
+                    {{> "email-subscription" email_field_id="start-email"}}
+                </section>
+            {{/unless}}
+
             <!-- Steps -->
             <section class="steps">
                 <h2>The Knowledge Master's Journey</h2>

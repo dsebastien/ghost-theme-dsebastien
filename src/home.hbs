@@ -31,6 +31,14 @@
                         <p class="hero-social-proof">Join 2000+ people who've transformed how they work with knowledge ✨</p>
             </section>
 
+            <!-- Newsletter -->
+            {{#unless member}}
+                <section class="!mt-32 cta-newsletter">
+                    <h2>Subscribe to the Newsletter 💌</h2>
+                    {{> "email-subscription" email_field_id="home-email"}}
+                </section>
+            {{/unless}}
+
             <!-- Results Proof Section -->
             <section class="results-proof">
                 <h2>Real Results from Real People</h2>
