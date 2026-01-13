@@ -4,13 +4,13 @@
     "version": "1.0.0",
     "license": "",
     "scripts": {
-        "tailwind": "rm -rf ./src/assets/built && npx @tailwindcss/cli --input ./src/assets/css/screen.css --output ./src/assets/built/screen.css",
-        "dev": "npx concurrently \"cd src && npx gulp\" \"npm run tailwind -- --watch\"",
-        "serve": "npx concurrently \"docker-compose up\" \"npm run dev\"",
-        "zip": "rm -rf ./dist && npm run tailwind -- --minify && cd src && npx gulp zip",
-        "test": "cd src && npx gscan .",
-        "test:ci": "cd src && npx gscan --fatal --verbose .",
-        "pretest": "npm run tailwind && cd src && npx gulp build"
+        "tailwind": "rm -rf ./src/assets/built && bunx @tailwindcss/cli --input ./src/assets/css/screen.css --output ./src/assets/built/screen.css",
+        "dev": "bunx concurrently \"cd src && bunx gulp\" \"bun run tailwind -- --watch\"",
+        "serve": "bunx concurrently \"docker-compose up\" \"bun run dev\"",
+        "zip": "rm -rf ./dist && bun run tailwind -- --minify && cd src && bunx gulp zip",
+        "test": "cd src && bunx gscan .",
+        "test:ci": "cd src && bunx gscan --fatal --verbose .",
+        "pretest": "bun run tailwind && cd src && bunx gulp build"
     },
     "author": {
         "name": "Sébastien Dubois",

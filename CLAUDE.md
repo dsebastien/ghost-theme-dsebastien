@@ -10,22 +10,22 @@ This is a custom Ghost theme for dsebastien.net, built with TailwindCSS (v4+), H
 
 ```bash
 # Install dependencies
-yarn install
+bun install
 
 # Development with live reload (TailwindCSS + Gulp)
-yarn dev
+bun dev
 
 # Start Ghost locally with theme
-yarn serve
+bun serve
 
 # Build and package theme for Ghost upload
-yarn zip
+bun zip
 
 # Test theme with Ghost's validation tool
-yarn test
+bun test
 
 # Run tests in CI mode (strict validation)
-yarn test:ci
+bun test:ci
 ```
 
 ## Architecture
@@ -55,9 +55,9 @@ yarn test:ci
 
 ## Build Process
 
-1. **Development**: `yarn dev` runs TailwindCSS watch + Gulp live reload
-2. **Production**: `yarn zip` builds minified CSS + creates distribution package
-3. **Testing**: `yarn test` validates theme against Ghost requirements
+1. **Development**: `bun dev` runs TailwindCSS watch + Gulp live reload
+2. **Production**: `bun zip` builds minified CSS + creates distribution package
+3. **Testing**: `bun test` validates theme against Ghost requirements
 
 ## Key Customizations
 

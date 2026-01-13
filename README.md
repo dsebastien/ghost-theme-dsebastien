@@ -8,10 +8,10 @@ The package.json file in the `src` directory is only for Ghost. Project dependen
 
 ```bash
 # install dependencies
-yarn install
+bun install
 
 # run development server
-yarn dev
+bun dev
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
@@ -20,7 +20,7 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 
 ```bash
 # create .zip file
-yarn zip
+bun zip
 ```
 
 Use `docker-composer up -d' to start Ghost locally with the theme.
