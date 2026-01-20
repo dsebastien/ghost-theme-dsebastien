@@ -57,8 +57,6 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <script src="https://gumroad.com/js/gumroad.js"></script>
-
     <!-- EthicalAds -->
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
 
@@ -147,25 +145,6 @@
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
 
-{{!-- Link replacement scripts - placed at end of body to ensure all content is loaded --}}
-{{!-- Script to replace store.dsebastien.net links with Gumroad store (to enable Gumroad's widget) --}}
-<script>
-    // Find all links on the page
-    var links = document.querySelectorAll('a[href*="store.dsebastien.net"]');
-
-    // Replace each link
-    links.forEach(function(link) {
-        var oldHref = link.href;
-        // Handle both https://store.dsebastien.net and store.dsebastien.net
-        var newHref = oldHref.replace(/https?:\/\/store\.dsebastien\.net/g, 'https://developassion.gumroad.com')
-                             .replace(/^store\.dsebastien\.net/g, 'https://developassion.gumroad.com');
-        link.href = newHref;
-
-        // Enable Gumroad overlay checkout
-        //link.setAttribute('data-gumroad-overlay-checkout', 'true');
-    });
-</script>
-
 {{!-- Generic script to replace specific links with custom URLs --}}
 <script>
     /**
@@ -194,7 +173,7 @@
 
     replaceLinkUrl(
         "https://notes.dsebastien.net/20+Actions/23+Projects/Obsidian+Starter+Course/Obsidian+Starter+Course",
-        "https://developassion.gumroad.com/l/obsidian-starter-course"
+        "https://store.dsebastien.net/product/obsidian-starter-course"
     );
 
     replaceLinkUrl(
@@ -208,8 +187,13 @@
     );
 
     replaceLinkUrl(
+        "https://developassion.gumroad.com/l/everything-knowledge",
+        "https://store.dsebastien.net/product/everything-knowledge-bundle"
+    );
+
+    replaceLinkUrl(
         "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Worker+Kit",
-        "https://store.dsebastien.net/l/knowledge-worker-kit"
+        "https://store.dsebastien.net/product/knowledge-worker-kit"
     );
 
     replaceLinkUrl(
@@ -219,22 +203,22 @@
 
     replaceLinkUrl(
         "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Community",
-        "https://developassion.gumroad.com/l/knowii"
+        "https://store.dsebastien.net/product/knowii-community"
     );
 
     replaceLinkUrl(
         "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Newsletters/DeveloPassion's+Newsletter+037+-+Less+is+more#Personal+Knowledge+Management+Library",
-        "https://developassion.gumroad.com/l/PersonalKnowledgeManagementLibrary"
+        "https://store.dsebastien.net/product/pkm-library"
     );
 
     replaceLinkUrl(
         "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Personal+Knowledge+Management+Coaching",
-        "https://developassion.gumroad.com/l/pkm-coaching"
+        "https://store.dsebastien.net/product/pkm-coaching"
     );
 
     replaceLinkUrl(
         "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/AI+Ghostwriter+Guide",
-        "https://developassion.gumroad.com/l/ai-ghostwriter-guide"
+        "https://store.dsebastien.net/product/ai-ghostwriter-guide"
     );
 
     replaceLinkUrl(
