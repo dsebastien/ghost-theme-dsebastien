@@ -1186,8 +1186,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 
+/* Author Signature
+/* ---------------------------------------------------------- */
+
+.signature-divider {
+    margin-top: calc(56px * var(--content-spacing-factor, 1)) !important;
+}
+
 .signature-links {
-    @apply list-none! pl-0!;
+    @apply list-none pl-0!;
 }
 
 
