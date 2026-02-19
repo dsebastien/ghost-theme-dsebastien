@@ -4,50 +4,72 @@
 <main class="gh-main start-page">
     <article class="gh-article">
         <header class="gh-article-header gh-canvas">
-            <h1 class="gh-article-title is-title !text-center">Your Path to Becoming a Knowledge Master</h1>
+            <h1 class="gh-article-title is-title !text-center">Your Operating System for Knowledge Mastery</h1>
         </header>
 
         <section class="gh-content gh-canvas is-body">
             <!-- Hero -->
             <section class="hero">
-                <p>You've taken the first step toward breaking free from information chaos. This roadmap has helped 2,300+ professionals transform scattered thinking into intentional clarity.</p>
+                <p>Five areas that build on each other, turning information chaos into a complete creator system. Each layer strengthens the next, so your knowledge compounds over time.</p>
+
+                <div class="hero-stats">
+                    <span>2,300+ newsletter members</span>
+                    <span class="stat-separator">&bull;</span>
+                    <span>20+ years expertise</span>
+                    <span class="stat-separator">&bull;</span>
+                    <span>340+ community members</span>
+                </div>
             </section>
 
-            <!-- Progress Tracking -->
-            <div class="journey-progress">
-                <div class="progress-bar">
-                    <div class="progress-step"><span>1</span><span class="step-label">Understanding</span></div>
-                    <div class="progress-step"><span>2</span><span class="step-label">Tools</span></div>
-                    <div class="progress-step"><span>3</span><span class="step-label">Frameworks</span></div>
-                    <div class="progress-step"><span>4</span><span class="step-label">Transform</span></div>
-                    <div class="progress-step"><span>5</span><span class="step-label">Apply</span></div>
-                    <div class="progress-step"><span>6</span><span class="step-label">Create</span></div>
-                    <div class="progress-step"><span>7</span><span class="step-label">Balance</span></div>
+            <!-- Builder OS Framework Visual -->
+            <section class="builder-os-visual">
+                <h2>The Five Layers of Knowledge Mastery</h2>
+                <div class="layer-stack">
+                    <div class="layer-bar layer-creation">
+                        <span class="layer-bar-name">Creation</span>
+                        <span class="layer-bar-desc">Turn knowledge into content, products, and impact</span>
+                    </div>
+                    <div class="layer-bar layer-application">
+                        <span class="layer-bar-name">Application</span>
+                        <span class="layer-bar-desc">Leverage knowledge at work and in life</span>
+                    </div>
+                    <div class="layer-bar layer-practice">
+                        <span class="layer-bar-name">Practice</span>
+                        <span class="layer-bar-desc">Transform raw information into connected insights</span>
+                    </div>
+                    <div class="layer-bar layer-system">
+                        <span class="layer-bar-name">System</span>
+                        <span class="layer-bar-desc">Build your tools and organizational frameworks</span>
+                    </div>
+                    <div class="layer-bar layer-foundation">
+                        <span class="layer-bar-name">Foundation</span>
+                        <span class="layer-bar-desc">Understand why knowledge management matters</span>
+                    </div>
                 </div>
-                <p>7 steps to knowledge mastery</p>
-            </div>
+                <p class="builder-os-note">Builder OS is the complete creator operating system I'm building. Each area below gives you free resources and accelerators to master that layer.</p>
+                <p class="builder-os-cta">Want the complete system? <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowii Community</a></p>
+            </section>
 
             <!-- Newsletter -->
             {{#unless member}}
                 <section class="!mt-32 cta-newsletter">
-                    <h2>Subscribe to the Newsletter 💌</h2>
+                    <h2>Subscribe to the Newsletter</h2>
                     {{> "email-subscription" email_field_id="start-email"}}
                 </section>
             {{/unless}}
 
-            <!-- Steps -->
-            <section class="steps">
+            <!-- Areas -->
+            <section class="areas">
                 <h2>The Knowledge Master's Journey</h2>
-                <p class="steps-intro">Follow this structured path to transform information chaos into intentional clarity.</p>
+                <p class="areas-intro">Five interconnected layers that build on each other. Start at the foundation and grow at your own pace.</p>
 
-                <!-- Step 1 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 1</span>
-                        <span class="step-time">⏱️ 1-2 weeks</span>
+                <!-- Area 1: Foundation -->
+                <div class="area" id="area-foundation">
+                    <div class="area-meta">
+                        <span class="layer-label label-foundation">Foundation</span>
                     </div>
 
-                    <h3>Understand the Value of Knowledge Management</h3>
+                    <h3>Understanding Knowledge Management</h3>
 
                     <div class="step-value">
                         <strong>Quick Win:</strong> Clarity on why you're overwhelmed and what to do about it
@@ -71,34 +93,52 @@
                         <li><a href="/the-gradual-return-on-investment-of-pkm/">The Gradual Return On Investment of PKM</a></li>
                     </ul>
 
+                    <!-- Testimonial: Dwayne Appleby -->
+                    <div class="success-story">
+                        <blockquote>
+                            <p>"This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory."</p>
+                            <footer>
+                                <strong>Dwayne Appleby</strong>
+                                <span class="result">Transformed work efficiency with ready-to-use templates</span>
+                            </footer>
+                        </blockquote>
+                    </div>
+
                     <div class="recommended-resources">
-                        <h4>🚀 Accelerate Your Learning:</h4>
+                        <h4>Accelerate Your Learning:</h4>
                         <div class="product-recommendation">
                             <h5>Knowledge Management for Beginners Course</h5>
                             <p><strong>Perfect if:</strong> You want structured lessons instead of scattered articles</p>
                             <p><strong>Results:</strong> Complete foundation in 10+ hours instead of weeks of reading</p>
-                            <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
+                            <div class="product-rec-pricing"><span class="price">&euro;69.99</span></div>
+                            <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>Free Knowledge System Checklist</h5>
+                            <p><strong>Perfect if:</strong> You want a quick-start reference to audit and improve your system</p>
+                            <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Get It Free &rarr;</a>
                         </div>
                         <p class="alternative">Or continue with free articles above</p>
                     </div>
+
+                    <p class="area-transition">Now that you understand the "why", it's time to build the "how" &mdash; your tools and organizational system.</p>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 2</span>
-                        <span class="step-time">⏱️ 2-3 weeks</span>
+                <!-- Area 2: System -->
+                <div class="area" id="area-system">
+                    <div class="area-meta">
+                        <span class="layer-label label-system">System</span>
                     </div>
 
-                    <h3>Build Your Knowledge Command Center</h3>
+                    <h3>Building Your Knowledge Command Center</h3>
 
                     <div class="step-value">
                         <strong>Quick Win:</strong> Set up your single source of truth in days, not months
                     </div>
 
-                    <p><strong>What You'll Learn:</strong> How to select the right tools and create a system that captures everything important without creating more complexity.</p>
+                    <p><strong>What You'll Learn:</strong> How to select the right tools, apply proven organizational frameworks, and create a system that captures everything important without adding complexity.</p>
 
-                    <h4>Free Articles:</h4>
+                    <h4>Choosing and Setting Up Your Tools</h4>
                     <ul>
                         <li><a href="/dont-start-exploring-personal-knowledge-management-without-reading-this/">Don't start exploring Personal Knowledge Management without reading this first</a></li>
                         <li><a href="/how-to-choose-the-right-tools-for-your-pkm-system/">How To Choose The Right Tools For Your PKM System</a></li>
@@ -110,34 +150,7 @@
                         <li><a href="/the-must-have-obsidian-plugins-for-2026/">Must Have Obsidian Plugins for 2026</a></li>
                     </ul>
 
-                    <div class="recommended-resources">
-                        <h4>🚀 Skip Weeks of Setup:</h4>
-                        <div class="product-recommendation">
-                            <h5>Obsidian Starter Kit</h5>
-                            <p><strong>Perfect if:</strong> You want a proven system instead of starting from scratch</p>
-                            <p><strong>Results:</strong> Complete setup with 40+ templates, plugins, and automation in minutes—save 100+ hours of trial and error</p>
-                            <a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
-                        </div>
-                        <p class="alternative">Or build your own system from scratch</p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 3</span>
-                        <span class="step-time">⏱️ 3-4 weeks</span>
-                    </div>
-
-                    <h3>Master the Core Knowledge Frameworks</h3>
-
-                    <div class="step-value">
-                        <strong>Quick Win:</strong> Find what you need in seconds, not minutes
-                    </div>
-
-                    <p><strong>What You'll Learn:</strong> Proven organizational frameworks that create structure without complexity, helping you find information exactly when you need it.</p>
-
-                    <h4>Free Articles:</h4>
+                    <h4>Organizing With Proven Frameworks</h4>
                     <ul>
                         <li><a href="/10-essential-knowledge-management-methods-every-professional-should-master">10 Essential Knowledge Management Methods Every Professional Should Master</a></li>
                         <li><a href="/2022-04-19-single-source-of-truth/">Why you need a single source of truth for your PKM system</a></li>
@@ -149,43 +162,52 @@
                         <li><a href="/the-art-of-note-naming-keys-to-effective-knowledge-management/">The Art of Note Naming</a></li>
                     </ul>
 
+                    <!-- Testimonial: Julien Dambron -->
+                    <div class="success-story">
+                        <blockquote>
+                            <p>"Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement."</p>
+                            <footer>
+                                <strong>Julien Dambron</strong>
+                                <span class="result">Experienced continuous improvement over time</span>
+                            </footer>
+                        </blockquote>
+                    </div>
+
                     <div class="recommended-resources">
-                        <h4>🚀 Master the System:</h4>
+                        <h4>Skip Weeks of Setup:</h4>
                         <div class="product-recommendation">
+                            <h5>Obsidian Starter Kit</h5>
+                            <p><strong>Perfect if:</strong> You want a proven system instead of starting from scratch</p>
+                            <p><strong>Results:</strong> Complete setup with 40+ templates, plugins, and automation in minutes &mdash; save 100+ hours of trial and error</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;129.99</span></div>
+                            <a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
                             <h5>Obsidian Starter Course</h5>
                             <p><strong>Perfect if:</strong> You want guided video lessons on frameworks and best practices</p>
                             <p><strong>Results:</strong> Master PARA, Zettelkasten, and Atomic notes in 2+ hours of focused learning</p>
-                            <a href="https://store.dsebastien.net/product/obsidian-starter-course" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
+                            <div class="product-rec-pricing"><span class="price">&euro;69.99</span></div>
+                            <a href="https://store.dsebastien.net/product/obsidian-starter-course" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
-                        <p class="alternative">Or learn through the free articles above</p>
-                    </div>
-                </div>
-
-                <!-- Success Story 1 -->
-                <div class="success-story">
-                    <blockquote>
-                        <p>"This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory."</p>
-                        <footer>
-                            <strong>Dwayne Appleby</strong>
-                            <span class="result">Transformed work efficiency with ready-to-use templates</span>
-                        </footer>
-                    </blockquote>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 4</span>
-                        <span class="step-time">⏱️ 4-6 weeks</span>
+                        <p class="alternative">Or build your own system from scratch</p>
                     </div>
 
-                    <h3>Transform Raw Information Into Valuable Insights</h3>
+                    <p class="area-transition">Your system is set up &mdash; now it's time to put it to work and build habits that transform raw information into lasting insights.</p>
+                </div>
+
+                <!-- Area 3: Practice -->
+                <div class="area" id="area-practice">
+                    <div class="area-meta">
+                        <span class="layer-label label-practice">Practice</span>
+                    </div>
+
+                    <h3>Transforming Information Into Insights</h3>
 
                     <div class="step-value">
                         <strong>Quick Win:</strong> Connect ideas and unlock insights hiding in plain sight
                     </div>
 
-                    <p><strong>What You'll Learn:</strong> How to process information effectively, connect ideas, and unlock creative insights that would otherwise remain hidden.</p>
+                    <p><strong>What You'll Learn:</strong> How to process information effectively, connect ideas, build workflows, and unlock creative insights that would otherwise remain hidden.</p>
 
                     <h4>Free Articles:</h4>
                     <ul>
@@ -204,68 +226,190 @@
                         <li><a href="/2022-11-23-top-of-mind-note/">A Place For What's On Your Mind</a></li>
                         <li><a href="/tips-to-get-started-with-note-taking/">Effective note-taking tips</a></li>
                         <li><a href="/2022-11-14-the-capture-habit/">The Capture Habit</a></li>
+                        <li><a href="/how-i-manage-books-and-summaries-in-obsidian">How I Manage Books and Summaries in Obsidian</a></li>
+                        <li><a href="/how-i-synchronize-and-backup-my-obsidian-notes">How I Synchronize and Backup My Obsidian Notes</a></li>
+                        <li><a href="/2022-09-01-saving-and-restoring-mental-contexts-to-improve-mental-health-and-productivity">Saving and Restoring Mental Contexts</a></li>
                     </ul>
 
                     <div class="recommended-resources">
-                        <h4>🚀 Explore Further:</h4>
+                        <h4>Explore Further:</h4>
                         <div class="product-recommendation">
                             <h5>PKM Library</h5>
                             <p><strong>Perfect if:</strong> You want access to curated tools, communities, and expert resources</p>
                             <p><strong>Results:</strong> Save hundreds of hours discovering the best PKM resources</p>
-                            <a href="https://store.dsebastien.net/product/pkm-library" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
+                            <div class="product-rec-pricing"><span class="price">&euro;39.99</span></div>
+                            <a href="https://store.dsebastien.net/product/pkm-library" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>Personal Knowledge Management Coaching</h5>
+                            <p><strong>Perfect if:</strong> You want personalized guidance for your specific challenges</p>
+                            <p><strong>Results:</strong> Tailored solutions and expert advice to optimize your unique workflow</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;99.99</span></div>
+                            <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>AI Ghostwriter Guide</h5>
+                            <p><strong>Perfect if:</strong> You want to use AI to accelerate your knowledge processing</p>
+                            <p><strong>Results:</strong> Turn AI into your personal knowledge assistant</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;49.99</span></div>
+                            <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <p class="alternative">Or discover resources on your own</p>
                     </div>
+
+                    <p class="area-transition">You're building real skills &mdash; now let's see how expert guidance and community can multiply your progress.</p>
+                </div>
+            </section>
+
+            <!-- Mid-Page Knowii Community Block -->
+            <section class="knowii-community-block">
+                <h2>Want to Master All Layers With Expert Guidance?</h2>
+                <p class="knowii-intro">Join Knowii, a community of knowledge workers committed to building better systems together.</p>
+
+                <div class="knowii-tiers">
+                    <div class="knowii-tier">
+                        <h4>Explorer</h4>
+                        <div class="tier-price">&euro;4.99<span>/mo</span></div>
+                        <p>Access the community, shared resources, and monthly Q&amp;A sessions. Perfect for getting started.</p>
+                    </div>
+                    <div class="knowii-tier tier-featured">
+                        <h4>Knowledge Builder</h4>
+                        <div class="tier-price">&euro;19.99<span>/mo</span></div>
+                        <p>Everything in Explorer plus all courses, the Obsidian Starter Kit, workshops, and direct support.</p>
+                    </div>
+                    <div class="knowii-tier">
+                        <h4>Knowledge Master</h4>
+                        <div class="tier-price">&euro;39.99<span>/mo</span></div>
+                        <p>Everything in Knowledge Builder plus 1-on-1 coaching sessions, priority support, and early access to new products.</p>
+                    </div>
                 </div>
 
-                <!-- Step 5 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 5</span>
-                        <span class="step-time">⏱️ Ongoing</span>
+                <div class="knowii-benefits">
+                    <div class="knowii-benefit">
+                        <h5>Shared Wisdom</h5>
+                        <p>Learn from others' systems and solutions</p>
+                    </div>
+                    <div class="knowii-benefit">
+                        <h5>Accountability</h5>
+                        <p>Stay consistent and motivated</p>
+                    </div>
+                    <div class="knowii-benefit">
+                        <h5>Accelerated Growth</h5>
+                        <p>Discover shortcuts and avoid pitfalls</p>
+                    </div>
+                    <div class="knowii-benefit">
+                        <h5>All Future Content</h5>
+                        <p>Get every new course, workshop, and resource</p>
+                    </div>
+                </div>
+
+                <!-- Community Testimonials -->
+                <div class="knowii-testimonials">
+                    <div class="success-story">
+                        <blockquote>
+                            <p>"I've learned a lot from you and find great value in every resource of yours that I've had time to explore so far. One of the things I really enjoy is how all pieces supports each other and forms a cohesive whole."</p>
+                            <footer>
+                                <strong>Sofia</strong>
+                                <span class="result">Discovered a cohesive ecosystem of knowledge tools</span>
+                            </footer>
+                        </blockquote>
+                    </div>
+                    <div class="success-story">
+                        <blockquote>
+                            <p>"Having a working example of a living system like yours is incredibly valuable."</p>
+                            <footer>
+                                <strong>Ghada Alhumaid</strong>
+                                <span class="result">Found value in a real-world living knowledge system</span>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div class="knowii-cta">
+                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowledge Movement</a>
+                    <p class="knowii-trust">30-day money-back guarantee &bull; Cancel anytime</p>
+                </div>
+            </section>
+
+            <section class="areas">
+                <!-- Area 4: Application -->
+                <div class="area" id="area-application">
+                    <div class="area-meta">
+                        <span class="layer-label label-application">Application</span>
                     </div>
 
-                    <h3>Apply Knowledge Management to Real-World Challenges</h3>
+                    <h3>Real-World Knowledge Leverage</h3>
 
                     <div class="step-value">
                         <strong>Quick Win:</strong> Solve complex problems faster with organized knowledge
                     </div>
 
-                    <p><strong>What You'll Learn:</strong> How to leverage your knowledge system to overcome complex challenges, and advance your career.</p>
+                    <p><strong>What You'll Learn:</strong> How to leverage your knowledge system to overcome complex challenges, advance your career, and maintain balance.</p>
 
-                    <h4>Free Articles:</h4>
+                    <h4>Knowledge at Work</h4>
                     <ul>
                         <li><a href="/the-power-of-modern-knowledge-management-for-business-professionals">The Power of Modern Knowledge Management for Business Professionals</a></li>
-                        <li><a href="/2022-09-01-saving-and-restoring-mental-contexts-to-improve-mental-health-and-productivity">Saving and Restoring Mental Contexts</a></li>
-                        <li><a href="/advice-for-people-getting-started-with-knowledge-management-and-writing">Advice for People Getting Started With Knowledge Management and Writing</a></li>
-                        <li><a href="/how-i-manage-books-and-summaries-in-obsidian">How I Manage Books and Summaries in Obsidian</a></li>
-                        <li><a href="/how-i-synchronize-and-backup-my-obsidian-notes">How I Synchronize and Backup My Obsidian Notes</a></li>
                         <li><a href="/preparing-for-the-future-of-knowledge-work/">Preparing for the Future of Knowledge Work</a></li>
                         <li><a href="/how-to-self-host-openclaw-securely-on-a-vps-a-security-first-guide/">How to Self-Host OpenClaw Securely on a VPS: A Security-First Guide</a></li>
                         <li><a href="/agentic-knowledge-management-the-next-evolution-of-pkm/">Agentic Knowledge Management: The Next Evolution of PKM</a></li>
                         <li><a href="/how-one-system-feeds-everything-i-do-from-scattered-chaos-to-unified-creation/">How One System Feeds Everything I Do: From Scattered Chaos to Unified Creation</a></li>
                     </ul>
 
-                    <div class="recommended-resources">
-                        <h4>🚀 Get Personal Guidance:</h4>
-                        <div class="product-recommendation">
-                            <h5>Personal Knowledge Management Coaching</h5>
-                            <p><strong>Perfect if:</strong> You want personalized guidance for your specific challenges</p>
-                            <p><strong>Results:</strong> Tailored solutions and expert advice to optimize your unique workflow</p>
-                            <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
-                        </div>
-                        <p class="alternative">Or apply the concepts independently</p>
+                    <h4>Zen Productivity and Balance</h4>
+                    <ul>
+                        <li><a href="/your-habits-and-routines-make-you">Your Habits and Routines Make You</a></li>
+                        <li><a href="/2022-05-16-periodic-reviews">Periodic Reviews for a Happier and More Productive Life</a></li>
+                        <li><a href="/personal-organization-101">Personal Organization 101</a></li>
+                        <li><a href="/closing-open-loops-the-key-to-a-calmer-more-productive-mind">Closing Open Loops - The Key to a Calmer, More Productive Mind</a></li>
+                        <li><a href="/the-power-of-setting-achievable-goals-how-lowering-the-bar-leads-to-success">The Power of Setting Achievable Goals</a></li>
+                        <li><a href="/stop-tweaking-your-tools-and-start-actually-using-them-how-perfectionism-is-killing-your-productivity">Stop Tweaking Your Tools and Start Actually Using Them - How Perfectionism is Killing Your Productivity</a></li>
+                    </ul>
+
+                    <!-- Testimonial: Coaching -->
+                    <div class="success-story">
+                        <blockquote>
+                            <p>"I just had a coaching session with S&eacute;bastien Dubois, and it was an incredibly helpful experience. S&eacute;bastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner."</p>
+                            <footer>
+                                <strong>Anonymous</strong>
+                                <span class="result">Gained clarity through personalized coaching</span>
+                            </footer>
+                        </blockquote>
                     </div>
+
+                    <div class="recommended-resources">
+                        <h4>Complete Transformation:</h4>
+                        <div class="product-recommendation">
+                            <h5>Knowledge Worker Kit</h5>
+                            <p><strong>Perfect if:</strong> You want lifetime community access and all resources in one place</p>
+                            <p><strong>Results:</strong> Private community of 340+ members, comprehensive guides, all future workshops &mdash; complete transformation package</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;149.99</span></div>
+                            <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>Clarity 101</h5>
+                            <p><strong>Perfect if:</strong> You want a focused guide to clear thinking and decision-making</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;19.99</span></div>
+                            <a href="https://store.dsebastien.net/product/clarity-101" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>Journaling Deep Dive</h5>
+                            <p><strong>Perfect if:</strong> You want to build a powerful journaling practice for reflection and growth</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;29.99</span></div>
+                            <a href="https://store.dsebastien.net/product/journaling-deep-dive" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
+                        </div>
+                        <p class="alternative">Or continue your journey solo</p>
+                    </div>
+
+                    <p class="area-transition">You're applying knowledge like a pro &mdash; the final layer turns everything into creative output and content.</p>
                 </div>
 
-                <!-- Step 6 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 6</span>
-                        <span class="step-time">⏱️ Ongoing</span>
+                <!-- Area 5: Creation -->
+                <div class="area" id="area-creation">
+                    <div class="area-meta">
+                        <span class="layer-label label-creation">Creation</span>
                     </div>
 
-                    <h3>Create Content From Your Knowledge</h3>
+                    <h3>From Knowledge to Content and Beyond</h3>
 
                     <div class="step-value">
                         <strong>Quick Win:</strong> Turn your knowledge system into a content creation engine
@@ -286,54 +430,48 @@
                         <li><a href="/2020-08-07-the-journey-from-4k-to-30k-views-per-month-lessons-learned/">How to Succeed With Online Writing: The Journey From 4K to 30K Views Per Month</a></li>
                         <li><a href="/developassions-newsletter-205-building-in-public-the-creator-transition-begins/">Building in Public: The Creator Transition Begins</a></li>
                     </ul>
-                </div>
 
-                <!-- Step 7 -->
-                <div class="step">
-                    <div class="step-meta">
-                        <span class="step-number">Step 7</span>
-                        <span class="step-time">⏱️ Ongoing</span>
+                    <!-- Builder OS Teaser -->
+                    <div class="builder-os-teaser">
+                        <h4>Builder OS: The Complete Creator Operating System</h4>
+                        <p>Builder OS is the system I'm building to help creators go from scattered ideas to consistent output. It connects all five layers into one integrated operating system:</p>
+                        <ol>
+                            <li><strong>Capture Engine</strong> &mdash; Never lose an idea again</li>
+                            <li><strong>Knowledge Graph</strong> &mdash; Connect ideas across domains</li>
+                            <li><strong>Content Pipeline</strong> &mdash; From notes to published content</li>
+                            <li><strong>Learning System</strong> &mdash; Structured skill acquisition</li>
+                            <li><strong>Project OS</strong> &mdash; Ship projects consistently</li>
+                            <li><strong>Reflection Engine</strong> &mdash; Periodic reviews and growth tracking</li>
+                            <li><strong>Community Layer</strong> &mdash; Collaborate and learn together</li>
+                            <li><strong>AI Integration</strong> &mdash; AI-augmented knowledge workflows</li>
+                        </ol>
+                        <p>Builder OS is in active development. Join the Knowii Community for early access and to shape the system.</p>
+                        <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/" class="btn-product">Get Early Access &rarr;</a>
                     </div>
-
-                    <h3>Achieve Balance Through Zen Productivity</h3>
-
-                    <div class="step-value">
-                        <strong>Quick Win:</strong> Reduce stress and mental clutter starting today
-                    </div>
-
-                    <p><strong>What You'll Learn:</strong> How to integrate Knowledge Management into a holistic approach to work and life that prioritizes clarity, focus, wellbeing and happiness.</p>
-
-                    <h4>Free Articles:</h4>
-                    <ul>
-                        <li><a href="/your-habits-and-routines-make-you">Your Habits and Routines Make You</a></li>
-                        <li><a href="/2022-05-16-periodic-reviews">Periodic Reviews for a Happier and More Productive Life</a></li>
-                        <li><a href="/personal-organization-101">Personal Organization 101</a></li>
-                        <li><a href="/closing-open-loops-the-key-to-a-calmer-more-productive-mind">Closing Open Loops - The Key to a Calmer, More Productive Mind</a></li>
-                        <li><a href="/the-power-of-setting-achievable-goals-how-lowering-the-bar-leads-to-success">The Power of Setting Achievable Goals</a></li>
-                        <li><a href="/stop-tweaking-your-tools-and-start-actually-using-them-how-perfectionism-is-killing-your-productivity">Stop Tweaking Your Tools and Start Actually Using Them - How Perfectionism is Killing Your Productivity</a></li>
-                    </ul>
 
                     <div class="recommended-resources">
-                        <h4>🚀 Complete Transformation:</h4>
+                        <h4>Create With Confidence:</h4>
                         <div class="product-recommendation">
-                            <h5>Knowledge Worker Kit</h5>
-                            <p><strong>Perfect if:</strong> You want lifetime community access and all resources in one place</p>
-                            <p><strong>Results:</strong> Private community of 340+ members, comprehensive guides, all future workshops—complete transformation package</p>
-                            <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener" class="btn-product">Learn More →</a>
+                            <h5>AI Ghostwriter Guide</h5>
+                            <p><strong>Perfect if:</strong> You want to use AI to accelerate your content creation</p>
+                            <p><strong>Results:</strong> Turn AI into your personal writing assistant</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;49.99</span></div>
+                            <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
-                        <p class="alternative">Or continue your journey solo</p>
+                        <div class="product-recommendation secondary">
+                            <h5>AI Master Prompt</h5>
+                            <p><strong>Perfect if:</strong> You want a single powerful prompt to get the most from AI assistants</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;19.99</span></div>
+                            <a href="https://store.dsebastien.net/product/ai-master-prompt" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
+                        </div>
+                        <div class="product-recommendation secondary">
+                            <h5>Knowii Voice AI</h5>
+                            <p><strong>Perfect if:</strong> You want to capture knowledge through voice conversations</p>
+                            <div class="product-rec-pricing"><span class="price">&euro;49</span></div>
+                            <a href="https://store.dsebastien.net/product/knowii-voice-ai" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
+                        </div>
+                        <p class="alternative">Or create content on your own</p>
                     </div>
-                </div>
-
-                <!-- Success Story 2 -->
-                <div class="success-story">
-                    <blockquote>
-                        <p>"Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement."</p>
-                        <footer>
-                            <strong>Julien Dambron</strong>
-                            <span class="result">Experienced continuous improvement over time</span>
-                        </footer>
-                    </blockquote>
                 </div>
             </section>
 
@@ -343,47 +481,97 @@
                 <div class="timeline">
                     <div class="timeline-point">
                         <span class="time">Week 1-2</span>
-                        <span class="milestone">Understanding & Motivation</span>
+                        <span class="milestone">Foundation</span>
                     </div>
                     <div class="timeline-point">
                         <span class="time">Week 3-4</span>
-                        <span class="milestone">System Setup</span>
+                        <span class="milestone">System</span>
                     </div>
                     <div class="timeline-point">
                         <span class="time">Month 2</span>
-                        <span class="milestone">Building Habits</span>
+                        <span class="milestone">Practice</span>
                     </div>
                     <div class="timeline-point">
                         <span class="time">Month 3+</span>
-                        <span class="milestone">Compound Returns</span>
+                        <span class="milestone">Application</span>
+                    </div>
+                    <div class="timeline-point">
+                        <span class="time">Month 6+</span>
+                        <span class="milestone">Creation</span>
                     </div>
                 </div>
-                <p class="timeline-cta">Want to skip months of trial and error? <a href="https://store.dsebastien.net" target="_blank" rel="noopener">See our complete solutions →</a></p>
+                <p class="timeline-cta">Want to accelerate your journey? <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener">Get the Knowledge Worker Kit</a> or <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">join the Knowii Community</a></p>
             </section>
 
+            <!-- Everything Bundle Block -->
+            <section class="everything-bundle">
+                <h2>Get Everything in One Package</h2>
+                <div class="bundle-content">
+                    <div class="bundle-details">
+                        <h3>Everything Knowledge Bundle</h3>
+                        <div class="bundle-price">&euro;299.99</div>
+                        <p>The complete knowledge mastery package. Every course, every kit, every guide &mdash; all in one powerful bundle.</p>
+                        <ul class="bundle-includes">
+                            <li>Knowledge Management for Beginners Course</li>
+                            <li>Obsidian Starter Kit</li>
+                            <li>Obsidian Starter Course</li>
+                            <li>Knowledge Worker Kit</li>
+                            <li>PKM Library</li>
+                            <li>AI Ghostwriter Guide</li>
+                            <li>AI Master Prompt</li>
+                            <li>Clarity 101</li>
+                            <li>Journaling Deep Dive</li>
+                            <li>All future updates included</li>
+                        </ul>
+                        <a href="https://store.dsebastien.net/product/everything-knowledge-bundle" target="_blank" rel="noopener" class="btn-product btn-product-bundle">Get the Bundle &rarr;</a>
+                        <p class="bundle-guarantee">30-day money-back guarantee</p>
+                    </div>
+                    <div class="bundle-testimonial">
+                        <div class="success-story">
+                            <blockquote>
+                                <p>"Literally cannot thank you enough for this system and process."</p>
+                                <footer>
+                                    <strong>Peter Kay</strong>
+                                    <span class="result">Complete knowledge system transformation</span>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community -->
             <section class="community">
-                <h2 class="text-3xl font-bold text-center mb-8">🧬 Connect With Fellow Knowledge Masters 🧬</h2>
+                <h2 class="text-3xl font-bold text-center mb-8">Connect With Fellow Knowledge Masters</h2>
                 <p class="text-center text-gray-700 mb-8">The journey to mental clarity is better with companions. Join Knowii, a community of like-minded individuals committed to breaking free from information chaos.</p>
 
                 <div class="community-benefit">
-                    <h3>🧠 Shared Wisdom</h3>
+                    <h3>Shared Wisdom</h3>
                     <p>Learn from others' systems and solutions</p>
                 </div>
 
                 <div class="community-benefit">
-                    <h3>🔄 Accountability</h3>
+                    <h3>Accountability</h3>
                     <p>Stay consistent and motivated</p>
                 </div>
 
                 <div class="community-benefit">
-                    <h3>🚀 Accelerated Growth</h3>
+                    <h3>Accelerated Growth</h3>
                     <p>Discover shortcuts and avoid pitfalls</p>
                 </div>
 
                 <div class="community-cta">
-                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/" class="community-link">Join the Knowledge Movement</a>
+                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowledge Movement</a>
                 </div>
             </section>
+
+            <!-- Newsletter for non-members -->
+            {{#unless member}}
+                <section class="cta-newsletter">
+                    <h2>Subscribe to the Newsletter</h2>
+                    {{> "email-subscription" email_field_id="start-email-bottom"}}
+                </section>
+            {{/unless}}
 
             <!-- Further Learning -->
             <section class="further-learning">
