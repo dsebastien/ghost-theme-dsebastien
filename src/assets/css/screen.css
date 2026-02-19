@@ -2462,11 +2462,16 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .start-page .knowii-tier {
-    @apply bg-white p-6 md:p-8 rounded-lg shadow-md text-center;
+    @apply bg-white p-6 md:p-8 rounded-lg shadow-md text-center cursor-pointer no-underline block;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.start-page .knowii-tier.tier-featured {
-    @apply border-4 border-pink-500 shadow-xl relative;
+.start-page .knowii-tier:hover {
+    @apply shadow-xl border-pink-400;
+    transform: translateY(-4px);
+    opacity: 1;
 }
 
 .start-page .knowii-tier h4 {
