@@ -1,24 +1,58 @@
 301:
+  # === Store & Products ===
   /store: https://store.dsebastien.net
   /shop: https://store.dsebastien.net
   /buy: https://store.dsebastien.net
   /products: https://store.dsebastien.net
   /forge : https://store.dsebastien.net
   /knowledge-forge: https://store.dsebastien.net
+  /products/obsidian-starter-kit: https://store.dsebastien.net/product/obsidian-starter-kit
+  /obsidian-starter-kit: https://store.dsebastien.net/product/obsidian-starter-kit
+  /km-course: https://store.dsebastien.net/product/km-for-beginners
+
+  # === Affiliates ===
   /affiliates: https://developassion.gumroad.com/affiliates
   /affiliate-system: https://developassion.gumroad.com/affiliates
   /affiliate-marketing: https://developassion.gumroad.com/affiliates
   /affiliate-program: https://developassion.gumroad.com/affiliates
+
+  # === Internal Redirects ===
   /author/dsebastien: /about/
   /articles: /blog/
+  /news: /
+
+  # === Community ===
   /kmb: https://knowledge-management-for-beginners.com/
   /community: /join-the-knowii-community-and-fix-your-information-overload-problem/
   /pkm-community: /join-the-knowii-community-and-fix-your-information-overload-problem/
   /2021-11-12-personal-knowledge-management-community/: /join-the-knowii-community-and-fix-your-information-overload-problem/
-  /news: /
+
+  # === Old slug redirects (posts renamed with longer titles) ===
+  /how-to-choose-the-right-tools-for-your-pkm-system-a-practical-guide-for-beginners: /how-to-choose-the-right-tools-for-your-pkm-system/
+  /stop-tweaking-your-tools-and-start-actually-using-them: /stop-tweaking-your-tools-and-start-actually-using-them-how-perfectionism-is-killing-your-productivity/
+  /build-your-knowledge-system-for-decades: /build-your-knowledge-system-for-decades-not-months-why-long-term-thinking-matters-in-pkm/
+  /10-essential-knowledge-management-methods: /10-essential-knowledge-management-methods-every-professional-should-master/
+  /everyone-told-me-this-reading-method-was-wrong: /everyone-told-me-this-reading-method-was-wrong-now-i-read-3x-more-books-and-never-get-bored/
+  /the-tag-system-that-finally-made-sense-for-me: /the-tag-system-that-finally-made-sense-for-me-from-perfectionism-paralysis-to-discovery-freedom/
+  /stop-losing-your-best-ideas-the-journaling-system: /stop-losing-your-best-ideas-the-journaling-system-that-changed-my-life/
+  /12-common-pkm-mistakes: /12-common-personal-knowledge-management-mistakes-and-how-to-avoid-them/
+  /announcing-life-tracker-obsidian-plugin: /announcing-life-tracker-a-new-obsidian-plugin/
+  /the-hidden-cost-of-ignoring-knowledge-management: /what-you-are-missing-without-knowledge-management/
+
+  # === Promotions (redirect old sales to latest) ===
+  /black-friday-sale-2023: /black-friday-sale-2025/
+  /black-friday-sale-2024: /black-friday-sale-2025/
+  /end-of-year-sale: /last-discount-of-2025/
+
+  # === Old path structures ===
   /2020-07-27-angular-10-in-depth: /angular-10-in-depth/
   /uses: /2022-01-27-my-current-indie-hacking-toolkit/
-  /black-friday-sale-2023: /black-friday-sale-2024/
+  /links: /blog/
+
+  # === Old /blog/ prefix paths ===
+  /blog/join-the-knowii-community-and-fix-your-information-overload-problem: /join-the-knowii-community-and-fix-your-information-overload-problem/
+
+  # === Social profiles ===
   /gumroad: https://developassion.gumroad.com/
   /x: https://x.com/dSebastien/
   /twitter: https://x.com/dSebastien/
