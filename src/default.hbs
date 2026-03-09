@@ -128,6 +128,8 @@
 </head>
 <body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
 
+<div id="reading-progress" class="reading-progress" aria-hidden="true"><div class="reading-progress-fill"></div></div>
+
 <div class="gh-viewport antialiased">
     
     {{> "components/navigation" }}

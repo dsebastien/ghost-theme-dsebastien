@@ -314,6 +314,30 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply col-[full];
 }
 
+/* 5.1 Reading progress bar
+/* ---------------------------------------------------------- */
+
+.reading-progress {
+    @apply fixed top-0 left-0 w-full pointer-events-none opacity-0;
+    height: 3px;
+    z-index: 3000000;
+    background: transparent;
+    transition: opacity 0.3s ease;
+}
+
+.reading-progress.is-active {
+    @apply opacity-100;
+}
+
+.reading-progress-fill {
+    @apply h-full;
+    width: 0%;
+    background: linear-gradient(90deg, var(--ghost-accent-color, #3b82f6), color-mix(in srgb, var(--ghost-accent-color, #3b82f6) 70%, #fff));
+    border-radius: 0 2px 2px 0;
+    transition: width 60ms linear;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--ghost-accent-color, #3b82f6) 40%, transparent);
+}
+
 /* 6. Navigation
 /* ---------------------------------------------------------- */
 

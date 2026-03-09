@@ -47,6 +47,45 @@
     }
 })();
 
+/* Reading progress bar */
+(function () {
+    var progress = document.getElementById('reading-progress');
+    if (!progress) return;
+
+    var fill = progress.querySelector('.reading-progress-fill');
+    var ticking = false;
+
+    function updateProgress() {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+        if (docHeight <= 0) {
+            progress.classList.remove('is-active');
+            return;
+        }
+
+        var percent = Math.min((scrollTop / docHeight) * 100, 100);
+
+        if (scrollTop > 50) {
+            progress.classList.add('is-active');
+        } else {
+            progress.classList.remove('is-active');
+        }
+
+        fill.style.width = percent + '%';
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(updateProgress);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateProgress();
+})();
+
 /* Responsive HTML table */
 (function () {
     const tables = document.querySelectorAll('.gh-content > table:not(.gist table)');
