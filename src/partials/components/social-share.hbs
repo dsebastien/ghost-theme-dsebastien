@@ -1,0 +1,17 @@
+<div class="social-share">
+    <span class="social-share-label">Share</span>
+    <div class="social-share-links">
+        <a class="social-share-link" href="https://twitter.com/intent/tweet?text={{encode title}}&url={{url absolute="true"}}" target="_blank" rel="noopener noreferrer" title="Share on X">
+            {{> "icons/x"}}
+        </a>
+        <a class="social-share-link" href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}" target="_blank" rel="noopener noreferrer" title="Share on LinkedIn">
+            {{> "icons/linkedin"}}
+        </a>
+        <a class="social-share-link" href="https://bsky.app/intent/compose?text={{encode title}}%20{{url absolute="true"}}" target="_blank" rel="noopener noreferrer" title="Share on Bluesky">
+            {{> "icons/bluesky"}}
+        </a>
+        <a class="social-share-link" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" rel="noopener noreferrer" title="Share on Facebook">
+            {{> "icons/facebook"}}
+        </a>
+    </div>
+</div>

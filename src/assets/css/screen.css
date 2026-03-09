@@ -1160,6 +1160,33 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--color-secondary-text);
 }
 
+/* Social share */
+.social-share {
+    @apply flex items-center gap-3 mt-5 ml-1.5;
+}
+
+.social-share-label {
+    @apply font-semibold text-sm uppercase tracking-wider;
+    color: var(--color-secondary-text);
+}
+
+.social-share-links {
+    @apply flex items-center gap-1;
+}
+
+.social-share-link {
+    @apply flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200;
+    color: var(--color-secondary-text);
+}
+
+.social-share-link:hover {
+    color: var(--ghost-accent-color);
+}
+
+.social-share-link svg {
+    @apply !w-4 !h-4;
+}
+
 .gh-article-image {
     @apply mt-10;
     grid-column: wide;
