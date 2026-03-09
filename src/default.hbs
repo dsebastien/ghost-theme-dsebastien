@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow,max-image-preview:large" />
     
+    {{!-- Preconnect to third-party domains for faster resource loading --}}
+    <link rel="preconnect" href="https://blue-bar-dsebastien-19fd.developassion.workers.dev">
+    <link rel="preconnect" href="https://media.ethicalads.io">
+    <link rel="preconnect" href="https://www.knowii.net">
+
     {{!-- Preload main styles and scripts for better performance --}}
     <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
     <link rel="preload" as="script" href="{{asset "built/source.js"}}">
