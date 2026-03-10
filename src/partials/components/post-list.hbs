@@ -9,7 +9,7 @@
         
         {{#if showTitle}}
             <h2 class="gh-container-title">
-                {{#unless title}}Latest{{else}}{{title}}{{/unless}}
+                {{#unless title}}{{t "Latest"}}{{else}}{{title}}{{/unless}}
             </h2>
         {{/if}}
 
@@ -40,7 +40,7 @@
 
             {{#match pagination.pages ">" 1}}
                 <div class="gh-more is-title">
-                    <a href="{{@site.url}}/page/2">See all {{> "icons/arrow"}}</a>
+                    <a href="{{@site.url}}/page/2/">{{t "See all"}} {{> "icons/arrow"}}</a>
                 </div>
             {{/match}}
         </main>
