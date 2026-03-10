@@ -1122,7 +1122,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply uppercase mb-3 font-medium;
     font-size: 1.3rem;
     letter-spacing: 0.01em;
-    color: var(--ghost-accent-color);
+    color: #be2460;
 }
 
 .gh-article-title {
@@ -1329,7 +1329,7 @@ unless a heading is the very first element in the post content */
 
 .gh-content a {
     @apply underline;
-    color: var(--ghost-accent-color);
+    color: #be2460;
 }
 
 .gh-content .kg-callout-card .kg-callout-text,
@@ -1618,7 +1618,7 @@ figcaption {
 
 figcaption a {
     @apply underline;
-    color: var(--ghost-accent-color);
+    color: #be2460;
 }
 
 /* 17. Comments
@@ -2317,7 +2317,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .homepage .offering .badge-value {
-    @apply bg-green-600;
+    @apply bg-green-700;
 }
 
 .homepage .offering p {
@@ -2762,27 +2762,38 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply !text-white;
 }
 
-/* Ghost Announcement Bar - contrast fix
+/* Accessibility: contrast fixes for accent color (#fd3585)
 /* ---------------------------------------------------------- */
-.gh-announcement-bar-content,
-.gh-announcement-bar-content p,
-.gh-announcement-bar-content span,
-.gh-announcement-bar-content a,
-.gh-announcement-bar-content a span {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
+
+/* Announcement bar: darken background for white text contrast */
+.gh-announcement-bar {
+    background-color: #d42d70 !important;
 }
 
 .gh-announcement-bar-content a {
     text-decoration: underline !important;
 }
 
-/* Ghost form button - contrast fix
-/* ---------------------------------------------------------- */
-.gh-form .gh-button span,
-.gh-form .gh-button span span {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
+/* Form button: darken background for white text contrast */
+.gh-form .gh-button {
+    background-color: #d42d70 !important;
+}
+
+/* Homepage links on gray backgrounds need darker shade */
+.homepage .offering a,
+.homepage .offerings-cta .link-prominent,
+.homepage .offering .offering-price,
+.homepage .offering-featured .price-main {
+    color: #be2460;
+}
+
+/* Homepage CTA grid links: override inherited accent */
+.homepage .ready-to-start a:not(.text-gray-600):not(.text-gray-300) {
+    color: #15171a;
+}
+
+.homepage .ready-to-start .text-gray-600 {
+    color: #4b5563 !important;
 }
 
 /* Knowii Chat integration (Circle.so)
