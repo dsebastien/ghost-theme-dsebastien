@@ -139,7 +139,7 @@ a.top-link {
 }
 
 .gh-icon-button {
-    @apply inline-flex items-center justify-center p-0 border-0 outline-none cursor-pointer bg-transparent w-[32px] h-[32px];
+    @apply inline-flex items-center justify-center p-0 border-0 outline-none cursor-pointer bg-transparent w-[48px] h-[48px];
     color: var(--color-darker-gray);
 }
 
@@ -2755,7 +2755,34 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .footer-link {
-    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full;
+    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full py-2 min-h-[48px] items-center;
+}
+
+.footer-link:hover {
+    @apply !text-white;
+}
+
+/* Ghost Announcement Bar - contrast fix
+/* ---------------------------------------------------------- */
+.gh-announcement-bar-content,
+.gh-announcement-bar-content p,
+.gh-announcement-bar-content span,
+.gh-announcement-bar-content a,
+.gh-announcement-bar-content a span {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.gh-announcement-bar-content a {
+    text-decoration: underline !important;
+}
+
+/* Ghost form button - contrast fix
+/* ---------------------------------------------------------- */
+.gh-form .gh-button span,
+.gh-form .gh-button span span {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
 }
 
 /* Knowii Chat integration (Circle.so)
@@ -2763,6 +2790,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .circle-widget-trigger {
     @apply left-8! right-auto!;
     background-color: var(--ghost-accent-color) !important;
+}
+
+/* Accessibility: add discernible name to Circle widget trigger */
+.circle-widget-trigger::after {
+    content: "Community chat";
+    @apply sr-only;
 }
 
 /* Conversion Optimization Styles

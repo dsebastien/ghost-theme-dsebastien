@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://blue-bar-dsebastien-19fd.developassion.workers.dev">
     <link rel="preconnect" href="https://media.ethicalads.io">
     <link rel="preconnect" href="https://www.knowii.net">
+    <link rel="preconnect" href="https://i.ytimg.com">
 
     {{!-- Preload main styles and scripts for better performance --}}
     <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
@@ -110,26 +111,28 @@
         }
     </script>
 
-    <!-- Knowii Chat integration (Circle.so) -->
+    <!-- Knowii Chat integration (Circle.so) - deferred to reduce main-thread blocking -->
     <script>
-        (function (w,d,s,o,f,js,fjs) {
-            w['circleWidget']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
-            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
-            js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
-        }(window, document, 'script', 'mw', 'https://www.knowii.net/external/widget.js'));
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() { loadCircleWidget(); });
+        } else {
+            window.addEventListener('load', function() { loadCircleWidget(); });
+        }
 
-        mw('init', {
-            community_public_uid: 'f3a9e07f',
-            brand_color_dark: '#f9f9f9',
-            brand_color_light: '#fd3585',
-            default_appearance: 'light'
-        });
+        function loadCircleWidget() {
+            (function (w,d,s,o,f,js,fjs) {
+                w['circleWidget']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+                js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+                js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+            }(window, document, 'script', 'mw', 'https://www.knowii.net/external/widget.js'));
 
-        // Optional: pass in a default space slug and/or post slug
-        // mw('setDefaults', {
-        //   space_slug: '',
-        //   post_slug: ''
-        // });
+            mw('init', {
+                community_public_uid: 'f3a9e07f',
+                brand_color_dark: '#f9f9f9',
+                brand_color_light: '#fd3585',
+                default_appearance: 'light'
+            });
+        }
     </script>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
@@ -155,98 +158,91 @@
 {{/is}}
 
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
-<script src="{{asset "built/source.js"}}"></script>
+<script defer src="{{asset "built/source.js"}}"></script>
 
-{{!-- Generic script to replace specific links with custom URLs --}}
+{{!-- Generic script to replace specific links with custom URLs (deferred to reduce TBT) --}}
 <script>
-    /**
-     * Replace all links matching a specific URL with a new URL
-     * @param {string} sourceUrl - The URL to search for and replace
-     * @param {string} targetUrl - The URL to replace it with
-     */
-    function replaceLinkUrl(sourceUrl, targetUrl) {
-        // Find all links that match the source URL (including with query params/hash)
-        var links = document.querySelectorAll('a');
+    document.addEventListener('DOMContentLoaded', function() {
+        function replaceLinkUrl(sourceUrl, targetUrl) {
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                if (link.href === sourceUrl || link.href.startsWith(sourceUrl + '?') || link.href.startsWith(sourceUrl + '#')) {
+                    var suffix = link.href.substring(sourceUrl.length);
+                    link.href = targetUrl + suffix;
+                }
+            });
+        }
 
-        links.forEach(function(link) {
-            // Check if the link starts with the source URL
-            if (link.href === sourceUrl || link.href.startsWith(sourceUrl + '?') || link.href.startsWith(sourceUrl + '#')) {
-                // Preserve query parameters and hash fragments
-                var suffix = link.href.substring(sourceUrl.length);
-                link.href = targetUrl + suffix;
-            }
-        });
-    }
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit",
+            "https://obsidianstarterkit.com"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Products/Obsidian+Starter+Kit/Obsidian+Starter+Kit",
-        "https://obsidianstarterkit.com"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/20+Actions/23+Projects/Obsidian+Starter+Course/Obsidian+Starter+Course",
+            "https://store.dsebastien.net/product/obsidian-starter-course"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/20+Actions/23+Projects/Obsidian+Starter+Course/Obsidian+Starter+Course",
-        "https://store.dsebastien.net/product/obsidian-starter-course"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners",
+            "https://knowledge-management-for-beginners.com"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Management+for+Beginners",
-        "https://knowledge-management-for-beginners.com"
-    );
+        replaceLinkUrl(
+            "https://developassion.gumroad.com/l/knowledge-management-for-beginners",
+            "https://knowledge-management-for-beginners.com"
+        );
 
-    replaceLinkUrl(
-        "https://developassion.gumroad.com/l/knowledge-management-for-beginners",
-        "https://knowledge-management-for-beginners.com"
-    );
+        replaceLinkUrl(
+            "https://developassion.gumroad.com/l/everything-knowledge",
+            "https://store.dsebastien.net/product/everything-knowledge-bundle"
+        );
 
-    replaceLinkUrl(
-        "https://developassion.gumroad.com/l/everything-knowledge",
-        "https://store.dsebastien.net/product/everything-knowledge-bundle"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Worker+Kit",
+            "https://store.dsebastien.net/product/knowledge-worker-kit"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowledge+Worker+Kit",
-        "https://store.dsebastien.net/product/knowledge-worker-kit"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Voice+AI",
+            "https://voice-ai.knowii.net"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Voice+AI",
-        "https://voice-ai.knowii.net"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Community",
+            "https://store.dsebastien.net/product/knowii-community"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Community",
-        "https://store.dsebastien.net/product/knowii-community"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Newsletters/DeveloPassion's+Newsletter+037+-+Less+is+more#Personal+Knowledge+Management+Library",
+            "https://store.dsebastien.net/product/pkm-library"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.04+Creations/Newsletters/DeveloPassion's+Newsletter+037+-+Less+is+more#Personal+Knowledge+Management+Library",
-        "https://store.dsebastien.net/product/pkm-library"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Personal+Knowledge+Management+Coaching",
+            "https://store.dsebastien.net/product/pkm-coaching"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Personal+Knowledge+Management+Coaching",
-        "https://store.dsebastien.net/product/pkm-coaching"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/AI+Ghostwriter+Guide",
+            "https://store.dsebastien.net/product/ai-ghostwriter-guide"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/AI+Ghostwriter+Guide",
-        "https://store.dsebastien.net/product/ai-ghostwriter-guide"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Dev+Concepts",
+            "https://dev-concepts.dev"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Dev+Concepts",
-        "https://dev-concepts.dev"
-    );
+        replaceLinkUrl(
+            "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Affiliate+Program",
+            "https://www.dsebastien.net/knowii-affiliate-program/"
+        );
 
-    replaceLinkUrl(
-        "https://notes.dsebastien.net/30+Areas/33+Permanent+notes/33.02+Content/Knowii+Affiliate+Program",
-        "https://www.dsebastien.net/knowii-affiliate-program/"
-    );
-
-    replaceLinkUrl(
-        "https://newsletter.dsebastien.net",
-        "https://www.dsebastien.net/newsletter"
-    );
+        replaceLinkUrl(
+            "https://newsletter.dsebastien.net",
+            "https://www.dsebastien.net/newsletter"
+        );
+    });
 </script>
 
 {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
