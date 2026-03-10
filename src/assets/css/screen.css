@@ -2755,7 +2755,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .footer-link {
-    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full py-2 min-h-[48px] items-center;
+    @apply !text-gray-200 transition-colors duration-200 inline-flex transform justify-start w-full min-h-[48px] items-center;
 }
 
 .footer-link:hover {
