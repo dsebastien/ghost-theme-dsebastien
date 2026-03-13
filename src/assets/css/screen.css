@@ -3491,7 +3491,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .homepage .faq-item summary {
-    @apply cursor-pointer p-5 text-lg hover:bg-gray-50 transition-colors duration-200 list-none;
+    @apply cursor-pointer p-5 text-2xl hover:bg-gray-50 transition-colors duration-200 list-none;
 }
 
 .homepage .faq-item summary::-webkit-details-marker {
@@ -3512,7 +3512,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .homepage .faq-item p {
-    @apply px-5 py-4 text-gray-700 leading-relaxed;
+    @apply px-5 py-4 text-2xl text-gray-700 leading-relaxed;
 }
 
 /* Home Page - Risk Reversal Section */
