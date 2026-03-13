@@ -159,6 +159,28 @@
     setTimeout(function () { observer.disconnect(); }, 10000);
 })();
 
+/* Mid-article CTA: relocate hidden CTA into article body after the 5th h2 */
+(function () {
+    var cta = document.getElementById('mid-article-cta');
+    if (!cta) return;
+
+    var headings = document.querySelectorAll('.gh-content > h2');
+    // Only inject if the article has enough headings (5+ means it's a long-form piece)
+    var targetIndex = 4; // after the 5th h2 (0-indexed)
+    if (headings.length < targetIndex + 1) {
+        // For shorter articles, try after the 3rd h2
+        targetIndex = 2;
+    }
+    if (headings.length < targetIndex + 1) {
+        // Too short, don't inject
+        return;
+    }
+
+    var target = headings[targetIndex];
+    target.parentNode.insertBefore(cta, target);
+    cta.removeAttribute('hidden');
+})();
+
 /* Sticky CTA bar: show after 30% scroll, hide near footer or when dismissed */
 (function () {
     var stickyCta = document.getElementById('sticky-cta');

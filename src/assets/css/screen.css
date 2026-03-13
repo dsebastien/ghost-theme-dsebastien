@@ -2767,6 +2767,36 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply !mt-16 !mb-8 text-4xl font-bold;
 }
 
+/* Mid-article CTA
+/* ---------------------------------------------------------- */
+
+.mid-article-cta {
+    @apply flex items-center justify-between gap-6 my-12 rounded-lg;
+    padding: 20px 24px;
+    border-left: 4px solid var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+}
+
+.mid-article-cta-text {
+    @apply text-2xl leading-snug;
+    color: var(--color-primary-text);
+}
+
+.mid-article-cta-button {
+    @apply shrink-0 whitespace-nowrap text-2xl;
+    color: var(--color-white) !important;
+}
+
+@media (max-width: 576px) {
+    .mid-article-cta {
+        @apply flex-col items-start gap-4;
+    }
+
+    .mid-article-cta-button {
+        @apply w-full text-center;
+    }
+}
+
 /* Sticky CTA bar
 /* ---------------------------------------------------------- */
 
