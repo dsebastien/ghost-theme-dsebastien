@@ -1,9 +1,17 @@
-  <!-- Newsletter -->
-{{#unless member}}
+  <!-- Newsletter / Upgrade CTA -->
+{{#unless @member}}
     <section class="!mt-32 cta-newsletter">
         <h2>Subscribe to the Newsletter 💌</h2>
         {{> "email-subscription" email_field_id="footer-email"}}
     </section>
+{{else}}
+    {{#unless @member.paid}}
+        <section class="!mt-32 cta-newsletter">
+            <h2>Unlock the Full Experience</h2>
+            <p>Get access to 800+ articles, the full archive, and community perks.</p>
+            <a class="gh-button" href="#/portal/account/plans" data-portal="account/plans">Upgrade →</a>
+        </section>
+    {{/unless}}
 {{/unless}}
 
 <footer class="gh-footer gh-outer bg-gray-700 border-t-4 border-t-gray-800 border-solid xl:rounded-t-xl xl:!mx-32">
