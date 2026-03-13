@@ -2948,6 +2948,56 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--color-white);
 }
 
+/* Lead magnet CTA
+/* ---------------------------------------------------------- */
+
+.lead-magnet {
+    @apply text-center;
+    padding: 32px 24px;
+    border-radius: 12px;
+    background-color: var(--color-lighter-gray);
+    border: 1px solid var(--color-border);
+}
+
+.lead-magnet-inner {
+    @apply flex flex-col items-center gap-6 max-w-2xl mx-auto;
+}
+
+.lead-magnet-title {
+    @apply text-3xl font-bold;
+    color: var(--color-primary-text);
+}
+
+.lead-magnet-desc {
+    @apply text-2xl;
+    color: var(--color-dark-gray);
+    line-height: 1.45;
+}
+
+.lead-magnet .gh-form {
+    @apply max-w-full;
+}
+
+.lead-magnet-note {
+    @apply mt-4;
+    font-size: 1.3rem;
+    color: var(--color-secondary-text);
+}
+
+@media (min-width: 768px) {
+    .lead-magnet-inner {
+        @apply flex-row text-left;
+    }
+
+    .lead-magnet-text {
+        @apply flex-1;
+    }
+
+    .lead-magnet .gh-form {
+        @apply w-auto min-w-[320px];
+    }
+}
+
 /* Article Table of Contents
 /* ---------------------------------------------------------- */
 

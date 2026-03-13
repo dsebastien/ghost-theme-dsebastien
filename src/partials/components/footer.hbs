@@ -1,9 +1,8 @@
-  <!-- Newsletter / Upgrade CTA -->
+  <!-- Lead magnet / Upgrade CTA -->
 {{#unless @member}}
-    <section class="!mt-32 cta-newsletter">
-        <h2>Subscribe to the Newsletter 💌</h2>
-        {{> "email-subscription" email_field_id="footer-email"}}
-    </section>
+    <div class="!mt-32">
+        {{> "components/lead-magnet-cta" email_field_id="footer-email" variant="checklist"}}
+    </div>
 {{else}}
     {{#unless @member.paid}}
         <section class="!mt-32 cta-newsletter">

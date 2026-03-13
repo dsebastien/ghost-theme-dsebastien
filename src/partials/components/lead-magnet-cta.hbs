@@ -1,0 +1,31 @@
+{{!--
+    Lead magnet CTA: replaces generic "Subscribe to the Newsletter" with a value-first offer.
+    Subscribe form still uses Ghost's native members system.
+
+    Parameters:
+    * email_field_id (required) — unique ID for the email input
+    * variant (optional) — "obsidian" | "checklist" | default (obsidian)
+--}}
+{{#match variant "checklist"}}
+<section class="lead-magnet">
+    <div class="lead-magnet-inner">
+        <div class="lead-magnet-text">
+            <h3 class="lead-magnet-title">Free: Knowledge System Checklist</h3>
+            <p class="lead-magnet-desc">A clear roadmap to building your own knowledge system. Subscribe and get it straight to your inbox.</p>
+        </div>
+        {{> "email-subscription" email_field_id=email_field_id}}
+    </div>
+    <p class="lead-magnet-note">6,000+ readers. No spam. Unsubscribe anytime.</p>
+</section>
+{{else}}
+<section class="lead-magnet">
+    <div class="lead-magnet-inner">
+        <div class="lead-magnet-text">
+            <h3 class="lead-magnet-title">Free: 50-Page Beginner's Guide to Obsidian</h3>
+            <p class="lead-magnet-desc">Learn essential features, organization best practices, and advanced techniques. Subscribe and get it straight to your inbox.</p>
+        </div>
+        {{> "email-subscription" email_field_id=email_field_id}}
+    </div>
+    <p class="lead-magnet-note">6,000+ readers. No spam. Unsubscribe anytime.</p>
+</section>
+{{/match}}

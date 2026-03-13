@@ -50,12 +50,11 @@
                 <p class="builder-os-cta">Want the complete system? <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowii Community</a></p>
             </section>
 
-            <!-- Newsletter -->
-            {{#unless member}}
-                <section class="!mt-32 cta-newsletter">
-                    <h2>Subscribe to the Newsletter</h2>
-                    {{> "email-subscription" email_field_id="start-email"}}
-                </section>
+            <!-- Lead magnet -->
+            {{#unless @member}}
+                <div class="!mt-32">
+                    {{> "components/lead-magnet-cta" email_field_id="start-email"}}
+                </div>
             {{/unless}}
 
             <!-- Areas -->
@@ -566,12 +565,9 @@
                 </div>
             </section>
 
-            <!-- Newsletter for non-members -->
-            {{#unless member}}
-                <section class="cta-newsletter">
-                    <h2>Subscribe to the Newsletter</h2>
-                    {{> "email-subscription" email_field_id="start-email-bottom"}}
-                </section>
+            <!-- Lead magnet for non-members -->
+            {{#unless @member}}
+                {{> "components/lead-magnet-cta" email_field_id="start-email-bottom" variant="checklist"}}
             {{/unless}}
 
             <!-- Further Learning -->

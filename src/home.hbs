@@ -31,12 +31,11 @@
                         <p class="hero-social-proof">6,000+ people already think and create more clearly ✨</p>
             </section>
 
-            <!-- Newsletter -->
-            {{#unless member}}
-                <section class="!mt-32 cta-newsletter">
-                    <h2>Subscribe to the Newsletter 💌</h2>
-                    {{> "email-subscription" email_field_id="home-email"}}
-                </section>
+            <!-- Lead magnet -->
+            {{#unless @member}}
+                <div class="!mt-32">
+                    {{> "components/lead-magnet-cta" email_field_id="home-email"}}
+                </div>
             {{/unless}}
 
             <!-- Results Proof Section -->
