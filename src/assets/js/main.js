@@ -159,6 +159,61 @@
     setTimeout(function () { observer.disconnect(); }, 10000);
 })();
 
+/* Sticky CTA bar: show after 30% scroll, hide near footer or when dismissed */
+(function () {
+    var stickyCta = document.getElementById('sticky-cta');
+    if (!stickyCta) return;
+
+    var closeBtn = stickyCta.querySelector('.sticky-cta-close');
+    var dismissed = false;
+    var ticking = false;
+
+    function update() {
+        if (dismissed) {
+            ticking = false;
+            return;
+        }
+
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+        // Show after 30% scroll, hide in last 5% (footer area)
+        if (percent > 30 && percent < 95) {
+            stickyCta.classList.add('is-visible');
+        } else {
+            stickyCta.classList.remove('is-visible');
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            dismissed = true;
+            stickyCta.classList.remove('is-visible');
+            // Remember dismissal for this session
+            try { sessionStorage.setItem('sticky-cta-dismissed', '1'); } catch (e) {}
+        });
+    }
+
+    // Check if already dismissed this session
+    try {
+        if (sessionStorage.getItem('sticky-cta-dismissed') === '1') {
+            dismissed = true;
+        }
+    } catch (e) {}
+
+    update();
+})();
+
 /* Responsive HTML table */
 (function () {
     const tables = document.querySelectorAll('.gh-content > table:not(.gist table)');

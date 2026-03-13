@@ -1,0 +1,25 @@
+{{!-- Sticky CTA bar for post pages --}}
+{{!-- Shows different CTAs based on member status:
+     - Non-members: subscribe CTA
+     - Free members: upgrade CTA
+     - Paid members: hidden
+--}}
+{{#unless @member}}
+    <div id="sticky-cta" class="sticky-cta" aria-label="Subscribe call to action">
+        <div class="sticky-cta-inner">
+            <p class="sticky-cta-text">Join 6,000+ readers. Get practical systems for knowledge & AI. Free.</p>
+            <a class="gh-button sticky-cta-button" href="#/portal/signup" data-portal="signup">Subscribe ✨</a>
+        </div>
+        <button class="sticky-cta-close" aria-label="Dismiss" title="Dismiss">{{> "icons/close"}}</button>
+    </div>
+{{else}}
+    {{#unless @member.paid}}
+        <div id="sticky-cta" class="sticky-cta" aria-label="Upgrade call to action">
+            <div class="sticky-cta-inner">
+                <p class="sticky-cta-text">Unlock 800+ articles, full archive access, and community perks.</p>
+                <a class="gh-button sticky-cta-button" href="#/portal/account/plans" data-portal="account/plans">Upgrade →</a>
+            </div>
+            <button class="sticky-cta-close" aria-label="Dismiss" title="Dismiss">{{> "icons/close"}}</button>
+        </div>
+    {{/unless}}
+{{/unless}}
