@@ -325,8 +325,10 @@
         // Show after 30% scroll, hide in last 5% (footer area)
         if (percent > 30 && percent < 95) {
             stickyCta.classList.add('is-visible');
+            document.body.classList.add('has-sticky-cta');
         } else {
             stickyCta.classList.remove('is-visible');
+            document.body.classList.remove('has-sticky-cta');
         }
 
         ticking = false;
@@ -343,6 +345,7 @@
         closeBtn.addEventListener('click', function () {
             dismissed = true;
             stickyCta.classList.remove('is-visible');
+            document.body.classList.remove('has-sticky-cta');
             // Remember dismissal for this session
             try { sessionStorage.setItem('sticky-cta-dismissed', '1'); } catch (e) {}
         });

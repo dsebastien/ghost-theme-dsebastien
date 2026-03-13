@@ -12,22 +12,71 @@
         {{!-- Logged-out users --}}
         {{#unless @member}}
             <section class="gh-content gh-canvas is-body">
-                <!-- Hero / Intro Section -->
-            <section class="hero !mt-0">
-                <h2>Turn Information Overload into Insight</h2>
-                <p class="max-w-xl mx-auto">
-                    Join my newsletter to discover practical methods, tools, and frameworks to build a sustainable personal knowledge system.
-                    Free members get new editions. Supporters gain access to all past newsletter editions and blog posts. Curious minds enjoy all that plus access to the private community & bonuses ❤️
-                </p>
-                <a href="#/portal/signup" class="mt-6 cta gh-button">View Membership Options</a>
-            </section>
 
-            <!-- Newsletter Subscription Form -->
-            <section class="cta-newsletter">
-                <h2>Subscribe to the Newsletter 💌</h2>
-                {{> "email-subscription" email_field_id="newsletter-email"}}
+                <!-- Hero -->
+                <section class="hero !mt-0">
+                    <h2>Turn Information Overload into Clear Thinking</h2>
+                    <p class="max-w-xl mx-auto">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
+                    <p class="hero-social-proof">6,000+ readers already subscribed ✨</p>
+                </section>
+
+                <!-- What you'll get -->
+                <section class="newsletter-benefits">
+                    <h3>What you'll get every week</h3>
+                    <ul>
+                        <li>🧠 Proven systems for Knowledge Management and personal organization</li>
+                        <li>🤖 AI tips and workflows you can use right away</li>
+                        <li>🚀 Frameworks and mental models for clearer thinking</li>
+                        <li>🔗 Curated links on PKM, AI, productivity, and learning</li>
+                        <li>📣 Community news, challenges, and member highlights</li>
+                    </ul>
+                </section>
+
+                <!-- Subscribe form -->
+                <section class="cta-newsletter">
+                    <h2>Subscribe for free 💌</h2>
+                    {{> "email-subscription" email_field_id="newsletter-email"}}
+                </section>
+
+                <!-- Tier comparison -->
+                <section class="newsletter-tiers">
+                    <h3>Membership tiers</h3>
+                    <div class="newsletter-tiers-grid">
+                        <div class="newsletter-tier">
+                            <h4>Free</h4>
+                            <ul>
+                                <li>✅ New newsletter editions</li>
+                                <li>✅ All free articles</li>
+                            </ul>
+                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
+                        </div>
+                        <div class="newsletter-tier newsletter-tier-highlight">
+                            <span class="newsletter-tier-badge">RECOMMENDED</span>
+                            <h4>Supporter</h4>
+                            <ul>
+                                <li>✅ Everything in Free</li>
+                                <li>✅ Full newsletter archive</li>
+                                <li>✅ All blog posts</li>
+                                <li>✅ Exclusive discounts</li>
+                                <li>✅ Early access to products</li>
+                            </ul>
+                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
+                        </div>
+                        <div class="newsletter-tier">
+                            <h4>Knowledge Builder</h4>
+                            <ul>
+                                <li>✅ Everything in Supporter</li>
+                                <li>✅ Knowii Community access</li>
+                                <li>✅ Obsidian Starter Kit</li>
+                                <li>✅ Obsidian Starter Course</li>
+                                <li>✅ Community events</li>
+                            </ul>
+                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Join as Builder →</a>
+                        </div>
+                    </div>
+                </section>
+
             </section>
-        </section>
         {{/unless}}
 
         <section class="gh-container is-grid has-sidebar gh-outer">
