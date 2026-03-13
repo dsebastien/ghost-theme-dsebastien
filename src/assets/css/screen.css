@@ -2880,6 +2880,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .newsletter-tiers-grid {
     @apply grid gap-6;
     grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+@media (min-width: 1100px) {
+    .newsletter-tiers-grid {
+        max-width: 1320px;
+        gap: 24px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -2953,14 +2962,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .lead-magnet {
     @apply text-center;
-    padding: 32px 24px;
+    padding: 24px 20px;
     border-radius: 12px;
     background-color: var(--color-lighter-gray);
     border: 1px solid var(--color-border);
 }
 
 .lead-magnet-inner {
-    @apply flex flex-col items-center gap-6 max-w-2xl mx-auto;
+    @apply flex flex-col items-center gap-6 mx-auto;
+    max-width: 720px;
 }
 
 .lead-magnet-title {
@@ -2975,7 +2985,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .lead-magnet .gh-form {
-    @apply max-w-full;
+    @apply w-full;
 }
 
 .lead-magnet-note {
@@ -2984,17 +2994,24 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--color-secondary-text);
 }
 
-@media (min-width: 768px) {
+/* Side-by-side only when there's enough room for both columns */
+@media (min-width: 1024px) {
+    .lead-magnet {
+        padding: 32px 32px;
+    }
+
     .lead-magnet-inner {
-        @apply flex-row text-left;
+        @apply flex-row text-left items-center;
+        max-width: 900px;
     }
 
     .lead-magnet-text {
-        @apply flex-1;
+        @apply flex-1 shrink-0;
     }
 
     .lead-magnet .gh-form {
-        @apply w-auto min-w-[320px];
+        @apply w-auto;
+        min-width: 360px;
     }
 }
 
@@ -3057,7 +3074,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* Mobile: collapsible bar above article content */
 @media (max-width: 1279px) {
     .article-toc {
-        @apply block col-[main] mb-8;
+        @apply block col-[main] mt-8 mb-12;
         border: 1px solid var(--color-border);
         border-radius: 8px;
         overflow: hidden;

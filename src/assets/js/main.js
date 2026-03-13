@@ -159,8 +159,10 @@
     setTimeout(function () { observer.disconnect(); }, 10000);
 })();
 
-/* Sticky Table of Contents for long articles */
+/* Sticky Table of Contents for long articles (posts and newsletters only) */
 (function () {
+    if (!document.body.classList.contains('post-template') && !document.body.classList.contains('tag-template')) return;
+
     var content = document.querySelector('.gh-content');
     if (!content) return;
 
