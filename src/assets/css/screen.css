@@ -1278,7 +1278,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .social-share-link {
-    @apply flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-200;
+    @apply flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-200;
     color: var(--color-secondary-text);
 }
 
@@ -1287,7 +1287,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .social-share-link svg {
-    @apply !w-4 !h-4;
+    @apply !w-6 !h-6;
 }
 
 .gh-article-image {
