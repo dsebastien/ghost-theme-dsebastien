@@ -3335,13 +3335,16 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 /* Push floating buttons up when sticky CTA bar is visible */
+.gh-portal-triggerbtn-iframe {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
 .has-sticky-cta .circle-widget-trigger {
     transform: translateY(-64px) !important;
 }
 
-.has-sticky-cta #ghost-portal-root .gh-portal-triggerbtn-container {
-    transform: translateY(-64px);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+.has-sticky-cta .gh-portal-triggerbtn-iframe {
+    transform: translateY(-64px) !important;
 }
 
 @media (max-width: 767px) {
@@ -3349,8 +3352,8 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
         transform: translateY(-120px) !important;
     }
 
-    .has-sticky-cta #ghost-portal-root .gh-portal-triggerbtn-container {
-        transform: translateY(-120px);
+    .has-sticky-cta .gh-portal-triggerbtn-iframe {
+        transform: translateY(-120px) !important;
     }
 }
 
