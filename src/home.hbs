@@ -294,65 +294,44 @@
                 </div>
             </section>
 
-            <!-- CTA -->
+            <!-- CTA Funnel -->
             <section class="ready-to-start">
-                <h2 class="text-3xl font-bold text-center mb-8">Explore Everything 🚀</h2>
-                <p class="text-center text-gray-700 mb-8">Free articles, videos, community, and more ✨</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <a href="/start" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🚀 Start Your Journey</span>
-                    </a>
-                    
-                    <a href="/blog" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">✍️ Read Articles and Guides</span>
+                <h2 style="text-align:center; margin-bottom:0.5rem;">Pick Your Next Step 🚀</h2>
+                <p style="text-align:center; color:#6b7280; margin-bottom:2rem;">Whether you're exploring or ready to commit, there's a clear path for you.</p>
+
+                <div class="cta-funnel">
+                    <!-- Tier 1: Free / Low commitment (largest) -->
+                    <a href="/newsletter" class="cta-funnel-card cta-funnel-primary !no-underline">
+                        <span class="cta-funnel-badge">FREE</span>
+                        <h3>💌 Get the Newsletter</h3>
+                        <p>Weekly systems, frameworks, and AI tips. Join 2,300+ readers. Zero spam, unsubscribe anytime.</p>
+                        <span class="cta-funnel-action">Subscribe for free &rarr;</span>
                     </a>
 
-                    <a href="https://www.youtube.com/@dsebastien" target="_blank" rel="noopener noreferrer" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">📽️ Watch Videos</span>
-                    </a>
+                    <!-- Tier 2 + 3 side by side -->
+                    <div class="cta-funnel-row">
+                        <!-- Tier 2: Paid / Medium commitment -->
+                        <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-secondary !no-underline">
+                            <h3>🚀 Courses &amp; Products</h3>
+                            <p>Courses, kits, templates, and bundles. From beginner guides to the full knowledge mastery system.</p>
+                            <span class="cta-funnel-action">Browse the store &rarr;</span>
+                        </a>
 
-                    <a href="/community" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🧬 Join the Community</span>
-                    </a>
-
-                    <a href="/newsletter" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">💌 Join the Newsletter</span>
-                    </a>
-
-                    <a href="https://store.dsebastien.net" target="_blank" rel="noopener noreferrer" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🛒 Visit my Store</span>
-                    </a>
-
-                    <a href="/courses" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">📚 Discover my Courses</span>
-                    </a>
-
-                    <a href="/books" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">📖 Check out my Books</span>
-                    </a>
-
-                    <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener noreferrer" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🦉 Book a Coaching Session</span>
-                    </a>
-
-                    <a href="https://notes.dsebastien.net" target="_blank" rel="noopener noreferrer" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">📝 Explore My Public Notes</span>
-                    </a>
-
-                    <a href="/projects" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🛠️ Explore My Projects</span>
-                    </a>
-
-                    <a href="https://tools.dsebastien.net" target="_blank" rel="noopener noreferrer" class="!no-underline flex justify-start items-center gap-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
-                        <span class="font-medium">🔧 Check Out My Tools</span>
-                    </a>
+                        <!-- Tier 3: Premium / High commitment -->
+                        <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-tertiary !no-underline">
+                            <h3>🦉 1-on-1 Coaching</h3>
+                            <p>Personalized session to solve your specific challenges. Get unstuck in 60 minutes.</p>
+                            <span class="cta-funnel-action">Book a session &rarr;</span>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="flex justify-center gap-4 !mt-12">
-                    <a href="/all-articles" class="text-gray-600 hover:text-gray-900 underline">All Articles</a>
-                    <span class="text-gray-300">•</span>
-                    <a href="/all-tags" class="text-gray-600 hover:text-gray-900 underline">All Tags</a>
+
+                <div style="text-align:center; margin-top:2rem;">
+                    <a href="/blog" style="color:#6b7280; text-decoration:underline;">Read free articles</a>
+                    <span style="color:#d1d5db; margin:0 0.5rem;">&bull;</span>
+                    <a href="https://www.youtube.com/@dsebastien" target="_blank" rel="noopener" style="color:#6b7280; text-decoration:underline;">Watch videos</a>
+                    <span style="color:#d1d5db; margin:0 0.5rem;">&bull;</span>
+                    <a href="/start" style="color:#6b7280; text-decoration:underline;">Start here</a>
                 </div>
             </section>
         </section>
