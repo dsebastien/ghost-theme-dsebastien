@@ -259,26 +259,48 @@
     updateActive();
 })();
 
-/* Mid-article CTA: relocate hidden CTA into article body after the 5th h2 */
+/* Mid-article CTA: inject CTAs at regular intervals throughout long articles */
 (function () {
     var cta = document.getElementById('mid-article-cta');
     if (!cta) return;
 
-    var headings = document.querySelectorAll('.gh-content > h2');
-    // Only inject if the article has enough headings (5+ means it's a long-form piece)
-    var targetIndex = 4; // after the 5th h2 (0-indexed)
-    if (headings.length < targetIndex + 1) {
-        // For shorter articles, try after the 3rd h2
-        targetIndex = 2;
-    }
-    if (headings.length < targetIndex + 1) {
-        // Too short, don't inject
-        return;
+    // Collect content headings, excluding signature ones
+    var allH2s = document.querySelectorAll('.gh-content > h2');
+    var headings = [];
+    for (var i = 0; i < allH2s.length; i++) {
+        var id = allH2s[i].id;
+        if (id === 'about-sebastien' || id === 'ready-to-get-to-the-next-level') continue;
+        headings.push(allH2s[i]);
     }
 
-    var target = headings[targetIndex];
-    target.parentNode.insertBefore(cta, target);
+    // Need at least 3 content headings
+    if (headings.length < 3) return;
+
+    // Place first CTA before the 4th heading (or 3rd for shorter articles)
+    var firstSlot = headings.length >= 5 ? 3 : 2;
+
+    // For long articles (8+ headings), add a second CTA roughly 2/3 through
+    // For very long articles (13+ headings), add a third at ~5-heading intervals
+    var slots = [firstSlot];
+    if (headings.length >= 8) {
+        var second = Math.min(firstSlot + 5, headings.length - 2);
+        if (second > firstSlot + 2) slots.push(second);
+    }
+    if (headings.length >= 13) {
+        var third = Math.min(slots[slots.length - 1] + 5, headings.length - 2);
+        if (third > slots[slots.length - 1] + 2) slots.push(third);
+    }
+
+    // Place the original CTA at the first slot
+    headings[slots[0]].parentNode.insertBefore(cta, headings[slots[0]]);
     cta.removeAttribute('hidden');
+
+    // Clone for additional slots
+    for (var j = 1; j < slots.length; j++) {
+        var clone = cta.cloneNode(true);
+        clone.removeAttribute('id');
+        headings[slots[j]].parentNode.insertBefore(clone, headings[slots[j]]);
+    }
 })();
 
 /* Sticky CTA bar: show after 30% scroll, hide near footer or when dismissed */
