@@ -63,8 +63,10 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <!-- EthicalAds -->
+    <!-- EthicalAds (only on posts, not on conversion pages) -->
+    {{#is "post"}}
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+    {{/is}}
 
     <script type="application/ld+json">
         {
