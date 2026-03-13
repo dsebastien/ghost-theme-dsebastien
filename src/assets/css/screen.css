@@ -1010,29 +1010,29 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .gh-about {
-    @apply flex flex-col justify-center items-center text-center min-h-[380px];
-    padding: 48px 24px;
+    @apply flex flex-col justify-center items-center text-center;
+    padding: 12px 20px;
     background-color: var(--color-lighter-gray);
 }
 
 .gh-about-icon {
-    @apply mb-6 w-[60px] h-[60px] rounded-full;
+    @apply mb-4 w-[44px] h-[44px] rounded-full;
 }
 
 .gh-about-title {
     @apply font-bold;
-    font-size: calc(2.4rem * var(--factor, 1));
+    font-size: calc(2rem * var(--factor, 1));
     letter-spacing: -0.019em;
 }
 
 .gh-about-description {
-    @apply mt-3;
-    font-size: 1.45rem;
-    line-height: 1.4;
+    @apply mt-2;
+    font-size: 1.3rem;
+    line-height: 1.35;
 }
 
 .gh-about .gh-button {
-    @apply mt-8;
+    @apply mt-5;
 }
 
 .gh-recommendations {
