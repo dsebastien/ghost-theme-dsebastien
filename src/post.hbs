@@ -90,6 +90,28 @@
             <p>If you want to follow my work, then <a href="/#/portal/signup">become a member</a> and <a href="https://www.dsebastien.net/community">join our community</a>.</p>
 
             <h2 id="ready-to-get-to-the-next-level">Ready to get to the next level?</h2>
+            {{#has tag="obsidian"}}
+            <p>Since you're interested in Obsidian:</p>
+            <ul class="signature-links">
+                <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Skip weeks of setup</li>
+                <li>📚 <a href="https://store.dsebastien.net/product/obsidian-starter-course" rel="noopener">Obsidian Starter Course</a> — Master Obsidian in 2+ hours</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
+            </ul>
+            {{else has tag="knowledge-management,personal-knowledge-management"}}
+            <p>Ready to build your knowledge system?</p>
+            <ul class="signature-links">
+                <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners Course</a> — 10+ hours of structured lessons</li>
+                <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Your knowledge system foundation</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Complete knowledge transformation</li>
+            </ul>
+            {{else has tag="ai,artificial-intelligence"}}
+            <p>Want to use AI as a real thinking partner?</p>
+            <ul class="signature-links">
+                <li>🤖 <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" rel="noopener">AI Ghostwriter Guide</a> — Make AI write like you</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — AI workshops + community</li>
+                <li>🛒 <a href="https://store.dsebastien.net" rel="noopener">Browse all products</a></li>
+            </ul>
+            {{else}}
             <p>If you're tired of information overwhelm and ready to build a reliable knowledge system:</p>
             <ul class="signature-links">
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Complete knowledge transformation system</li>
@@ -98,6 +120,7 @@
                 <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Your epic knowledge system</li>
                 <li>🦉 <a href="https://store.dsebastien.net/product/pkm-coaching" rel="noopener">1-on-1 Coaching</a> — Personalized guidance</li>
             </ul>
+            {{/has}}
         </section>
     </article>
 
