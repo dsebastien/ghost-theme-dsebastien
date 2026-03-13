@@ -2932,6 +2932,44 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply text-2xl text-pink-600 hover:text-pink-700 font-semibold underline;
 }
 
+/* Home Page - FAQ Section */
+.homepage .faq {
+    @apply flex flex-col gap-4;
+}
+
+.homepage .faq-item {
+    @apply border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.homepage .faq-item details {
+    @apply p-0;
+}
+
+.homepage .faq-item summary {
+    @apply cursor-pointer p-5 text-lg hover:bg-gray-50 transition-colors duration-200 list-none;
+}
+
+.homepage .faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.homepage .faq-item summary::before {
+    content: "+";
+    @apply inline-block w-6 mr-3 text-xl text-pink-600 font-bold;
+}
+
+.homepage .faq-item details[open] summary::before {
+    content: "−";
+}
+
+.homepage .faq-item details[open] summary {
+    @apply border-b border-gray-200;
+}
+
+.homepage .faq-item p {
+    @apply px-5 py-4 text-gray-700 leading-relaxed;
+}
+
 /* Home Page - Risk Reversal Section */
 .homepage .risk-reversal {
     @apply bg-gradient-to-r from-green-50 to-teal-50 p-8 md:p-12 rounded-lg shadow-lg;
