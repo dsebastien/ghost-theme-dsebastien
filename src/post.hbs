@@ -105,6 +105,10 @@
             <p>If you want to follow my work, then <a href="/#/portal/signup">become a member</a> and <a href="https://www.dsebastien.net/community">join our community</a>.</p>
 
             <h2 id="ready-to-get-to-the-next-level">Ready to get to the next level?</h2>
+            {{!-- Tag priority: narrow/specific first, broad/generic last.
+                 Knowii Community always appears in every block.
+                 Obsidian + PKM tags always include KM for Beginners.
+                 Mapping based on store product tags + Ghost site tag volumes. --}}
             {{#has tag="obsidian"}}
             <p>Since you're interested in Obsidian:</p>
             <ul class="signature-links">
@@ -137,7 +141,23 @@
                 <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Build the system behind the habit</li>
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
             </ul>
-            {{else has tag="personal-knowledge-management,knowledge-management"}}
+            {{else has tag="writing,content-creation"}}
+            <p>Want to create content more consistently?</p>
+            <ul class="signature-links">
+                <li>🤖 <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" rel="noopener">AI Ghostwriter Guide</a> — Make AI write like you</li>
+                <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Turn your knowledge into content</li>
+                <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Your writing command center</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
+            </ul>
+            {{else has tag="software-development,web-development,front-end,angular,typescript"}}
+            <p>Want to level up as a developer?</p>
+            <ul class="signature-links">
+                <li>📖 <a href="https://dev-concepts.dev" rel="noopener">Dev Concepts</a> — 12 volumes covering IT &amp; software development from scratch</li>
+                <li>💼 <a href="https://store.dsebastien.net/product/knowledge-worker-kit" rel="noopener">Knowledge Worker Kit</a> — Productivity guides for knowledge workers</li>
+                <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Organize your dev knowledge</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
+            </ul>
+            {{else has tag="personal-knowledge-management,knowledge-management,foundations-of-personal-knowledge-management"}}
             <p>Ready to build your knowledge system?</p>
             <ul class="signature-links">
                 <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — 10+ hours of structured video lessons</li>
@@ -145,12 +165,20 @@
                 <li>📖 <a href="https://www.store.dsebastien.net/product/pkm-library" rel="noopener">PKM Library</a> — 2,000+ curated PKM resources</li>
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
             </ul>
-            {{else has tag="knowledge-work"}}
+            {{else has tag="knowledge-work,work"}}
             <p>Ready to level up your knowledge work?</p>
             <ul class="signature-links">
                 <li>💼 <a href="https://store.dsebastien.net/product/knowledge-worker-kit" rel="noopener">Knowledge Worker Kit</a> — Complete guides + lifetime community</li>
                 <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Master Knowledge Management</li>
                 <li>🦉 <a href="https://store.dsebastien.net/product/pkm-coaching" rel="noopener">1-on-1 Coaching</a> — Personalized guidance for your workflow</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
+            </ul>
+            {{else has tag="entrepreneurship"}}
+            <p>Building something of your own?</p>
+            <ul class="signature-links">
+                <li>🤖 <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" rel="noopener">AI Ghostwriter Guide</a> — Scale your content with AI</li>
+                <li>💼 <a href="https://store.dsebastien.net/product/knowledge-worker-kit" rel="noopener">Knowledge Worker Kit</a> — Systems for solo knowledge workers</li>
+                <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Organize your business knowledge</li>
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
             </ul>
             {{else has tag="productivity"}}
@@ -169,6 +197,14 @@
                 <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — Templates for organization &amp; planning</li>
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
             </ul>
+            {{else has tag="tools,tools-and-techniques"}}
+            <p>Looking for the right tools?</p>
+            <ul class="signature-links">
+                <li>🚀 <a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener">Obsidian Starter Kit</a> — The best starting point for Obsidian</li>
+                <li>📖 <a href="https://www.store.dsebastien.net/product/pkm-library" rel="noopener">PKM Library</a> — 2,000+ curated tools &amp; resources</li>
+                <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Learn to pick and use the right tools</li>
+                <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
+            </ul>
             {{else has tag="learning"}}
             <p>Want to learn more effectively?</p>
             <ul class="signature-links">
@@ -185,7 +221,7 @@
                 <li>📚 <a href="https://knowledge-management-for-beginners.com" rel="noopener">KM for Beginners</a> — Build your personal knowledge system</li>
                 <li>🎯 <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener">Join Knowii</a> — Community + ALL courses &amp; tools</li>
             </ul>
-            {{else has tag="mental-health"}}
+            {{else has tag="mental-health,wellbeing"}}
             <p>Looking for more clarity and calm?</p>
             <ul class="signature-links">
                 <li>🧭 <a href="https://store.dsebastien.net/product/clarity-101" rel="noopener">Clarity 101</a> — Find your values, goals, and direction</li>
