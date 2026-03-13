@@ -159,6 +159,106 @@
     setTimeout(function () { observer.disconnect(); }, 10000);
 })();
 
+/* Sticky Table of Contents for long articles */
+(function () {
+    var content = document.querySelector('.gh-content');
+    if (!content) return;
+
+    // Only use h2s from the article content, exclude signature headings
+    var allH2s = content.querySelectorAll('h2');
+    var headings = [];
+    for (var i = 0; i < allH2s.length; i++) {
+        var id = allH2s[i].id;
+        if (id === 'about-sebastien' || id === 'ready-to-get-to-the-next-level') continue;
+        headings.push(allH2s[i]);
+    }
+
+    // Only show TOC for articles with 4+ content headings
+    if (headings.length < 4) return;
+
+    // Ensure all headings have IDs
+    headings.forEach(function (h, idx) {
+        if (!h.id) {
+            h.id = 'heading-' + idx;
+        }
+    });
+
+    // Build the TOC element
+    var toc = document.createElement('nav');
+    toc.className = 'article-toc';
+    toc.setAttribute('aria-label', 'Table of contents');
+
+    var toggle = document.createElement('button');
+    toggle.className = 'article-toc-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<span class="article-toc-toggle-label">Contents</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+    toc.appendChild(toggle);
+
+    var list = document.createElement('ol');
+    list.className = 'article-toc-list';
+    headings.forEach(function (h) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        a.className = 'article-toc-link';
+        li.appendChild(a);
+        list.appendChild(li);
+    });
+    toc.appendChild(list);
+
+    // Insert into the page — place before the content section
+    content.parentNode.insertBefore(toc, content);
+
+    // Mobile toggle
+    toggle.addEventListener('click', function () {
+        var expanded = toc.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', expanded);
+    });
+
+    // Close mobile TOC when a link is clicked
+    list.addEventListener('click', function (e) {
+        if (e.target.classList.contains('article-toc-link')) {
+            toc.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Highlight current section on scroll
+    var tocLinks = list.querySelectorAll('.article-toc-link');
+    var ticking = false;
+
+    function updateActive() {
+        var scrollY = window.scrollY;
+        var current = null;
+
+        for (var j = 0; j < headings.length; j++) {
+            if (headings[j].getBoundingClientRect().top <= 80) {
+                current = j;
+            }
+        }
+
+        tocLinks.forEach(function (link, idx) {
+            if (idx === current) {
+                link.classList.add('is-active');
+            } else {
+                link.classList.remove('is-active');
+            }
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(updateActive);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateActive();
+})();
+
 /* Mid-article CTA: relocate hidden CTA into article body after the 5th h2 */
 (function () {
     var cta = document.getElementById('mid-article-cta');
