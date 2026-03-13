@@ -1104,6 +1104,79 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply opacity-80;
 }
 
+/* 13.1 Sidebar products
+/* ---------------------------------------------------------- */
+
+.sidebar-products {
+    @apply mt-12;
+}
+
+.sidebar-product-featured {
+    @apply relative flex flex-col gap-2 rounded-lg no-underline;
+    padding: 20px;
+    margin-top: calc(var(--grid-gap) / 2);
+    background-color: var(--color-darker-gray);
+    color: var(--color-white);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sidebar-product-featured:hover {
+    @apply opacity-100;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+}
+
+.sidebar-product-badge {
+    @apply inline-block self-start font-bold uppercase rounded;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
+.sidebar-product-name {
+    @apply block font-bold;
+    font-size: 1.7rem;
+    letter-spacing: -0.01em;
+    color: var(--color-white);
+}
+
+.sidebar-product-desc {
+    @apply block;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.7);
+}
+
+.sidebar-product-cta {
+    @apply block font-semibold;
+    font-size: 1.3rem;
+    margin-top: 4px;
+    color: var(--ghost-accent-color);
+}
+
+.sidebar-product-featured:hover .sidebar-product-cta {
+    text-decoration: underline;
+}
+
+.sidebar-product-list {
+    @apply mt-4 flex flex-col gap-3;
+}
+
+.sidebar-product-list li {
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.sidebar-product-list li a {
+    @apply font-medium;
+}
+
+.sidebar-product-list li a:hover {
+    text-decoration: underline;
+}
+
 /* 14. Post/page
 /* ---------------------------------------------------------- */
 
