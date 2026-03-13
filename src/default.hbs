@@ -113,7 +113,8 @@
         }
     </script>
 
-    <!-- Knowii Chat integration (Circle.so) - deferred to reduce main-thread blocking -->
+    <!-- Knowii Chat integration (Circle.so) - members only -->
+    {{#if @member}}
     <script>
         if ('requestIdleCallback' in window) {
             requestIdleCallback(function() { loadCircleWidget(); });
@@ -136,6 +137,7 @@
             });
         }
     </script>
+    {{/if}}
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
