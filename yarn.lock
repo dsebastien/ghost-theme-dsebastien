@@ -1951,10 +1951,10 @@
     "@tryghost/debug" "^0.1.35"
     "@tryghost/logging" "^2.5.0"
 
-"@tryghost/theme-translations@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/@tryghost/theme-translations/-/theme-translations-0.0.2.tgz"
-  integrity sha512-fogzosnn9a9CdJ7hB16Xl6zjmvq9/MJ7DKFDE+B6rosnZI9Iw3SgblWZmJjb1TTgv24ajPKvd0kC6HdFthH9GQ==
+"@tryghost/theme-translations@~0.0.11":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@tryghost/theme-translations/-/theme-translations-0.0.14.tgz#9006f418ad4fb324f6495d1bce4bacaea3fdd624"
+  integrity sha512-mhXQs/nUBOZDcv9h6r/5w+a1LfKdOc4LgEDSn/oab/lNQBdC1pvfxXZGBMri/YgmlMMO+86KREh872CdiWb73Q==
 
 "@tryghost/tpl@^0.1.35":
   version "0.1.35"
