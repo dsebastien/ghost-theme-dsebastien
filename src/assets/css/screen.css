@@ -1716,6 +1716,24 @@ figcaption a {
     grid-template-columns: repeat(4, 1fr);
 }
 
+@media (max-width: 1199px) {
+    .post-template .gh-container.is-grid .gh-feed {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .post-template .gh-container.is-grid .gh-feed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .post-template .gh-container.is-grid .gh-feed {
+        @apply flex flex-col;
+    }
+}
+
 .post-template .gh-container .gh-container-title {
     @apply block;
 }
