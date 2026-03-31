@@ -213,27 +213,7 @@
     // participates in the .gh-canvas grid (needed for col-[main] on mobile)
     content.insertBefore(toc, content.firstChild);
 
-    // Desktop: hide the TOC until the user scrolls past the article header
-    // so it doesn't overlap the navigation bar or article title
-    var articleHeader = document.querySelector('.gh-article-header');
-    function updateTocVisibility() {
-        if (window.innerWidth >= 1280 && articleHeader) {
-            var headerBottom = articleHeader.getBoundingClientRect().bottom;
-            if (headerBottom > 0) {
-                toc.style.opacity = '0';
-                toc.style.pointerEvents = 'none';
-            } else {
-                toc.style.opacity = '1';
-                toc.style.pointerEvents = '';
-            }
-        } else {
-            toc.style.opacity = '';
-            toc.style.pointerEvents = '';
-        }
-    }
-    updateTocVisibility();
-
-    // Mobile toggle
+    // Toggle
     toggle.addEventListener('click', function () {
         var expanded = toc.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', expanded);
@@ -269,7 +249,6 @@
             }
         });
 
-        updateTocVisibility();
         ticking = false;
     }
 
