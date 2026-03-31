@@ -2385,6 +2385,47 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply flex-1 text-center md:text-left;
 }
 
+/* YouTube Card */
+.youtube-card {
+    @apply mt-16;
+}
+
+.youtube-card-inner {
+    @apply flex flex-col md:flex-row items-center gap-6 bg-gray-100 p-8 rounded-lg shadow-lg;
+}
+
+.youtube-card-icon {
+    @apply flex-shrink-0 text-red-600;
+}
+
+.youtube-card-icon svg {
+    @apply w-16 h-16;
+}
+
+.youtube-card-content {
+    @apply text-center md:text-left;
+}
+
+.youtube-card-content h3 {
+    @apply text-xl font-bold mb-2;
+}
+
+.youtube-card-content p {
+    @apply text-gray-600 mb-4;
+}
+
+.youtube-card-cta {
+    @apply inline-block bg-red-600 !text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 !no-underline;
+}
+
+.youtube-card-cta:visited {
+    @apply !text-white;
+}
+
+.youtube-card-cta:hover {
+    @apply bg-red-700 !text-white;
+}
+
 /* Approach */
 .homepage .approach-steps {
     @apply flex flex-col gap-8;
