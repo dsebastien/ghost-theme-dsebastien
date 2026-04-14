@@ -1,0 +1,30 @@
+<article class="gh-news-card {{post_class}}">
+    <a class="gh-news-card-link" href="{{url}}">
+        <div class="gh-news-card-meta">
+            <time class="gh-news-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#unless access}}
+                {{^has visibility="public"}}
+                    {{> "icons/lock"}}
+                {{/has}}
+            {{/unless}}
+        </div>
+        <h3 class="gh-news-card-title is-title">{{title}}</h3>
+        {{#if custom_excerpt}}
+            <p class="gh-news-card-excerpt is-body">{{custom_excerpt}}</p>
+        {{/if}}
+        {{#unless custom_excerpt}}
+            {{#if excerpt}}
+                <p class="gh-news-card-excerpt is-body">{{excerpt}}</p>
+            {{/if}}
+        {{/unless}}
+        {{#if tags}}
+            <div class="gh-news-card-tags">
+                {{#foreach tags}}
+                    {{#unless @first}}
+                        <span class="gh-news-card-tag">#{{name}}</span>
+                    {{/unless}}
+                {{/foreach}}
+            </div>
+        {{/if}}
+    </a>
+</article>

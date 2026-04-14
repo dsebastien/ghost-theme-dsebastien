@@ -4,7 +4,9 @@ routes:
   /blog/:
     template: blog
   /newsletter/:
-    template: newsletter  
+    template: newsletter
+  /news/:
+    template: news
   /start/:
     template: start
   /all-articles/:
@@ -23,6 +25,11 @@ collections:
     permalink: /newsletter/{slug}/
     template: index
     filter: primary_tag:newsletter
+  /news/:
+    permalink: /news/{slug}/
+    template: index
+    filter: primary_tag:news
+    rss: true
 taxonomies:
   tag: /tag/{slug}/
   author: /author/{slug}/

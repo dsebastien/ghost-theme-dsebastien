@@ -19,7 +19,6 @@
   # === Internal Redirects ===
   /author/dsebastien: /about/
   /articles: /blog/
-  /news: /
 
   # === Community ===
   /kmb: https://knowledge-management-for-beginners.com/

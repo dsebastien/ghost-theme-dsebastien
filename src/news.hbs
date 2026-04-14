@@ -1,0 +1,39 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<main class="gh-main gh-outer news-page">
+    <section class="gh-inner !mt-32">
+        <h1 class="gh-article-title is-title">News 📰</h1>
+        <p class="gh-article-excerpt">
+            Short notes, quick updates, and things I find worth sharing.
+            For the full graph of my thinking, browse my
+            <a class="top-link" href="https://notes.dsebastien.net" target="_blank" rel="noopener">public notes</a>.
+            Subscribe via <a class="top-link" href="/news/rss/">RSS</a>.
+        </p>
+    </section>
+
+    <section class="gh-container is-grid has-sidebar gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <main class="gh-main">
+                <div class="gh-news-feed mt-4">
+                    {{#get "posts" filter="primary_tag:news" limit=50 order="published_at desc" as |news|}}
+                        {{#foreach news}}
+                            {{> "news-card"}}
+                        {{/foreach}}
+
+                        {{#unless news}}
+                            <p class="gh-news-empty">No news yet. Check back soon.</p>
+                        {{/unless}}
+                    {{/get}}
+
+                    <div class="">
+                        <a href="/tag/news">See all news {{> "icons/arrow"}}</a>
+                        <hr class="!my-8"/>
+                    </div>
+                </div>
+            </main>
+
+            {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=false}}
+        </div>
+    </section>
+</main>
