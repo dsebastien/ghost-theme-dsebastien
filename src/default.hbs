@@ -27,7 +27,10 @@
 
       <link href="{{asset "images/favicon.ico"}}" rel="shortcut icon" />
       <link href="{{asset "images/favicon-32x32.png"}}" rel="icon" type="image/png">
-    
+
+    {{!-- RSS feed autodiscovery for browsers and RSS readers --}}
+    {{> "feeds-meta"}}
+
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 

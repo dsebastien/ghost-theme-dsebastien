@@ -1,0 +1,42 @@
+{{!--
+    Shared archive + RSS layout for the /feeds/* channels.
+    Each channel route (see configuration/routes.yaml) renders this partial.
+
+    Params:
+    * feedTitle       — heading text
+    * feedEmoji       — emoji shown after the heading
+    * feedSlug        — channel slug, used to build the /feeds/{slug}/rss/ URL
+    * feedDescription — intro paragraph
+--}}
+<main class="gh-main gh-outer feed-channel-page">
+    <section class="gh-inner !mt-32">
+        <h1 class="gh-article-title is-title">{{feedTitle}} {{feedEmoji}}</h1>
+        <p class="gh-article-excerpt">{{feedDescription}}</p>
+        <p class="gh-article-excerpt">
+            <a class="gh-button" href="/feeds/{{feedSlug}}/rss/">Subscribe via RSS 📡</a>
+        </p>
+        <p class="gh-article-excerpt">
+            <a class="top-link" href="/feeds/">Browse all feeds</a>
+        </p>
+    </section>
+
+    <section class="gh-container is-grid has-sidebar gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <main class="gh-main">
+                <div class="gh-feed mt-4">
+                    {{#foreach posts}}
+                        {{> "post-card" lazyLoad=true}}
+                    {{/foreach}}
+
+                    {{#unless posts}}
+                        <p class="gh-news-empty">No posts in this feed yet. Check back soon.</p>
+                    {{/unless}}
+                </div>
+
+                {{pagination}}
+            </main>
+
+            {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=false}}
+        </div>
+    </section>
+</main>

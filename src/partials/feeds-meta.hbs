@@ -1,0 +1,8 @@
+{{!--
+    RSS feed autodiscovery links.
+    Lets browsers and RSS readers detect the relevant feed automatically.
+    Always advertises the main feed; on a tag page it also advertises that
+    tag's own feed (/tag/{slug}/rss/). Included from the <head> in default.hbs.
+--}}
+<link rel="alternate" type="application/rss+xml" title="{{@site.title}}" href="{{@site.url}}/rss/">
+{{#is "tag"}}<link rel="alternate" type="application/rss+xml" title="{{@site.title}} — {{tag.name}}" href="{{tag.url}}rss/">{{/is}}

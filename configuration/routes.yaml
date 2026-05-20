@@ -13,6 +13,30 @@ routes:
     template: all-articles
   /all-tags/:
     template: all-tags
+  /feeds/:
+    template: feeds
+
+  # Custom filtered RSS feeds (channels).
+  # Each channel below is BOTH a browsable archive page at its path
+  # AND an RSS feed at {path}rss/ (RSS is enabled by default for channels).
+  # tag:[a,b,c] matches posts having ANY of the listed tags.
+  /feeds/pkm/:
+    controller: channel
+    filter: "tag:[personal-knowledge-management,note-taking,obsidian,zettelkasten,journaling]"
+    template: feed-pkm
+  /feeds/productivity/:
+    controller: channel
+    filter: "tag:[productivity,personal-organization,personal-development,habits,routines]"
+    template: feed-productivity
+  /feeds/dev/:
+    controller: channel
+    filter: "tag:[software-development,web-development,front-end,back-end,angular,typescript,javascript]"
+    template: feed-dev
+  /feeds/best/:
+    controller: channel
+    filter: "featured:true"
+    template: feed-best
+
 collections:
   /:
     permalink: /{slug}/
@@ -30,6 +54,7 @@ collections:
     template: index
     filter: primary_tag:news
     rss: true
+
 taxonomies:
   tag: /tag/{slug}/
   author: /author/{slug}/

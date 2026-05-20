@@ -1,0 +1,111 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!-- Static directory page (route /feeds/, see configuration/routes.yaml) listing every RSS feed. --}}
+
+<main class="gh-main gh-outer feeds-page">
+    <header class="!mt-24 gh-article-header gh-canvas hero">
+        <h1 class="gh-article-title is-title text-center text-4xl font-bold">
+            RSS Feeds 📡
+        </h1>
+        <p class="text-2xl leading-relaxed max-w-3xl mx-auto text-center">
+            Follow my writing your way. Pick a feed below and paste its URL into your
+            RSS reader (Feedly, NetNewsWire, Inoreader, Reeder…). No account, no algorithm, no email required.
+        </p>
+    </header>
+
+    <section class="gh-content gh-canvas is-body">
+
+        {{!-- ===== Main feeds ===== --}}
+        <h2 class="text-3xl font-bold !mt-12 !mb-2">Main feeds</h2>
+        <p class="text-gray-600 !mt-0">The big buckets — pick "Everything" or narrow it down by content type.</p>
+        <ul class="!mx-0 space-y-8 !list-none">
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2">Everything 🌍</h3>
+                    <p class="text-gray-600">Every post I publish — articles, newsletter editions and news, all in one feed.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/rss/"><code>{{@site.url}}/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/blog/">Articles ✍️</a></h3>
+                    <p class="text-gray-600">Long-form articles only — my main writing, without the newsletter archive or short news updates.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/blog/rss/"><code>{{@site.url}}/blog/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/newsletter/">Newsletter archive 💌</a></h3>
+                    <p class="text-gray-600">Past editions of DeveloPassion's Newsletter. Prefer email? <a class="top-link" href="/newsletter/">Subscribe for free</a> instead.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/newsletter/rss/"><code>{{@site.url}}/newsletter/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/news/">News &amp; updates 📰</a></h3>
+                    <p class="text-gray-600">Short notes, quick updates, and things I find worth sharing.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/news/rss/"><code>{{@site.url}}/news/rss/</code></a></p>
+                </article>
+            </li>
+        </ul>
+
+        {{!-- ===== Curated topic feeds ===== --}}
+        <h2 class="text-3xl font-bold !mt-12 !mb-2">Topic feeds</h2>
+        <p class="text-gray-600 !mt-0">Curated feeds that combine related tags across my articles and newsletter — follow only the themes you care about.</p>
+        <ul class="!mx-0 space-y-8 !list-none">
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/feeds/pkm/">Knowledge Management &amp; Note-taking 🧠</a></h3>
+                    <p class="text-gray-600">Personal Knowledge Management, note-taking, Obsidian, Zettelkasten and journaling.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/feeds/pkm/rss/"><code>{{@site.url}}/feeds/pkm/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/feeds/productivity/">Productivity &amp; Personal Organization ⚡</a></h3>
+                    <p class="text-gray-600">Practical systems, habits and routines to organize your work and life.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/feeds/productivity/rss/"><code>{{@site.url}}/feeds/productivity/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/feeds/dev/">Software Development 💻</a></h3>
+                    <p class="text-gray-600">Web development, front-end, back-end, Angular, TypeScript and JavaScript — the dev content only.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/feeds/dev/rss/"><code>{{@site.url}}/feeds/dev/rss/</code></a></p>
+                </article>
+            </li>
+            <li class="border-b border-gray-200 py-8">
+                <article>
+                    <h3 class="text-2xl font-semibold !mb-2"><a href="/feeds/best/">Best Of ⭐</a></h3>
+                    <p class="text-gray-600">A curated, low-volume feed of my featured posts — the articles most worth your time.</p>
+                    <p class="!mt-4"><a class="top-link" href="{{@site.url}}/feeds/best/rss/"><code>{{@site.url}}/feeds/best/rss/</code></a></p>
+                </article>
+            </li>
+        </ul>
+
+        {{!-- ===== Per-tag feeds ===== --}}
+        <h2 class="text-3xl font-bold !mt-12 !mb-2">Any topic you like 🏷️</h2>
+        <p class="text-gray-600 !mt-0">
+            <strong>Every tag on this site has its own RSS feed.</strong> Just append <code>rss/</code>
+            to any tag URL — for example <a class="top-link" href="{{@site.url}}/tag/obsidian/rss/"><code>{{@site.url}}/tag/obsidian/rss/</code></a>.
+            A few popular ones:
+        </p>
+        <ul class="!mx-0 space-y-2 !list-none">
+            <li><a class="top-link" href="{{@site.url}}/tag/obsidian/rss/"><code>{{@site.url}}/tag/obsidian/rss/</code></a></li>
+            <li><a class="top-link" href="{{@site.url}}/tag/artificial-intelligence/rss/"><code>{{@site.url}}/tag/artificial-intelligence/rss/</code></a></li>
+            <li><a class="top-link" href="{{@site.url}}/tag/writing/rss/"><code>{{@site.url}}/tag/writing/rss/</code></a></li>
+            <li><a class="top-link" href="{{@site.url}}/tag/learning/rss/"><code>{{@site.url}}/tag/learning/rss/</code></a></li>
+            <li><a class="top-link" href="{{@site.url}}/tag/angular/rss/"><code>{{@site.url}}/tag/angular/rss/</code></a></li>
+        </ul>
+        <p class="!mt-4"><a href="/all-tags/">Browse all tags {{> "icons/arrow"}}</a></p>
+
+        {{!-- ===== How to subscribe ===== --}}
+        <h2 class="text-3xl font-bold !mt-12 !mb-2">New to RSS?</h2>
+        <p class="text-gray-600 !mt-0">
+            RSS lets you follow any site without an algorithm deciding what you see. Copy one of the
+            URLs above, open your RSS reader, and add it as a new subscription — that's it.
+            New posts show up automatically, in chronological order, with no email and no tracking.
+        </p>
+
+    </section>
+</main>
