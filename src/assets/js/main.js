@@ -367,11 +367,36 @@
 /* Responsive HTML table */
 (function () {
     const tables = document.querySelectorAll('.gh-content > table:not(.gist table)');
-    
+
     tables.forEach(function (table) {
         const wrapper = document.createElement('div');
         wrapper.className = 'gh-table';
         table.parentNode.insertBefore(wrapper, table);
         wrapper.appendChild(table);
+    });
+})();
+
+/* Native share button (Web Share API) — see partials/components/social-share.hbs */
+(function () {
+    const buttons = document.querySelectorAll('[data-share-native]');
+    if (!buttons.length) return;
+
+    // No Web Share API: fall back to the explicit share links everywhere
+    if (!navigator.share) {
+        document.querySelectorAll('.social-share').forEach(function (container) {
+            container.classList.add('is-no-native');
+        });
+        return;
+    }
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            navigator.share({
+                title: button.dataset.shareTitle || document.title,
+                url: button.dataset.shareUrl || window.location.href
+            }).catch(function () {
+                /* user dismissed the share sheet */
+            });
+        });
     });
 })();

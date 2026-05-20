@@ -1273,8 +1273,9 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--color-secondary-text);
 }
 
+/* Explicit links: shown on desktop, hidden on mobile in favour of native share */
 .social-share-links {
-    @apply flex items-center gap-1;
+    @apply hidden md:flex items-center gap-1;
 }
 
 .social-share-link {
@@ -1286,7 +1287,27 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--ghost-accent-color);
 }
 
-.social-share-link svg {
+/* Native share button (Web Share API): shown on mobile, hidden on desktop */
+.social-share-native {
+    @apply flex md:hidden items-center justify-center w-11 h-11 p-0 rounded-full border-0 bg-transparent cursor-pointer transition-colors duration-200;
+    color: var(--color-secondary-text);
+}
+
+.social-share-native:hover {
+    color: var(--ghost-accent-color);
+}
+
+/* No Web Share API support: fall back to the explicit links everywhere */
+.social-share.is-no-native .social-share-links {
+    @apply flex;
+}
+
+.social-share.is-no-native .social-share-native {
+    @apply hidden;
+}
+
+.social-share-link svg,
+.social-share-native svg {
     @apply !w-6 !h-6;
 }
 
