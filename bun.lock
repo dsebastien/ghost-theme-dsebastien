@@ -10,7 +10,7 @@
         "@tryghost/release-utils": "0.8.1",
         "beeper": "2.1.0",
         "concurrently": "9.1.0",
-        "gscan": "5.0.0",
+        "gscan": "5.2.4",
         "gulp": "4.0.2",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
@@ -890,7 +890,7 @@
 
     "graceful-fs": ["graceful-fs@4.2.11", "", {}, "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ=="],
 
-    "gscan": ["gscan@5.0.0", "", { "dependencies": { "@sentry/node": "^9.0.0", "@tryghost/config": "^0.2.18", "@tryghost/debug": "^0.1.26", "@tryghost/errors": "^1.2.26", "@tryghost/logging": "^2.4.7", "@tryghost/nql": "^0.12.5", "@tryghost/pretty-cli": "^1.2.38", "@tryghost/server": "^0.1.37", "@tryghost/zip": "^1.1.42", "chalk": "^4.1.2", "common-tags": "^1.8.2", "express": "^4.18.2", "express-hbs": "^2.4.2", "fs-extra": "^11.1.1", "glob": "^8.1.0", "lodash": "^4.17.21", "multer": "^2.0.0", "pluralize": "^8.0.0", "require-dir": "^1.2.0", "semver": "^7.5.4", "uuid": "^9.0.1", "validator": "^13.0.0" }, "bin": { "gscan": "bin/cli.js" } }, "sha512-GpLVheDa74z28I0a0xRJjMwvqL+qLwahJDF+PsiwPiKh162jUIMlhvwchE/YDqCjJ2K+iDaF4Ke04O/ANYQ6zg=="],
+    "gscan": ["gscan@5.2.4", "", { "dependencies": { "@sentry/node": "^9.0.0", "@tryghost/config": "^0.2.18", "@tryghost/debug": "^0.1.26", "@tryghost/errors": "^1.2.26", "@tryghost/logging": "^2.4.7", "@tryghost/nql": "^0.12.5", "@tryghost/pretty-cli": "^1.2.38", "@tryghost/server": "^0.1.37", "@tryghost/zip": "^1.1.42", "chalk": "^4.1.2", "common-tags": "^1.8.2", "express": "^4.18.2", "express-hbs": "^2.4.2", "fs-extra": "^11.1.1", "glob": "^8.1.0", "lodash": "^4.17.21", "multer": "^2.0.0", "pluralize": "^8.0.0", "require-dir": "^1.2.0", "semver": "^7.5.4", "uuid": "^9.0.1", "validator": "^13.0.0" }, "bin": { "gscan": "bin/cli.js" } }, "sha512-pA8o9exAyBDjojkWENzrV5wO2XwXu/pMkxcw/rYP31JjGupxqvs3FPlAN4UI+GvoOB9L/CeFLzX8huFEy79EMQ=="],
 
     "gulp": ["gulp@4.0.2", "", { "dependencies": { "glob-watcher": "^5.0.3", "gulp-cli": "^2.2.0", "undertaker": "^1.2.1", "vinyl-fs": "^3.0.0" }, "bin": { "gulp": "./bin/gulp.js" } }, "sha512-dvEs27SCZt2ibF29xYgmnwwCYZxdxhQ/+LFWlbAW8y7jt68L/65402Lz3+CKy0Ov4rOs+NERmDq7YlZaDqUIfA=="],
 
