@@ -38,12 +38,12 @@
         "beeper": "2.1.0",
         "concurrently": "9.1.0",
         "gscan": "5.2.4",
-        "gulp": "4.0.2",
+        "gulp": "5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
         "gulp-uglify": "3.0.2",
-        "gulp-zip": "5.1.0",
-        "pump": "3.0.0",
+        "gulp-zip": "6.1.0",
+        "pump": "3.0.3",
         "tailwindcss": "4.1.11"
     },
     "browserslist": [
