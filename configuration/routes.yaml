@@ -24,6 +24,10 @@ routes:
     controller: channel
     filter: "tag:[personal-knowledge-management,note-taking,obsidian,zettelkasten,journaling]"
     template: feed-pkm
+  /feeds/ai/:
+    controller: channel
+    filter: "tag:[ai,ai-2,claude-code,ai-skills]"
+    template: feed-ai
   /feeds/productivity/:
     controller: channel
     filter: "tag:[productivity,personal-organization,personal-development,habits,routines]"
