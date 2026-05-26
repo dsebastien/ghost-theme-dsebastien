@@ -55,7 +55,7 @@ function zipper(done) {
             '!dist', '!dist/**',
             '!bun.lock',
             '!gulpfile.js'
-        ]),
+        ], {encoding: false}),
         zip(filename),
         dest('../dist/')
     ], handleError(done));
