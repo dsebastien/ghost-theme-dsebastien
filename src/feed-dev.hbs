@@ -1,5 +1,9 @@
 {{!< default}}
 {{!-- Channel: /feeds/dev/ — RSS feed at /feeds/dev/rss/ (see configuration/routes.yaml) --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Articles by Sébastien Dubois on software development: web, front-end, back-end, Angular, TypeScript, and JavaScript. RSS at /feeds/dev/rss/.">
+{{/contentFor}}
 {{> "components/feed-archive"
     feedTitle="Software Development"
     feedEmoji="💻"

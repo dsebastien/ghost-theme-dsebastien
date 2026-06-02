@@ -1,5 +1,9 @@
 {{!< default}}
 {{!-- Channel: /feeds/ai/ — RSS feed at /feeds/ai/rss/ (see configuration/routes.yaml) --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Articles by Sébastien Dubois on AI for knowledge work: LLMs, AI agents, Claude, and AI-powered workflows in Obsidian and beyond. RSS at /feeds/ai/rss/.">
+{{/contentFor}}
 {{> "components/feed-archive"
     feedTitle="Artificial Intelligence"
     feedEmoji="🤖"

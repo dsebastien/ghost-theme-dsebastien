@@ -1,5 +1,9 @@
 {{!< default}}
 {{!-- Channel: /feeds/pkm/ — RSS feed at /feeds/pkm/rss/ (see configuration/routes.yaml) --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Articles by Sébastien Dubois on Personal Knowledge Management, note-taking, Obsidian, and Zettelkasten. Subscribe via RSS at /feeds/pkm/rss/.">
+{{/contentFor}}
 {{> "components/feed-archive"
     feedTitle="Knowledge Management & Note-taking"
     feedEmoji="🧠"

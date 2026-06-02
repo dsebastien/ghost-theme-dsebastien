@@ -1,5 +1,9 @@
 {{!< default}}
 {{!-- Channel: /feeds/best/ — RSS feed at /feeds/best/rss/ (see configuration/routes.yaml) --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="A curated, low-volume feed of Sébastien Dubois's featured posts. The articles he considers most worth your time. RSS at /feeds/best/rss/.">
+{{/contentFor}}
 {{> "components/feed-archive"
     feedTitle="Best Of"
     feedEmoji="⭐"

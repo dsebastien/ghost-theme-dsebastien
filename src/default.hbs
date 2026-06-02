@@ -142,6 +142,10 @@
     </script>
     {{/if}}
 
+    {{!-- Per-template meta description override (used by custom routes like /newsletter/, /news/, /start/, etc.
+         that don't have a Ghost post/page/tag context for {{ghost_head}} to draw from). --}}
+    {{#block "meta_description"}}{{/block}}
+
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
 

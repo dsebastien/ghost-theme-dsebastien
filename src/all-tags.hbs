@@ -1,6 +1,10 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
+{{#contentFor "meta_description"}}
+<meta name="description" content="Every topic on Sébastien Dubois's blog, from knowledge management to AI to software craftsmanship. Browse by tag and explore the archive.">
+{{/contentFor}}
+
 <main class="gh-main gh-outer all-tags-page">
     {{!-- Get total count for header --}}
     {{#get "tags" include="count.posts" limit="1"}}

@@ -1,5 +1,9 @@
 {{!< default}}
 {{!-- Channel: /feeds/productivity/ — RSS feed at /feeds/productivity/rss/ (see configuration/routes.yaml) --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Articles by Sébastien Dubois on productivity, personal organization, habits, and routines. Practical systems to organize your work and life. RSS at /feeds/productivity/rss/.">
+{{/contentFor}}
 {{> "components/feed-archive"
     feedTitle="Productivity & Personal Organization"
     feedEmoji="⚡"
