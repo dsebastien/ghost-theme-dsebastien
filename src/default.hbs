@@ -146,6 +146,31 @@
          that don't have a Ghost post/page/tag context for {{ghost_head}} to draw from). --}}
     {{#block "meta_description"}}{{/block}}
 
+    {{!-- Fallback og:image and twitter:image when the current post/page has no feature_image,
+         or when there is no post/page context at all (custom routes, tag pages without feature_image).
+         When Ghost {{ghost_head}} also emits these (because feature_image IS set), it's fine —
+         {{ghost_head}} runs after this so its value wins for crawlers that pick the last occurrence,
+         and we explicitly skip emitting our own when the context already has a feature_image. --}}
+    {{#is "post, page"}}
+        {{#unless feature_image}}
+            <meta property="og:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+            <meta name="twitter:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+            <meta name="twitter:card" content="summary_large_image">
+        {{/unless}}
+    {{else}}
+        {{#is "tag"}}
+            {{#unless feature_image}}
+                <meta property="og:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+                <meta name="twitter:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+                <meta name="twitter:card" content="summary_large_image">
+            {{/unless}}
+        {{else}}
+            <meta property="og:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+            <meta name="twitter:image" content="{{@site.url}}/assets/images/cover_image_default.png">
+            <meta name="twitter:card" content="summary_large_image">
+        {{/is}}
+    {{/is}}
+
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
 
