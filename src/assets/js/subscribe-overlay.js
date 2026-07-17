@@ -75,3 +75,28 @@
         }
     });
 })();
+
+/* Floating subscribe bubble: fade out when the footer's bottom bar is in
+   view so it never covers the About/Now/Affiliates/RSS links — by then the
+   footer's own subscribe form is on screen anyway. */
+(function () {
+    'use strict';
+
+    var bubble = document.getElementById('subscribe-bubble');
+    var footerBottom = document.getElementById('gh-footer-bottom');
+    if (!bubble || !footerBottom || !('IntersectionObserver' in window)) {
+        return;
+    }
+
+    var observer = new IntersectionObserver(
+        function (entries) {
+            if (entries[0].isIntersecting) {
+                bubble.classList.add('is-hidden');
+            } else {
+                bubble.classList.remove('is-hidden');
+            }
+        },
+        { rootMargin: '0px 0px 40px 0px' }
+    );
+    observer.observe(footerBottom);
+})();
