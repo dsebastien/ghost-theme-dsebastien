@@ -2897,8 +2897,10 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply grid grid-cols-1 md:grid-cols-3 gap-4;
 }
 
+/* !no-underline / explicit colours override .gh-content a (the router lives
+   inside the prose column on /start/ and the homepage hero). */
 .path-router-option {
-    @apply flex flex-col gap-1 p-5 rounded-lg no-underline;
+    @apply flex flex-col gap-2 p-5 rounded-lg !no-underline;
     border: 1px solid var(--color-border);
     background-color: var(--color-white);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -2909,18 +2911,23 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     border-color: var(--ghost-accent-color);
 }
 
+/* Heading + arrow on one row; arrow is its own flex child so a long heading
+   never pushes it to a new line. */
 .path-router-option strong {
-    font-size: 1.7rem;
+    @apply flex items-center justify-between gap-3;
+    font-size: 1.55rem;
+    line-height: 1.3;
     color: var(--color-primary-text);
 }
 
 .path-router-option strong::after {
-    content: " →";
+    @apply shrink-0;
+    content: "→";
     color: var(--ghost-accent-color);
 }
 
 .path-router-option span {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     line-height: 1.45;
     color: var(--color-secondary-text);
 }
