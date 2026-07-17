@@ -1,0 +1,54 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!--
+    /tags/ hub (articles plan Tier 1.2): main topics up top (mirroring the
+    /blog/ section set), then the full tag index driven by ONE {{#get "tags"}}
+    query — replaces the retired all-tags.hbs and its ten copy-pasted batches.
+--}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Browse every topic Sébastien Dubois writes about: Obsidian, AI, Personal Knowledge Management, productivity, learning, software development, and more.">
+{{/contentFor}}
+
+<main class="gh-main gh-outer tags-hub">
+    <section class="gh-inner !mt-32">
+        <h1 class="gh-article-title is-title">Topics 🏷️</h1>
+        <p class="gh-article-excerpt">Every topic on this site. Start with a main topic, or dive into the full index below.</p>
+    </section>
+
+    <section class="gh-inner tags-hub-main">
+        <h2 class="section-title">Main topics</h2>
+        <div class="tags-hub-clusters">
+            <a class="tags-hub-cluster" href="/tag/obsidian/"><strong>Obsidian</strong><span>The tool at the heart of my knowledge system</span></a>
+            <a class="tags-hub-cluster" href="/feeds/ai/"><strong>AI</strong><span>AI as a real thinking partner — skills, agents, workflows</span></a>
+            <a class="tags-hub-cluster" href="/tag/personal-knowledge-management/"><strong>Personal Knowledge Management</strong><span>Capture, organize, and leverage what you know</span></a>
+            <a class="tags-hub-cluster" href="/tag/knowledge-work/"><strong>Knowledge Work</strong><span>Thinking, deciding, and creating for a living</span></a>
+            <a class="tags-hub-cluster" href="/feeds/productivity/"><strong>Productivity &amp; Organization</strong><span>Systems and habits that stick</span></a>
+            <a class="tags-hub-cluster" href="/tag/learning/"><strong>Learning</strong><span>Learn faster, retain more, connect ideas</span></a>
+            <a class="tags-hub-cluster" href="/tag/personal-development/"><strong>Personal Development &amp; Mental Health</strong><span>Clarity, direction, and balance</span></a>
+            <a class="tags-hub-cluster" href="/tag/writing/"><strong>Writing</strong><span>From notes to published work</span></a>
+            <a class="tags-hub-cluster" href="/feeds/dev/"><strong>Software Development</strong><span>Two decades of building software</span></a>
+        </div>
+    </section>
+
+    <section class="gh-inner tags-hub-index">
+        <h2 class="section-title">All topics</h2>
+        <div class="tags-hub-cloud">
+            {{!-- Ghost caps {{#get}} at 100 — two pages cover up to 200 tags (176 today) --}}
+            {{#get "tags" limit="100" page="1" include="count.posts" filter="visibility:public" order="count.posts desc" as |allTags|}}
+                {{#foreach allTags}}
+                    {{#if count.posts}}
+                        <a class="tags-hub-tag" href="{{url}}">{{name}} <span class="tags-hub-count">{{count.posts}}</span></a>
+                    {{/if}}
+                {{/foreach}}
+            {{/get}}
+            {{#get "tags" limit="100" page="2" include="count.posts" filter="visibility:public" order="count.posts desc" as |allTags|}}
+                {{#foreach allTags}}
+                    {{#if count.posts}}
+                        <a class="tags-hub-tag" href="{{url}}">{{name}} <span class="tags-hub-count">{{count.posts}}</span></a>
+                    {{/if}}
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+</main>

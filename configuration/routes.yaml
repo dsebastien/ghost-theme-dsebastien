@@ -16,8 +16,8 @@ routes:
     filter: "tag:blog"
     template: all-articles
     rss: false
-  /all-tags/:
-    template: all-tags
+  /tags/:
+    template: tags-hub
   /feeds/:
     template: feeds
 

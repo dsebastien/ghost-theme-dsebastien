@@ -1,5 +1,12 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!--
+    Enriched tag archive (articles plan Tier 1.2): hero with description and
+    count, "Start with the best" featured strip, paginated feed, Knowii offer
+    band, and a path back to the /tags/ hub. Note: taxonomy archives include
+    every post type carrying the tag (articles, newsletters, news) — Ghost
+    taxonomies cannot be filtered from routes.yaml.
+--}}
 
 <main class="gh-main gh-outer">
 
@@ -7,6 +14,7 @@
         <section class="gh-archive{{#if feature_image}} has-image{{/if}} has-sidebar gh-inner">
             <div class="gh-archive-inner">
                 <header class="gh-archive-wrapper">
+                    <p class="gh-archive-kicker"><a href="/tags/">All topics</a> → {{name}}</p>
                     <h1 class="gh-article-title is-title">{{name}}</h1>
                     {{#if description}}
                         <p class="gh-article-excerpt">{{description}}</p>
@@ -17,6 +25,34 @@
         </section>
     {{/tag}}
 
+    {{!-- Curation without new admin concepts: featured articles in this tag --}}
+    {{#get "posts" filter="tag:{{tag.slug}}+featured:true" include="tags" limit=3 as |best|}}
+        {{#if best.length}}
+            <section class="gh-inner tag-best-of">
+                <h2 class="section-title">Start with the best</h2>
+                <div class="gh-feed mt-4">
+                    {{#foreach best}}
+                        {{> "post-card" size="large"}}
+                    {{/foreach}}
+                </div>
+            </section>
+        {{/if}}
+    {{/get}}
+
     {{> "components/post-list" feed="archive" showTitle=false}}
+
+    <section class="gh-inner tag-footer">
+        {{> "components/offer-card" topic="tag-archive"
+            heading="Tired of information overwhelm? Build a system that works:"
+            productEmoji="🎯" productName="Knowii Community"
+            productDesc="Community + courses + tools in one place — pick the tier that fits."
+            productUrl="https://www.store.dsebastien.net/product/knowii-community/"
+            productId="knowii-community" productPrice="From €14.99/quarter"
+            magnetName="Knowledge System Checklist"
+            magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"
+            hideKnowii=true}}
+
+        <p class="tag-footer-browse"><a href="/tags/">Browse all topics {{> "icons/arrow"}}</a></p>
+    </section>
 
 </main>

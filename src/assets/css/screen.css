@@ -2999,13 +2999,21 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .blog-topic-nav-inner {
-    @apply flex items-center gap-2 py-3 overflow-x-auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    /* Desktop: wrap into as many rows as needed — every pill always visible */
+    @apply flex flex-wrap items-center gap-2 py-3;
 }
 
-.blog-topic-nav-inner::-webkit-scrollbar {
-    display: none;
+@media (max-width: 767px) {
+    /* Mobile: single swipeable row, hidden scrollbar */
+    .blog-topic-nav-inner {
+        @apply flex-nowrap overflow-x-auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .blog-topic-nav-inner::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .blog-topic-pill {
@@ -4053,5 +4061,124 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .contextual-offer-knowii {
     @apply !mt-4 !mb-0;
     font-size: 1.5rem;
+    color: var(--color-secondary-text);
+}
+
+/* Tags hub (/tags/) + enriched tag pages (Tier 1.2) */
+
+.tags-hub-clusters {
+    @apply grid gap-4 mt-4;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tags-hub-cluster {
+    @apply block rounded-lg no-underline;
+    padding: 16px 20px;
+    border: 1px solid var(--color-border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tags-hub-cluster:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.08);
+}
+
+.tags-hub-cluster strong {
+    @apply block text-2xl font-bold;
+    color: var(--color-primary-text);
+}
+
+.tags-hub-cluster span {
+    @apply block mt-1;
+    font-size: 1.4rem;
+    color: var(--color-secondary-text);
+}
+
+.tags-hub-index {
+    @apply mt-12 mb-16;
+}
+
+.tags-hub-cloud {
+    @apply flex flex-wrap gap-2 mt-4;
+}
+
+.tags-hub-tag {
+    @apply rounded-full no-underline;
+    padding: 0.5em 1em;
+    font-size: 1.3rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-darker-gray);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.tags-hub-tag:hover {
+    border-color: var(--ghost-accent-color);
+    color: var(--ghost-accent-color);
+}
+
+.tags-hub-count {
+    color: var(--color-secondary-text);
+    font-size: 1.1rem;
+}
+
+.gh-archive-kicker {
+    @apply text-sm uppercase tracking-wide !mb-2;
+    font-size: 1.2rem;
+    color: var(--color-secondary-text);
+}
+
+.tag-best-of {
+    @apply mt-8;
+}
+
+.tag-footer {
+    @apply mb-16;
+}
+
+.tag-footer-browse {
+    @apply text-center font-medium;
+    font-size: 1.5rem;
+}
+
+/* Keep-reading block on posts (Tier 1.4) */
+
+.keep-reading {
+    @apply mt-16;
+}
+
+.keep-reading-topic {
+    font-size: 1.5rem;
+    color: var(--color-secondary-text);
+}
+
+.keep-reading-feed {
+    @apply mt-4;
+}
+
+.keep-reading-prevnext {
+    @apply grid gap-4 mt-8;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.keep-reading-adjacent {
+    @apply block rounded-lg no-underline font-medium;
+    padding: 14px 18px;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary-text);
+    font-size: 1.5rem;
+    transition: border-color 0.2s;
+}
+
+.keep-reading-adjacent:hover {
+    border-color: var(--ghost-accent-color);
+}
+
+.keep-reading-newer {
+    text-align: right;
+}
+
+.keep-reading-direction {
+    @apply block text-sm !mb-1;
+    font-size: 1.2rem;
     color: var(--color-secondary-text);
 }

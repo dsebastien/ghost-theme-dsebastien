@@ -12,21 +12,27 @@
             "position": 1,
             "name": "Home",
             "item": "{{@site.url}}"
-        }{{#if primary_tag}},
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "{{primary_tag.name}}",
-            "item": "{{primary_tag.url}}"
         },
         {
             "@type": "ListItem",
+            "position": 2,
+            "name": "{{#match primary_tag.slug "newsletter"}}Newsletter{{else match primary_tag.slug "news"}}News{{else}}Articles{{/match}}",
+            "item": "{{@site.url}}/{{#match primary_tag.slug "newsletter"}}newsletter{{else match primary_tag.slug "news"}}news{{else}}blog{{/match}}/"
+        }{{#if tags.[1]}},
+        {
+            "@type": "ListItem",
             "position": 3,
+            "name": "{{tags.[1].name}}",
+            "item": "{{tags.[1].url}}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
             "name": "{{title}}"
         }{{else}},
         {
             "@type": "ListItem",
-            "position": 2,
+            "position": 3,
             "name": "{{title}}"
         }{{/if}}
     ]
@@ -95,6 +101,9 @@
             </aside>
                 {{/unless}}
             {{/unless}}
+
+            {{!-- Keep reading: topical loop BEFORE any product signature (Tier 1.4) --}}
+            {{> "components/keep-reading"}}
 
             {{!-- Author Signature --}}
             <hr class="signature-divider" />

@@ -152,7 +152,10 @@ Converted to a channel (`controller: channel`, `filter: "tag:blog"`, `rss: false
 
 **Why**: guarantees every one of the 515+ posts is reachable by crawlers regardless of catalog growth; removes the `{{#get}}` cap risk.
 
-### 1.2 Ship `/tags/` hub grouped by the 7 pillars + kill the `/all-tags/` copy-paste
+### 1.2 Ship `/tags/` hub + enriched tag pages — ✅ DONE 2026-07-17
+Shipped: `tags-hub.hbs` at `/tags/` (main-topic cards + full 176-tag index from two paginated `{{#get "tags"}}` queries), `all-tags.hbs` deleted, `/all-tags`→`/tags/` 301s, `tag.hbs` enriched (kicker to /tags/, description hero, "Start with the best" featured strip, Knowii offer band, browse-all footer). Related-tags cooccurrence + curated `#start-here` strips deferred. Original spec below.
+
+### ~~1.2 original~~ Ship `/tags/` hub grouped by the 7 pillars + kill the `/all-tags/` copy-paste
 
 **Build**
 - Add `/tags/` route in `routes.yaml` → `template: tags-hub`. 301 `/all-tags/` → `/tags/`.
@@ -212,7 +215,10 @@ Shipped as `offer-card.hbs` (presentational) + `contextual-offer.hbs` (post-cont
 - Portal signup labels for segmentation must be created in Ghost admin.
 - Track with `data-cta-topic="<topic>"` for Plausible custom events so per-topic performance is visible from day 1.
 
-### 1.4 End-of-article discovery block — related + prev/next + series-aware (before any product signature)
+### 1.4 End-of-article discovery block — ✅ DONE 2026-07-17 (series-awareness deferred to T2.5)
+Shipped `keep-reading.hbs`: "More on {topic}" (3 compact cards via tags.[1], featured-first) + older/newer-article prev/next, rendered before the signature/offer. Original spec below.
+
+### ~~1.4 original~~ End-of-article discovery block — related + prev/next + series-aware (before any product signature)
 
 **Build**
 - New `src/partials/components/keep-reading.hbs` with 4 rows, rendered INSIDE `src/post.hbs` BEFORE the contextual offer:
@@ -237,7 +243,10 @@ Shipped as `offer-card.hbs` (presentational) + `contextual-offer.hbs` (post-cont
 - Multiple nested `{{#get}}` per post render costs API round-trips at build/cache time. Ghost caches these per post; acceptable.
 - Inline "further reading" links between H2s (client-side JS injection) are NOT crawlable as internal links for SEO — do them but don't count on them for topical mesh. Server-side `keep-reading.hbs` is what SEO needs.
 
-### 1.5 Sticky auto-generated TOC on long-form posts
+### 1.5 Sticky auto-generated TOC on long-form posts — ✅ ALREADY EXISTS
+The theme already ships a client-side TOC (`assets/js/main.js` builds `nav.article-toc` with a Contents toggle). Nothing to build; the plan's finding was stale.
+
+### ~~1.5 original~~ Sticky auto-generated TOC on long-form posts
 
 **Build**
 - `src/assets/js/toc.js` — scans `.gh-content h2, .gh-content h3` on load, adds anchor IDs, renders sticky right-rail TOC on `lg+`, collapsible `<details>` at top on `< lg`. IntersectionObserver for scroll-spy active state.

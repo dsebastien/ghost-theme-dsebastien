@@ -1,0 +1,32 @@
+{{!--
+    Keep-reading block (articles plan Tier 1.4). POST CONTEXT ONLY.
+    Rendered AFTER the article content and BEFORE any product signature —
+    reclaims the highest-intent moment for another article instead of a
+    sales pitch. Related posts key off the first TOPIC tag (tags.[1] —
+    tags.[0] is the blog/newsletter/news content-type marker).
+--}}
+<aside class="keep-reading">
+    <h2 id="keep-reading">Keep reading</h2>
+
+    {{#if tags.[1]}}
+        {{#get "posts" filter="tag:blog+tag:{{tags.[1].slug}}+id:-{{id}}" include="tags" order="featured:desc, published_at desc" limit=3 as |related|}}
+            {{#if related.length}}
+                <p class="keep-reading-topic">More on <a href="/tag/{{tags.[1].slug}}/">{{tags.[1].name}}</a>:</p>
+                <div class="gh-feed keep-reading-feed">
+                    {{#foreach related}}
+                        {{> "post-card" size="compact" lazyLoad=true}}
+                    {{/foreach}}
+                </div>
+            {{/if}}
+        {{/get}}
+    {{/if}}
+
+    <nav class="keep-reading-prevnext" aria-label="More articles">
+        {{#prev_post in="primary_tag"}}
+            <a class="keep-reading-adjacent" href="{{url}}"><span class="keep-reading-direction">← Older article</span>{{title}}</a>
+        {{/prev_post}}
+        {{#next_post in="primary_tag"}}
+            <a class="keep-reading-adjacent keep-reading-newer" href="{{url}}"><span class="keep-reading-direction">Newer article →</span>{{title}}</a>
+        {{/next_post}}
+    </nav>
+</aside>

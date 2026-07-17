@@ -19,6 +19,10 @@
   # === Internal Redirects ===
   /author/dsebastien: /about/
   /articles: /blog/
+  /all-tags: /tags/
+  /all-tags/: /tags/
+  /topics: /tags/
+  /categories: /tags/
 
   # === Community ===
   /kmb: https://knowledge-management-for-beginners.com/
