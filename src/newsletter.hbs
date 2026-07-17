@@ -31,47 +31,8 @@
                     </section>
                 {{/unless}}
 
-                {{!-- Tier comparison: visible to EVERYONE — logged-in free members
-                     are the warmest upgrade audience; only the Free card is
-                     redundant for them. --}}
-                <section class="newsletter-tiers">
-                    <h3>{{#if @member}}Go further{{else}}Membership tiers{{/if}}</h3>
-                    <div class="newsletter-tiers-grid">
-                        {{#unless @member}}
-                        <div class="newsletter-tier">
-                            <h4>Free</h4>
-                            <ul>
-                                <li>✅ New newsletter editions in your inbox</li>
-                                <li>✅ All articles &amp; the full archive</li>
-                            </ul>
-                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
-                        </div>
-                        {{/unless}}
-                        {{#unless @member.paid}}
-                        <div class="newsletter-tier">
-                            <h4>Supporter</h4>
-                            <ul>
-                                <li>✅ Everything in Free</li>
-                                <li>✅ Exclusive discounts</li>
-                                <li>✅ Early access to products</li>
-                                <li>✅ Support my work as a creator 🌹</li>
-                            </ul>
-                            <a href="#/portal/signup" data-portal="{{#if @member}}upgrade{{else}}signup{{/if}}" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
-                        </div>
-                        {{/unless}}
-                        <div class="newsletter-tier newsletter-tier-highlight">
-                            <span class="newsletter-tier-badge">RECOMMENDED</span>
-                            <h4>Knowii Community</h4>
-                            <ul>
-                                <li>✅ A private community of knowledge workers</li>
-                                <li>✅ Everything in Free, plus workshops, courses &amp; tools — depending on the tier you pick</li>
-                                <li>✅ Up to €700+ of my products &amp; courses included</li>
-                                <li>✅ <span data-price="knowii-community">From €14.99/quarter</span></li>
-                            </ul>
-                            <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="gh-button newsletter-tier-cta">Join Knowii →</a>
-                        </div>
-                    </div>
-                </section>
+                {{!-- Tier comparison: visible to EVERYONE — see components/membership-tiers --}}
+                {{> "components/membership-tiers"}}
 
             </section>
 

@@ -3217,8 +3217,13 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     max-width: 720px;
 }
 
-.lead-magnet-title {
-    @apply text-3xl font-bold;
+/* Compact aside sizing: the heading must stay well below h2.section-title
+   (text-4xl). Scoped selector + !important because `.gh-content h3`
+   (1.3em of the 1.7rem content size ≈ 22px, more with --factor) and
+   `.homepage h3` (!text-3xl) otherwise out-specify it on /start/ and home. */
+.lead-magnet .lead-magnet-title {
+    @apply font-bold;
+    font-size: 1.8rem !important;
     color: var(--color-primary-text);
 }
 
@@ -3228,8 +3233,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     line-height: 1.45;
 }
 
+/* The base .gh-form is text-3xl (hero-sized, kept for the newsletter page);
+   input + button inherit font-size, so one override compacts both.
+   Hierarchy: title 1.8rem > desc 1.5rem > form 1.4rem > note 1.3rem. */
 .lead-magnet .gh-form {
     @apply w-full;
+    font-size: 1.4rem;
 }
 
 .lead-magnet-note {
@@ -3426,12 +3435,123 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     }
 }
 
+/* Subscribe overlay (theme-owned signup dialog — replaces Portal's modal
+/* on our own subscribe buttons; see components/subscribe-overlay.hbs and
+/* assets/js/subscribe-overlay.js)
+/* ---------------------------------------------------------- */
+
+.subscribe-overlay {
+    @apply fixed inset-0 flex items-center justify-center opacity-0;
+    /* Above the dropdown menu (90) and the sticky CTA bar (2999999) */
+    z-index: 3999999;
+    padding: max(4vmin, 20px);
+    transition: opacity 0.25s ease;
+}
+
+.subscribe-overlay[hidden] {
+    @apply hidden;
+}
+
+.subscribe-overlay.is-open {
+    @apply opacity-100;
+}
+
+.subscribe-overlay-backdrop {
+    @apply absolute inset-0 cursor-pointer;
+    background: rgb(0 0 0 / 0.6);
+}
+
+.subscribe-overlay-panel {
+    @apply relative w-full rounded-lg text-center;
+    max-width: 600px;
+    background-color: var(--background-color);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
+    padding: 48px 40px 36px;
+    /* Keep the panel (and its close button) on-screen on short viewports
+       (landscape phones, zoomed laptops) — the page behind is scroll-locked */
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
+}
+
+.subscribe-overlay-title {
+    @apply text-4xl font-bold mb-4;
+}
+
+.subscribe-overlay-desc {
+    @apply text-2xl mb-3;
+    color: var(--color-secondary-text);
+}
+
+.subscribe-overlay-social-proof {
+    @apply text-xl font-medium mb-8;
+    color: var(--color-secondary-text);
+}
+
+.subscribe-overlay-panel .gh-form {
+    /* Extra bottom margin leaves room for the absolutely positioned
+       [data-members-error] message below the form */
+    @apply mx-auto mb-14;
+}
+
+.subscribe-overlay-more {
+    @apply text-xl;
+    color: var(--color-secondary-text);
+}
+
+.subscribe-overlay-more a {
+    @apply underline;
+}
+
+.subscribe-overlay-close {
+    @apply absolute flex items-center justify-center border-0 bg-transparent cursor-pointer;
+    right: 12px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    color: var(--color-secondary-text);
+}
+
+.subscribe-overlay-close:hover {
+    color: var(--color-primary-text);
+}
+
+.subscribe-overlay-close svg {
+    @apply w-4 h-4;
+}
+
+@media (max-width: 576px) {
+    /* Bottom sheet on mobile */
+    .subscribe-overlay {
+        @apply items-end p-0;
+    }
+
+    .subscribe-overlay-panel {
+        @apply rounded-b-none;
+        max-width: none;
+        max-height: 90dvh;
+        padding: 40px 20px 28px;
+    }
+
+    .subscribe-overlay-title {
+        @apply text-3xl;
+    }
+}
+
 /* Footer
 /* ---------------------------------------------------------- */
 .gh-footer {
     margin-top: 4vw;
     font-size: 1.5rem;
     color: var(--color-darker-gray);
+    /* Subtle dark gradient tinted with the accent color at the bottom edge */
+    background: linear-gradient(
+        165deg,
+        var(--color-gray-700, #364153) 0%,
+        var(--color-gray-800, #1e2939) 55%,
+        color-mix(in srgb, var(--ghost-accent-color, #fd3585) 16%, var(--color-gray-900, #101828)) 100%
+    );
 }
 
 .gh-footer.has-accent-color {
@@ -4192,4 +4312,46 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply block text-sm !mb-1;
     font-size: 1.2rem;
     color: var(--color-secondary-text);
+}
+
+/* Floating subscribe bubble — theme-owned replacement for Portal's launcher.
+   Hidden on post pages (sticky-cta bottom bar covers subscribe there). */
+
+.subscribe-bubble {
+    @apply fixed flex items-center gap-2 rounded-full font-semibold no-underline;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2999998;
+    padding: 12px 18px;
+    font-size: 1.4rem;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subscribe-bubble:hover {
+    @apply opacity-100;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.3);
+    color: var(--color-white);
+}
+
+.subscribe-bubble svg {
+    width: 18px;
+    height: 18px;
+}
+
+.post-template .subscribe-bubble {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .subscribe-bubble {
+        padding: 12px;
+    }
+
+    .subscribe-bubble-label {
+        @apply hidden;
+    }
 }

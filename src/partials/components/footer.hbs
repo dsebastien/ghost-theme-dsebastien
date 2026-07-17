@@ -13,41 +13,41 @@
     {{/unless}}
 {{/unless}}
 
-<footer class="gh-footer gh-outer bg-gray-700 border-t-4 border-t-gray-800 border-solid xl:rounded-t-xl xl:!mx-32">
-    <div class="gh-footer-inner gh-inner py-12 md:py-20 max-w-5xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-12 md:gap-16">
-            
-            <!-- About Column -->
-            <div class="space-y-8 md:space-y-10 flex-1 shrink-0">
+<footer class="gh-footer gh-outer border-t-4 border-t-gray-900 border-solid xl:rounded-t-xl xl:!mx-32">
+    <div class="gh-footer-inner gh-inner py-12 md:py-20 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 md:gap-14">
+
+            <!-- Brand Column -->
+            <div class="space-y-8 md:space-y-10">
                 <div class="gh-footer-logo flex flex-col xl:flex-row items-center gap-4">
                     <img src="{{asset "assets/images/developassion-logo.png"}}" alt="{{@site.title}}" class="h-12 md:h-16 w-auto" width="64" height="64">
                     <span class="!text-4xl md:!text-5xl font-bold text-gray-100">{{@site.title}}</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center xl:items-start">
                     <p class="!mt-4 !text-2xl text-gray-200 font-medium max-w-md xl:max-w-none text-center xl:text-left">{{@site.description}}</p>
                 </div>
-                <div class="flex flex-row items-center justify-center pt-4 gap-8 md:gap-10">
-                    <a href="https://x.com/@dsebastien" 
+                <div class="flex flex-row items-center justify-center xl:justify-start pt-4 gap-8 md:gap-10">
+                    <a href="https://x.com/@dsebastien"
                        class="!text-white hover:!text-gray-200">
                         {{> "icons/x"}}
                         <span class="sr-only">X</span>
                     </a>
-                    <a href="https://bsky.app/profile/dsebastien.net" 
+                    <a href="https://bsky.app/profile/dsebastien.net"
                        class="!text-white hover:!text-blue-400">
                         {{> "icons/bluesky"}}
                         <span class="sr-only">Bluesky</span>
                     </a>
-                    <a href="https://www.youtube.com/@dsebastien" 
+                    <a href="https://www.youtube.com/@dsebastien"
                        class="!text-red-500">
                         {{> "icons/youtube"}}
                         <span class="sr-only">YouTube</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/sebastiend" 
+                    <a href="https://www.linkedin.com/in/sebastiend"
                        class="!text-white hover:!text-blue-400">
                         {{> "icons/linkedin"}}
                         <span class="sr-only">LinkedIn</span>
                     </a>
-                    <a href="https://github.com/dsebastien" 
+                    <a href="https://github.com/dsebastien"
                        class="!text-white hover:!text-gray-200">
                         {{> "icons/github"}}
                         <span class="sr-only">GitHub</span>
@@ -55,41 +55,58 @@
                 </div>
             </div>
 
-            <!-- Explore -->
+            <!-- Content -->
             <div class="footer-link-group">
                 <div>
-                    <h3>Explore</h3>
+                    <h3>Content</h3>
                     <ul>
-                        <li><a href="/blog" class="footer-link">Articles ✍️</a></li>
-                        <li><a href="/newsletter" class="footer-link">Newsletter 💌</a></li>
-                        <li><a href="/join-the-knowii-community-and-fix-your-information-overload-problem/" class="footer-link">Community 🧬</a></li>
-                        <li><a href="https://concepts.dsebastien.net" class="footer-link">Concepts 💡</a></li>
-                        <li><a href="https://tools.dsebastien.net" class="footer-link">Tools 🛠️</a></li>
-                        <li><a href="/now" class="footer-link">Now 🚀</a></li>
-                        <li><a href="/feeds" class="footer-link">RSS Feeds 📡</a></li>
-                        <li><a href="/about" class="footer-link">About ☕</a></li>
+                        <li><a href="/start/" class="footer-link">Start Here 🚀</a></li>
+                        <li><a href="/blog/" class="footer-link">Articles ✍️</a></li>
+                        <li><a href="/newsletter/" class="footer-link">Newsletter 💌</a></li>
+                        <li><a href="/news/" class="footer-link">News 📰</a></li>
+                        <li><a href="/tags/" class="footer-link">Topics 🏷️</a></li>
+                        <li><a href="/feeds/" class="footer-link">All Feeds 📡</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Products & Services -->
+            <!-- Products -->
             <div class="footer-link-group">
                 <div>
-                    <h3>Products &amp; Services</h3>
+                    <h3>Products</h3>
                     <ul>
-                        <li><a href="https://store.dsebastien.net" class="footer-link">Store 🛒</a></li>
-                        <li><a href="/courses" class="footer-link">Courses 📚</a></li>
-                        <li><a href="/books" class="footer-link">Books 📖</a></li>
-                        <li><a href="https://store.dsebastien.net/product/pkm-coaching" class="footer-link">Coaching 🦉</a></li>
-                        <li><a href="https://www.dsebastien.net/knowii-affiliate-program/" class="footer-link">Affiliate Program 🤝</a></li>
+                        <li><a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="footer-link">Knowii Community 🧬</a></li>
+                        <li><a href="https://store.dsebastien.net/product/obsidian-starter-kit" rel="noopener" class="footer-link">Obsidian Starter Kit 🚀</a></li>
+                        <li><a href="https://store.dsebastien.net/product/knowledge-worker-kit" rel="noopener" class="footer-link">Knowledge Worker Kit 💼</a></li>
+                        <li><a href="https://knowledge-management-for-beginners.com" rel="noopener" class="footer-link">KM for Beginners 📚</a></li>
+                        <li><a href="https://store.dsebastien.net" rel="noopener" class="footer-link">Browse All Products 🛒</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Free Resources -->
+            <div class="footer-link-group">
+                <div>
+                    <h3>Free Resources</h3>
+                    <ul>
+                        <li><a href="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian" class="footer-link">Beginner's Guide to Obsidian 🗺️</a></li>
+                        <li><a href="https://www.dsebastien.net/free-knowledge-management-system-checklist" class="footer-link">Knowledge System Checklist ✅</a></li>
+                        <li><a href="https://www.dsebastien.net/free-pkm-tools-database" class="footer-link">PKM Tools Database 🛠️</a></li>
+                        <li><a href="https://concepts.dsebastien.net" class="footer-link">Concepts &amp; Frameworks 💡</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="!mt-12 md:mt-16 pt-6 md:pt-8 border-t border-gray-400">
-            <div class="mt-4 text-center">
+            <div class="mt-4 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="md:!text-2xl text-gray-200">&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+                <ul class="!list-none flex flex-row items-center gap-6 md:gap-8 pl-0 md:!text-2xl">
+                    <li><a href="/about/" class="footer-link !min-h-0">About</a></li>
+                    <li><a href="/now/" class="footer-link !min-h-0">Now</a></li>
+                    <li><a href="https://www.dsebastien.net/knowii-affiliate-program/" class="footer-link !min-h-0">Affiliates</a></li>
+                    <li><a href="/feeds/" class="footer-link !min-h-0">RSS</a></li>
+                </ul>
             </div>
         </div>
     </div>

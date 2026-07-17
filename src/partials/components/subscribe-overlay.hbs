@@ -1,0 +1,27 @@
+{{!--
+    Theme-owned subscribe overlay — replaces Ghost Portal's signup modal on
+    OUR subscribe buttons (see assets/js/subscribe-overlay.js). Portal itself
+    stays for signin/account/plans and as the no-JS fallback.
+
+    Triggers: any element with data-subscribe-overlay. Those triggers keep
+    href="#/portal/signup" but deliberately do NOT carry data-portal — Portal
+    binds click handlers to [data-portal] elements, so keeping the attribute
+    would open Portal's modal alongside this one. Without JS the plain hash
+    href still opens Portal (it reacts to #/portal/* hash changes).
+
+    Only rendered for logged-out visitors: every trigger is inside an
+    {{#unless @member}} block anyway.
+--}}
+{{#unless @member}}
+<div id="subscribe-overlay" class="subscribe-overlay" role="dialog" aria-modal="true" aria-labelledby="subscribe-overlay-title" hidden>
+    <div class="subscribe-overlay-backdrop" data-subscribe-overlay-close></div>
+    <div class="subscribe-overlay-panel">
+        <button class="subscribe-overlay-close" aria-label="Close" title="Close" data-subscribe-overlay-close>{{> "icons/close"}}</button>
+        <h2 id="subscribe-overlay-title" class="subscribe-overlay-title is-title">Turn Information Overload into Clear Thinking</h2>
+        <p class="subscribe-overlay-desc">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
+        <p class="subscribe-overlay-social-proof">{{@custom.stat_newsletter_members}} readers already subscribed ✨</p>
+        {{> "email-subscription" email_field_id="overlay-email"}}
+        <p class="subscribe-overlay-more">Want to go further? <a href="#/portal/signup" data-portal="signup">Become a Supporter</a> · <a href="https://www.store.dsebastien.net/product/knowii-community/" rel="noopener">Join the Knowii Community</a></p>
+    </div>
+</div>
+{{/unless}}

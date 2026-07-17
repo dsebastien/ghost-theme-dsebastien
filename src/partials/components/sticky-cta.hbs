@@ -8,7 +8,10 @@
     <div id="sticky-cta" class="sticky-cta" aria-label="Subscribe call to action">
         <div class="sticky-cta-inner">
             <p class="sticky-cta-text">Join {{@custom.stat_newsletter_members}} readers. Get practical systems for knowledge & AI. Free.</p>
-            <a class="gh-button sticky-cta-button" href="#/portal/signup" data-portal="signup">Subscribe ✨</a>
+            {{!-- data-subscribe-overlay opens the theme overlay; no data-portal on purpose
+                 (Portal binds [data-portal] clicks) — the hash href stays as the no-JS
+                 Portal fallback. See components/subscribe-overlay. --}}
+            <a class="gh-button sticky-cta-button" href="#/portal/signup" data-subscribe-overlay>Subscribe ✨</a>
         </div>
         <button class="sticky-cta-close" aria-label="Dismiss" title="Dismiss">{{> "icons/close"}}</button>
     </div>

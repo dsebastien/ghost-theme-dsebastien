@@ -5,14 +5,11 @@
 - [ ] Verify pages for SEO
     - [ ] If needed create those as actual pages using the corresponding template and ignore all info in the tpls
 - [ ] Fix problem with sidebar (bottom never accessible)
-- [ ] Improve footer
-    - [ ] Add more links
-    - [ ] Gradient background
-    - [ ] Free content: link to free content page
-    - [ ] Knowledge Management
-        - [ ] OSK
-        - [ ] OSC
-        - [ ] ...
+- [x] Improve footer
+    - [x] Add more links
+    - [x] Gradient background
+    - [x] Free content: links to free resources
+    - [x] Knowledge Management product links (Knowii Community, OSK, KWK, KM for Beginners)
 - [ ] Add about page. For social links, include icons and display as a grid
 - [ ] Add release-it
 - [ ] Add commitizen etc

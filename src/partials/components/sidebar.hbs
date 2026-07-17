@@ -16,7 +16,10 @@
             {{/if}}
                 {{#if @site.members_enabled}}
                     {{#unless @member}}
-                        <button class="gh-button" data-portal="signup">Subscribe</button>
+                        {{!-- data-subscribe-overlay opens the theme overlay; no data-portal on
+                             purpose (Portal binds [data-portal] clicks) — the hash href stays
+                             as the no-JS Portal fallback. See components/subscribe-overlay. --}}
+                        <a class="gh-button" href="#/portal/signup" data-subscribe-overlay>Subscribe</a>
                     {{else}}
                         {{#if @site.paid_members_enabled}}
                             {{#unless @member.paid}}
@@ -57,7 +60,7 @@
                     <li>➤&nbsp;<a href="/tag/mental-health">Mental Health</a></li>
                     <li>➤&nbsp;<a href="/tag/productivity">Productivity</a></li>
                     <li>➤&nbsp;<a href="/tag/personal-organization">Personal Organization</a></li>
-                    <li>➤&nbsp;<a href="/all-tags">All Tags</a></li>
+                    <li>➤&nbsp;<a href="/tags/">All Topics</a></li>
                 </ul>
             </section>
         {{/if}}

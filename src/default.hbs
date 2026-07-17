@@ -193,6 +193,10 @@
     {{> "lightbox"}}
 {{/is}}
 
+{{!-- Theme-owned subscribe overlay (opened by [data-subscribe-overlay] triggers) --}}
+{{> "components/subscribe-overlay"}}
+{{> "components/subscribe-bubble"}}
+
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script defer src="{{asset "built/source.js"}}"></script>
 
