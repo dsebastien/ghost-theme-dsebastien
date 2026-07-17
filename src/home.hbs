@@ -148,19 +148,23 @@
             {{> "components/youtube-card"}}
 
             <!-- Fresh content strips (homepage-start-overhaul Tier 1.5) -->
-            {{> "components/topic-section"
-                title="Best of the blog"
-                anchor="home-best"
-                topicFilter="featured:true+tag:blog"
-                seeAllUrl="/feeds/best/"
-                limit=3}}
+            {{!-- .home-strips scopes the articles-page card grid here and escapes
+                 the .gh-content prose styles (link underlines + pink). --}}
+            <section class="home-strips">
+                {{> "components/topic-section"
+                    title="Best of the Blog"
+                    anchor="home-best"
+                    topicFilter="featured:true+tag:blog"
+                    seeAllUrl="/feeds/best/"
+                    limit=3}}
 
-            {{> "components/topic-section"
-                title="Latest articles"
-                anchor="home-latest"
-                topicFilter="tag:blog"
-                seeAllUrl="/blog/"
-                limit=3}}
+                {{> "components/topic-section"
+                    title="Latest Articles"
+                    anchor="home-latest"
+                    topicFilter="tag:blog"
+                    seeAllUrl="/blog/"
+                    limit=3}}
+            </section>
 
             <!-- Approach/Layers -->
             <section class="approach">
