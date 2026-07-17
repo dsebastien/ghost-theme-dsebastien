@@ -1,0 +1,24 @@
+{{!--
+    Renders one topic section on the blog page: heading + up to 6 post cards + "See More" link.
+    Parameters:
+    * title       — section heading text
+    * anchor      — element id targeted by the top-of-page topic links
+    * topicFilter — full NQL filter for the section. MUST include tag:blog scoping
+                    (the marker for the articles surface) and the cascading
+                    tag:-[...] exclusions that keep each post in exactly one section.
+                    See documentation/plans/articles-page-overhaul.md (Tier 1.0).
+    * seeAllUrl   — where "See More" points (tag page or /feeds/ channel)
+--}}
+<h2 class="section-title">{{title}}</h2>
+<div id="{{anchor}}" class="gh-feed mt-4">
+    {{#get "posts" filter=topicFilter limit=6 as |sectionPosts|}}
+        {{#foreach sectionPosts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    {{/get}}
+
+    <div class="">
+        <a href="{{seeAllUrl}}">See More {{> "icons/arrow"}}</a>
+        <hr class="!my-8"/>
+    </div>
+</div>

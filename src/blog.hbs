@@ -1,6 +1,16 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
+{{!--
+    Topic sections are rendered via partials/components/topic-section.hbs.
+    Every section filter is scoped to tag:blog (the deliberate marker for the
+    articles surface — newsletters/news/project pages share topic tags but must
+    never appear here) and uses cascading tag:-[...] exclusions so each article
+    appears in exactly ONE section (first match wins, ordered specific → general).
+    Section set + counts audited against the live Content API on 2026-07-17 —
+    see documentation/plans/articles-page-overhaul.md (Audit findings, Tier 1.0).
+--}}
+
 {{#contentFor "meta_description"}}
 <meta name="description" content="Sébastien Dubois's blog. Articles on knowledge management, productivity, AI, and building systems that turn information into output.">
 {{/contentFor}}
@@ -9,15 +19,15 @@
     <section class="gh-inner !mt-32">
         <h1 class="gh-article-title is-title">Articles ✍️</h1>
         <p class="gh-article-excerpt">Explore my articles about
-            <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>, 
-            <a class="top-link" href="#obsidian">Obsidian</a>, 
-            <a class="top-link" href="#knowledge-work">Knowledge Work</a>, 
+            <a class="top-link" href="#obsidian">Obsidian</a>,
             <a class="top-link" href="#ai">AI</a>,
-            <a class="top-link" href="#learning">Learning</a>, 
-            <a class="top-link" href="#personal-development">Personal Development</a>, 
-            <a class="top-link" href="#mental-health">Mental Health</a>, 
-            <a class="top-link" href="#productivity">Productivity</a>, 
-            and <a class="top-link" href="#personal-organization">Personal Organization</a>.</p>
+            <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>,
+            <a class="top-link" href="#knowledge-work">Knowledge Work</a>,
+            <a class="top-link" href="#productivity">Productivity &amp; Organization</a>,
+            <a class="top-link" href="#learning">Learning</a>,
+            <a class="top-link" href="#personal-development">Personal Development &amp; Mental Health</a>,
+            <a class="top-link" href="#writing">Writing</a>,
+            and <a class="top-link" href="#software-development">Software Development</a>.</p>
         <p class="gh-article-excerpt">📡 <a class="top-link" href="/blog/rss/">Subscribe to the articles RSS feed</a> · <a class="top-link" href="/feeds/">browse all feeds</a>.</p>
     </section>
     <section class="gh-container is-grid has-sidebar gh-outer">
@@ -38,140 +48,67 @@
                     </div>
                 </div>
 
-                <!-- Personal Knowledge Management -->
-                <h2 class="section-title">Personal Knowledge Management</h2>
-                <div id="personal-knowledge-management" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:personal-knowledge-management" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-                    
-                    <div class="">
-                        <a href="/tag/personal-knowledge-management">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                {{> "components/topic-section"
+                    title="Obsidian"
+                    anchor="obsidian"
+                    topicFilter="tag:blog+tag:obsidian"
+                    seeAllUrl="/tag/obsidian"}}
 
-                <!-- Obsidian -->
-                <h2 class="section-title">Obsidian</h2>
-                <div id="obsidian" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:obsidian" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-                    
-                    <div class="">
-                        <a href="/tag/obsidian">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                {{> "components/topic-section"
+                    title="AI"
+                    anchor="ai"
+                    topicFilter="tag:blog+tag:[ai,ai-2,ai-skills,claude-code]+tag:-[obsidian]"
+                    seeAllUrl="/feeds/ai/"}}
 
-                <!-- Knowledge Work -->
-                <h2 class="section-title">Knowledge Work</h2>
-                <div id="knowledge-work" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:knowledge-work" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
+                {{> "components/topic-section"
+                    title="Personal Knowledge Management"
+                    anchor="personal-knowledge-management"
+                    topicFilter="tag:blog+tag:[personal-knowledge-management,note-taking]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code]"
+                    seeAllUrl="/tag/personal-knowledge-management"}}
 
-                    <div class="">
-                        <a href="/tag/knowledge-work">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                {{> "components/topic-section"
+                    title="Knowledge Work"
+                    anchor="knowledge-work"
+                    topicFilter="tag:blog+tag:knowledge-work+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking]"
+                    seeAllUrl="/tag/knowledge-work"}}
 
-                <!-- AI -->
-                <h2 class="section-title">AI</h2>
-                <div id="ai" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:ai" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-                    
-                    <div class="">
-                        <a href="/tag/ai">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                <span id="personal-organization"></span>
+                {{> "components/topic-section"
+                    title="Productivity & Organization"
+                    anchor="productivity"
+                    topicFilter="tag:blog+tag:[productivity,personal-organization]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work]"
+                    seeAllUrl="/feeds/productivity/"}}
 
-                <!-- Productivity -->
-                <h2 class="section-title">Productivity</h2>
-                <div id="productivity" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:productivity" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
+                {{> "components/topic-section"
+                    title="Learning"
+                    anchor="learning"
+                    topicFilter="tag:blog+tag:learning+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization]"
+                    seeAllUrl="/tag/learning"}}
 
-                    <div class="">
-                        <a href="/tag/productivity">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                <span id="mental-health"></span>
+                {{> "components/topic-section"
+                    title="Personal Development & Mental Health"
+                    anchor="personal-development"
+                    topicFilter="tag:blog+tag:[personal-development,mental-health]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning]"
+                    seeAllUrl="/tag/personal-development"}}
 
-                <!-- Learning -->
-                <h2 class="section-title">Learning</h2>
-                <div id="learning" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:learning" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
+                {{> "components/topic-section"
+                    title="Writing"
+                    anchor="writing"
+                    topicFilter="tag:blog+tag:writing+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning,personal-development,mental-health]"
+                    seeAllUrl="/tag/writing"}}
 
-                    <div class="">
-                        <a href="/tag/learning">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                {{> "components/topic-section"
+                    title="Software Development"
+                    anchor="software-development"
+                    topicFilter="tag:blog+tag:[software-development,web-development]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning,personal-development,mental-health,writing]"
+                    seeAllUrl="/feeds/dev/"}}
 
-                <!-- Personal Development -->
-                <h2 class="section-title">Personal Development</h2>
-                <div id="personal-development" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:personal-development" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-
-                    <div class="">
-                        <a href="/tag/personal-development">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
-
-                <!-- Mental Health -->
-                <h2 class="section-title">Mental Health</h2>
-                <div id="mental-health" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:mental-health" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-
-                    <div class="">
-                        <a href="/tag/mental-health">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
-
-                <!-- Personal Organization -->
-                <h2 class="section-title">Personal Organization</h2>
-                <div id="personal-organization" class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:personal-organization" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
-                        {{/foreach}}
-                    {{/get}}
-
-                    <div class="">
-                        <a href="/tag/personal-organization">See More {{> "icons/arrow"}}</a>
-                        <hr class="!my-8"/>
-                    </div>
-                </div>
+                {{> "components/topic-section"
+                    title="More Articles"
+                    anchor="more"
+                    topicFilter="tag:blog+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning,personal-development,mental-health,writing,software-development,web-development]"
+                    seeAllUrl="/all-articles"}}
             </main>
 
             {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=true}}

@@ -1,0 +1,502 @@
+# Articles Page Overhaul — Plan
+
+Repo: `/home/dsebastien/wks/ghost-theme-dsebastien`
+Scope: everything between "someone lands on the site" and "someone finishes an article" — with 687 posts (292 articles + 223 newsletters + 170 news; see Audit findings), 176 public tags, 7 content pillars, and a full product/newsletter ladder attached.
+
+---
+
+## Vision
+
+The articles experience becomes a **hub-and-spoke topical mesh** driven by Ghost's native primitives (collections, channels, tags, Portal tiers) rather than by hardcoded HTML strips and copy-pasted `{{#get}}` batches.
+
+**`/blog/` is the flagship and stays at its URL.** It is the page readers land on and the page that must do justice to the catalog. `/all-articles/` remains a utility index for maintenance and crawlers — no migration, no renaming.
+
+Three moves define it:
+
+1. **`/blog/` becomes a curated magazine front page**, not a 60-card wall. Hero + editor's picks, a "start here" on-ramp, de-duplicated data-driven topic sections with curated leads, freshness and best-of strips, and conversion modules woven between sections. Sticky topic nav + search for wayfinding.
+2. **Every "see more" from `/blog/` lands somewhere rich.** Enriched tag pages, pillar hubs (Tier 2), and cmd-K search replace the current cliff-drop onto a bare 21-line `tag.hbs`. Every article ends in a topical loop (related, prev/next, series) before ONE contextual offer + ONE contextual lead magnet chosen from the post's TOPIC tags (`{{#has tag=}}` — NOT `primary_tag`, which is the content-type marker; see Audit findings).
+3. **Everything above compounds through structured data, real freshness, and site search.** Article/BreadcrumbList/CollectionPage schema everywhere, real `dateModified`, a working cmd-K palette, and a proper `/tags/` hub turn the 515-post catalog from an inert wall into a machine-legible knowledge graph that both humans and AI answer engines can traverse.
+
+Conversion follows naturally: 7 pillars × pillar-matched lead magnet + pillar-matched product recommendation + Portal tier-aware CTAs = every article page becomes its own funnel, not a broadcast of the same "Knowledge System Checklist" everywhere.
+
+---
+
+## Audit findings — live Content API, 2026-07-17
+
+Queried `dsebastien.ghost.io` Content API (public key from the site frontend). These facts override earlier assumptions and are baked into the tiers below.
+
+**Content model**
+- 687 posts total: 292 `primary_tag:blog`, 223 `primary_tag:newsletter`, 170 `primary_tag:news` (+2 other). 176 public tags.
+- **`primary_tag` is the content-TYPE marker, not a topic.** Every article's primary tag is `blog`. All nine `/blog/` section topics have ZERO posts as `primary_tag`. Consequence: anything keyed on `primary_tag` for topical logic (CTA mapping, related posts, card tag pill) is wrong by construction — use topic tags (`{{#has tag=}}` / tag list minus the markers) instead.
+- **`tag:blog` is the deliberate inclusion marker** for the articles surface (confirmed by Sébastien). Newsletters, news, project pages etc. must never appear on `/blog/` even when they share topic tags.
+
+**Live bugs on `/blog/` today**
+- **Topic sections leak non-article content**: sections filter bare `tag:<topic>` without `+tag:blog`. Leakage right now: PKM 9 posts, Obsidian 7, Productivity 3, AI 2, Personal Development 1, Personal Organization 1 — newsletters/news showing up in article sections.
+- **43% of the catalog is invisible**: 127 of 292 articles match NONE of the nine section tags. Biggest omissions (blog-scoped counts): `software-development` 91, `tools` 40, `note-taking` 40, `writing` 30, `ai-2` 20, `entrepreneurship` 13. Adding those clusters drops the uncovered set from 127 to 21.
+- **The AI section is stale**: it filters `tag:ai` (11 posts, newest 2026-03) while active AI content uses `ai-2` (newest 2026-07). Blog-scoped `tag:[ai,ai-2,ai-skills,claude-code]` = 22 posts.
+- **Heavy duplication across sections**: pkm∩learning 37, pkm∩note-taking 36, pkm∩obsidian 23, productivity∩personal-organization 14, productivity∩personal-development 14.
+
+**Curation + routing facts**
+- `featured:true` = 13 posts, all articles — a healthy, already-curated pool for the hero zone and best-of strip.
+- All post URLs live at `/{slug}/` — the unfiltered `/` collection owns every post, so the `/blog/`, `/newsletter/`, `/news/` collections' permalinks never apply. **BUT their RSS feeds are live, correctly filtered, and populated** (`/blog/rss/`, `/news/rss/`, `/newsletter/rss/` — 15 items each) and those URLs are referenced all over the web. **The collections and the `/newsletter/` + `/news/` routes MUST stay.** Nothing gets deleted; the only inert part is the `{slug}` permalink filters, which are harmless.
+
+---
+
+## Information Architecture — proposed route map
+
+`configuration/routes.yaml` sketch (only the parts that change):
+
+```yaml
+routes:
+  /:                    { template: home }              # marketing landing (unchanged)
+  /blog/:               { template: blog }              # FLAGSHIP — rebuilt magazine front page (Tier 1.0)
+  /start/:              { template: start }             # global "start here" (unchanged)
+  /start/{pillar}/:     { template: start-pillar }      # NEW — per-pillar guided path (pages)
+
+  /tags/:               { template: tags-hub }          # NEW — replaces 404
+  /search/:             { template: search }            # NEW — search-first archive
+
+  /all-articles/:                                       # utility crawl index — becomes a channel so it paginates
+    controller: channel
+    filter: "tag:blog"
+    template: all-articles
+    rss: false
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index                                     # unchanged — post URLs stay /{slug}/
+  # KEEP the /blog/, /newsletter/, /news/ collections EXACTLY as they are.
+  # Their {slug} permalink filters are inert (the unfiltered / collection owns
+  # every post), but they generate the live, correctly-filtered RSS feeds at
+  # /blog/rss/, /newsletter/rss/, /news/rss/ — URLs referenced all over the web.
+  # Do not delete, do not rename. (Audited 2026-07-17: 15 items each, filtered right.)
+
+  # 7 pillar collections (rss:true each; native pagination + infinite scroll)
+  /pillars/pkm-foundations/:      { permalink: /pillars/pkm-foundations/{slug}/,    template: pillar, filter: "tag:hash-pillar-pkm-foundations",    rss: true }
+  /pillars/tools-and-systems/:    { permalink: /pillars/tools-and-systems/{slug}/,  template: pillar, filter: "tag:hash-pillar-tools-and-systems",  rss: true }
+  /pillars/writing-and-thinking/: { permalink: /pillars/writing-and-thinking/{slug}/,template: pillar, filter: "tag:hash-pillar-writing-and-thinking",rss: true }
+  /pillars/knowledge-work/:       { permalink: /pillars/knowledge-work/{slug}/,     template: pillar, filter: "tag:hash-pillar-knowledge-work",     rss: true }
+  /pillars/zen-productivity/:     { permalink: /pillars/zen-productivity/{slug}/,   template: pillar, filter: "tag:hash-pillar-zen-productivity",   rss: true }
+  /pillars/content-systems/:      { permalink: /pillars/content-systems/{slug}/,    template: pillar, filter: "tag:hash-pillar-content-systems",    rss: true }
+  /pillars/creator-systems/:      { permalink: /pillars/creator-systems/{slug}/,    template: pillar, filter: "tag:hash-pillar-creator-systems",    rss: true }
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
+```
+
+Redirects (`configuration/redirects.yaml`):
+- `/all-tags/` → `/tags/` (301)
+- `/archive`, `/topics/`, `/categories/` → `/tags/` (301)
+- consolidate duplicate tags: `/tag/ai-2/` → `/tag/ai/`, `/tag/knowledge-management/` → `/tag/personal-knowledge-management/`, `/tag/perserverance/` → `/tag/perseverance/`
+
+Notes:
+- **`/blog/` keeps its URL and template** — it is the flagship, rebuilt in Tier 1.0. `/all-articles/` keeps its URL as the utility crawl index (converted to a channel so it paginates past the `{{#get}}` cap).
+- Pillar filters use internal `hash-pillar-*` tags applied in Ghost admin (kept out of `/tag/`). A one-time admin backfill script maps existing tags → pillar hash tags.
+- Existing channels (`/feeds/pkm/` etc.) stay as RSS-only surfaces; pillar collections are the primary browsable destinations once Tier 2.1 ships.
+
+---
+
+## Tier 1 — Do first (high impact, low-to-medium effort)
+
+Ordered by impact.
+
+### 1.0 Rebuild `/blog/` as the flagship magazine front page
+
+THE page. `src/blog.hbs` today is 10 hardcoded topic sections × 6 identical cards (~60 uniform cards), a "Recent" strip filtered on `tag:blog`, heavy cross-section duplication (a post tagged `obsidian`+`personal-knowledge-management`+`knowledge-work` renders 3×), no hierarchy, no curation, no conversion in the main column, and "See more" links that drop onto a bare 21-line `tag.hbs`.
+
+**Build** — full rewrite of `src/blog.hbs`, top to bottom:
+
+1. **Hero zone** (replaces the text header + flat "Recent" grid): one `hero`-size card for the newest `featured:true` post, two `large` cards for the next two featured, plus a compact "Latest" list of the 5 newest posts. Curation lever = Ghost's featured flag — zero new admin concepts. Uses the post-card size variants from 1.9.
+2. **Sticky topic nav**: the 9 anchor links become a sticky pill bar with scroll-spy (IntersectionObserver) + a search button (opens cmd-K palette when 2.2 ships; sodo-search until then). Wayfinding that survives scrolling, instead of a paragraph of links that disappears.
+3. **"Start here" strip**: 3–5 evergreen on-ramps via internal tag `#start-here`, linking onward to `/start/`. First-time visitors get an entry path before the wall.
+4. **Topic sections — data-driven, scoped, and de-duplicated**: replace the ten copy-pasted `{{#get}}` blocks with one parameterized partial `src/partials/components/topic-section.hbs` (params: `title`, `filter`, `magnet`, `seeAllUrl`). Three mechanics, all grounded in the audit:
+   - **Scope every section to articles**: `tag:blog+tag:<topic>` — fixes the live leakage of newsletters/news into topic sections (9 posts in PKM alone today).
+   - **De-duplicate via cascading exclusions** (NOT `primary_tag` — that's the content-type marker): order sections specific→general and exclude earlier topics, e.g. Obsidian = `tag:blog+tag:obsidian`, then PKM = `tag:blog+tag:personal-knowledge-management+tag:-obsidian`, then Learning = `...+tag:-[obsidian,personal-knowledge-management]`, etc. Deterministic, server-rendered, crawlable. Filter strings grow for later sections but stay well within NQL limits.
+   - **Fix the section set so ~100% of the catalog is reachable**: fix AI to `tag:[ai,ai-2,ai-skills,claude-code]` (22 posts vs today's stale 11), and add sections for the invisible clusters — Software Development (91!), Tools (40), Writing (30) — folding `note-taking` (40) into PKM. That takes uncovered articles from 127/292 (43%) down to ~21, catchable with a final "More" section (`tag:blog` excluding all section topics).
+5. **Conversion woven between sections**: one inline newsletter module (`email-subscription.hbs` + a social-proof line) after the second section; a topic-matched lead-magnet band from `contextual-offer.hbs` (1.3) at every third section boundary, keyed by the section's topic. Today the main column contains ZERO conversion surface — everything sits in the repeated generic sidebar.
+6. **Freshness + best-of strips**: a "Recently updated" strip (`order="updated_at desc"`, badge logic from 1.8) and a "Best of" strip (`featured:true`, linking to `/feeds/best/`).
+7. **CollectionPage + ItemList JSON-LD** (1.7) on the page.
+8. **"Recent" semantics are CORRECT**: `tag:blog` is the deliberate inclusion marker for the articles surface (audit-confirmed: 292 posts, exactly matching `primary_tag:blog`). Keep it — and apply the same `tag:blog` scope to every section, strip, and the hero zone (the current sections forgot it; see the leakage bug above).
+
+**Files**
+- `src/blog.hbs` (full rewrite)
+- `src/partials/components/topic-section.hbs` (new)
+- `src/partials/post-card.hbs` (size variants — 1.9)
+- `src/partials/components/contextual-offer.hbs` (1.3)
+- `src/assets/js/blog-nav.js` (new — sticky pills + scroll-spy, ~2KB vanilla)
+
+**Why**
+- This is the page readers actually visit; it currently reads as a directory, not a front page. Hierarchy (hero → start-here → topics) lets the best work surface instead of drowning in uniform cards.
+- De-duplication roughly doubles the number of DISTINCT posts visible without adding length.
+- The parameterized partial kills ~150 lines of copy-paste; adding/reordering a topic becomes a one-line change.
+- Inline, topic-matched conversion in the main column converts browsing intent where it happens — the sidebar is banner-blind real estate.
+
+**Caveats**
+- Cascading exclusion changes section membership vs today (a post shows once, in its most-specific section). The audit numbers above predict the counts; spot-check the rendered page against them.
+- ~13 `{{#get}}` queries per render is acceptable (Ghost caches rendered pages) but don't grow it further; strips share queries where possible.
+- Featured pool is 13 posts, all articles (audit-confirmed) — ideal size for hero + best-of; keep it curated at 10–15.
+
+### 1.1 Fix `/all-articles/` as the utility crawl index (paginated, un-capped) — LOW PRIORITY
+
+`/all-articles/` exists for maintenance and search engines only; it just needs to be complete and crawlable, not pretty.
+
+**Build**
+- Convert the static route to a **channel** in `configuration/routes.yaml` (`controller: channel`, `filter: "tag:blog"`, `rss: false`) so it gets native Ghost pagination and `link[rel=next/prev]` autodiscovery instead of one giant capped `{{#get}}`.
+- Simplify `src/all-articles.hbs` to a plain `{{#foreach posts}}` list (title + date + primary tag is enough); keep year markers via `data-year` attributes if cheap.
+
+**Files**: `configuration/routes.yaml`, `src/all-articles.hbs`
+
+**Why**: guarantees every one of the 515+ posts is reachable by crawlers regardless of catalog growth; removes the `{{#get}}` cap risk.
+
+### 1.2 Ship `/tags/` hub grouped by the 7 pillars + kill the `/all-tags/` copy-paste
+
+**Build**
+- Add `/tags/` route in `routes.yaml` → `template: tags-hub`. 301 `/all-tags/` → `/tags/`.
+- New `src/tags-hub.hbs`:
+  - 7 pillar cluster cards at top (drawn from a committed `src/data/pillars.json` mapping pillar → tag slugs).
+  - Below: single `{{#get "tags" limit="all" include="count.posts" order="count.posts desc" filter="visibility:public"}}` for the full A–Z index (174 tags easily fits).
+  - Letter jump-nav + inline text filter.
+- Enrich `src/tag.hbs` (currently 21 lines): tag hero with `{{tag.description}}`, a "Start here" strip via `{{#get "posts" filter="tag:{{slug}}+tag:hash-start-here" limit=3}}`, standard paginated feed, "Related tags" strip from a committed `src/data/tag-cooccurrence.json` (built by a small Node script that hits the Content API), pillar-matched lead magnet.
+- `configuration/redirects.yaml`: consolidate `ai-2 → ai`, `knowledge-management → personal-knowledge-management`, `perserverance → perseverance`.
+
+**Files**
+- `configuration/routes.yaml`, `configuration/redirects.yaml`
+- `src/tags-hub.hbs` (new), retire `src/all-tags.hbs`
+- `src/tag.hbs` (rewrite)
+- `src/data/pillars.json`, `src/data/tag-cooccurrence.json` (new)
+- `src/partials/components/lead-magnet-cta.hbs` (wire in)
+
+**Why**
+- The current `/tags/` 404 is dead weight. A working hub gives the 174-tag graph a browsable entry point and consolidates internal link equity.
+- Cluster-first display hides the 174-tag long tail behind 7 pillars — matches how humans think, matches the content strategy.
+- Tag pages become rankable topic hubs (description + curated top + related), not thin auto-archives.
+
+**Caveats**
+- Tag descriptions must be authored in Ghost admin for the top 20 tags — one-off content work, not code.
+- Co-occurrence JSON needs a rebuild-on-publish hook (`gulpfile.js` task hitting the Content API).
+
+### 1.3 Contextual CTA + lead-magnet engine driven by TOPIC tags (kills the 15-branch `{{#has}}` cascade)
+
+**Build**
+- New `src/partials/components/contextual-offer.hbs`. Uses an ordered `{{#has tag=}}` chain over the post's TOPIC tags — `primary_tag` is unusable for this (it's always `blog` on articles; audit-confirmed). First match wins, most-specific topic first. Picks ONE hero product + ONE lead magnet + ONE community nudge per post/listing. Map:
+  - `obsidian`, `dataview`, `templates`, `obsidian-starter-kit`, `obsidian-starter-course` → OSK Premium + Free Beginner's Guide to Obsidian
+  - `ai`, `ai-skills`, `claude-code`, `ai-2` → AI Ghostwriter Guide + AI prompt pack
+  - `personal-knowledge-management`, `zettelkasten`, `evergreen-notes`, `atomic-notes`, `note-taking` → KMB Course + Knowledge System Checklist
+  - `productivity`, `personal-organization`, `routines`, `habits`, `time-management` → KWK + Personal Organization masterclass
+  - `software-development`, `typescript`, `javascript`, dev cluster → Dev Concepts + newsletter
+  - `entrepreneurship`, `solopreneurship`, `content-creation` → Knowii Master tier + AI Ghostwriter
+  - default → Knowii Community + Knowledge System Checklist
+- Wire it into `src/post.hbs`: replace the giant tag `{{#has}}` signature cascade AND the current `#mid-article-cta` JS-relocated block with one call at the mid-article slot and one at the footer slot.
+- Wire into listings: `src/blog.hbs` (primary surface — topic-keyed bands between sections, see 1.0), `src/tag.hbs`, `src/pillar.hbs`, `src/author.hbs`, `src/partials/components/feed-archive.hbs`.
+- Use existing `src/partials/email-subscription.hbs` (Ghost `data-members-form`) with Portal labels pre-selected per pillar for later segmentation.
+
+**Files**
+- `src/partials/components/contextual-offer.hbs` (new)
+- `src/partials/components/lead-magnet-cta.hbs` (finally used — currently orphaned)
+- `src/post.hbs` (strip cascade, insert partial ×2)
+- `src/blog.hbs`, `src/tag.hbs`, `src/author.hbs`, `src/partials/components/feed-archive.hbs`, `src/partials/components/sidebar.hbs`
+
+**Why**
+- Single biggest conversion lever. Today every reader sees the same "Knowledge System Checklist" no matter what they read. Match the offer to the topic and the conversion rate goes up without adding CTA surface.
+- Kills a giant maintenance liability (15-branch `{{#has}}` chain duplicated across mid and footer slots).
+- Turns 515 articles into 7 targeted funnels each pointing at the right product-ladder rung.
+
+**Caveats**
+- Portal signup labels for segmentation must be created in Ghost admin.
+- Track with `data-cta-topic="<topic>"` for Plausible custom events so per-topic performance is visible from day 1.
+
+### 1.4 End-of-article discovery block — related + prev/next + series-aware (before any product signature)
+
+**Build**
+- New `src/partials/components/keep-reading.hbs` with 4 rows, rendered INSIDE `src/post.hbs` BEFORE the contextual offer:
+  1. **Next in series** if any tag matches `hash-series-*`.
+  2. **More on {topic}** — topic = the post's first non-marker tag (tags minus `blog`/`newsletter`/`news`): `{{#get "posts" filter="tag:blog+tag:{{topic}}+id:-{{id}}" order="featured:desc,published_at:desc" limit=4}}`. NOT `primary_tag` — that's always `blog` (audit).
+  3. **You might also like** — all topic tags: `{{#get "posts" filter="tag:blog+tags:[{{topic tag slugs}}]+id:-{{id}}" limit=3}}`, excluding the "More on {topic}" picks.
+  4. **Continue in this pillar** — link to `/pillars/{pillar}/` mapped from topic tags.
+- Use Ghost's native `prev_post`/`next_post` helpers with `in="primary_tag"` for a compact prev/next strip — here `primary_tag` IS right: it walks chronologically within articles only (label it "Older / newer article", it is not topical).
+- Series detection: introduce internal tags `#series-<slug>` in Ghost admin. Series manifest lives at `src/data/series.json` (order + title per series). `keep-reading.hbs` iterates it when the post has a `#series-*` tag.
+
+**Files**
+- `src/partials/components/keep-reading.hbs` (new)
+- `src/post.hbs` — insert before contextual-offer
+- `src/data/series.json` (new)
+
+**Why**
+- The current end-of-post leaks a 32-minute-guide reader straight to product boxes. Reclaim that highest-intent moment for another article, and subscribe/upgrade rates compound instead of terminating.
+- Multi-signal related (all topic tags) beats single-tag related for topical relevance.
+- Series awareness turns multi-part guides (Obsidian Properties, Bases dashboards, Newsletter #20–214) into cohesive journeys.
+
+**Caveats**
+- Multiple nested `{{#get}}` per post render costs API round-trips at build/cache time. Ghost caches these per post; acceptable.
+- Inline "further reading" links between H2s (client-side JS injection) are NOT crawlable as internal links for SEO — do them but don't count on them for topical mesh. Server-side `keep-reading.hbs` is what SEO needs.
+
+### 1.5 Sticky auto-generated TOC on long-form posts
+
+**Build**
+- `src/assets/js/toc.js` — scans `.gh-content h2, .gh-content h3` on load, adds anchor IDs, renders sticky right-rail TOC on `lg+`, collapsible `<details>` at top on `< lg`. IntersectionObserver for scroll-spy active state.
+- Modify `src/post.hbs` to wrap `.gh-content` in a grid with `<aside class="post-toc">` and add `body.long-form` class when `{{reading_time}} > 8`.
+
+**Files**
+- `src/post.hbs`, `src/assets/js/toc.js` (new), `src/assets/css/post-toc.css`
+
+**Why**
+- A 32-minute Obsidian Properties guide has no map. TOC drops bounce on cornerstone SEO content and doubles as engagement instrumentation.
+- ~3KB JS, zero server cost.
+
+### 1.6 Routes hygiene + dead-collection cleanup + nav de-dupe
+
+**Build**
+- **Collections and routes all STAY.** Audit resolved the earlier "dead config" hypothesis: the `/blog/`, `/newsletter/`, `/news/` collections' `{slug}` permalinks are inert (the unfiltered `/` collection owns every post), but their RSS feeds (`/blog/rss/`, `/newsletter/rss/`, `/news/rss/`) are live, correctly filtered, and linked from many places online. Zero deletions, zero URL changes. Add a comment in `routes.yaml` documenting WHY the collections exist (RSS) so nobody "cleans them up" later.
+- `/blog/` STAYS as a static route → the rebuilt `blog.hbs` (1.0). No URL changes, no redirects needed.
+- Dedupe `partials/search-toggle.hbs` — currently rendered 3× in `partials/components/navigation.hbs` (branding block + inside menu + in actions). Keep one, remove two.
+- Fix the duplicate 📰 icon in nav (News + Articles). Use 🗞️ for News, 📰 for Articles.
+- Remove/reorder nav items to reduce the 11-item cognitive load: promote Start/Articles/Community, collapse Store/Courses/Coaching under a Products dropdown.
+
+**Files**
+- `configuration/routes.yaml`
+- `src/partials/components/navigation.hbs`
+
+**Why**
+- The routes.yaml comment prevents a future "cleanup" from accidentally killing three live, externally-linked RSS feeds.
+- 3× duplicated search-toggle is a live a11y bug.
+- Nav de-clutter raises click-through to the surfaces that matter (`/blog/`, `/start/`, community).
+
+### 1.7 JSON-LD structured data (Article + BreadcrumbList + CollectionPage + WebSite/SearchAction + FAQ)
+
+**Build**
+- New partials: `src/partials/schema/article.hbs`, `breadcrumb.hbs`, `collection.hbs`, `faq.hbs`, `website.hbs`.
+- `src/default.hbs` — inject `website.hbs` (WebSite + SearchAction pointing to `/search/?q=` on every page). Global `<head>` block.
+- `src/post.hbs` — inject `article.hbs` (author, publisher, datePublished, dateModified, articleSection = first topic tag (NOT `primary_tag` — always "Blog"), keywords = topic tags, wordCount ≈ `{{reading_time}}` × 225) + `breadcrumb.hbs` (Home > Articles > Topic > Article, topic from first topic tag) + `faq.hbs` when a code-injection field or `#faq` tag is present.
+- `src/blog.hbs`, `src/tag.hbs`, `src/pillar.hbs`, `src/author.hbs` — inject `collection.hbs` with `ItemList` position/url/name for each post.
+- Real BreadcrumbList replaces the current "Blog > Article" generic breadcrumb.
+
+**Files**
+- `src/default.hbs`, `src/post.hbs`, `src/blog.hbs`, `src/tag.hbs`, `src/pillar.hbs`, `src/author.hbs`
+- 5 new schema partials
+
+**Why**
+- Table stakes for GEO (AI answer engine) citability. LLMs preferentially cite content with unambiguous machine-readable authorship, dates, and topical scoping.
+- Sitelinks searchbox potential from WebSite/SearchAction.
+- Real BreadcrumbList replaces the useless generic "Blog > Article" trail with topical hierarchy.
+
+**Caveats**
+- Ghost emits some Article schema by default — audit and override rather than double up.
+- `wordCount` isn't natively exposed; approximate via `reading_time * 225` or omit.
+
+### 1.8 Freshness signals: `dateModified` + "Updated" badge + `/updated/` feed
+
+**Build**
+- In `src/post.hbs`, when `{{updated_at}}` > `{{published_at}}` + 30d, render both dates + an "Updated" badge above the title + optional "What changed" collapsible fed by a Ghost code-injection field.
+- Emit `dateModified` = `{{updated_at}}` in Article schema (Tier 1.7).
+- Add `/updated/` collection route → `template: updated`, sorted by `updated_at desc`. Same card layout as `/articles/`.
+
+**Files**
+- `configuration/routes.yaml`
+- `src/post.hbs`
+- `src/updated.hbs` (new)
+
+**Why**
+- Restores the freshness signal destroyed by the site-wide 2026-06 re-timestamp.
+- Gives evergreen posts a second life without republishing.
+
+**Caveats**
+- Sitemap `lastmod` is Ghost-core-generated and not editable from a theme. The `dateModified` in schema + visible badge is the theme-side lever; the sitemap fix is out of scope (would need a Cloudflare Worker proxy — not blocking).
+
+### 1.9 Enrich `post-card.hbs` and swap in featured/regular/hero sizes
+
+**Build**
+- `src/partials/post-card.hbs`: add `size` param (`hero` | `large` | `regular` | `compact`), expose a TOPIC pill = first non-marker tag, i.e. skip `blog`/`newsletter`/`news` (NOT `primary_tag` — always "Blog" on articles; audit); color via `pillars.json`, `reading_time`, `published_at`, relative freshness badge ("New" <14d, "Updated" if updated_at > published_at + 30d, "Evergreen" if `featured`), and a series badge when a `#series-*` tag is present.
+- Data attributes for client-side filter: `data-year`, `data-pillar`, `data-primary-tag`, `data-reading-time`, `data-featured`.
+- Primary consumer is the rebuilt `src/blog.hbs` (1.0): `hero` + `large` in the hero zone, `large` + `compact` in topic sections. Pillar hubs and tag pages reuse the same variants.
+
+**Files**
+- `src/partials/post-card.hbs`
+- Every listing consumer
+
+**Why**
+- Card metadata (tags, read time) is currently hidden on `/blog/` — visitors can't judge relevance before clicking.
+- Size variants make listings scannable rather than grid-monotonous.
+
+---
+
+## Tier 2 — Big bets (high impact, high effort)
+
+Ordered by impact.
+
+### 2.1 Introduce 7 pillar hub pages as first-class collections
+
+**Build**
+- Add 7 pillar collections in `routes.yaml` (see IA sketch above), each with `filter: "tag:hash-pillar-<slug>"`, `template: pillar`, `rss: true`.
+- New `src/pillar.hbs`:
+  - Editorial hero + intro (fetched via `{{#get "pages" filter="slug:pillar-{{@custom.pillar-slug}}" limit=1}}` or a per-pillar handcrafted `pillar-<slug>.hbs` variant).
+  - 3-card "Start here" curated strip (posts tagged `#start-here-<pillar>`).
+  - "Best of" strip (posts tagged `#best-of-<pillar>` or `featured:true`).
+  - Paginated newest feed via `{{#foreach posts}}{{> "post-card"}}{{/foreach}}` (pagination.js works out of the box).
+  - Pillar-matched lead magnet via `contextual-offer.hbs`.
+  - Related pillars footer.
+  - CollectionPage + BreadcrumbList JSON-LD.
+- One-off Ghost admin work: apply `hash-pillar-<slug>` tag to every post based on its topic tags (first match in a topic→pillar mapping table). Script-generatable via Admin API from a mapping table.
+
+**Files**
+- `configuration/routes.yaml`
+- `src/pillar.hbs` (new)
+- `src/data/pillars.json`
+- Optional: `src/pillar-<slug>.hbs` variants per pillar
+
+**Why**
+- Fixes the biggest topical-authority gap. Individual posts can't rank for head-of-funnel queries like "personal knowledge management" — pillar hubs can.
+- Consolidates internal link equity from 100+ posts each.
+- Gives Portal newsletter segmentation a natural home: subscribers pick pillars.
+- Perfect landing surface for AI answer engines answering "where do I start with X".
+
+**Caveats**
+- One-time Ghost admin backfill for `hash-pillar-*` tags. Script it via Admin API.
+- Once pillar hubs exist, point the "See all →" links of the matching `/blog/` topic sections at the pillar hub instead of the raw tag page (one-line change per section thanks to `topic-section.hbs`).
+
+### 2.2 Site search: `/search/` route + cmd-K palette backed by Content API
+
+**Build**
+- `configuration/routes.yaml`: add `/search/: { template: search }`.
+- `src/search.hbs`: renders shell + a client hydrated by `src/assets/js/search.js`.
+- `src/assets/js/search.js`: fetches Ghost Content API (`/ghost/api/content/posts/?limit=100&include=tags&fields=title,slug,url,excerpt,feature_image,primary_tag,tags,reading_time,published_at`, paginated internally to walk all 515), caches in `localStorage` with a 24h TTL and etag check, indexes with MiniSearch (~15KB gz).
+- Facets: pillar (mapped via `pillars.json`), content type (article/newsletter/news), year, reading time.
+- Global cmd-K palette: `src/assets/js/cmdk.js`, bound to `Cmd/Ctrl-K` and `/`. Sections: Posts, Tags, Pages, Actions (Subscribe, Join Knowii).
+- Rewrite `src/partials/search-toggle.hbs` to open the palette; keep sodo-search as fallback for members-only content search if needed.
+
+**Files**
+- `configuration/routes.yaml`
+- `src/search.hbs` (new)
+- `src/assets/js/search.js`, `src/assets/js/cmdk.js` (new)
+- `src/partials/search-toggle.hbs` (rewrite)
+- `src/default.hbs` (mount cmd-K globally)
+
+**Why**
+- #1 UX gap for a 515-post catalog. No search = catalog invisible.
+- `/search/?q=` becomes a rankable landing for long-tail brand+topic queries.
+- cmd-K is the muscle memory expert readers now expect.
+
+**Caveats**
+- Content API caps at 100 posts per request. Paginate internally (5 requests for 515 posts). Rebuild-on-publish via a Ghost webhook is nice-to-have; TTL cache is sufficient for v1.
+- Client-side facet search is fast enough for 515 items; when the catalog grows past 5k, switch to pagefind.
+
+### 2.3 Portal tier–aware personalization: CTAs and `/dashboard/` differ by member state
+
+**Build**
+- Everywhere CTAs render (contextual-offer, sticky-cta, mid-article, sidebar), branch on `{{@member.status}}` and `{{@member.subscriptions.[0].tier.slug}}`:
+  - Anonymous → Subscribe to newsletter
+  - Free member → Upgrade to Supporter
+  - Supporter → Unlock Knowledge Builder bonuses
+  - Knowledge Builder → Upgrade to Knowledge Master
+  - Knowledge Master → Book coaching / join community
+- New `/dashboard/` route → `template: dashboard`. Personalized reading list by tier: Master sees KWK + coaching content, Free sees Start Here + lead magnets. Uses `{{#get "posts" filter="tag:hash-tier-<slug>"}}`.
+- Selectively gate deep-dives via `access: members` on posts tagged `#members-only` — Ghost's native paywall handles the rest.
+
+**Files**
+- `src/partials/components/contextual-offer.hbs`, `sticky-cta.hbs`, `sidebar.hbs`, `post.hbs`
+- `src/dashboard.hbs` (new)
+- `configuration/routes.yaml`
+
+**Why**
+- Portal tiers currently treated as a boolean (`@member.paid`). Actual personalization turns every article page into a right-rung ladder push instead of a broadcast.
+- Directly addresses the "monolithic newsletter offer" leak — segmented offers convert 3–5× better than global ones.
+
+**Caveats**
+- Requires Ghost admin work: tier structure is already in place, but `#tier-<slug>` internal tag conventions must be applied to gated content.
+
+### 2.4 Scroll-triggered inline capture + exit-intent modal, throttled and instrumented
+
+**Build**
+- `src/assets/js/engagement.js`:
+  - On post.hbs at 60% scroll, inject the topic-mapped `contextual-offer.hbs` variant into a placeholder `<div id="scroll-cta">` inserted between paragraphs 6 and 7 by the template.
+  - On desktop `mouseleave` toward viewport top OR mobile `pagehide` after >30s dwell, show a modal with the topic-mapped lead magnet form (Ghost `data-members-form`).
+  - Throttle via `localStorage` (max 1/week, suppressed for `@member`).
+  - Track Plausible custom events: `cta.scroll.impression`, `cta.scroll.submit`, `cta.exit.impression`, `cta.exit.submit`, dimensioned by the matched topic (`data-cta-topic`).
+- `src/post.hbs`: insert `<div id="scroll-cta"></div>` at a safe paragraph anchor.
+
+**Files**
+- `src/assets/js/engagement.js` (new)
+- `src/post.hbs`
+
+**Why**
+- Current in-article capture is static and one-shot. Scroll-triggered CTAs at proven-attention moments plus exit-intent recovery are the two biggest conversion multipliers off pillar-matched offers.
+
+**Caveats**
+- Aggressive modals annoy expert readers. Throttling + `@member` suppression is non-negotiable.
+
+### 2.5 First-class Series support
+
+**Build**
+- Convention: internal tag `#series-<slug>` applied in Ghost admin. Series metadata (order, title, description) lives in `src/data/series.json` (committed).
+- New `src/series.hbs` served via `/series/{slug}/` collection route with `permalink: /series/{slug}/`.
+- `src/partials/components/series-nav.hbs` — rendered at top of `post.hbs` when `{{#has tag="hash-series-*"}}`. Shows "Part N of M — [series title]" with prev/next and a collapsible outline of siblings.
+- `/series/` index page listing all series via `{{#get "tags" filter="visibility:internal+slug:~^hash-series-" limit="all"}}`.
+
+**Files**
+- `configuration/routes.yaml`
+- `src/series.hbs`, `src/partials/components/series-nav.hbs` (new)
+- `src/data/series.json` (new)
+- `src/post.hbs` (mount series-nav)
+
+**Why**
+- Newsletter #20–214 and multi-part guides currently have zero wayfinding.
+- Series pages are natural entry points for readers who found part 3 first.
+
+---
+
+## Tier 3 — Polish
+
+### 3.1 Sticky reading-progress bar on long-form posts
+3px top bar + collapsible subscribe pill that expands to the topic-mapped lead magnet. Replaces the current `sticky-cta.hbs` bottom bar (easy to dismiss, thin on value). Files: `src/partials/components/reading-progress.hbs`, `src/assets/js/progress.js`, `src/post.hbs`.
+
+### 3.2 Alias generator + tag description backfill
+Author descriptions for the top 30 tags in Ghost admin (one-off content work). Enables tag-hub enrichment (Tier 1.2) and improves SEO for tag pages.
+
+### 3.3 "Start here" per-pillar pages
+Ghost pages at `/start/pkm/`, `/start/obsidian/`, etc., using a shared `src/start-pillar.hbs` template. 5 essential reads + 3 tools + 1 flagship product + 1 lead magnet each. Cross-link from every post's footer via the same ordered `{{#has tag=}}` topic lookup as `contextual-offer.hbs`.
+
+### 3.4 Reuse `topic-section.hbs` on `home.hbs` marketing landing
+Once 1.0 ships, `home.hbs` can render one or two curated topic strips via the same `topic-section.hbs` partial — the marketing landing gets a taste of the catalog and a path into `/blog/` for free.
+
+### 3.5 Freshness heuristics + `#most-read` curation
+Manually maintain a `#most-read` internal tag (top 20 posts, refreshed monthly). Surface in `sidebar.hbs` and pillar hubs as "Most read on {topic}". Honest workaround since Ghost exposes no view counts to themes.
+
+### 3.6 Consolidate/re-tag `feeds.hbs`
+The static `/feeds/` page hardcodes popular tags. Drive from `pillars.json` so adding a pillar doesn't require HTML edits.
+
+---
+
+## Rejected / deferred
+
+- **Members-writable "Save for later" archive explorer** — Content API is read-only; per-member saved lists require an external service + Ghost Admin API. Out of theme scope.
+- **Fix sitemap `lastmod` per URL** — Ghost core generates sitemaps; not theme-controllable. Would need a Cloudflare Worker rewriting sitemap-posts.xml. Non-blocking; schema `dateModified` is the theme-side lever.
+- **`sitemap-pillars.xml`** — same reason. Ship pillar URLs to sitemap-pages.xml via Ghost admin instead.
+- **Inline "further reading" links between H2s via JS** — not crawlable, marginal UX gain. Skip.
+- **Custom `/library-data/` JSON route via `routes.yaml`** — routes.yaml renders handlebars templates and can't natively set arbitrary Content-Type. Use Content API directly from the client for search/library indexing.
+
+---
+
+## Measurement — how to know it worked
+
+Instrument day 1 in Plausible (or GA4 if preferred) with these custom events + dimensions:
+
+| Signal | Event / dimension | Success threshold |
+|---|---|---|
+| `/blog/` engagement | Scroll depth on `/blog/` + clicks-per-visit into articles, per section (`data-section` dimension) | 2× clicks-per-visit from `/blog/` within 60d; every topic section gets clicks (no dead sections) |
+| Search adoption | `search.open` (cmd-K + toggle) / `search.submit` | 15% of blog visitors open search within 90d |
+| Related-content lift | Click-through rate on `keep-reading.hbs` cards | >25% CTR from post footer |
+| Contextual CTA lift | `cta.impression` / `cta.submit` dimensioned by matched topic | Per-pillar conversion rate ≥ 2× baseline monolithic CTA |
+| Tag hub usage | `/tags/` pageviews, click-through to tag pages | Tag pages get ≥ 10% of overall listing traffic |
+| Portal tier progression | Members upgrading tier within 30d of first article visit | Baseline this month; target +50% within 6m |
+| SEO / GEO | Rankings for pillar head terms; AI citation share (Perplexity + Kagi Answer sampling) | Pillar hubs indexed and ranking top-20 for pillar keyword within 90d |
+| Long-form engagement | Time-on-page + scroll depth on posts with TOC | +25% median time-on-page for reading_time > 8 |
+| Freshness signal | Crawl frequency on `/updated/` + evergreen impressions in GSC | Evergreen posts regain rising-impression trend |
+
+Baseline the current numbers BEFORE shipping Tier 1 (pageviews, subscribe conversion, tag traffic, top query rankings). Without a baseline, none of the deltas mean anything.
+
+---
+
+## The One Thing
+
+Ship Tier 1.0 (the `/blog/` magazine front page: hero + start-here + de-duplicated curated topic sections) together with Tier 1.3 (contextual CTA engine driven by topic) — that pairing turns the page readers actually visit into a browsable showcase of the catalog AND converts each topic's readers with a matched offer instead of the current one-size-fits-all leak.
