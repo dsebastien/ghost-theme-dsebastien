@@ -48,7 +48,10 @@ Three pages, three jobs, zero overlap:
 - ~~`www.store.dsebastien.net` double-subdomain URLs~~ — INVALID FINDING: verified live, `www.store.dsebastien.net` is the canonical host (the non-www form 301s TO it). Both forms return 200. Do not "fix" these.
 **Why:** a broken free promise at maximum visibility, one click after "Get started, it's free ✨".
 
-### 1.2 Centralize stats via `@custom`, delete all prices (prerequisite for every restructure)
+### 1.2 Centralize stats via `@custom` + live prices from the store catalog — ✅ DONE 2026-07-17
+Implemented with a policy amendment: instead of deleting prices, they are now HYDRATED live from `store.dsebastien.net/products-light.json` (which gained a `pricing` block, store commit cd2fc85) via `assets/js/prices.js` + `data-price` attributes — hardcoded values remain as no-JS/SEO fallbacks. 6 stat fields added to `config.custom` (14/20 slots), 21 usages replaced. CSP `connect-src` updated by Sébastien. Original spec below for reference.
+
+### ~~1.2 original~~ Centralize stats via `@custom`, delete all prices (prerequisite for every restructure)
 - `src/package.json` `config.custom` currently has 8 of Ghost's 20 slots. Add ≤6: `stat_newsletter_members`, `stat_community_members`, `stat_years_expertise`, `stat_products_sold`, `stat_concepts_count`, `stat_articles_count` (→ 14/20; do NOT add per-price fields — 14 prices would blow the cap, and policy is delete anyway).
 - Replace hardcoded stats in: `home.hbs` L15-19/31/45-59/159/172/317, `start.hbs` L20-24/396, `partials/components/lead-magnet-cta.hbs` (×2), `partials/components/sticky-cta.hbs`, `partials/footer.hbs`.
 - Delete all 14 prices in `start.hbs` (L116, 185, 192, 243, 250, 257, 397, 403, 409, 470, 476, 482, Knowii tiers L273-287, bundle L524). Product CTAs become benefit-framed links; the store page owns the price.
