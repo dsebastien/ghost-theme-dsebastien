@@ -12,11 +12,11 @@
             <!-- Hero -->
             <section class="hero">
                         <div class="hero-stats">
-                            <span>6,000+ newsletter members</span>
+                            <span>{{@custom.stat_newsletter_members}} newsletter members</span>
                             <span class="stat-separator">•</span>
-                            <span>20+ years expertise</span>
+                            <span>{{@custom.stat_years_expertise}} years expertise</span>
                             <span class="stat-separator">•</span>
-                            <span>450+ community members</span>
+                            <span>{{@custom.stat_community_members}} community members</span>
                         </div>
 
                         <p>Your ideas are scattered. Your brain is full. You KNOW there's gold in the chaos, but you can't find it when it matters.</p>
@@ -28,7 +28,7 @@
                             <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="cta gh-button secondary">Explore Solutions 🚀</a>
                         </div>
 
-                        <p class="hero-social-proof">6,000+ people already think and create more clearly ✨</p>
+                        <p class="hero-social-proof">{{@custom.stat_newsletter_members}} people already think and create more clearly ✨</p>
             </section>
 
             <!-- Lead magnet -->
@@ -43,15 +43,15 @@
                 <h2>Real Results from Real People</h2>
                 <div class="results-grid">
                     <div class="result-stat">
-                        <div class="stat-number">10K+</div>
+                        <div class="stat-number">{{@custom.stat_hours_saved}}</div>
                         <div class="stat-label">Hours Saved</div>
                     </div>
                     <div class="result-stat">
-                        <div class="stat-number">6,000+</div>
+                        <div class="stat-number">{{@custom.stat_newsletter_members}}</div>
                         <div class="stat-label">Newsletter members</div>
                     </div>
                     <div class="result-stat">
-                        <div class="stat-number">2000+</div>
+                        <div class="stat-number">{{@custom.stat_products_sold}}</div>
                         <div class="stat-label">Products sold</div>
                     </div>
                     <div class="result-stat">
@@ -115,7 +115,7 @@
                 <div class="about-text">
                     <h2>Hi, I'm Sébastien 👋</h2>
                     <p>I've been where you are. Drowning in information, frustrated by scattered systems, burning hours searching for things I'd saved "somewhere".</p>
-                    <p>After 20+ years of refining how I work with knowledge, I now help others do the same; including how to use AI as a real thinking partner, not just a fancy autocomplete. No complex theories. Just <i>proven</i>, <i>practical</i>, <i>actionable</i> systems.</p>
+                    <p>After {{@custom.stat_years_expertise}} years of refining how I work with knowledge, I now help others do the same; including how to use AI as a real thinking partner, not just a fancy autocomplete. No complex theories. Just <i>proven</i>, <i>practical</i>, <i>actionable</i> systems.</p>
                     <p><a href="/about" style="text-decoration:underline; color:#15171a;">Learn More About My Story</a></p>
                 </div>
             </section>
@@ -156,7 +156,7 @@
             <!-- How I Can Help You Further (Products & Services) -->
             <section class="offerings">
                 <h2>Ready to Start? 🧠</h2>
-                <p class="offerings-intro">450+ members already building better systems</p>
+                <p class="offerings-intro">{{@custom.stat_community_members}} members already building better systems</p>
                 <p class="offerings-subheading">Pick your entry point:</p>
 
                 <!-- BESTSELLER HIGHLIGHT -->
@@ -293,7 +293,7 @@
                 <div class="faq-item">
                     <details>
                         <summary><strong>"Can't I just figure this out on my own?"</strong></summary>
-                        <p>Absolutely. I did; it took me 20+ years. Everything I share is the shortcut I wish I'd had. The free articles alone will get you far. The courses, kits, and community just compress the timeline from months to days.</p>
+                        <p>Absolutely. I did; it took me {{@custom.stat_years_expertise}} years. Everything I share is the shortcut I wish I'd had. The free articles alone will get you far. The courses, kits, and community just compress the timeline from months to days.</p>
                     </details>
                 </div>
 
@@ -314,7 +314,7 @@
                     <p>Try any product risk-free. If it doesn't transform how you manage knowledge, get a full refund. No questions asked.</p>
                 </div>
                 <div class="support-info">
-                    <p><strong>Plus:</strong> Free lifetime updates • Priority support • Active community of 450+ members</p>
+                    <p><strong>Plus:</strong> Free lifetime updates • Priority support • Active community of {{@custom.stat_community_members}} members</p>
                 </div>
             </section>
 
@@ -328,7 +328,7 @@
                     <a href="/newsletter" class="cta-funnel-card cta-funnel-primary !no-underline">
                         <span class="cta-funnel-badge">FREE</span>
                         <h3>💌 Get the Newsletter</h3>
-                        <p>Weekly systems, frameworks, and AI tips. Join 6,000+ readers. Zero spam, unsubscribe anytime.</p>
+                        <p>Weekly systems, frameworks, and AI tips. Join {{@custom.stat_newsletter_members}} readers. Zero spam, unsubscribe anytime.</p>
                         <span class="cta-funnel-action">Subscribe for free &rarr;</span>
                     </a>
 

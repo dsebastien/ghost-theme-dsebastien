@@ -17,11 +17,11 @@
                 <p>Five areas that build on each other, turning information chaos into a complete creator system. Each layer strengthens the next, so your knowledge compounds over time.</p>
 
                 <div class="hero-stats">
-                    <span>6,000+ newsletter members</span>
+                    <span>{{@custom.stat_newsletter_members}} newsletter members</span>
                     <span class="stat-separator">&bull;</span>
-                    <span>20+ years expertise</span>
+                    <span>{{@custom.stat_years_expertise}} years expertise</span>
                     <span class="stat-separator">&bull;</span>
-                    <span>450+ community members</span>
+                    <span>{{@custom.stat_community_members}} community members</span>
                 </div>
             </section>
 
@@ -113,7 +113,7 @@
                             <h5>Knowledge Management for Beginners Course</h5>
                             <p><strong>Perfect if:</strong> You want structured lessons instead of scattered articles</p>
                             <p><strong>Results:</strong> Complete foundation in 10+ hours instead of weeks of reading</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;69.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="knowledge-management-for-beginners">&euro;69.99</span></div>
                             <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
@@ -182,14 +182,14 @@
                             <h5>Obsidian Starter Kit</h5>
                             <p><strong>Perfect if:</strong> You want a proven system instead of starting from scratch</p>
                             <p><strong>Results:</strong> Complete setup with 40+ templates, plugins, and automation in minutes &mdash; save 100+ hours of trial and error</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;199.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="obsidian-starter-kit" data-price-variant="Essentials">&euro;199.99</span></div>
                             <a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>Obsidian Starter Course</h5>
                             <p><strong>Perfect if:</strong> You want guided video lessons on frameworks and best practices</p>
                             <p><strong>Results:</strong> Master PARA, Zettelkasten, and Atomic notes in 2+ hours of focused learning</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;69.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="obsidian-starter-course">&euro;69.99</span></div>
                             <a href="https://store.dsebastien.net/product/obsidian-starter-course" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <p class="alternative">Or build your own system from scratch</p>
@@ -240,21 +240,21 @@
                             <h5>PKM Library</h5>
                             <p><strong>Perfect if:</strong> You want access to curated tools, communities, and expert resources</p>
                             <p><strong>Results:</strong> Save hundreds of hours discovering the best PKM resources</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;39.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="pkm-library">&euro;39.99</span></div>
                             <a href="https://store.dsebastien.net/product/pkm-library" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>Personal Knowledge Management Coaching</h5>
                             <p><strong>Perfect if:</strong> You want personalized guidance for your specific challenges</p>
                             <p><strong>Results:</strong> Tailored solutions and expert advice to optimize your unique workflow</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;99.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="pkm-coaching">&euro;99.99</span></div>
                             <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>AI Ghostwriter Guide</h5>
                             <p><strong>Perfect if:</strong> You want to use AI to accelerate your knowledge processing</p>
                             <p><strong>Results:</strong> Turn AI into your personal knowledge assistant</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;49.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="ai-ghostwriter-guide">&euro;49.99</span></div>
                             <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <p class="alternative">Or discover resources on your own</p>
@@ -272,17 +272,17 @@
                 <div class="knowii-tiers">
                     <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=explorer&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
                         <h4>Explorer</h4>
-                        <div class="tier-price">&euro;14.99<span>/quarter</span></div>
+                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Explorer" data-price-format="amount">&euro;14.99</span><span>/quarter</span></div>
                         <p>Access the community, shared resources, and monthly Q&amp;A sessions. Perfect for getting started.</p>
                     </a>
                     <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=knowledge-builder&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
                         <h4>Knowledge Builder</h4>
-                        <div class="tier-price">&euro;59.99<span>/quarter</span></div>
+                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Builder" data-price-format="amount">&euro;59.99</span><span>/quarter</span></div>
                         <p>Everything in Explorer plus all courses, the Obsidian Starter Kit, workshops, and direct support.</p>
                     </a>
                     <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=knowledge-master&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
                         <h4>Knowledge Master</h4>
-                        <div class="tier-price">&euro;119.99<span>/quarter</span></div>
+                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Master" data-price-format="amount">&euro;119.99</span><span>/quarter</span></div>
                         <p>Everything in Knowledge Builder plus 1-on-1 coaching sessions, priority support, and early access to new products.</p>
                     </a>
                 </div>
@@ -393,20 +393,20 @@
                         <div class="product-recommendation">
                             <h5>Knowledge Worker Kit</h5>
                             <p><strong>Perfect if:</strong> You want lifetime community access and all resources in one place</p>
-                            <p><strong>Results:</strong> Private community of 450+ members, comprehensive guides, all future workshops &mdash; complete transformation package</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;249.99</span></div>
+                            <p><strong>Results:</strong> Private community of {{@custom.stat_community_members}} members, comprehensive guides, all future workshops &mdash; complete transformation package</p>
+                            <div class="product-rec-pricing"><span class="price" data-price="knowledge-worker-kit">&euro;249.99</span></div>
                             <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>Clarity 101</h5>
                             <p><strong>Perfect if:</strong> You want a focused guide to clear thinking and decision-making</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;19.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="clarity-101">&euro;19.99</span></div>
                             <a href="https://store.dsebastien.net/product/clarity-101" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>Journaling Deep Dive</h5>
                             <p><strong>Perfect if:</strong> You want to build a powerful journaling practice for reflection and growth</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;29.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="journaling-deep-dive">&euro;29.99</span></div>
                             <a href="https://store.dsebastien.net/product/journaling-deep-dive" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <p class="alternative">Or continue your journey solo</p>
@@ -467,19 +467,19 @@
                             <h5>AI Ghostwriter Guide</h5>
                             <p><strong>Perfect if:</strong> You want to use AI to accelerate your content creation</p>
                             <p><strong>Results:</strong> Turn AI into your personal writing assistant</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;49.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="ai-ghostwriter-guide">&euro;49.99</span></div>
                             <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>AI Master Prompt</h5>
                             <p><strong>Perfect if:</strong> You want a single powerful prompt to get the most from AI assistants</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;19.99</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="ai-master-prompt">&euro;19.99</span></div>
                             <a href="https://store.dsebastien.net/product/ai-master-prompt" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <div class="product-recommendation secondary">
                             <h5>Knowii Voice AI</h5>
                             <p><strong>Perfect if:</strong> You want to capture knowledge through voice conversations</p>
-                            <div class="product-rec-pricing"><span class="price">&euro;49</span></div>
+                            <div class="product-rec-pricing"><span class="price" data-price="knowii-voice-ai">&euro;49</span></div>
                             <a href="https://store.dsebastien.net/product/knowii-voice-ai" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
                         </div>
                         <p class="alternative">Or create content on your own</p>
@@ -521,7 +521,7 @@
                 <div class="bundle-content">
                     <div class="bundle-details">
                         <h3>Everything Knowledge Bundle</h3>
-                        <div class="bundle-price">&euro;399.99</div>
+                        <div class="bundle-price" data-price="everything-knowledge-bundle">&euro;399.99</div>
                         <p>The complete knowledge mastery package. Every course, every kit, every guide &mdash; all in one powerful bundle.</p>
                         <ul class="bundle-includes">
                             <li><a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener">Knowledge Management for Beginners Course</a></li>

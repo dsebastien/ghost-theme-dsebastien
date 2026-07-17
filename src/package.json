@@ -52,6 +52,30 @@
                 "type": "color",
                 "default": "#ffffff"
             },
+            "stat_newsletter_members": {
+                "type": "text",
+                "default": "6,000+"
+            },
+            "stat_community_members": {
+                "type": "text",
+                "default": "450+"
+            },
+            "stat_years_expertise": {
+                "type": "text",
+                "default": "20+"
+            },
+            "stat_products_sold": {
+                "type": "text",
+                "default": "2000+"
+            },
+            "stat_hours_saved": {
+                "type": "text",
+                "default": "10K+"
+            },
+            "stat_articles_count": {
+                "type": "text",
+                "default": "800+"
+            },
             "header_and_footer_color": {
                 "type": "select",
                 "options": [

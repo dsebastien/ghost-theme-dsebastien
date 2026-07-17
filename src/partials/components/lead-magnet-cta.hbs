@@ -15,7 +15,7 @@
         </div>
         {{> "email-subscription" email_field_id=email_field_id}}
     </div>
-    <p class="lead-magnet-note">6,000+ readers. No spam. Unsubscribe anytime.</p>
+    <p class="lead-magnet-note">{{@custom.stat_newsletter_members}} readers. No spam. Unsubscribe anytime.</p>
 </section>
 {{else}}
 <section class="lead-magnet">
@@ -26,6 +26,6 @@
         </div>
         {{> "email-subscription" email_field_id=email_field_id}}
     </div>
-    <p class="lead-magnet-note">6,000+ readers. No spam. Unsubscribe anytime.</p>
+    <p class="lead-magnet-note">{{@custom.stat_newsletter_members}} readers. No spam. Unsubscribe anytime.</p>
 </section>
 {{/match}}
