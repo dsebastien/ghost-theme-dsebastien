@@ -37,8 +37,8 @@
                         <div class="newsletter-tier">
                             <h4>Free</h4>
                             <ul>
-                                <li>✅ New newsletter editions</li>
-                                <li>✅ All free articles</li>
+                                <li>✅ New newsletter editions in your inbox</li>
+                                <li>✅ All articles &amp; the full archive</li>
                             </ul>
                             <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
                         </div>
@@ -46,25 +46,22 @@
                             <h4>Supporter</h4>
                             <ul>
                                 <li>✅ Everything in Free</li>
-                                <li>✅ Full newsletter archive</li>
-                                <li>✅ All blog posts</li>
                                 <li>✅ Exclusive discounts</li>
                                 <li>✅ Early access to products</li>
+                                <li>✅ Support my work as a creator 🌹</li>
                             </ul>
                             <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
                         </div>
                         <div class="newsletter-tier newsletter-tier-highlight">
                             <span class="newsletter-tier-badge">RECOMMENDED</span>
-                            <h4>Knowledge Builder</h4>
+                            <h4>Knowii Community</h4>
                             <ul>
-                                <li>✅ Everything in Supporter</li>
-                                <li>✅ Knowii Community access</li>
-                                <li>✅ Obsidian Starter Kit &amp; Course</li>
-                                <li>✅ Premium Workshops (Clarity 101, Journaling Deep Dive, Personal Org 101, AI Master Prompt, MCP)</li>
-                                <li>✅ Expert access &amp; monthly challenges</li>
-                                <li>✅ $150+ value included</li>
+                                <li>✅ A private community of knowledge workers</li>
+                                <li>✅ Everything in Free, plus workshops, courses &amp; tools — depending on the tier you pick</li>
+                                <li>✅ Up to €700+ of my products &amp; courses included</li>
+                                <li>✅ From €14.99/quarter</li>
                             </ul>
-                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Join as Builder →</a>
+                            <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="gh-button newsletter-tier-cta">Join Knowii →</a>
                         </div>
                     </div>
                 </section>
@@ -79,7 +76,7 @@
                     <h2 class="!mt-0 section-title">Recent Editions</h2>
                     <p>📡 <a class="top-link" href="/newsletter/rss/">Subscribe to the newsletter archive RSS feed</a> · <a class="top-link" href="/feeds/">browse all feeds</a>.</p>
                     <div class="gh-feed mt-4">
-                        {{#get "posts" filter="tag:newsletter" limit=12 as |recent|}}
+                        {{#get "posts" filter="tag:newsletter" include="tags" limit=12 as |recent|}}
                             {{#foreach recent}}
                                 {{> "post-card"}}
                             {{/foreach}}
