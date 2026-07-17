@@ -13,27 +13,31 @@
             </h1>
         </header>
 
-        {{!-- Logged-out users --}}
-        {{#unless @member}}
             <section class="gh-content gh-canvas is-body">
 
-                <!-- Hero -->
-                <section class="hero !mt-0">
-                    <h2>Turn Information Overload into Clear Thinking</h2>
-                    <p class="max-w-xl mx-auto">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
-                    <p class="hero-social-proof">{{@custom.stat_newsletter_members}} readers already subscribed ✨</p>
-                </section>
+                {{!-- Logged-out users: hero + free subscribe pitch --}}
+                {{#unless @member}}
+                    <!-- Hero -->
+                    <section class="hero !mt-0">
+                        <h2>Turn Information Overload into Clear Thinking</h2>
+                        <p class="max-w-xl mx-auto">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
+                        <p class="hero-social-proof">{{@custom.stat_newsletter_members}} readers already subscribed ✨</p>
+                    </section>
 
-                <!-- Subscribe form -->
-                <section class="cta-newsletter">
-                    <h2>Subscribe for free 💌</h2>
-                    {{> "email-subscription" email_field_id="newsletter-email"}}
-                </section>
+                    <!-- Subscribe form -->
+                    <section class="cta-newsletter">
+                        <h2>Subscribe for free 💌</h2>
+                        {{> "email-subscription" email_field_id="newsletter-email"}}
+                    </section>
+                {{/unless}}
 
-                <!-- Tier comparison -->
+                {{!-- Tier comparison: visible to EVERYONE — logged-in free members
+                     are the warmest upgrade audience; only the Free card is
+                     redundant for them. --}}
                 <section class="newsletter-tiers">
-                    <h3>Membership tiers</h3>
+                    <h3>{{#if @member}}Go further{{else}}Membership tiers{{/if}}</h3>
                     <div class="newsletter-tiers-grid">
+                        {{#unless @member}}
                         <div class="newsletter-tier">
                             <h4>Free</h4>
                             <ul>
@@ -42,6 +46,8 @@
                             </ul>
                             <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
                         </div>
+                        {{/unless}}
+                        {{#unless @member.paid}}
                         <div class="newsletter-tier">
                             <h4>Supporter</h4>
                             <ul>
@@ -50,8 +56,9 @@
                                 <li>✅ Early access to products</li>
                                 <li>✅ Support my work as a creator 🌹</li>
                             </ul>
-                            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
+                            <a href="#/portal/signup" data-portal="{{#if @member}}upgrade{{else}}signup{{/if}}" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
                         </div>
+                        {{/unless}}
                         <div class="newsletter-tier newsletter-tier-highlight">
                             <span class="newsletter-tier-badge">RECOMMENDED</span>
                             <h4>Knowii Community</h4>
@@ -67,7 +74,6 @@
                 </section>
 
             </section>
-        {{/unless}}
 
         <section class="gh-container is-grid has-sidebar gh-outer">
             <div class="gh-container-inner gh-inner">
