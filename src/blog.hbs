@@ -18,32 +18,78 @@
 <main class="gh-main gh-outer blog">
     <section class="gh-inner !mt-32">
         <h1 class="gh-article-title is-title">Articles ✍️</h1>
-        <p class="gh-article-excerpt">Explore my articles about
-            <a class="top-link" href="#obsidian">Obsidian</a>,
-            <a class="top-link" href="#ai">AI</a>,
-            <a class="top-link" href="#personal-knowledge-management">Personal Knowledge Management</a>,
-            <a class="top-link" href="#knowledge-work">Knowledge Work</a>,
-            <a class="top-link" href="#productivity">Productivity &amp; Organization</a>,
-            <a class="top-link" href="#learning">Learning</a>,
-            <a class="top-link" href="#personal-development">Personal Development &amp; Mental Health</a>,
-            <a class="top-link" href="#writing">Writing</a>,
-            and <a class="top-link" href="#software-development">Software Development</a>.</p>
         <p class="gh-article-excerpt">📡 <a class="top-link" href="/blog/rss/">Subscribe to the articles RSS feed</a> · <a class="top-link" href="/feeds/">browse all feeds</a>.</p>
     </section>
+
+    {{!--
+        Sticky topic nav: one pill per topic section anchor below. Sticks at the
+        top of the viewport once scrolled (the site header is not sticky) and
+        scrolls horizontally with a hidden scrollbar on small screens.
+        Scroll-spy + smooth scrolling live in assets/js/blog-nav.js.
+    --}}
+    <nav id="blog-topic-nav" class="blog-topic-nav" aria-label="Article topics">
+        <div class="gh-inner blog-topic-nav-inner">
+            <a class="blog-topic-pill" href="#obsidian">Obsidian</a>
+            <a class="blog-topic-pill" href="#ai">AI</a>
+            <a class="blog-topic-pill" href="#personal-knowledge-management">Personal Knowledge Management</a>
+            <a class="blog-topic-pill" href="#knowledge-work">Knowledge Work</a>
+            <a class="blog-topic-pill" href="#productivity">Productivity &amp; Organization</a>
+            <a class="blog-topic-pill" href="#learning">Learning</a>
+            <a class="blog-topic-pill" href="#personal-development">Personal Development &amp; Mental Health</a>
+            <a class="blog-topic-pill" href="#writing">Writing</a>
+            <a class="blog-topic-pill" href="#software-development">Software Development</a>
+            <a class="blog-topic-pill" href="#more">More</a>
+        </div>
+    </nav>
+
     <section class="gh-container is-grid has-sidebar gh-outer">
         <div class="gh-container-inner gh-inner">
             <main class="gh-main">
-                <!-- Recent -->
-                <h2 class="!mt-0 section-title">Recent</h2>
+                {{!--
+                    Hero zone (Tier 1.0): newest featured article as the hero card,
+                    the next two featured as "Editor's picks" (large). Curation
+                    lever = Ghost's featured flag (13 posts, all articles — audit).
+                    include="tags" is required for the topic pill — {{#get}} does
+                    not load tag relations by default. imageSizes matches the
+                    full-width (hero) and half-width (large) grid slots.
+                    Guards: {{#get}} renders its block even for empty results
+                    ({{else}} only fires on API error), so the hero div and the
+                    picks heading only render when there are posts to fill them.
+                    Known + accepted: hero-zone articles also appear in their
+                    topic section below (topic filters don't exclude featured,
+                    because that would also hide the ~10 featured-but-not-in-hero
+                    articles from topic sections).
+                --}}
+                {{#get "posts" filter="featured:true+tag:blog" include="tags" limit=3 as |featuredPosts|}}
+                    {{#if featuredPosts}}
+                        <div class="gh-feed blog-hero">
+                            {{#foreach featuredPosts to="1"}}
+                                {{> "post-card" size="hero" imageSizes="(max-width: 767px) 100vw, 960px"}}
+                            {{/foreach}}
+                            {{#if featuredPosts.[1]}}
+                                <h2 class="section-title">Editor's picks</h2>
+                                {{#foreach featuredPosts from="2"}}
+                                    {{> "post-card" size="large" imageSizes="(max-width: 767px) 100vw, 480px"}}
+                                {{/foreach}}
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                {{/get}}
+
+                {{!--
+                    Latest: 5 newest non-featured articles. featured:false
+                    guarantees no duplication with the hero zone above.
+                --}}
+                <h2 class="section-title">{{t "Latest"}}</h2>
                 <div class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:blog" limit=6 as |recent|}}
-                        {{#foreach recent}}
-                            {{> "post-card"}}
+                    {{#get "posts" filter="tag:blog+featured:false" include="tags" limit=5 as |latestPosts|}}
+                        {{#foreach latestPosts}}
+                            {{> "post-card" size="compact"}}
                         {{/foreach}}
                     {{/get}}
 
                     <div class="">
-                        <a href="/tag/blog">See More {{> "icons/arrow"}}</a>
+                        <a href="/all-articles/">See all articles {{> "icons/arrow"}}</a>
                         <hr class="!my-8"/>
                     </div>
                 </div>
@@ -108,7 +154,7 @@
                     title="More Articles"
                     anchor="more"
                     topicFilter="tag:blog+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning,personal-development,mental-health,writing,software-development,web-development]"
-                    seeAllUrl="/all-articles"}}
+                    seeAllUrl="/all-articles/"}}
             </main>
 
             {{> "components/sidebar" showFeatured=true showCategories=true showRecommendations=true}}

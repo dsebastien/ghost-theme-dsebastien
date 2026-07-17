@@ -9,8 +9,13 @@ routes:
     template: news
   /start/:
     template: start
+  # Utility crawl index — a channel (not a static route) so Ghost paginates
+  # natively past any {{#get}} cap and emits link[rel=next/prev] for crawlers.
   /all-articles/:
+    controller: channel
+    filter: "tag:blog"
     template: all-articles
+    rss: false
   /all-tags/:
     template: all-tags
   /feeds/:
@@ -20,27 +25,35 @@ routes:
   # Each channel below is BOTH a browsable archive page at its path
   # AND an RSS feed at {path}rss/ (RSS is enabled by default for channels).
   # tag:[a,b,c] matches posts having ANY of the listed tags.
+  # Every topical channel is scoped with +tag:blog (the articles inclusion
+  # marker) so newsletters/news sharing topic tags never leak into them.
   /feeds/pkm/:
     controller: channel
-    filter: "tag:[personal-knowledge-management,note-taking,obsidian,zettelkasten,journaling]"
+    filter: "tag:[personal-knowledge-management,note-taking,obsidian,zettelkasten,journaling]+tag:blog"
     template: feed-pkm
   /feeds/ai/:
     controller: channel
-    filter: "tag:[ai,ai-2,claude-code,ai-skills]"
+    filter: "tag:[ai,ai-2,claude-code,ai-skills]+tag:blog"
     template: feed-ai
   /feeds/productivity/:
     controller: channel
-    filter: "tag:[productivity,personal-organization,personal-development,habits,routines]"
+    filter: "tag:[productivity,personal-organization,personal-development,habits,routines]+tag:blog"
     template: feed-productivity
   /feeds/dev/:
     controller: channel
-    filter: "tag:[software-development,web-development,front-end,back-end,angular,typescript,javascript]"
+    filter: "tag:[software-development,web-development,front-end,back-end,angular,typescript,javascript]+tag:blog"
     template: feed-dev
   /feeds/best/:
     controller: channel
-    filter: "featured:true"
+    filter: "featured:true+tag:blog"
     template: feed-best
 
+# IMPORTANT: keep the /blog/, /newsletter/, /news/ collections below.
+# Their {slug} permalink filters are inert — the unfiltered / collection owns
+# every post, so post URLs stay /{slug}/ — but these collections generate the
+# live, correctly-filtered RSS feeds at /blog/rss/, /newsletter/rss/ and
+# /news/rss/, which are externally linked all over the web.
+# Never delete or rename them.
 collections:
   /:
     permalink: /{slug}/

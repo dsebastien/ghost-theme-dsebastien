@@ -762,6 +762,73 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     content: "—";
 }
 
+:is(.gh-card-author, .gh-card-date) + .gh-card-reading-time::before {
+    @apply mr-1;
+    content: "—";
+}
+
+/* 7.1. Card size variants */
+
+/* regular is the default and matches the base card exactly (the class is a
+   neutral marker); hero/large/compact are opted into per consumer via
+   {{> "post-card" size="..."}} — see documentation/plans/articles-page-overhaul.md (Tier 1.9). */
+
+.gh-card-hero {
+    grid-column: 1 / -1;
+}
+
+.gh-card-hero .gh-card-title {
+    font-size: calc(2.8rem * var(--factor, 1));
+    letter-spacing: -0.02em;
+}
+
+.gh-card-hero .gh-card-excerpt {
+    font-size: 1.6rem;
+    -webkit-line-clamp: 3;
+}
+
+.gh-card-large {
+    grid-column: span 2;
+}
+
+.gh-card-large .gh-card-title {
+    font-size: calc(2.2rem * var(--factor, 1));
+}
+
+.gh-card-compact .gh-card-link {
+    @apply gap-2;
+}
+
+.gh-card-compact .gh-card-title {
+    @apply truncate;
+    font-size: 1.6rem;
+    letter-spacing: -0.011em;
+}
+
+.gh-card-compact .gh-card-excerpt {
+    @apply hidden;
+}
+
+.gh-card-compact .gh-card-meta:not(:empty) {
+    @apply !mt-1;
+}
+
+/* The topic pill ships hidden in the base card (.gh-card-tag above keeps the
+   historic look site-wide) and is opted in per surface: always on the
+   hero/large variants, and on regular cards on /blog/ (topic sections).
+   Compact cards never show it. Needs tags loaded — channel/collection context
+   or include="tags" on the surrounding {{#get}}. */
+:is(.gh-card-hero, .gh-card-large) .gh-card-tag,
+.blog .gh-card-regular .gh-card-tag {
+    @apply block;
+}
+
+@media (max-width: 767px) {
+    .gh-card-large {
+        grid-column: 1 / -1;
+    }
+}
+
 /* 10. Featured posts
 /* ---------------------------------------------------------- */
 
@@ -2902,12 +2969,90 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* Blog
 /* ---------------------------------------------------------- */
 
+.blog {
+    /* Rendered height of the sticky pill bar below (py-3 + 1.3rem pill with
+       0.6em padding + border). Consumed by the sticky sidebar offset and the
+       anchor scroll offset further down — update those consumers' comments if
+       this changes. */
+    --blog-topic-nav-height: 60px;
+}
+
 .blog h2.section-title {
     @apply !mt-16 !mb-8 text-4xl font-bold;
 }
 
 .blog .gh-archive-inner {
     @apply !pb-8;
+}
+
+/* Blog sticky topic nav (pill bar + scroll-spy — see assets/js/blog-nav.js).
+   The site header (.gh-navigation) is position: relative and scrolls away,
+   so the bar sticks at top: 0. z-index sits just below .gh-dropdown (90) and
+   far below the mobile nav overlay (3999999), above the sticky sidebar and
+   the card grids. */
+
+.blog-topic-nav {
+    @apply sticky top-0;
+    z-index: 89;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.blog-topic-nav-inner {
+    @apply flex items-center gap-2 py-3 overflow-x-auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.blog-topic-nav-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.blog-topic-pill {
+    @apply whitespace-nowrap rounded-full font-medium;
+    padding: 0.6em 1.2em;
+    font-size: 1.3rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-darker-gray);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.blog-topic-pill:hover {
+    @apply opacity-100;
+    border-color: var(--color-darker-gray);
+}
+
+.blog-topic-pill.is-active {
+    border-color: var(--ghost-accent-color);
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
+/* The pill bar sits above the sticky sidebar (z-index 89 vs auto), so on
+   /blog/ the sidebar sticks below it instead of the default 21px offset
+   (.gh-sidebar-inner in section 13). */
+.blog .gh-sidebar-inner {
+    top: calc(var(--blog-topic-nav-height) + var(--grid-gap) / 2);
+}
+
+/* Keep anchored section titles visible below the sticky pill bar when
+   jumping to a topic (pill bar + section title + its margins). span[id]
+   covers the legacy backward-compat anchors kept in blog.hbs. Resolves to
+   140px — keep in sync with the scroll-spy rootMargin in assets/js/blog-nav.js. */
+.blog :is(.gh-feed[id], span[id]) {
+    scroll-margin-top: calc(var(--blog-topic-nav-height) + 80px);
+}
+
+/* Blog hero zone: newest featured article (hero, full width) + the next two
+   featured as "Editor's picks" (large, side by side — each spans 2 of the 4
+   columns; they stack below 768px via the .gh-card-large rule above) */
+.blog .gh-feed.blog-hero {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.blog .blog-hero h2.section-title {
+    @apply !mt-6 !mb-0;
+    grid-column: 1 / -1;
 }
 
 /* Newsletter

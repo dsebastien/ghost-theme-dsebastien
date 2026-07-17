@@ -11,7 +11,8 @@
 --}}
 <h2 class="section-title">{{title}}</h2>
 <div id="{{anchor}}" class="gh-feed mt-4">
-    {{#get "posts" filter=topicFilter limit=6 as |sectionPosts|}}
+    {{!-- include="tags" is required for the topic pill — {{#get}} does not load tag relations by default --}}
+    {{#get "posts" filter=topicFilter include="tags" limit=6 as |sectionPosts|}}
         {{#foreach sectionPosts}}
             {{> "post-card"}}
         {{/foreach}}

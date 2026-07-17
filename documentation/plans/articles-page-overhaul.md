@@ -138,7 +138,9 @@ THE page. `src/blog.hbs` today is 10 hardcoded topic sections × 6 identical car
 - ~13 `{{#get}}` queries per render is acceptable (Ghost caches rendered pages) but don't grow it further; strips share queries where possible.
 - Featured pool is 13 posts, all articles (audit-confirmed) — ideal size for hero + best-of; keep it curated at 10–15.
 
-### 1.1 Fix `/all-articles/` as the utility crawl index (paginated, un-capped) — LOW PRIORITY
+### 1.1 Fix `/all-articles/` as the utility crawl index (paginated, un-capped) — DONE 2026-07-17
+
+Converted to a channel (`controller: channel`, `filter: "tag:blog"`, `rss: false`) in `routes.yaml`; `src/all-articles.hbs` rewritten as a plain `{{#foreach posts}}` list (title + date + first topic tag, `data-year` markers) with `{{pagination}}` — the ten copy-pasted `{{#get}}` batches are gone.
 
 `/all-articles/` exists for maintenance and search engines only; it just needs to be complete and crawlable, not pretty.
 
@@ -248,9 +250,10 @@ THE page. `src/blog.hbs` today is 10 hardcoded topic sections × 6 identical car
 ### 1.6 Routes hygiene + dead-collection cleanup + nav de-dupe
 
 **Build**
-- **Collections and routes all STAY.** Audit resolved the earlier "dead config" hypothesis: the `/blog/`, `/newsletter/`, `/news/` collections' `{slug}` permalinks are inert (the unfiltered `/` collection owns every post), but their RSS feeds (`/blog/rss/`, `/newsletter/rss/`, `/news/rss/`) are live, correctly filtered, and linked from many places online. Zero deletions, zero URL changes. Add a comment in `routes.yaml` documenting WHY the collections exist (RSS) so nobody "cleans them up" later.
+- **Collections and routes all STAY.** Audit resolved the earlier "dead config" hypothesis: the `/blog/`, `/newsletter/`, `/news/` collections' `{slug}` permalinks are inert (the unfiltered `/` collection owns every post), but their RSS feeds (`/blog/rss/`, `/newsletter/rss/`, `/news/rss/`) are live, correctly filtered, and linked from many places online. Zero deletions, zero URL changes. Add a comment in `routes.yaml` documenting WHY the collections exist (RSS) so nobody "cleans them up" later. — **DONE 2026-07-17**: explanatory comment block added above `collections:` in `routes.yaml`.
+- **DONE 2026-07-17 — scope the `/feeds/` topical channels to articles**: appended `+tag:blog` to the `/feeds/pkm/`, `/feeds/ai/`, `/feeds/productivity/`, `/feeds/dev/` filters and changed `/feeds/best/` to `featured:true+tag:blog`, so newsletters/news no longer leak into those browsable pages.
 - `/blog/` STAYS as a static route → the rebuilt `blog.hbs` (1.0). No URL changes, no redirects needed.
-- Dedupe `partials/search-toggle.hbs` — currently rendered 3× in `partials/components/navigation.hbs` (branding block + inside menu + in actions). Keep one, remove two.
+- ~~Dedupe `partials/search-toggle.hbs` — currently rendered 3× in `partials/components/navigation.hbs`.~~ **Verified false (2026-07-17)** — the brand and actions instances are swapped by CSS media queries at 768px (`.gh-navigation-brand .gh-search` hidden ≥768px, `.gh-navigation-actions .gh-search` hidden <768px — standard responsive pattern; exactly one visible per viewport). The third instance (inside `.gh-navigation-menu`) only renders when members are disabled, which is not the case on this site. No a11y bug, nothing to dedupe.
 - Fix the duplicate 📰 icon in nav (News + Articles). Use 🗞️ for News, 📰 for Articles.
 - Remove/reorder nav items to reduce the 11-item cognitive load: promote Start/Articles/Community, collapse Store/Courses/Coaching under a Products dropdown.
 
@@ -260,7 +263,6 @@ THE page. `src/blog.hbs` today is 10 hardcoded topic sections × 6 identical car
 
 **Why**
 - The routes.yaml comment prevents a future "cleanup" from accidentally killing three live, externally-linked RSS feeds.
-- 3× duplicated search-toggle is a live a11y bug.
 - Nav de-clutter raises click-through to the surfaces that matter (`/blog/`, `/start/`, community).
 
 ### 1.7 JSON-LD structured data (Article + BreadcrumbList + CollectionPage + WebSite/SearchAction + FAQ)
