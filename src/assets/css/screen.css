@@ -1065,12 +1065,10 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .gh-sidebar-inner {
     position: sticky;
     top: calc(var(--grid-gap) / 2);
-    /* Safety net: if the sidebar ever outgrows the viewport again, it degrades
-       to internal scrolling instead of unreachable content (sticky elements
-       never scroll on their own). */
-    max-height: calc(100dvh - var(--grid-gap));
-    overflow-y: auto;
-    scrollbar-width: thin;
+    /* No max-height/overflow here on purpose: clipping turns the sidebar into a
+       nested-scroll container that hides its lower content. The priority CTA
+       (Knowii) sits at the top of the partial so it is always visible; the
+       Featured link list below scrolls with the page like normal flow. */
 }
 
 .gh-sidebar-title {
@@ -2951,7 +2949,6 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
    (.gh-sidebar-inner in section 13). */
 .blog .gh-sidebar-inner {
     top: calc(var(--blog-topic-nav-height) + var(--grid-gap) / 2);
-    max-height: calc(100dvh - var(--blog-topic-nav-height) - var(--grid-gap));
 }
 
 /* Keep anchored section titles visible below the sticky pill bar when

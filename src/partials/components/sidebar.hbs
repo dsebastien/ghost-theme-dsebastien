@@ -34,6 +34,18 @@
             {{/if}}
         </section>
 
+        <!-- One product card first (the priority CTA); everything else lives
+             in the footer. Featured (a secondary link list) follows below. -->
+        <section class="sidebar-products" data-cta-topic="sidebar">
+            <h4 class="gh-sidebar-title">Go Further</h4>
+            <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="sidebar-product-featured" data-cta="knowii">
+                <span class="sidebar-product-badge">MOST POPULAR</span>
+                <strong class="sidebar-product-name">Knowii Community</strong>
+                <span class="sidebar-product-desc">ALL courses + tools + community + future workshops</span>
+                <span class="sidebar-product-cta">Learn more →</span>
+            </a>
+        </section>
+
         <!-- Featured -->
         {{#if showFeatured}}
             <section class="gh-recommendations">
@@ -51,16 +63,5 @@
                 </ul>
             </section>
         {{/if}}
-
-        <!-- One product card; everything else lives in the footer -->
-        <section class="sidebar-products" data-cta-topic="sidebar">
-            <h4 class="gh-sidebar-title">Go Further</h4>
-            <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="sidebar-product-featured" data-cta="knowii">
-                <span class="sidebar-product-badge">MOST POPULAR</span>
-                <strong class="sidebar-product-name">Knowii Community</strong>
-                <span class="sidebar-product-desc">ALL courses + tools + community + future workshops</span>
-                <span class="sidebar-product-cta">Learn more →</span>
-            </a>
-        </section>
     </div>
 </aside>
