@@ -68,7 +68,12 @@ Implemented with a policy amendment: instead of deleting prices, they are now HY
 **Why first:** doing 1.3/1.4 before this means restructuring hardcoded values twice (explicit verdict warning). One Admin → Design field update then refreshes 14+ surfaces with zero deploys.
 **Caveat:** code injection is NOT the mechanism (opaque HTML, not template variables) — `config.custom` + `{{@custom.*}}` only.
 
-### 1.3 Member-aware single-CTA hero with identity anchor (`src/home.hbs` L6-32)
+### 1.3 Member-aware single-CTA hero with identity anchor — ✅ DONE 2026-07-17
+
+**Shipped** (hero copy chosen via a judged 3-angle copy panel; outcome-first won, grafted pain-first's "save everything and find nothing" hook): H1 "The Knowledge System That Turns Overload Into Output 🧠" (8 words); H2 names the audience + the pain; a 2-line identity anchor (WHO, placed *above* the stat strip so the name lands before the numbers); ONE primary button → `/start/` ("Start here, it's free"); the `path-router` (home variant) directly under the button; the store demoted to a `.hero-textlink` fallback (no second button). Three mutually-exclusive states via a single `{{#if @member}}…{{#if @member.paid}}PAID{{else}}FREE{{/if}}…{{else}}COLD{{/if}}`: **cold** = full pitch; **free member** = "Welcome back" + jump-to-latest + one Knowii upgrade CTA; **paid member** = compact shortcut row (Community / Latest articles / Account). Adversarial-review follow-through: (a) the entire commerce stack (results-proof, enemy, identity-benefits, offerings grid, risk-reversal, membership tiers, CTA funnel) is now wrapped in `{{#unless @member}}` — members are routed, not re-pitched (plan Vision); members see hero shortcuts → about → youtube → fresh strips → approach. (b) Lead magnet moved below the About section so the first screen carries a single ask. No JSON-LD added (Person delta stays Tier 3). New CSS: `.hero-identity-anchor`, `.hero-textlink`, `.hero-welcome`, `.hero-member-shortcuts`. gscan clean.
+
+**Original spec (for reference):**
+
 Three states via native `@member` / `@member.paid`:
 - **Cold** (`{{#unless @member}}`): new H1 naming audience + outcome in <12 words (e.g. "The Knowledge System for Serious Creators" — Creators are the stated primary segment); H2 = specific benefit line; 2-line identity anchor directly under it ("Sébastien Dubois — 20 years in software, {{@custom.stat_newsletter_members}} readers") reusing the already-loaded `seb.jpg`; ONE primary button → `/start/` ("Start here — it's free →"); "Explore Solutions" demoted to a text link; inline 3-option segment router row (new-to-PKM → `/start/#area-foundation` | messy system → `/start/#area-system` | ready-to-buy → store) as a shared `partials/components/path-router.hbs`.
 - **Free member**: "Welcome back" + link into the fresh strips (1.5) + one Knowii upgrade CTA.
@@ -86,7 +91,12 @@ Also: shrink the L113-121 bio section to "More about me →" (identity moved up)
 - Lead magnets: `obsidian` variant above the fold (keep L58-62), `checklist` variant at bottom (keep L582-584), drop the third mid-page capture unless a `tools` variant (Tools for Thought DB) is added to `lead-magnet-cta.hbs` — max 2-3 captures.
 **Why:** /start/ currently shows €14.99-€399.99 across ~25 store links before layer one ends, contradicting the free promise that routed people there — the audit's biggest cold-conversion break.
 
-### 1.5 Fresh-content strips on home (pure `topic-section.hbs` reuse)
+### 1.5 Fresh-content strips on home — ✅ DONE 2026-07-17
+
+**Shipped:** two `{{> "components/topic-section"}}` strips inserted after the YouTube card — "Best of the blog" (`featured:true+tag:blog`, seeAll → `/feeds/best/`, anchor `home-best`) and "Latest articles" (`tag:blog`, seeAll → `/blog/`, anchor `home-latest`), 3 cards each. `topic-section.hbs` gained an optional `limit` param: to avoid the bare-`limit` NQL default of 15 silently changing other callers, every existing call in blog.hbs (10) was given an explicit `limit=6` first, then the partial switched to `limit=limit` (verified: 12 total calls, none without an explicit limit). Strips render for all cohorts (returning members get proof-of-life; the free-member hero links here). gscan clean.
+
+**Original spec (for reference):**
+
 After the YouTube card (~L124): two `{{> "components/topic-section"}}` includes —
 - "Best of": `topicFilter="featured:true+tag:blog"` limit=3, post-card **large**, `seeAllUrl="/feeds/best/"` (channel exists in routes.yaml; 13 featured posts exist).
 - "Latest articles": `topicFilter="tag:blog"` limit=3, post-card **compact**, `seeAllUrl="/blog/"`.

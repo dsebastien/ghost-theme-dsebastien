@@ -4,13 +4,33 @@
 <main class="gh-main homepage">
     <article class="gh-article">
         <header class="gh-article-header gh-canvas">
-            <h1 class="gh-article-title is-title !text-center">10X Your Results With Clear Thinking</h1>
-            <h2>Knowledge systems + AI leverage for creators, leaders, and knowledge workers ⚡</h2>
+            <h1 class="gh-article-title is-title !text-center">The Knowledge System That Turns Overload Into Output 🧠</h1>
+            <h2>For creators, leaders, and knowledge workers who save everything and find nothing. Turn scattered notes into work that compounds instead of piling up.</h2>
         </header>
 
         <section class="gh-content gh-canvas is-body">
             <!-- Hero -->
             <section class="hero">
+                {{#if @member}}
+                    {{#if @member.paid}}
+                        <!-- PAID MEMBER: compact shortcut row, no pitch -->
+                        <div class="hero-member-shortcuts">
+                            <a href="https://www.store.dsebastien.net/product/knowii-community" target="_blank" rel="noopener">Community</a>
+                            <a href="/blog/">Latest articles</a>
+                            <a href="#/portal/account" data-portal="account">Account</a>
+                        </div>
+                    {{else}}
+                        <!-- FREE MEMBER: welcome back + articles link + single upgrade CTA -->
+                        <p class="hero-welcome">Welcome back 👋 Here's what's new — <a href="#home-latest">jump to the latest articles</a>.</p>
+
+                        <div class="hero-cta-group">
+                            <a href="https://www.store.dsebastien.net/product/knowii-community" target="_blank" rel="noopener" class="cta gh-button primary">Upgrade to Knowii Community 🚀</a>
+                        </div>
+                    {{/if}}
+                {{else}}
+                        <!-- COLD (logged out) — WHO before the numbers -->
+                        <p class="hero-identity-anchor">Sébastien Dubois, {{@custom.stat_years_expertise}} years in software.<br />{{@custom.stat_newsletter_members}} readers, {{@custom.stat_community_members}} in the community.</p>
+
                         <div class="hero-stats">
                             <span>{{@custom.stat_newsletter_members}} newsletter members</span>
                             <span class="stat-separator">•</span>
@@ -19,24 +39,20 @@
                             <span>{{@custom.stat_community_members}} community members</span>
                         </div>
 
-                        <p>Your ideas are scattered. Your brain is full. You KNOW there's gold in the chaos, but you can't find it when it matters.</p>
-
-                        <p class="hero-value-prop"><strong>I help you build knowledge systems, powered by AI, that turn information overload into consistent output. Without the burnout.</strong></p>
-
                         <div class="hero-cta-group">
-                            <a href="/start" class="cta gh-button primary">Get started, it's free ✨</a>
-                            <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="cta gh-button secondary">Explore Solutions 🚀</a>
+                            <a href="/start/" class="cta gh-button primary">Start here, it's free</a>
                         </div>
 
-                        <p class="hero-social-proof">{{@custom.stat_newsletter_members}} people already think and create more clearly ✨</p>
+                        {{!-- Router directly under the primary button; store link is the final fallback --}}
+                        {{> "components/path-router" variant="home"}}
+
+                        <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="hero-textlink">or browse the products and courses</a>
+                {{/if}}
             </section>
 
-            <!-- Lead magnet -->
+            {{!-- Cold-visitor pitch (problem → transformation). Members are
+                 routed by the hero and skip straight to content below. --}}
             {{#unless @member}}
-                <div class="!mt-32">
-                    {{> "components/lead-magnet-cta" email_field_id="home-email"}}
-                </div>
-            {{/unless}}
 
             <!-- Results Proof Section -->
             <section class="results-proof">
@@ -108,6 +124,7 @@
                     <p>Close your laptop knowing everything is captured, organized, and waiting for you tomorrow. No open loops rattling around your head at 2 AM.</p>
                 </div>
             </section>
+            {{/unless}}
 
             <!-- About/Intro -->
             <section class="about">
@@ -120,8 +137,30 @@
                 </div>
             </section>
 
+            <!-- Lead magnet (moved below the fold so the hero carries a single ask) -->
+            {{#unless @member}}
+                <div class="!mt-32">
+                    {{> "components/lead-magnet-cta" email_field_id="home-email"}}
+                </div>
+            {{/unless}}
+
             <!-- YouTube -->
             {{> "components/youtube-card"}}
+
+            <!-- Fresh content strips (homepage-start-overhaul Tier 1.5) -->
+            {{> "components/topic-section"
+                title="Best of the blog"
+                anchor="home-best"
+                topicFilter="featured:true+tag:blog"
+                seeAllUrl="/feeds/best/"
+                limit=3}}
+
+            {{> "components/topic-section"
+                title="Latest articles"
+                anchor="home-latest"
+                topicFilter="tag:blog"
+                seeAllUrl="/blog/"
+                limit=3}}
 
             <!-- Approach/Layers -->
             <section class="approach">
@@ -152,6 +191,10 @@
                     <a href="/start" style="color:#d42d70; text-decoration:underline;">Start Your Journey &rarr;</a>
                 </p>
             </section>
+
+            {{!-- Commerce stack: hidden for logged-in members (routed by the hero,
+                 not re-pitched — see homepage-start-overhaul Vision). --}}
+            {{#unless @member}}
 
             <!-- How I Can Help You Further (Products & Services) -->
             <section class="offerings">
@@ -362,6 +405,7 @@
                     <a href="/start" style="color:#6b7280; text-decoration:underline;">Start here</a>
                 </div>
             </section>
+            {{/unless}}
         </section>
     </article>
 </main>

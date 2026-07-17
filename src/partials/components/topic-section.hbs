@@ -8,11 +8,15 @@
                     tag:-[...] exclusions that keep each post in exactly one section.
                     See documentation/plans/articles-page-overhaul.md (Tier 1.0).
     * seeAllUrl   — where "See More" points (tag page or /feeds/ channel)
+    * limit       — how many post cards to render. REQUIRED for every caller:
+                    a bare {{#get}} defaults to 15, so an unset value would
+                    silently change the output. Blog sections pass limit=6;
+                    the homepage fresh-content strips pass limit=3.
 --}}
 <h2 class="section-title">{{title}}</h2>
 <div id="{{anchor}}" class="gh-feed mt-4">
     {{!-- include="tags" is required for the topic pill — {{#get}} does not load tag relations by default --}}
-    {{#get "posts" filter=topicFilter include="tags" limit=6 as |sectionPosts|}}
+    {{#get "posts" filter=topicFilter include="tags" limit=limit as |sectionPosts|}}
         {{#foreach sectionPosts}}
             {{> "post-card"}}
         {{/foreach}}
