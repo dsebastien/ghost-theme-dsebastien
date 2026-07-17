@@ -3564,7 +3564,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .footer-link-group {
-    @apply mt-0 flex justify-start;
+    @apply mt-0 flex justify-center;
 }
 
 .footer-link-group > div {
@@ -3572,11 +3572,11 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .footer-link-group > div > h3 {
-    @apply font-semibold !text-2xl md:!text-3xl text-gray-100 mb-3 md:mb-4 text-left;
+    @apply font-semibold !text-2xl md:!text-3xl text-gray-100 mb-3 md:mb-4 text-center;
 }
 
 .footer-link-group > div > ul {
-    @apply space-y-1 !list-none !text-xl md:!text-2xl items-start justify-start pl-0;
+    @apply space-y-1 !list-none !text-xl md:!text-2xl text-center pl-0;
 }
 
 .footer-link {
