@@ -335,6 +335,20 @@ The theme already ships a client-side TOC (`assets/js/main.js` builds `nav.artic
 
 ---
 
+### 1.10 Sidebar UX overhaul on /blog/ + reuse on posts — NEW (added 2026-07-17, user feedback)
+
+**Problem:** the sidebar (`components/sidebar.hbs` inside `.gh-sidebar-inner`, `position: sticky`) is far taller than the viewport (about + featured + categories + products + free resources + recommendations). A sticky element never scrolls internally, so everything below the fold of the sidebar is unreachable until the PAGE scroll hits the bottom — on /blog/ that means scrolling through 10 topic sections before ever seeing the sidebar's product links.
+
+**Build:**
+1. **Slim it to viewport-fit first** (the real fix — the sidebar is a wall): the new 4-column footer now carries Categories, Free Resources, and the product list, so the sidebar can drop to: About card + Featured (5 links) + ONE product card (Knowii) — fits ~90dvh. Everything removed remains one scroll away in the footer.
+2. **Internal scroll as safety net**: `.gh-sidebar-inner { max-height: calc(100dvh - <sticky offset>); overflow-y: auto; scrollbar-width: thin }` so any future content growth degrades to internal scrolling instead of unreachability. (Same fix pattern the subscribe-overlay panel got.)
+3. **Reuse on post pages (desktop ≥1200px)**: once slimmed, render the same partial on post.hbs as a right rail while reading — About + Featured are exactly the "who is this person" surface the 3.2%-converting About page proves works. **Caveat:** must coordinate with the client-side `article-toc` (main.js) and the reading width of `.gh-canvas`; TOC gets priority, sidebar below it in the same rail.
+4. Add `data-cta` attributes to sidebar product links so Plausible's `CTA Click`/`Store Click` goals cover them.
+
+**Files:** `partials/components/sidebar.hbs`, `screen.css` (sidebar section), `post.hbs` (rail integration).
+
+---
+
 ## Tier 2 — Big bets (high impact, high effort)
 
 Ordered by impact.
