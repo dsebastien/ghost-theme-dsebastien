@@ -1065,6 +1065,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .gh-sidebar-inner {
     position: sticky;
     top: calc(var(--grid-gap) / 2);
+    /* Safety net: if the sidebar ever outgrows the viewport again, it degrades
+       to internal scrolling instead of unreachable content (sticky elements
+       never scroll on their own). */
+    max-height: calc(100dvh - var(--grid-gap));
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .gh-sidebar-title {
@@ -2791,59 +2797,6 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply text-center text-xl text-gray-600 mt-4 mb-8;
 }
 
-.start-page .knowii-tiers {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
-}
-
-.start-page .knowii-tier {
-    @apply bg-white p-6 md:p-8 rounded-lg shadow-md text-center cursor-pointer no-underline block;
-    color: inherit;
-    border: 2px solid transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.start-page .knowii-tier:hover {
-    @apply shadow-xl border-pink-400;
-    transform: translateY(-4px);
-    opacity: 1;
-}
-
-.start-page .knowii-tier h4 {
-    @apply !text-2xl font-bold mb-4;
-}
-
-.start-page .knowii-tier .tier-price {
-    @apply text-3xl md:text-4xl font-bold text-pink-600 mb-4;
-}
-
-.start-page .knowii-tier .tier-price span {
-    @apply text-lg text-gray-500 font-normal;
-}
-
-.start-page .knowii-tier p {
-    @apply text-lg text-gray-600;
-}
-
-.start-page .knowii-benefits {
-    @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8;
-}
-
-.start-page .knowii-benefit {
-    @apply text-center p-4;
-}
-
-.start-page .knowii-benefit h5 {
-    @apply !text-xl font-bold mb-2;
-}
-
-.start-page .knowii-benefit p {
-    @apply text-base text-gray-600;
-}
-
-.start-page .knowii-testimonials {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-8;
-}
-
 .start-page .knowii-cta {
     @apply text-center;
 }
@@ -2852,116 +2805,62 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply mt-4 text-lg text-gray-600;
 }
 
-/* Everything Bundle Block */
-.start-page .everything-bundle {
-    @apply bg-gradient-to-br from-pink-50 to-purple-50 p-8 md:p-12 rounded-lg shadow-xl;
-}
-
-.start-page .bundle-content {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-8 mt-8;
-}
-
-.start-page .bundle-details {
-    @apply md:col-span-2;
-}
-
-.start-page .bundle-details h3 {
-    @apply !text-3xl md:!text-4xl font-bold mb-4 !text-left;
-}
-
-.start-page .bundle-price {
-    @apply text-4xl md:text-5xl font-bold text-pink-600 mb-6;
-}
-
-.start-page .bundle-details p {
-    @apply text-xl mb-6;
-}
-
-.start-page .bundle-includes {
-    @apply !list-none space-y-2 mb-8 !pl-0;
-}
-
-.start-page .bundle-includes li {
-    @apply text-lg;
-}
-
-.start-page .bundle-includes li::before {
-    content: "\2713  ";
-    @apply text-green-600 font-bold;
-}
-
-.start-page .btn-product-bundle {
-    @apply !py-6 !px-12 text-2xl;
-}
-
-.start-page .bundle-guarantee {
-    @apply mt-4 text-lg text-gray-600;
-}
-
-.start-page .bundle-testimonial {
-    @apply flex items-center;
-}
-
-/* Secondary product cards */
-.start-page .product-recommendation.secondary {
-    @apply mt-4 border-gray-200;
-}
-
-.start-page .product-recommendation.secondary h5 {
-    @apply !text-2xl text-gray-800;
-}
-
-.start-page .btn-product-secondary {
-    @apply bg-gray-600 hover:bg-gray-700;
-}
-
-/* Existing sections preserved */
-.start-page .recommended-resources {
-    @apply bg-gray-200 mt-12 rounded-lg shadow-lg p-8 border-l-pink-500 border-l-4;
-}
-
-.start-page .recommended-resources h4 {
-    @apply mt-0 mb-2 font-semibold;
-}
-
-.start-page .further-learning p {
+.start-page .further-learning h2 {
     @apply text-center mb-8;
 }
 
-.start-page .further-learning > div {
-    @apply flex flex-col items-center text-white;
+.start-page .further-learning-links {
+    @apply flex flex-col md:flex-row items-stretch md:items-center justify-center gap-4;
 }
 
-.start-page .further-learning > div > a.cta {
-    @apply !py-8 px-24 md:px-32 lg:px-48 text-white text-3xl no-underline text-center;
+.start-page .further-learning-links > a.cta {
+    @apply !py-4 !px-8 text-white text-2xl no-underline text-center;
 }
 
-.start-page .community {
-    @apply !bg-gray-100 p-8 rounded-lg shadow-xl flex flex-col gap-8;
+/* Path router (components/path-router.hbs — /start/ hero + homepage hero)
+/* ---------------------------------------------------------- */
+
+.path-router {
+    @apply mt-10;
 }
 
-.start-page .community h2 {
-    @apply text-center mb-0;
+.path-router-question {
+    @apply text-center font-semibold uppercase mb-4;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary-text);
 }
 
-.start-page .community p {
-    @apply text-center mb-8;
+.path-router-options {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4;
 }
 
-.start-page .community .community-benefit {
-    @apply flex-1 min-w-[250px];
+.path-router-option {
+    @apply flex flex-col gap-1 p-5 rounded-lg no-underline;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.start-page .community > .community-benefit > h3 {
-    @apply !text-3xl text-center;
+.path-router-option:hover {
+    @apply opacity-100 shadow-md;
+    border-color: var(--ghost-accent-color);
 }
 
-.start-page .community > .community-benefit > p {
-    @apply !text-3xl;
+.path-router-option strong {
+    font-size: 1.7rem;
+    color: var(--color-primary-text);
 }
 
-.start-page .community > .community-cta {
-    @apply text-center;
+.path-router-option strong::after {
+    content: " →";
+    color: var(--ghost-accent-color);
+}
+
+.path-router-option span {
+    font-size: 1.4rem;
+    line-height: 1.45;
+    color: var(--color-secondary-text);
 }
 
 
@@ -3052,6 +2951,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
    (.gh-sidebar-inner in section 13). */
 .blog .gh-sidebar-inner {
     top: calc(var(--blog-topic-nav-height) + var(--grid-gap) / 2);
+    max-height: calc(100dvh - var(--blog-topic-nav-height) - var(--grid-gap));
 }
 
 /* Keep anchored section titles visible below the sticky pill bar when
@@ -3324,6 +3224,34 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 .article-toc-link.is-active {
     border-left: 2px solid var(--ghost-accent-color);
     font-weight: 700;
+}
+
+/* Post side rail (desktop): slim sidebar reused while reading
+/* ---------------------------------------------------------- */
+
+.post-side-rail {
+    @apply hidden;
+}
+
+@media (min-width: 1300px) {
+    .post-template .gh-content {
+        position: relative;
+    }
+
+    /* Absolutely positioned full-height column in the whitespace right of the
+       720px reading column; the .gh-sidebar-inner inside it sticks while the
+       article scrolls and stops at the end of the content section. */
+    .post-side-rail {
+        @apply block absolute top-0 bottom-0 right-0;
+        width: calc((100% - var(--content-width, 720px)) / 2 - 48px);
+        max-width: 320px;
+    }
+
+    /* Wide/full-width cards span the space the rail sits in (6 of 296 posts) —
+       drop the rail rather than overlap. */
+    .gh-content:has(.kg-width-wide, .kg-width-full) .post-side-rail {
+        @apply hidden;
+    }
 }
 
 /* Mid-article CTA
@@ -3933,37 +3861,9 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply text-lg;
 }
 
-/* Start Page - Product Recommendations */
-.start-page .recommended-resources h4 {
-    @apply !text-3xl !font-bold mb-6;
-}
-
-.start-page .product-recommendation {
-    @apply bg-white p-6 rounded-lg shadow-md border-2 border-pink-200;
-}
-
-.start-page .product-recommendation h5 {
-    @apply !text-3xl font-bold mb-6 text-pink-600;
-}
-
-.start-page .product-recommendation p {
-    @apply mb-4 text-xl;
-}
-
-.start-page .product-rec-pricing {
-    @apply my-4;
-}
-
-.start-page .product-rec-pricing .price {
-    @apply text-3xl font-bold text-pink-600;
-}
-
+/* Start Page - Product buttons (builder-os-teaser) */
 .start-page .btn-product {
     @apply inline-block bg-pink-600 hover:bg-pink-700 text-white !py-4 !px-8 text-xl font-bold no-underline rounded-lg transition-colors;
-}
-
-.start-page .recommended-resources .alternative {
-    @apply mt-4 text-center text-base text-gray-600 italic;
 }
 
 /* Start Page - Success Stories */

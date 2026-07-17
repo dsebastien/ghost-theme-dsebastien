@@ -347,7 +347,9 @@ Shipped: hero|large|regular|compact sizes, topic pill (tags.[1]), reading time. 
 
 ---
 
-### 1.10 Sidebar UX overhaul on /blog/ + reuse on posts — NEW (added 2026-07-17, user feedback)
+### 1.10 Sidebar UX overhaul on /blog/ + reuse on posts — ✅ DONE 2026-07-17
+
+**Shipped:** sidebar slimmed to About + Featured (+ All Articles/All Topics links) + one Knowii card (`data-cta="knowii"` / `data-cta-topic="sidebar"` → existing CTA Click goal); Categories, product list, Free Resources, and Recommendations dropped (footer owns them); all 5 call sites simplified to `showFeatured=true`. Safety net: `.gh-sidebar-inner` gets `max-height + overflow-y: auto` (blog variant accounts for the topic-nav offset). Post pages ≥1300px: `.post-side-rail` — absolute full-height column in the right whitespace of `.gh-content` with the sticky sidebar inside; auto-hidden via `:has(.kg-width-wide, .kg-width-full)` (6 of 296 posts use wide cards, verified via Admin API — rail would overlap those). The inline collapsible TOC is untouched (it lives in the content column, no conflict). Bonus: mid-article subscribe CTA switched from `data-portal` to `data-subscribe-overlay` for surface consistency.
 
 **Problem:** the sidebar (`components/sidebar.hbs` inside `.gh-sidebar-inner`, `position: sticky`) is far taller than the viewport (about + featured + categories + products + free resources + recommendations). A sticky element never scrolls internally, so everything below the fold of the sidebar is unreachable until the PAGE scroll hits the bottom — on /blog/ that means scrolling through 10 topic sections before ever seeing the sidebar's product links.
 

@@ -85,13 +85,21 @@
         </header>
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
+
+            {{!-- Desktop-only side rail while reading (≥1300px): the slim
+                 sidebar (About + Featured + Knowii). Hidden via CSS when the
+                 post uses wide/full-width cards. Tier 1.10. --}}
+            <div class="post-side-rail">
+                {{> "components/sidebar" showFeatured=true}}
+            </div>
+
             {{content}}
 
             {{!-- Mid-article CTA: hidden source, relocated by JS into the article body --}}
             {{#unless @member}}
             <aside id="mid-article-cta" class="mid-article-cta" hidden>
                 <p class="mid-article-cta-text">Enjoying this? <strong>Subscribe for free</strong> to get articles like this every week.</p>
-                <a class="gh-button mid-article-cta-button" href="#/portal/signup" data-portal="signup">Subscribe ✨</a>
+                <a class="gh-button mid-article-cta-button" href="#/portal/signup" data-subscribe-overlay>Subscribe ✨</a>
             </aside>
             {{else}}
                 {{#unless @member.paid}}

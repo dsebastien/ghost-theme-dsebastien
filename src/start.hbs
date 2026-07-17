@@ -23,6 +23,8 @@
                     <span class="stat-separator">&bull;</span>
                     <span>{{@custom.stat_community_members}} community members</span>
                 </div>
+
+                {{> "components/path-router" variant="start"}}
             </section>
 
             <!-- Builder OS Framework Visual -->
@@ -107,22 +109,14 @@
                         </blockquote>
                     </div>
 
-                    <div class="recommended-resources">
-                        <h4>Accelerate Your Learning:</h4>
-                        <div class="product-recommendation">
-                            <h5>Knowledge Management for Beginners Course</h5>
-                            <p><strong>Perfect if:</strong> You want structured lessons instead of scattered articles</p>
-                            <p><strong>Results:</strong> Complete foundation in 10+ hours instead of weeks of reading</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="knowledge-management-for-beginners">&euro;69.99</span></div>
-                            <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Free Knowledge System Checklist</h5>
-                            <p><strong>Perfect if:</strong> You want a quick-start reference to audit and improve your system</p>
-                            <a href="https://www.dsebastien.net/free-knowledge-management-system-checklist" class="btn-product btn-product-secondary">Get It Free &rarr;</a>
-                        </div>
-                        <p class="alternative">Or continue with free articles above</p>
-                    </div>
+                    {{> "components/offer-card" topic="start-foundation"
+                        heading="Ready to go deeper? Get the complete foundation in 10+ hours instead of weeks of scattered reading:"
+                        productEmoji="📚" productName="Knowledge Management for Beginners"
+                        productDesc="Structured video lessons — from information chaos to a working system."
+                        productUrl="https://knowledge-management-for-beginners.com"
+                        magnetName="Knowledge System Checklist"
+                        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"
+                        hideKnowii=true}}
 
                     <p class="area-transition">Now that you understand the "why", it's time to build the "how" &mdash; your tools and organizational system.</p>
                 </div>
@@ -176,24 +170,14 @@
                         </blockquote>
                     </div>
 
-                    <div class="recommended-resources">
-                        <h4>Skip Weeks of Setup:</h4>
-                        <div class="product-recommendation">
-                            <h5>Obsidian Starter Kit</h5>
-                            <p><strong>Perfect if:</strong> You want a proven system instead of starting from scratch</p>
-                            <p><strong>Results:</strong> Complete setup with 40+ templates, plugins, and automation in minutes &mdash; save 100+ hours of trial and error</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="obsidian-starter-kit" data-price-variant="Essentials">&euro;199.99</span></div>
-                            <a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Obsidian Starter Course</h5>
-                            <p><strong>Perfect if:</strong> You want guided video lessons on frameworks and best practices</p>
-                            <p><strong>Results:</strong> Master PARA, Zettelkasten, and Atomic notes in 2+ hours of focused learning</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="obsidian-starter-course">&euro;69.99</span></div>
-                            <a href="https://store.dsebastien.net/product/obsidian-starter-course" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <p class="alternative">Or build your own system from scratch</p>
-                    </div>
+                    {{> "components/offer-card" topic="start-system"
+                        heading="Ready to go deeper? The Obsidian Starter Kit gets you to a working system in minutes, not months:"
+                        productEmoji="🚀" productName="Obsidian Starter Kit"
+                        productDesc="Ready-made vault, 40+ templates, proven structure, automation — save 100+ hours of trial and error."
+                        productUrl="https://store.dsebastien.net/product/obsidian-starter-kit"
+                        magnetName="Beginner's Guide to Obsidian"
+                        magnetUrl="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian"
+                        hideKnowii=true}}
 
                     <p class="area-transition">Your system is set up &mdash; now it's time to put it to work and build habits that transform raw information into lasting insights.</p>
                 </div>
@@ -234,111 +218,36 @@
                         <li><a href="/2022-09-01-saving-and-restoring-mental-contexts-to-improve-mental-health-and-productivity">Saving and Restoring Mental Contexts</a></li>
                     </ul>
 
-                    <div class="recommended-resources">
-                        <h4>Explore Further:</h4>
-                        <div class="product-recommendation">
-                            <h5>PKM Library</h5>
-                            <p><strong>Perfect if:</strong> You want access to curated tools, communities, and expert resources</p>
-                            <p><strong>Results:</strong> Save hundreds of hours discovering the best PKM resources</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="pkm-library">&euro;39.99</span></div>
-                            <a href="https://store.dsebastien.net/product/pkm-library" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Personal Knowledge Management Coaching</h5>
-                            <p><strong>Perfect if:</strong> You want personalized guidance for your specific challenges</p>
-                            <p><strong>Results:</strong> Tailored solutions and expert advice to optimize your unique workflow</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="pkm-coaching">&euro;99.99</span></div>
-                            <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>AI Ghostwriter Guide</h5>
-                            <p><strong>Perfect if:</strong> You want to use AI to accelerate your knowledge processing</p>
-                            <p><strong>Results:</strong> Turn AI into your personal knowledge assistant</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="ai-ghostwriter-guide">&euro;49.99</span></div>
-                            <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <p class="alternative">Or discover resources on your own</p>
-                    </div>
+                    {{> "components/offer-card" topic="start-practice"
+                        heading="Ready to go deeper? Stop rediscovering the wheel — the best PKM resources, curated:"
+                        productEmoji="🗃️" productName="PKM Library"
+                        productDesc="Curated tools, communities, and expert resources — save hundreds of hours of searching."
+                        productUrl="https://store.dsebastien.net/product/pkm-library"
+                        magnetName="PKM Tools Database"
+                        magnetUrl="https://www.dsebastien.net/free-pkm-tools-database"
+                        hideKnowii=true}}
 
                     <p class="area-transition">You're building real skills &mdash; now let's see how expert guidance and community can multiply your progress.</p>
                 </div>
             </section>
 
-            <!-- Mid-Page Knowii Community Block -->
+            <!-- Mid-Page Knowii narrative CTA (pricing lives on the store) -->
             <section class="knowii-community-block">
                 <h2>Want to Master All Layers With Expert Guidance?</h2>
-                <p class="knowii-intro">Join Knowii, a community of knowledge workers committed to building better systems together.</p>
+                <p class="knowii-intro">Join Knowii, a community of knowledge workers committed to building better systems together — with courses, workshops, and direct support to match your pace.</p>
 
-                <div class="knowii-tiers">
-                    <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=explorer&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
-                        <h4>Explorer</h4>
-                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Explorer" data-price-format="amount">&euro;14.99</span><span>/quarter</span></div>
-                        <p>Access the community, shared resources, and monthly Q&amp;A sessions. Perfect for getting started.</p>
-                    </a>
-                    <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=knowledge-builder&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
-                        <h4>Knowledge Builder</h4>
-                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Builder" data-price-format="amount">&euro;59.99</span><span>/quarter</span></div>
-                        <p>Everything in Explorer plus all courses, the Obsidian Starter Kit, workshops, and direct support.</p>
-                    </a>
-                    <a href="https://www.store.dsebastien.net/product/knowii-community/?variant=knowledge-master&frequency=quarterly" target="_blank" rel="noopener" class="knowii-tier">
-                        <h4>Knowledge Master</h4>
-                        <div class="tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Master" data-price-format="amount">&euro;119.99</span><span>/quarter</span></div>
-                        <p>Everything in Knowledge Builder plus 1-on-1 coaching sessions, priority support, and early access to new products.</p>
-                    </a>
-                </div>
-
-                <div class="knowii-benefits">
-                    <div class="knowii-benefit">
-                        <h5>Shared Wisdom</h5>
-                        <p>Learn from others' systems and solutions</p>
-                    </div>
-                    <div class="knowii-benefit">
-                        <h5>Accountability</h5>
-                        <p>Stay consistent and motivated</p>
-                    </div>
-                    <div class="knowii-benefit">
-                        <h5>Accelerated Growth</h5>
-                        <p>Discover shortcuts and avoid pitfalls</p>
-                    </div>
-                    <div class="knowii-benefit">
-                        <h5>All Future Content</h5>
-                        <p>Get every new course, workshop, and resource</p>
-                    </div>
-                </div>
-
-                <!-- Community Testimonials -->
-                <div class="knowii-testimonials">
-                    <div class="success-story">
-                        <blockquote>
-                            <p>"I've learned a lot from you and find great value in every resource of yours that I've had time to explore so far. One of the things I really enjoy is how all pieces supports each other and forms a cohesive whole."</p>
-                            <footer>
-                                <strong>Sofia</strong>
-                                <span class="result">Discovered a cohesive ecosystem of knowledge tools</span>
-                            </footer>
-                        </blockquote>
-                    </div>
-                    <div class="success-story">
-                        <blockquote>
-                            <p>"Having a working example of a living system like yours is incredibly valuable."</p>
-                            <footer>
-                                <strong>Ghada Alhumaid</strong>
-                                <span class="result">Found value in a real-world living knowledge system</span>
-                            </footer>
-                        </blockquote>
-                    </div>
-                    <div class="success-story">
-                        <blockquote>
-                            <p>"I've been reading and re-reading a lot of the content here… Clarity 101, the PKM library, the Knowledge Worker Kit and honestly it's a goldmine, thank you so much Sebastien 👏"</p>
-                            <footer>
-                                <strong>Filip Colée</strong>
-                                <span class="result">Found a goldmine across multiple flagship resources</span>
-                            </footer>
-                        </blockquote>
-                    </div>
+                <div class="success-story">
+                    <blockquote>
+                        <p>"I've learned a lot from you and find great value in every resource of yours that I've had time to explore so far. One of the things I really enjoy is how all pieces supports each other and forms a cohesive whole."</p>
+                        <footer>
+                            <strong>Sofia</strong>
+                            <span class="result">Discovered a cohesive ecosystem of knowledge tools</span>
+                        </footer>
+                    </blockquote>
                 </div>
 
                 <div class="knowii-cta">
-                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowledge Movement</a>
+                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Discover the Knowii Community</a>
                     <p class="knowii-trust">30-day money-back guarantee &bull; Cancel anytime</p>
                 </div>
             </section>
@@ -388,29 +297,14 @@
                         </blockquote>
                     </div>
 
-                    <div class="recommended-resources">
-                        <h4>Complete Transformation:</h4>
-                        <div class="product-recommendation">
-                            <h5>Knowledge Worker Kit</h5>
-                            <p><strong>Perfect if:</strong> You want lifetime community access and all resources in one place</p>
-                            <p><strong>Results:</strong> Private community of {{@custom.stat_community_members}} members, comprehensive guides, all future workshops &mdash; complete transformation package</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="knowledge-worker-kit">&euro;249.99</span></div>
-                            <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Clarity 101</h5>
-                            <p><strong>Perfect if:</strong> You want a focused guide to clear thinking and decision-making</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="clarity-101">&euro;19.99</span></div>
-                            <a href="https://store.dsebastien.net/product/clarity-101" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Journaling Deep Dive</h5>
-                            <p><strong>Perfect if:</strong> You want to build a powerful journaling practice for reflection and growth</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="journaling-deep-dive">&euro;29.99</span></div>
-                            <a href="https://store.dsebastien.net/product/journaling-deep-dive" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <p class="alternative">Or continue your journey solo</p>
-                    </div>
+                    {{> "components/offer-card" topic="start-application"
+                        heading="Ready to go deeper? Systems for professional knowledge workers:"
+                        productEmoji="💼" productName="Knowledge Worker Kit"
+                        productDesc="Comprehensive guides and proven systems to leverage knowledge in your career — organize the business in your head."
+                        productUrl="https://store.dsebastien.net/product/knowledge-worker-kit"
+                        magnetName="Knowledge System Checklist"
+                        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"
+                        hideKnowii=true}}
 
                     <p class="area-transition">You're applying knowledge like a pro &mdash; the final layer turns everything into creative output and content.</p>
                 </div>
@@ -461,29 +355,14 @@
                         <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/" class="btn-product">Get Early Access &rarr;</a>
                     </div>
 
-                    <div class="recommended-resources">
-                        <h4>Create With Confidence:</h4>
-                        <div class="product-recommendation">
-                            <h5>AI Ghostwriter Guide</h5>
-                            <p><strong>Perfect if:</strong> You want to use AI to accelerate your content creation</p>
-                            <p><strong>Results:</strong> Turn AI into your personal writing assistant</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="ai-ghostwriter-guide">&euro;49.99</span></div>
-                            <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener" class="btn-product">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>AI Master Prompt</h5>
-                            <p><strong>Perfect if:</strong> You want a single powerful prompt to get the most from AI assistants</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="ai-master-prompt">&euro;19.99</span></div>
-                            <a href="https://store.dsebastien.net/product/ai-master-prompt" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <div class="product-recommendation secondary">
-                            <h5>Knowii Voice AI</h5>
-                            <p><strong>Perfect if:</strong> You want to capture knowledge through voice conversations</p>
-                            <div class="product-rec-pricing"><span class="price" data-price="knowii-voice-ai">&euro;49</span></div>
-                            <a href="https://store.dsebastien.net/product/knowii-voice-ai" target="_blank" rel="noopener" class="btn-product btn-product-secondary">Learn More &rarr;</a>
-                        </div>
-                        <p class="alternative">Or create content on your own</p>
-                    </div>
+                    {{> "components/offer-card" topic="start-creation"
+                        heading="Ready to go deeper? Turn AI into your personal writing assistant:"
+                        productEmoji="🤖" productName="AI Ghostwriter Guide"
+                        productDesc="Make AI write like you — your voice, your context, your standards."
+                        productUrl="https://store.dsebastien.net/product/ai-ghostwriter-guide"
+                        magnetName="Thousands of free concepts & frameworks"
+                        magnetUrl="https://concepts.dsebastien.net"
+                        hideKnowii=true}}
                 </div>
             </section>
 
@@ -512,70 +391,7 @@
                         <span class="milestone">Creation</span>
                     </div>
                 </div>
-                <p class="timeline-cta">Want to accelerate your journey? <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener">Get the Knowledge Worker Kit</a> or <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">join the Knowii Community</a></p>
-            </section>
-
-            <!-- Everything Bundle Block -->
-            <section class="everything-bundle">
-                <h2>Get Everything in One Package</h2>
-                <div class="bundle-content">
-                    <div class="bundle-details">
-                        <h3>Everything Knowledge Bundle</h3>
-                        <div class="bundle-price" data-price="everything-knowledge-bundle">&euro;399.99</div>
-                        <p>The complete knowledge mastery package. Every course, every kit, every guide &mdash; all in one powerful bundle.</p>
-                        <ul class="bundle-includes">
-                            <li><a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener">Knowledge Management for Beginners Course</a></li>
-                            <li><a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener">Obsidian Starter Kit</a></li>
-                            <li><a href="https://store.dsebastien.net/product/obsidian-starter-course" target="_blank" rel="noopener">Obsidian Starter Course</a></li>
-                            <li><a href="https://store.dsebastien.net/product/pkm-library" target="_blank" rel="noopener">PKM Library</a></li>
-                            <li><a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener">Knowledge Worker Kit</a></li>
-                            <li><a href="https://store.dsebastien.net/product/clarity-101" target="_blank" rel="noopener">Clarity 101</a></li>
-                            <li><a href="https://store.dsebastien.net/product/journaling-deep-dive" target="_blank" rel="noopener">Journaling Deep Dive</a></li>
-                            <li><a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener">AI Ghostwriter Guide</a></li>
-                            <li><a href="https://store.dsebastien.net/product/ai-master-prompt" target="_blank" rel="noopener">AI Master Prompt</a></li>
-                            <li><a href="https://store.dsebastien.net/product/knowii-voice-ai" target="_blank" rel="noopener">Knowii Voice AI</a></li>
-                            <li>All future updates included</li>
-                        </ul>
-                        <a href="https://store.dsebastien.net/product/everything-knowledge-bundle" target="_blank" rel="noopener" class="btn-product btn-product-bundle">Get the Bundle &rarr;</a>
-                        <p class="bundle-guarantee">30-day money-back guarantee</p>
-                    </div>
-                    <div class="bundle-testimonial">
-                        <div class="success-story">
-                            <blockquote>
-                                <p>"Literally cannot thank you enough for this system and process."</p>
-                                <footer>
-                                    <strong>Peter Kay</strong>
-                                    <span class="result">Complete knowledge system transformation</span>
-                                </footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Community -->
-            <section class="community">
-                <h2 class="text-3xl font-bold text-center mb-8">Connect With Fellow Knowledge Masters</h2>
-                <p class="text-center text-gray-700 mb-8">The journey to mental clarity is better with companions. Join Knowii, a community of like-minded individuals committed to breaking free from information chaos.</p>
-
-                <div class="community-benefit">
-                    <h3>Shared Wisdom</h3>
-                    <p>Learn from others' systems and solutions</p>
-                </div>
-
-                <div class="community-benefit">
-                    <h3>Accountability</h3>
-                    <p>Stay consistent and motivated</p>
-                </div>
-
-                <div class="community-benefit">
-                    <h3>Accelerated Growth</h3>
-                    <p>Discover shortcuts and avoid pitfalls</p>
-                </div>
-
-                <div class="community-cta">
-                    <a class="cta gh-button !text-white !no-underline" href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowledge Movement</a>
-                </div>
+                <p class="timeline-cta">Want to accelerate your journey? <a href="https://www.dsebastien.net/join-the-knowii-community-and-fix-your-information-overload-problem/">Join the Knowii Community</a></p>
             </section>
 
             <!-- Lead magnet for non-members -->
@@ -589,9 +405,10 @@
             <!-- Further Learning -->
             <section class="further-learning">
                 <h2>Continue Your Knowledge Mastery Journey</h2>
-                <p></p>
-                <div>
-                    <a href="/blog" rel="noopener" class="cta gh-button">Browse My Articles and Guides</a>
+                <div class="further-learning-links">
+                    <a href="/blog/" class="cta gh-button">Browse the Articles ✍️</a>
+                    <a href="https://www.youtube.com/@dsebastien" rel="noopener" class="cta gh-button">Watch the Videos 📺</a>
+                    <a href="/newsletter/" class="cta gh-button">Join the Newsletter 💌</a>
                 </div>
             </section>
         </section>

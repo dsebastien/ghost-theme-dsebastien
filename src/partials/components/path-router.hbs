@@ -1,0 +1,43 @@
+{{!--
+    Visitor router: three self-selection paths, one line each.
+    Shared between /start/ and the homepage hero (homepage-start-overhaul
+    Tier 1.3/1.4).
+
+    Parameters:
+    * variant — "start" (in-page anchors) | "home" (routes to /start/ + store)
+
+    Analytics: clicks flow into the existing "CTA Click" Plausible goal via
+    data-cta/data-cta-topic (see assets/js/plausible-events.js).
+--}}
+<nav class="path-router" aria-label="Choose your path" data-cta-topic="router">
+    <p class="path-router-question">Where are you right now?</p>
+    <div class="path-router-options">
+        {{#match variant "home"}}
+            <a class="path-router-option" href="/start/#area-foundation" data-cta="router-foundation">
+                <strong>New to knowledge management</strong>
+                <span>Start with the foundations — why it matters and where to begin</span>
+            </a>
+            <a class="path-router-option" href="/start/#area-system" data-cta="router-system">
+                <strong>My notes are a mess</strong>
+                <span>Build a system that actually works — tools and frameworks</span>
+            </a>
+            <a class="path-router-option" href="https://store.dsebastien.net" rel="noopener" data-cta="router-store">
+                <strong>Ready to accelerate</strong>
+                <span>Skip the trial and error with proven kits and courses</span>
+            </a>
+        {{else}}
+            <a class="path-router-option" href="#area-foundation" data-cta="router-foundation">
+                <strong>Brand new to this</strong>
+                <span>Start with the foundations — why it matters and where to begin</span>
+            </a>
+            <a class="path-router-option" href="#area-system" data-cta="router-system">
+                <strong>I have a messy system</strong>
+                <span>Rebuild on solid ground — tools and organizational frameworks</span>
+            </a>
+            <a class="path-router-option" href="#area-application" data-cta="router-application">
+                <strong>I want results at work</strong>
+                <span>Leverage your knowledge for your career and daily life</span>
+            </a>
+        {{/match}}
+    </div>
+</nav>
