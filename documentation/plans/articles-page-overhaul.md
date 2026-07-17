@@ -179,7 +179,10 @@ Converted to a channel (`controller: channel`, `filter: "tag:blog"`, `rss: false
 - Tag descriptions must be authored in Ghost admin for the top 20 tags — one-off content work, not code.
 - Co-occurrence JSON needs a rebuild-on-publish hook (`gulpfile.js` task hitting the Content API).
 
-### 1.3 Contextual CTA + lead-magnet engine driven by TOPIC tags (kills the 15-branch `{{#has}}` cascade)
+### 1.3 Contextual CTA + lead-magnet engine driven by TOPIC tags — ✅ DONE 2026-07-17 (commit 713a620)
+Shipped as `offer-card.hbs` (presentational) + `contextual-offer.hbs` (post-context topic chain). One hero offer + one free magnet + Knowii nudge; fixed the dead AI branch (ai-2/ai-skills/claude-code); wired into post.hbs footer + /blog/ bands. Mid-article slot kept as subscribe/upgrade (deliberate — product pitches mid-read are more aggressive; revisit with data). Original spec below.
+
+### ~~1.3 original~~ Contextual CTA + lead-magnet engine driven by TOPIC tags (kills the 15-branch `{{#has}}` cascade)
 
 **Build**
 - New `src/partials/components/contextual-offer.hbs`. Uses an ordered `{{#has tag=}}` chain over the post's TOPIC tags — `primary_tag` is unusable for this (it's always `blog` on articles; audit-confirmed). First match wins, most-specific topic first. Picks ONE hero product + ONE lead magnet + ONE community nudge per post/listing. Map:
