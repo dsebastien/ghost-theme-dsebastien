@@ -3003,16 +3003,27 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply flex flex-wrap items-center gap-2 py-3;
 }
 
+.blog-topic-select-wrap {
+    @apply hidden py-3;
+}
+
+.blog-topic-select {
+    @apply w-full rounded-md;
+    padding: 0.7em 1em;
+    font-size: 1.4rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--background-color);
+    color: var(--color-primary-text);
+}
+
 @media (max-width: 767px) {
-    /* Mobile: single swipeable row, hidden scrollbar */
+    /* Mobile: pills are replaced by the compact jump-to-topic select */
     .blog-topic-nav-inner {
-        @apply flex-nowrap overflow-x-auto;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
+        @apply !hidden;
     }
 
-    .blog-topic-nav-inner::-webkit-scrollbar {
-        display: none;
+    .blog-topic-select-wrap {
+        @apply block;
     }
 }
 

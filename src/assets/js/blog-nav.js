@@ -20,18 +20,37 @@
     });
     if (!items.length) return;
 
+    var select = nav.querySelector('.blog-topic-select');
+
     function setActive(activeItem) {
         items.forEach(function (item) {
             item.pill.classList.toggle('is-active', item === activeItem);
         });
 
-        // Keep the active pill in view when the bar overflows horizontally (mobile)
+        // Mirror the active section in the mobile jump-to-topic select
+        if (select && activeItem) {
+            select.value = activeItem.section.id;
+        }
+
+        // Keep the active pill in view when the bar overflows horizontally
         if (activeItem && inner && inner.scrollWidth > inner.clientWidth) {
             inner.scrollTo({
                 left: activeItem.pill.offsetLeft - (inner.clientWidth - activeItem.pill.offsetWidth) / 2,
                 behavior: 'smooth'
             });
         }
+    }
+
+    // Mobile: jump to the chosen section
+    if (select) {
+        select.addEventListener('change', function () {
+            var target = select.value && document.getElementById(select.value);
+            if (!target) return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + select.value);
+            }
+        });
     }
 
     /* Scroll-spy: the active pill is the topmost section intersecting the band

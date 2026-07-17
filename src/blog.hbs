@@ -22,9 +22,9 @@
     </section>
 
     {{!--
-        Sticky topic nav: one pill per topic section anchor below. Sticks at the
-        top of the viewport once scrolled (the site header is not sticky) and
-        scrolls horizontally with a hidden scrollbar on small screens.
+        Sticky topic nav. Desktop (≥768px): wrapping pill bar, every pill
+        visible. Mobile: the pills are replaced by a compact native
+        "Jump to a topic" select — one row tall, no horizontal swiping.
         Scroll-spy + smooth scrolling live in assets/js/blog-nav.js.
     --}}
     <nav id="blog-topic-nav" class="blog-topic-nav" aria-label="Article topics">
@@ -39,6 +39,22 @@
             <a class="blog-topic-pill" href="#writing">Writing</a>
             <a class="blog-topic-pill" href="#software-development">Software Development</a>
             <a class="blog-topic-pill" href="#more">More</a>
+        </div>
+        <div class="gh-inner blog-topic-select-wrap">
+            <label class="sr-only" for="blog-topic-select">Jump to a topic</label>
+            <select id="blog-topic-select" class="blog-topic-select">
+                <option value="">Jump to a topic…</option>
+                <option value="obsidian">Obsidian</option>
+                <option value="ai">AI</option>
+                <option value="personal-knowledge-management">Personal Knowledge Management</option>
+                <option value="knowledge-work">Knowledge Work</option>
+                <option value="productivity">Productivity &amp; Organization</option>
+                <option value="learning">Learning</option>
+                <option value="personal-development">Personal Development &amp; Mental Health</option>
+                <option value="writing">Writing</option>
+                <option value="software-development">Software Development</option>
+                <option value="more">More</option>
+            </select>
         </div>
     </nav>
 
