@@ -1,0 +1,43 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!--
+    Custom template for the About page (slug: about).
+    Analytics (2026-07): About converts visitors to members at ~3.2% — the best
+    rate on the site — but had ZERO capture surface. This template appends a
+    subscribe form and the membership ladder (incl. Knowii) after the content,
+    so the page that builds the most trust can also convert it.
+--}}
+
+{{#post}}
+
+<main class="gh-main">
+    <article class="gh-article {{post_class}}">
+
+        {{#match @page.show_title_and_feature_image}}
+            <header class="gh-article-header gh-canvas">
+                <h1 class="gh-article-title is-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+                {{/if}}
+                {{> "feature-image"}}
+            </header>
+        {{/match}}
+
+        <section class="gh-content gh-canvas is-body">
+            {{content}}
+
+            {{#unless @member}}
+                <div class="!mt-16">
+                    {{> "components/lead-magnet-cta" email_field_id="about-email"}}
+                </div>
+            {{/unless}}
+        </section>
+
+        <section class="gh-canvas is-body about-tiers">
+            {{> "components/membership-tiers"}}
+        </section>
+
+    </article>
+</main>
+
+{{/post}}
