@@ -72,10 +72,6 @@
                 "type": "text",
                 "default": "10K+"
             },
-            "stat_articles_count": {
-                "type": "text",
-                "default": "800+"
-            },
             "header_and_footer_color": {
                 "type": "select",
                 "options": [

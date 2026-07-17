@@ -16,7 +16,9 @@
     {{#unless @member.paid}}
         <div id="sticky-cta" class="sticky-cta" aria-label="Upgrade call to action">
             <div class="sticky-cta-inner">
-                <p class="sticky-cta-text">Unlock {{@custom.stat_articles_count}} articles, full archive access, and community perks.</p>
+                {{!-- Live article count: always correct, no admin field to maintain.
+                     Copy is honest post-2026: all content is free, so upgrading = support + perks. --}}
+                <p class="sticky-cta-text">Enjoying the {{#get "posts" filter="tag:blog" limit=1}}{{pagination.total}}{{/get}} free articles? Support my work — exclusive discounts &amp; early access.</p>
                 <a class="gh-button sticky-cta-button" href="#/portal/account/plans" data-portal="account/plans">Upgrade →</a>
             </div>
             <button class="sticky-cta-close" aria-label="Dismiss" title="Dismiss">{{> "icons/close"}}</button>
