@@ -1,0 +1,141 @@
+{{!--
+    Contextual offer engine — POST CONTEXT ONLY (relies on {{#has tag=}}).
+    Maps the post's topic tags to ONE hero product + ONE free lead magnet via
+    offer-card. Order: specific → generic, first match wins. Replaces the old
+    15-branch signature cascade (see git history of post.hbs).
+
+    Tag clusters mirror the /blog/ topic sections — including the ai-2/ai-skills/
+    claude-code cluster the old cascade missed (recent AI posts fell through).
+
+    Listing pages (blog.hbs section bands, tag pages) should call offer-card
+    directly with explicit params — {{#has}} has no post context there.
+
+    See documentation/plans/articles-page-overhaul.md (Tier 1.3).
+--}}
+{{#has tag="obsidian,dataview,obsidian-starter-kit,obsidian-starter-course,templates"}}
+    {{> "components/offer-card" topic="obsidian"
+        heading="Since you're interested in Obsidian:"
+        productEmoji="🚀" productName="Obsidian Starter Kit"
+        productDesc="Skip weeks of setup — ready-made vault, 40+ templates, proven structure, automation."
+        productUrl="https://store.dsebastien.net/product/obsidian-starter-kit"
+        productId="obsidian-starter-kit" productPrice="€199.99-€249.99"
+        magnetName="Beginner's Guide to Obsidian"
+        magnetUrl="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian"}}
+{{else has tag="ai,ai-2,ai-skills,claude-code,artificial-intelligence"}}
+    {{> "components/offer-card" topic="ai"
+        heading="Want AI to be a real thinking partner, not a gimmick?"
+        productEmoji="🤖" productName="AI Ghostwriter Guide"
+        productDesc="Make AI write like you — your voice, your context, your standards."
+        productUrl="https://store.dsebastien.net/product/ai-ghostwriter-guide"
+        productId="ai-ghostwriter-guide" productPrice="€49.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="journaling"}}
+    {{> "components/offer-card" topic="journaling"
+        heading="Want to build a journaling practice that sticks?"
+        productEmoji="📓" productName="Journaling Deep Dive"
+        productDesc="Workshop on journaling, periodic reviews, and reflection routines."
+        productUrl="https://store.dsebastien.net/product/journaling-deep-dive"
+        productId="journaling-deep-dive" productPrice="€29.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="note-taking,zettelkasten,evergreen-notes,atomic-notes"}}
+    {{> "components/offer-card" topic="note-taking"
+        heading="Want a note-taking system that compounds?"
+        productEmoji="🚀" productName="Obsidian Starter Kit"
+        productDesc="Ready-made vault with 40+ templates and a proven folder structure."
+        productUrl="https://store.dsebastien.net/product/obsidian-starter-kit"
+        productId="obsidian-starter-kit" productPrice="€199.99-€249.99"
+        magnetName="Beginner's Guide to Obsidian"
+        magnetUrl="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian"}}
+{{else has tag="writing,content-creation"}}
+    {{> "components/offer-card" topic="writing"
+        heading="Want to create content more consistently?"
+        productEmoji="🤖" productName="AI Ghostwriter Guide"
+        productDesc="Turn your knowledge into publish-ready content, in your own voice."
+        productUrl="https://store.dsebastien.net/product/ai-ghostwriter-guide"
+        productId="ai-ghostwriter-guide" productPrice="€49.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="software-development,web-development,front-end,angular,typescript,javascript"}}
+    {{> "components/offer-card" topic="dev"
+        heading="Want to level up as a developer?"
+        productEmoji="📖" productName="Dev Concepts"
+        productDesc="12 volumes covering IT &amp; software development from the ground up."
+        productUrl="https://dev-concepts.dev"
+        magnetName="Thousands of free concepts &amp; frameworks"
+        magnetUrl="https://concepts.dsebastien.net"}}
+{{else has tag="personal-knowledge-management,knowledge-management,foundations-of-personal-knowledge-management"}}
+    {{> "components/offer-card" topic="pkm"
+        heading="Ready to build your knowledge system?"
+        productEmoji="📚" productName="Knowledge Management for Beginners"
+        productDesc="10+ hours of structured video lessons — from information chaos to a working system."
+        productUrl="https://knowledge-management-for-beginners.com"
+        productId="knowledge-management-for-beginners" productPrice="€69.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="knowledge-work,work"}}
+    {{> "components/offer-card" topic="knowledge-work"
+        heading="Ready to level up your knowledge work?"
+        productEmoji="💼" productName="Knowledge Worker Kit"
+        productDesc="Complete guides and systems for professional knowledge workers."
+        productUrl="https://store.dsebastien.net/product/knowledge-worker-kit"
+        productId="knowledge-worker-kit" productPrice="€249.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="entrepreneurship,solopreneurship"}}
+    {{> "components/offer-card" topic="entrepreneurship"
+        heading="Building something of your own?"
+        productEmoji="💼" productName="Knowledge Worker Kit"
+        productDesc="Systems for solo knowledge workers — organize the business in your head."
+        productUrl="https://store.dsebastien.net/product/knowledge-worker-kit"
+        productId="knowledge-worker-kit" productPrice="€249.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="productivity,personal-organization,time-management,habits,routines"}}
+    {{> "components/offer-card" topic="productivity"
+        heading="Ready to get properly organized?"
+        productEmoji="🗂️" productName="Personal Organization 101"
+        productDesc="Clarity, focus, and habits that stick — without the overwhelm."
+        productUrl="https://store.dsebastien.net/product/personal-organization-101"
+        productId="personal-organization-101" productPrice="€19.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="tools,tools-and-techniques"}}
+    {{> "components/offer-card" topic="tools"
+        heading="Looking for the right tools?"
+        productEmoji="🚀" productName="Obsidian Starter Kit"
+        productDesc="The best starting point for Obsidian — templates, structure, automation."
+        productUrl="https://store.dsebastien.net/product/obsidian-starter-kit"
+        productId="obsidian-starter-kit" productPrice="€199.99-€249.99"
+        magnetName="PKM Tools Database"
+        magnetUrl="https://www.dsebastien.net/free-pkm-tools-database"}}
+{{else has tag="learning"}}
+    {{> "components/offer-card" topic="learning"
+        heading="Want to learn more effectively?"
+        productEmoji="📚" productName="Knowledge Management for Beginners"
+        productDesc="Build a system that helps you retain and connect what you learn."
+        productUrl="https://knowledge-management-for-beginners.com"
+        productId="knowledge-management-for-beginners" productPrice="€69.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else has tag="personal-development,mental-health,wellbeing"}}
+    {{> "components/offer-card" topic="personal-development"
+        heading="Looking for more clarity and direction?"
+        productEmoji="🧭" productName="Clarity 101"
+        productDesc="Find your values, goals, and direction — the foundation everything else builds on."
+        productUrl="https://store.dsebastien.net/product/clarity-101"
+        productId="clarity-101" productPrice="€19.99"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
+{{else}}
+    {{> "components/offer-card" topic="default"
+        heading="Tired of information overwhelm? Build a system that works:"
+        productEmoji="🎯" productName="Knowii Community"
+        productDesc="Community + courses + tools in one place — pick the tier that fits."
+        productUrl="https://www.store.dsebastien.net/product/knowii-community/"
+        productId="knowii-community" productPrice="From €14.99/quarter"
+        magnetName="Knowledge System Checklist"
+        magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"
+        hideKnowii=true}}
+{{/has}}

@@ -106,11 +106,26 @@
                     topicFilter="tag:blog+tag:[ai,ai-2,ai-skills,claude-code]+tag:-[obsidian]"
                     seeAllUrl="/feeds/ai/"}}
 
+                {{!-- Inline capture after the second section (plan Tier 1.0 item 5) --}}
+                {{#unless @member}}
+                    {{> "components/lead-magnet-cta" email_field_id="blog-inline-email"}}
+                {{/unless}}
+
                 {{> "components/topic-section"
                     title="Personal Knowledge Management"
                     anchor="personal-knowledge-management"
                     topicFilter="tag:blog+tag:[personal-knowledge-management,note-taking]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code]"
                     seeAllUrl="/tag/personal-knowledge-management"}}
+
+                {{!-- Topic-matched offer band (listing context: explicit params) --}}
+                {{> "components/offer-card" topic="pkm"
+                    heading="Ready to build your knowledge system?"
+                    productEmoji="📚" productName="Knowledge Management for Beginners"
+                    productDesc="10+ hours of structured video lessons — from information chaos to a working system."
+                    productUrl="https://knowledge-management-for-beginners.com"
+                    productId="knowledge-management-for-beginners" productPrice="€69.99"
+                    magnetName="Knowledge System Checklist"
+                    magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
 
                 {{> "components/topic-section"
                     title="Knowledge Work"
@@ -149,6 +164,17 @@
                     anchor="software-development"
                     topicFilter="tag:blog+tag:[software-development,web-development]+tag:-[obsidian,ai,ai-2,ai-skills,claude-code,personal-knowledge-management,note-taking,knowledge-work,productivity,personal-organization,learning,personal-development,mental-health,writing]"
                     seeAllUrl="/feeds/dev/"}}
+
+                {{!-- Closing offer band before the catch-all section --}}
+                {{> "components/offer-card" topic="default"
+                    heading="Tired of information overwhelm? Build a system that works:"
+                    productEmoji="🎯" productName="Knowii Community"
+                    productDesc="Community + courses + tools in one place — pick the tier that fits."
+                    productUrl="https://www.store.dsebastien.net/product/knowii-community/"
+                    productId="knowii-community" productPrice="From €14.99/quarter"
+                    magnetName="Knowledge System Checklist"
+                    magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"
+                    hideKnowii=true}}
 
                 {{> "components/topic-section"
                     title="More Articles"

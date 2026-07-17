@@ -1,0 +1,27 @@
+{{!--
+    One contextual offer: ONE hero product + ONE free lead magnet + Knowii nudge.
+    A decision, not a menu — see documentation/plans/articles-page-overhaul.md (Tier 1.3).
+
+    Parameters:
+    * topic        — kebab-case topic key, emitted as data-cta-topic for analytics
+    * heading      — one-line hook above the offer (topical, benefit-framed)
+    * productEmoji / productName / productDesc / productUrl — the hero offer
+    * productId    — store catalog id for live price hydration (optional)
+    * productPrice — server-rendered fallback price text (optional)
+    * magnetName / magnetUrl — the free lead magnet
+    * hideKnowii   — set true when the hero offer IS Knowii (avoids duplication)
+--}}
+<aside class="contextual-offer" data-cta-topic="{{topic}}">
+    <p class="contextual-offer-heading">{{heading}}</p>
+    <a class="contextual-offer-hero" href="{{productUrl}}" rel="noopener" data-cta="product">
+        <span class="contextual-offer-product">{{productEmoji}} {{productName}}</span>
+        <span class="contextual-offer-desc">{{productDesc}}</span>
+        {{#if productPrice}}
+            <span class="contextual-offer-price"{{#if productId}} data-price="{{productId}}"{{/if}}>{{productPrice}}</span>
+        {{/if}}
+    </a>
+    <p class="contextual-offer-magnet">Not ready to buy? Start free: <a href="{{magnetUrl}}" data-cta="magnet">{{magnetName}}</a></p>
+    {{#unless hideKnowii}}
+        <p class="contextual-offer-knowii">Or get everything at once — community, courses &amp; tools: <a href="https://www.store.dsebastien.net/product/knowii-community/" rel="noopener" data-cta="knowii">Join Knowii →</a></p>
+    {{/unless}}
+</aside>
