@@ -4269,6 +4269,84 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     font-size: 1.5rem;
 }
 
+/* Pillar hub pages (Tier 2.1 — src/pillar.hbs)
+/* ---------------------------------------------------------- */
+
+.pillar-hero {
+    @apply !mt-24 mb-4 text-center;
+}
+
+.pillar-kicker {
+    @apply uppercase font-semibold mb-4;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary-text);
+}
+
+.pillar-kicker a {
+    @apply no-underline;
+    color: var(--color-secondary-text);
+}
+
+.pillar-kicker a:hover {
+    color: var(--ghost-accent-color);
+}
+
+.pillar-title {
+    @apply font-bold;
+    font-size: calc(3.4rem * var(--factor, 1));
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.pillar-intro {
+    @apply mt-6 mx-auto;
+    max-width: 720px;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    color: var(--color-secondary-text);
+}
+
+.pillar-hero-actions {
+    @apply mt-8 flex items-center justify-center gap-3 flex-wrap;
+    font-size: 1.4rem;
+}
+
+.pillar-dot {
+    color: var(--color-border);
+}
+
+.pillar-best {
+    @apply !mt-16;
+}
+
+.pillar-offer-band {
+    @apply !mt-16;
+}
+
+.pillar-related {
+    @apply !mt-20 mb-24 text-center;
+}
+
+.pillar-related-grid {
+    @apply flex flex-wrap justify-center gap-3 mt-6;
+}
+
+.pillar-chip {
+    @apply rounded-full no-underline font-medium;
+    padding: 0.6em 1.2em;
+    font-size: 1.4rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary-text);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.pillar-chip:hover {
+    border-color: var(--ghost-accent-color);
+    color: var(--ghost-accent-color);
+    @apply opacity-100;
+}
+
 /* Keep-reading block on posts (Tier 1.4) */
 
 .keep-reading {

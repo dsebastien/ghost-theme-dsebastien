@@ -369,7 +369,13 @@ Shipped: hero|large|regular|compact sizes, topic pill (tags.[1]), reading time. 
 
 Ordered by impact.
 
-### 2.1 Introduce 7 pillar hub pages as first-class collections
+### 2.1 Introduce 7 pillar hub pages — ✅ DONE 2026-07-17 (theme; needs routes.yaml upload + deploy)
+
+**Shipped:** 7 pillar **channels** (not collections — collections partition posts and the unfiltered `/` owns them all) at `/pillars/<slug>/` in `routes.yaml`, each binding `data: tag.hash-pillar-<slug>` so the shared `src/pillar.hbs` gets `{{tag.name}}`/`{{tag.description}}` for the editorial hero (Admin-editable). `pillar.hbs` = editorial hero (title/offer switched on `{{tag.slug}}`, intro from tag description) + "Start with the best" featured strip (dynamic `filter="tag:{{tag.slug}}+featured:true+tag:blog"`, same pattern as tag.hbs) + paginated channel feed with sidebar (in `.gh-container.is-grid`, so no `.gh-content` underline issue) + one pillar-matched `offer-card` + "Explore the pillars" cross-link strip + CollectionPage/BreadcrumbList JSON-LD. CSS: `.pillar-*` block. Taxonomy source of truth: `src/data/pillars.json` (priority-ordered clusters). Backfill applied live via Admin API bulk `addTag` with exclusion chains (exact first-match): creator-systems 35, content-systems 15, tools-and-systems 86, writing-and-thinking 30, pkm-foundations 13, knowledge-work 30, zen-productivity 13; ~74 legacy dev/misc left pillar-less (stay in `/feeds/dev/`). Six `/blog/` topic sections re-pointed their "See more" at the matching pillar hub. **Internal `#pillar-*` tags created + applied live already; user must upload the new routes.yaml (Ghost admin) + deploy the theme for the pages to resolve.** Deferred: separate `#start-here-<pillar>` curated strip (uses featured instead), per-pillar `pillar-<slug>.hbs` variants, tags-hub pillar cards.
+
+**Original spec below.**
+
+### ~~2.1 original~~ Introduce 7 pillar hub pages as first-class collections
 
 **Build**
 - Add 7 pillar collections in `routes.yaml` (see IA sketch above), each with `filter: "tag:hash-pillar-<slug>"`, `template: pillar`, `rss: true`.

@@ -48,6 +48,56 @@ routes:
     filter: "featured:true+tag:blog"
     template: feed-best
 
+  # 7 content-pillar hubs (articles-page-overhaul Tier 2.1). Channels (NOT
+  # collections — collections partition posts and the unfiltered / owns them
+  # all). Each binds its internal #pillar-* tag via `data:` so the shared
+  # pillar.hbs template gets {{tag.name}}/{{tag.description}} for the hero.
+  # Posts are assigned to pillars by the hash-pillar-* backfill (first-match
+  # over topic tags; see src/data/pillars.json). Browsable page + RSS at
+  # /pillars/<slug>/rss/. Internal tags stay out of /tag/ and post tag lists.
+  /pillars/pkm-foundations/:
+    controller: channel
+    filter: "tag:hash-pillar-pkm-foundations+tag:blog"
+    data: tag.hash-pillar-pkm-foundations
+    template: pillar
+    rss: true
+  /pillars/tools-and-systems/:
+    controller: channel
+    filter: "tag:hash-pillar-tools-and-systems+tag:blog"
+    data: tag.hash-pillar-tools-and-systems
+    template: pillar
+    rss: true
+  /pillars/writing-and-thinking/:
+    controller: channel
+    filter: "tag:hash-pillar-writing-and-thinking+tag:blog"
+    data: tag.hash-pillar-writing-and-thinking
+    template: pillar
+    rss: true
+  /pillars/zen-productivity/:
+    controller: channel
+    filter: "tag:hash-pillar-zen-productivity+tag:blog"
+    data: tag.hash-pillar-zen-productivity
+    template: pillar
+    rss: true
+  /pillars/knowledge-work/:
+    controller: channel
+    filter: "tag:hash-pillar-knowledge-work+tag:blog"
+    data: tag.hash-pillar-knowledge-work
+    template: pillar
+    rss: true
+  /pillars/content-systems/:
+    controller: channel
+    filter: "tag:hash-pillar-content-systems+tag:blog"
+    data: tag.hash-pillar-content-systems
+    template: pillar
+    rss: true
+  /pillars/creator-systems/:
+    controller: channel
+    filter: "tag:hash-pillar-creator-systems+tag:blog"
+    data: tag.hash-pillar-creator-systems
+    template: pillar
+    rss: true
+
 # IMPORTANT: keep the /blog/, /newsletter/, /news/ collections below.
 # Their {slug} permalink filters are inert — the unfiltered / collection owns
 # every post, so post URLs stay /{slug}/ — but these collections generate the

@@ -1,0 +1,161 @@
+{
+  "_comment": "Source of truth for the 7 content pillars (articles-page-overhaul Tier 2.1). Drives (a) the hash-pillar-* internal-tag backfill script, and (b) the hand-authored per-pillar blocks in src/pillar.hbs. NOT read at render time — Ghost themes cannot load arbitrary JSON. `tags` is an ORDERED priority list: the backfill assigns each post to the FIRST pillar whose cluster contains one of the post's topic tags. The legacy software-development cluster (software-development, front-end, web-development, angular, typescript, javascript, css, git, kotlin, spring-boot, react, etc.) is intentionally NOT mapped to any pillar — it stays discoverable via /feeds/dev/ and /blog/ but is off-brand for the PKM pillars.",
+  "priorityOrder": [
+    "creator-systems",
+    "content-systems",
+    "tools-and-systems",
+    "writing-and-thinking",
+    "pkm-foundations",
+    "knowledge-work",
+    "zen-productivity"
+  ],
+  "pillars": {
+    "creator-systems": {
+      "name": "AI & Creator Systems",
+      "emoji": "🤖",
+      "hashTag": "hash-pillar-creator-systems",
+      "tagName": "#pillar-creator-systems",
+      "tagline": "Turn AI and automation into real leverage for building and creating.",
+      "description": "Where knowledge work meets building. How to use AI as a genuine thinking partner, automate the busywork, and turn your systems into an engine for creating products, tools, and a business — without losing the plot.",
+      "tags": ["ai", "ai-2", "ai-skills", "claude-code", "creator-systems", "indie-hacking", "startups", "solopreneurship", "product-design", "design-sprints", "innovation"],
+      "offer": {
+        "topic": "creator-systems",
+        "heading": "Want AI to be a real thinking partner, not a gimmick?",
+        "productEmoji": "🤖",
+        "productName": "AI Ghostwriter Guide",
+        "productDesc": "Make AI write like you — your voice, your context, your standards.",
+        "productUrl": "https://store.dsebastien.net/product/ai-ghostwriter-guide",
+        "productId": "ai-ghostwriter-guide",
+        "productPrice": "€49.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    },
+    "content-systems": {
+      "name": "Content Systems",
+      "emoji": "✍️",
+      "hashTag": "hash-pillar-content-systems",
+      "tagName": "#pillar-content-systems",
+      "tagline": "Publish consistently by turning your notes into a content engine.",
+      "description": "How to create and publish consistently without staring at a blank page. Turn the knowledge you already capture into articles, videos, and products through a repeatable content pipeline.",
+      "tags": ["content-creation", "content-creation-systems", "content-curation", "youtube", "teaching", "sharing", "communities", "community-knowledge-management"],
+      "offer": {
+        "topic": "content-systems",
+        "heading": "Want to create content more consistently?",
+        "productEmoji": "🤖",
+        "productName": "AI Ghostwriter Guide",
+        "productDesc": "Turn your knowledge into publish-ready content, in your own voice.",
+        "productUrl": "https://store.dsebastien.net/product/ai-ghostwriter-guide",
+        "productId": "ai-ghostwriter-guide",
+        "productPrice": "€49.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    },
+    "tools-and-systems": {
+      "name": "Tools & Systems",
+      "emoji": "🛠️",
+      "hashTag": "hash-pillar-tools-and-systems",
+      "tagName": "#pillar-tools-and-systems",
+      "tagline": "Build your command center with Obsidian and proven structures.",
+      "description": "The how of knowledge management: choosing tools, setting up Obsidian, and applying proven structures like PARA, Zettelkasten, and atomic notes so your system captures everything without becoming a second job.",
+      "tags": ["obsidian", "obsidian-starter-kit", "obsidian-starter-course", "note-taking", "zettelkasten", "atomic-notes", "evergreen-notes", "dataview", "templates", "tools", "tools-and-techniques", "para-method", "johnny-decimal", "plugins", "tags", "markdown", "portability", "data-security", "data-ownership", "data-privacy"],
+      "offer": {
+        "topic": "tools-and-systems",
+        "heading": "Ready to build a system that actually works?",
+        "productEmoji": "🚀",
+        "productName": "Obsidian Starter Kit",
+        "productDesc": "Skip weeks of setup — ready-made vault, 40+ templates, proven structure, automation.",
+        "productUrl": "https://store.dsebastien.net/product/obsidian-starter-kit",
+        "productId": "obsidian-starter-kit",
+        "productPrice": "€199.99-€249.99",
+        "magnetName": "Beginner's Guide to Obsidian",
+        "magnetUrl": "https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian"
+      }
+    },
+    "writing-and-thinking": {
+      "name": "Writing & Thinking",
+      "emoji": "🧠",
+      "hashTag": "hash-pillar-writing-and-thinking",
+      "tagName": "#pillar-writing-and-thinking",
+      "tagline": "Turn raw information into connected insight.",
+      "description": "The practice layer: how to process information, connect ideas, and think on the page. Writing to think, evergreen notes, and the habits that turn a pile of captures into real understanding.",
+      "tags": ["writing", "writing-and-thinking", "thinking", "journaling", "reading", "creativity", "memory", "cognitive-load", "logic", "problem-solving", "decision-making", "systems-thinking", "concepts", "knowledge-capture"],
+      "offer": {
+        "topic": "writing-and-thinking",
+        "heading": "Want a note-taking practice that compounds?",
+        "productEmoji": "📓",
+        "productName": "Journaling Deep Dive",
+        "productDesc": "Workshop on journaling, periodic reviews, and reflection routines.",
+        "productUrl": "https://store.dsebastien.net/product/journaling-deep-dive",
+        "productId": "journaling-deep-dive",
+        "productPrice": "€29.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    },
+    "pkm-foundations": {
+      "name": "PKM Foundations",
+      "emoji": "📚",
+      "hashTag": "hash-pillar-pkm-foundations",
+      "tagName": "#pillar-pkm-foundations",
+      "tagline": "Understand why knowledge management matters — and where to start.",
+      "description": "The foundations of Personal Knowledge Management: why it matters, how it changes the way you learn and create, and the first principles every reliable system is built on. Start here if information overload is winning.",
+      "tags": ["personal-knowledge-management", "knowledge-management", "foundations-of-personal-knowledge-management", "information-overload", "second-brain"],
+      "offer": {
+        "topic": "pkm-foundations",
+        "heading": "Ready to build your knowledge system?",
+        "productEmoji": "📚",
+        "productName": "Knowledge Management for Beginners",
+        "productDesc": "10+ hours of structured video lessons — from information chaos to a working system.",
+        "productUrl": "https://knowledge-management-for-beginners.com",
+        "productId": "knowledge-management-for-beginners",
+        "productPrice": "€69.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    },
+    "knowledge-work": {
+      "name": "Knowledge Work",
+      "emoji": "💼",
+      "hashTag": "hash-pillar-knowledge-work",
+      "tagName": "#pillar-knowledge-work",
+      "tagline": "Leverage your system at work and in your career.",
+      "description": "Applying knowledge management professionally: solving complex problems faster, advancing your career, and leading teams with an organized mind instead of a cluttered one.",
+      "tags": ["knowledge-work", "work", "career", "leadership", "team-management", "management", "remote-work", "project-management", "communication", "best-practices", "workflows", "it-infrastructure"],
+      "offer": {
+        "topic": "knowledge-work",
+        "heading": "Ready to level up your knowledge work?",
+        "productEmoji": "💼",
+        "productName": "Knowledge Worker Kit",
+        "productDesc": "Complete guides and systems for professional knowledge workers.",
+        "productUrl": "https://store.dsebastien.net/product/knowledge-worker-kit",
+        "productId": "knowledge-worker-kit",
+        "productPrice": "€249.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    },
+    "zen-productivity": {
+      "name": "Zen Productivity",
+      "emoji": "🧭",
+      "hashTag": "hash-pillar-zen-productivity",
+      "tagName": "#pillar-zen-productivity",
+      "tagline": "Clarity, focus, and habits that stick — without the overwhelm.",
+      "description": "Calm, sustainable productivity: the habits, routines, and mindset that keep you focused and balanced. Personal organization and wellbeing for people who want to do more of what matters and less of the rest.",
+      "tags": ["productivity", "personal-organization", "personal-development", "habits", "routines", "time-management", "mental-health", "wellbeing", "stress", "mindfulness", "goals", "happiness", "life", "life-design", "success", "procrastination", "perfectionism", "gratitude", "health", "attention", "prioritization", "simplicity", "psychology", "optimism", "positivity", "task-management"],
+      "offer": {
+        "topic": "zen-productivity",
+        "heading": "Ready to get properly organized?",
+        "productEmoji": "🗂️",
+        "productName": "Personal Organization 101",
+        "productDesc": "Clarity, focus, and habits that stick — without the overwhelm.",
+        "productUrl": "https://store.dsebastien.net/product/personal-organization-101",
+        "productId": "personal-organization-101",
+        "productPrice": "€19.99",
+        "magnetName": "Knowledge System Checklist",
+        "magnetUrl": "https://www.dsebastien.net/free-knowledge-management-system-checklist"
+      }
+    }
+  }
+}
