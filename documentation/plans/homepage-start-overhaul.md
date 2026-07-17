@@ -41,6 +41,16 @@ Three pages, three jobs, zero overlap:
 
 ---
 
+## Shipped beyond this plan (2026-07-17)
+
+Funnel work landed that this plan did not foresee — recorded here so tiers stay honest:
+- **Newsletter page tier rework**: Free + Supporter (Ghost portal) + single Knowii Community card → store; member-aware ("Go further" view; Free/Supporter cards hidden where redundant). Extracted to `components/membership-tiers.hbs`, also rendered on home (before final CTA) and on the About page.
+- **`page-about.hbs`**: About converts at 3.2% (site's best) — template appends lead-magnet form + membership tiers after the admin-managed content.
+- **Theme-owned subscribe overlay + floating bubble** (`components/subscribe-overlay.hbs`, `subscribe-bubble.hbs`): replaces Portal's modal on nav/sticky/sidebar triggers and Portal's launcher (hidden in admin). Free signup via native data-members-form; Supporter → portal; Knowii → store. Knowledge Builder/Master portal tiers archived in Ghost admin.
+- **4-column footer** (brand/content/products/free resources, gradient) + link-spacing fix; lead-magnet form sizing fix.
+- **Analytics**: Plausible custom-event goals created (CTA Click, Subscribe Intent, Signup, Store Click) + `plausible-events.js` wiring through the blue-bar worker. Post-signup `/welcome/` page drafted in Ghost (needs publish + free-tier welcome-page setting).
+- **Live prices everywhere** via store products-light.json pricing block + `prices.js` hydration (supersedes this plan's delete-prices policy — see 1.2).
+
 ## Tier 1 — Do first
 
 ### 1.1 Fix the trust-breaking bugs (effort: minutes) — ✅ DONE 2026-07-17

@@ -102,7 +102,10 @@ Notes:
 
 Ordered by impact.
 
-### 1.0 Rebuild `/blog/` as the flagship magazine front page
+### 1.0 Rebuild `/blog/` as the flagship magazine front page — ✅ DONE 2026-07-17
+Shipped across commits 2d22965→d799139: tag:blog-scoped cascaded topic sections (100% coverage), featured hero + editor's picks + Latest row, sticky topic nav (wrapping pills on desktop, jump-to-topic select on mobile), inline capture + offer bands, CollectionPage JSON-LD still pending (see 1.7). Original spec below.
+
+### ~~1.0 original~~ Rebuild `/blog/` as the flagship magazine front page
 
 THE page. `src/blog.hbs` today is 10 hardcoded topic sections × 6 identical cards (~60 uniform cards), a "Recent" strip filtered on `tag:blog`, heavy cross-section duplication (a post tagged `obsidian`+`personal-knowledge-management`+`knowledge-work` renders 3×), no hierarchy, no curation, no conversion in the main column, and "See more" links that drop onto a bare 21-line `tag.hbs`.
 
@@ -259,7 +262,10 @@ The theme already ships a client-side TOC (`assets/js/main.js` builds `nav.artic
 - A 32-minute Obsidian Properties guide has no map. TOC drops bounce on cornerstone SEO content and doubles as engagement instrumentation.
 - ~3KB JS, zero server cost.
 
-### 1.6 Routes hygiene + dead-collection cleanup + nav de-dupe
+### 1.6 Routes hygiene + dead-collection cleanup + nav de-dupe — ✅ DONE 2026-07-17 (except nav de-clutter)
+Feeds channels scoped +tag:blog, /all-articles/ channelized, protective RSS-collection comments added, search-toggle finding invalidated (responsive pattern, not a bug). REMAINING: the 11-item nav de-clutter (promote Start/Articles/Community, Products dropdown). Original spec below.
+
+### ~~1.6 original~~ Routes hygiene + dead-collection cleanup + nav de-dupe
 
 **Build**
 - **Collections and routes all STAY.** Audit resolved the earlier "dead config" hypothesis: the `/blog/`, `/newsletter/`, `/news/` collections' `{slug}` permalinks are inert (the unfiltered `/` collection owns every post), but their RSS feeds (`/blog/rss/`, `/newsletter/rss/`, `/news/rss/`) are live, correctly filtered, and linked from many places online. Zero deletions, zero URL changes. Add a comment in `routes.yaml` documenting WHY the collections exist (RSS) so nobody "cleans them up" later. — **DONE 2026-07-17**: explanatory comment block added above `collections:` in `routes.yaml`.
@@ -277,7 +283,10 @@ The theme already ships a client-side TOC (`assets/js/main.js` builds `nav.artic
 - The routes.yaml comment prevents a future "cleanup" from accidentally killing three live, externally-linked RSS feeds.
 - Nav de-clutter raises click-through to the surfaces that matter (`/blog/`, `/start/`, community).
 
-### 1.7 JSON-LD structured data (Article + BreadcrumbList + CollectionPage + WebSite/SearchAction + FAQ)
+### 1.7 JSON-LD structured data — ⚠️ MOSTLY PRE-EXISTING; breadcrumb fixed 2026-07-17
+Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords), BreadcrumbList. Fixed: breadcrumb now topical (Home > Articles|Newsletter|News > topic > title; was Home > "Blog" linking the marker tag page). REMAINING: CollectionPage/ItemList on /blog/, tag pages, /tags/ hub; FAQ schema where relevant. CAVEAT: SearchAction targets /search/?q= which does not exist until T2.2. Original spec below.
+
+### ~~1.7 original~~ JSON-LD structured data (Article + BreadcrumbList + CollectionPage + WebSite/SearchAction + FAQ)
 
 **Build**
 - New partials: `src/partials/schema/article.hbs`, `breadcrumb.hbs`, `collection.hbs`, `faq.hbs`, `website.hbs`.
@@ -318,7 +327,10 @@ The theme already ships a client-side TOC (`assets/js/main.js` builds `nav.artic
 **Caveats**
 - Sitemap `lastmod` is Ghost-core-generated and not editable from a theme. The `dateModified` in schema + visible badge is the theme-side lever; the sitemap fix is out of scope (would need a Cloudflare Worker proxy — not blocking).
 
-### 1.9 Enrich `post-card.hbs` and swap in featured/regular/hero sizes
+### 1.9 Enrich `post-card.hbs` and swap in size variants — ✅ DONE 2026-07-17 (freshness badge + data-attrs deferred)
+Shipped: hero|large|regular|compact sizes, topic pill (tags.[1]), reading time. Deferred to later passes: freshness badges (needs 1.8), data-* filter attributes (needs the /blog/ client filter). Original spec below.
+
+### ~~1.9 original~~ Enrich `post-card.hbs` and swap in featured/regular/hero sizes
 
 **Build**
 - `src/partials/post-card.hbs`: add `size` param (`hero` | `large` | `regular` | `compact`), expose a TOPIC pill = first non-marker tag, i.e. skip `blog`/`newsletter`/`news` (NOT `primary_tag` — always "Blog" on articles; audit); color via `pillars.json`, `reading_time`, `published_at`, relative freshness badge ("New" <14d, "Updated" if updated_at > published_at + 30d, "Evergreen" if `featured`), and a series badge when a `#series-*` tag is present.
