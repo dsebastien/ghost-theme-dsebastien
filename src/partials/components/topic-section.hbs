@@ -1,7 +1,9 @@
 {{!--
     Renders one topic section on the blog page: heading + up to 6 post cards + "See More" link.
     Parameters:
-    * title       — section heading text
+    * title       — section heading text (optional; omit or pass empty to
+                    suppress the <h2> heading, e.g. when a caller supplies its
+                    own visible heading such as an existing <h3>)
     * anchor      — element id targeted by the top-of-page topic links
     * topicFilter — full NQL filter for the section. MUST include tag:blog scoping
                     (the marker for the articles surface) and the cascading
@@ -13,7 +15,7 @@
                     silently change the output. Blog sections pass limit=6;
                     the homepage fresh-content strips pass limit=3.
 --}}
-<h2 class="section-title">{{title}}</h2>
+{{#if title}}<h2 class="section-title">{{title}}</h2>{{/if}}
 <div id="{{anchor}}" class="gh-feed mt-4">
     {{!-- include="tags" is required for the topic pill — {{#get}} does not load tag relations by default --}}
     {{#get "posts" filter=topicFilter include="tags" limit=limit as |sectionPosts|}}

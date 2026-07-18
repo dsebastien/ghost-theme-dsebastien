@@ -2434,19 +2434,20 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply mt-16;
 }
 
-/* Homepage fresh-content strips (Tier 1.5): reproduce the articles-page card
-   grid inside the homepage prose column, and escape .gh-content's link
-   underline + pink so the cards read cleanly. */
-.homepage .home-strips {
+/* Fresh-content strips (Tier 1.5): reproduce the articles-page card
+   grid inside the homepage/start prose column, and escape .gh-content's link
+   underline + pink so the cards read cleanly. Shared by the homepage and the
+   start page (both render topic-section partials inside .gh-content). */
+:is(.homepage, .start-page) .home-strips {
     @apply !mt-24;
 }
 
-.homepage .home-strips .section-title {
+:is(.homepage, .start-page) .home-strips .section-title {
     @apply !mt-20 !mb-10 !text-4xl md:!text-5xl !font-bold !text-left flex items-center gap-4;
 }
 
 /* Accent bar before each strip title — magazine-style section marker. */
-.homepage .home-strips .section-title::before {
+:is(.homepage, .start-page) .home-strips .section-title::before {
     @apply inline-block rounded-full;
     content: "";
     width: 6px;
@@ -2454,47 +2455,47 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     background-color: var(--ghost-accent-color);
 }
 
-.homepage .home-strips .gh-feed {
+:is(.homepage, .start-page) .home-strips .gh-feed {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
     gap: var(--grid-gap);
     row-gap: calc(var(--grid-gap) * 1.5);
 }
 
 /* Cards: kill the inherited prose underline + pink, keep normal text colour. */
-.homepage .home-strips .gh-feed a {
+:is(.homepage, .start-page) .home-strips .gh-feed a {
     @apply no-underline;
     color: inherit;
 }
 
-.homepage .home-strips .gh-card-title {
+:is(.homepage, .start-page) .home-strips .gh-card-title {
     color: var(--color-primary-text);
 }
 
-.homepage .home-strips .gh-card-link:hover .gh-card-title {
+:is(.homepage, .start-page) .home-strips .gh-card-link:hover .gh-card-title {
     color: var(--ghost-accent-color);
     @apply opacity-100;
 }
 
 /* "See More" row: full width under the cards, styled as a clean accent link. */
-.homepage .home-strips .gh-feed > div:last-child {
+:is(.homepage, .start-page) .home-strips .gh-feed > div:last-child {
     @apply mt-2;
     grid-column: 1 / -1;
 }
 
-.homepage .home-strips .gh-feed > div:last-child a {
+:is(.homepage, .start-page) .home-strips .gh-feed > div:last-child a {
     @apply inline-flex items-center gap-2 font-semibold no-underline;
     color: var(--ghost-accent-color);
 }
 
-.homepage .home-strips .gh-feed > div:last-child a:hover {
+:is(.homepage, .start-page) .home-strips .gh-feed > div:last-child a:hover {
     @apply opacity-80;
 }
 
-.homepage .home-strips .gh-feed > div:last-child svg {
+:is(.homepage, .start-page) .home-strips .gh-feed > div:last-child svg {
     @apply w-4 h-4;
 }
 
-.homepage .home-strips .gh-feed > div:last-child hr {
+:is(.homepage, .start-page) .home-strips .gh-feed > div:last-child hr {
     @apply hidden;
 }
 
