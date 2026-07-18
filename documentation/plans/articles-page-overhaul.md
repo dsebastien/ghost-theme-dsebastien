@@ -575,6 +575,30 @@ Baseline the current numbers BEFORE shipping Tier 1 (pageviews, subscribe conver
 
 ---
 
+## Analytics-driven re-prioritization + handoff (added 2026-07-18)
+
+Live data pulled this session (Plausible 30d + Ghost Admin API):
+- **Traffic:** 16.1k unique visitors, 22.9k pageviews, **85% bounce, 1.35 views/visit, 59s** avg visit.
+- **Top pages are ~all individual Obsidian how-to articles** — top 4 (Bases dashboards 2.9k · Plugins-2026 2.3k · Obsidian Properties 1.3k · AI-with-vault 1.1k) ≈ **48% of pageviews**. Homepage `/` = 546 (3.4%). `/projects/`, `/courses/`, `/store`, `/start/`, `/blog/` do **not** appear in top pages — near-zero direct traffic.
+- **Members:** 2,716 (2,701 free, **13 paid**, 2 comped). Ghost paid ("Supporter") is monetarily negligible; revenue is the store/Knowii.
+- **Conversion events** (only ~days of data since events deployed — directional, not 30d): Store Click 9u · Signup 4u · Subscribe Intent 3u · CTA Click 2u.
+
+**Diagnosis: traffic-rich, capture-poor.** ~95% of visitors land on ONE article from search/social and bounce (85%) without ever seeing home/start/pillars. The **article page is the battleground**; the article→email and article→store handoff is the bottleneck — not traffic, and not the funnel pages that most of this plan polished.
+
+Re-prioritized steps (highest ROI first — these are NOT yet built):
+
+1. **[PROMOTE to top of Tier 2] Articles 2.4 — on-article exit-intent + scroll-triggered capture.** Targets the 85% who bounce off a single article, which is where 95% of traffic is. Highest-ROI unbuilt item; jump it ahead of the remaining homepage Tier-2 polish. Lifting article→email from ~0.2% to ~1% ≈ 5× list growth at zero extra traffic.
+2. **Simplify membership tiers to Free → Knowii.** 13 Ghost-paid means the "Supporter" tier dilutes the decision on newsletter/home/about with negligible upside. Drop Supporter from `components/membership-tiers.hbs`; make the choice "subscribe free" or "join Knowii (store)".
+3. **Nav de-clutter + commerce consolidation** (completes 1.6's deferred nav item; **Ghost Admin → Navigation, not theme**). Cut 11 items → ~6: Start Here · Articles · Newsletter · Community · Store · About. Fold Courses + Coaching under Store; move News / Notes / Projects to a "More" dropdown or the footer. Fix the two identical 📰 emojis (News + Articles).
+4. **Consolidate the Projects / Courses / Store product pages + rename `/projects/`.** All three are near-zero-traffic, overlapping product/sales pages → SEO cannibalization + a maintenance tax, with no conversion upside (nobody visits them). Keep `/projects/` (most complete, 15.7k chars, 30 store links) as the single product overview and **rename it `/products/`** — "Projects" misreads as a dev portfolio. 301 `/courses/` into it or the store. (Alternative: if a genuine dev-credibility portfolio is wanted — tools, OSS, Obsidian plugins — rebuild `/projects/` as an actual projects page; that's different content.)
+5. **Double down on the top-4 articles' offers.** The pillar-matched `contextual-offer` on every article (Tier 1.3, live) is the real revenue lever. Use the `CTA Click` `topic`/`cta` props to see which pillars drive Store Clicks, and feature those products harder inside the high-traffic Obsidian posts.
+
+Caveats: steps 2-4 are Ghost-Admin / brand decisions the owner should approve before applying. Step 1 (2.4) is theme work, ready to build. Step 5 is measurement + copy.
+
+---
+
 ## The One Thing
 
-Ship Tier 1.0 (the `/blog/` magazine front page: hero + start-here + de-duplicated curated topic sections) together with Tier 1.3 (contextual CTA engine driven by topic) — that pairing turns the page readers actually visit into a browsable showcase of the catalog AND converts each topic's readers with a matched offer instead of the current one-size-fits-all leak.
+**Build Articles 2.4 — on-article exit-intent + scroll-triggered email capture.** The data is unambiguous: 95% of a 16k/mo audience lands on a single Obsidian article and bounces (85%) without subscribing or clicking to the store. Every other surface in this plan serves the ~5% who navigate; 2.4 serves the 95% who don't, on the exact pages they're already reading. It's the highest-leverage unbuilt lever on the site.
+
+*(Superseded original: ship Tier 1.0 + Tier 1.3 together — both now DONE.)*
