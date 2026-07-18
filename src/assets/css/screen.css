@@ -1085,13 +1085,11 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* ---------------------------------------------------------- */
 
 .gh-sidebar-inner {
-    /* NOT sticky. The sidebar (About + Knowii + Featured + Browse) is taller
-       than many viewports, and a sticky element taller than the viewport can't
-       win: capping it adds an internal scrollbar, and not capping it clips the
-       top edge when the column bottom is reached on scroll. Both were reported
-       as bugs. Normal flow instead: the sidebar scrolls with the page — no
-       scrollbar, nothing clipped, everything reachable. (Trade-off: it no longer
-       follows the reader; a proper follow would need a JS sticky-until-bottom.) */
+    /* Base = normal flow (no-JS fallback: scrolls with the page — no scrollbar,
+       nothing clipped). assets/js/sidebar-sticky.js upgrades this to a smart,
+       direction-aware sticky follow that never clips (CSS-only sticky can't do
+       that for a sidebar taller than the viewport — capping adds a scrollbar,
+       not capping clips the top). */
     position: static;
 }
 
