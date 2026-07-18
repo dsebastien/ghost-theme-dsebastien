@@ -1,21 +1,22 @@
 {{!--
     Shared series renderer (articles plan Tier 2.5).
 
-    Fetches every post sharing a series's internal tag in publish order and
-    renders an ordered outline with the current post marked "You're here".
-    Turns a reader who landed on part 3 into someone who sees the whole journey.
+    Fetches every post of a series in publish order and renders an ordered
+    outline with the current post marked "You're here".
 
     Params:
-      * seriesTag   — internal tag slug, e.g. "hash-series-obsidian-properties"
-      * seriesTitle — human title, e.g. "The Obsidian Properties Guide"
-      * currentId   — id of the post being viewed (marks the current part)
+      * postsFilter — the COMPLETE NQL filter string, e.g.
+        "tag:hash-series-git-tutorial". Passed as a whole-string param and used
+        as `filter=postsFilter` (like pillar-body's `bestFilter`). Do NOT
+        interpolate a partial param inside a filter string (`filter="tag:{{x}}"`)
+        — Ghost does not resolve partial params in mustache-in-filter, which is
+        what silently returned nothing in the first cut.
+      * seriesTitle — human title for the header.
+      * currentId   — id of the post being viewed ("" on the /series/ index).
 
-    Uses only internal-tag-safe queries: {{#get "posts" filter="tag:<internal>"}}
-    resolves internal tags fine (same as pillar-body); it is the routes.yaml
-    `data:` binding that cannot (see Tier 2.1 gotchas). Order = published_at asc
-    (parts are published in sequence). No manifest needed for membership/order.
+    Internal-tag filtering via the Content API works (proven live + by pillars).
 --}}
-{{#get "posts" filter="tag:{{seriesTag}}" order="published_at asc" limit="50" as |parts|}}
+{{#get "posts" filter=postsFilter order="published_at asc" limit="50" as |parts|}}
     {{#if parts}}
         <nav class="series-nav" aria-label="{{seriesTitle}} series">
             <div class="series-nav-head">

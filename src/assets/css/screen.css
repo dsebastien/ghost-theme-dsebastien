@@ -1204,6 +1204,29 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply mt-12;
 }
 
+/* Browse button-links (sidebar): the catalog entry points as tappable buttons
+   instead of a bullet list. */
+.sidebar-browse {
+    @apply mt-12 flex flex-col gap-3;
+}
+
+.sidebar-browse-link {
+    @apply flex items-center gap-2 rounded-lg font-semibold no-underline;
+    padding: 12px 16px;
+    font-size: 1.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    color: var(--color-primary-text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.sidebar-browse-link:hover {
+    border-color: var(--ghost-accent-color);
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.06);
+    transform: translateY(-1px);
+    color: var(--color-primary-text);
+}
+
 .sidebar-product-featured {
     @apply relative flex flex-col gap-2 rounded-lg no-underline;
     padding: 20px;

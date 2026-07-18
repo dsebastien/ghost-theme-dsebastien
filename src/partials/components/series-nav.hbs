@@ -1,23 +1,30 @@
 {{!--
     Series navigation dispatcher (articles plan Tier 2.5).
 
-    One branch per series, each a call to `series-branch` (which renders the
-    strip only if THIS post carries the series's internal `#series-<slug>` tag).
-    Detection uses an id+tag query, NOT {{#has}} — {{#has tag=}} does not match
-    internal-visibility tags in this Ghost version. See series-branch.hbs.
+    One branch per series. Each branch is an inline membership guard:
+      {{#get "posts" filter="id:{{id}}+tag:hash-series-<slug>" limit="1"}}
+    which returns THIS post iff it carries the series's internal tag, then
+    renders the shared series-strip.
 
-    Empty until the first series exists — renders nothing, zero visual impact.
+    Why inline (not a partial, not {{#has}}):
+      * {{#has tag="#..."}} does NOT match internal tags (Content API strips them
+        from post.tags — verified live: post.tags came back empty).
+      * A partial-param mustache in a filter (`filter="...{{seriesTag}}"`) does
+        NOT interpolate. But a CONTEXT var does — `{{id}}` in a filter works
+        (keep-reading.hbs uses `id:-{{id}}`). So the guard keeps the tag LITERAL
+        and only interpolates `{{id}}`; series-strip gets the whole filter string
+        as a param.
 
-    CONTRACT (kept in sync by the `developassion-publish` skill + src/data/series.json):
-      * Membership + order come from the `#series-<slug>` internal tag applied to
-        posts in Ghost; order = publish date. Adding a post to an EXISTING series
-        needs ONLY the tag — no edit here, the strip fetches members dynamically.
-      * Creating a NEW series adds ONE branch below, between the INSERT markers.
-        Keep the markers intact and one branch per line.
+    Empty until the first series exists — renders nothing.
+
+    CONTRACT (kept in sync by `developassion-publish` + src/data/series.json):
+      * Adding a post to an EXISTING series needs ONLY the `#series-<slug>` tag.
+      * A NEW series adds one branch here (+ one line in series.hbs), between the
+        SERIES-BRANCHES markers.
 --}}
 {{!-- SERIES-BRANCHES:START — developassion-publish inserts new-series branches here --}}
-{{> "components/series-branch" seriesTag="hash-series-git-tutorial" seriesTitle="Git tutorial for beginners"}}
-{{> "components/series-branch" seriesTag="hash-series-journaling" seriesTitle="Journaling every day is powerful"}}
-{{> "components/series-branch" seriesTag="hash-series-typescript" seriesTitle="What's new in TypeScript"}}
-{{> "components/series-branch" seriesTag="hash-series-team-management" seriesTitle="Team management tips"}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-git-tutorial" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-git-tutorial" seriesTitle="Git tutorial for beginners" currentId=id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-journaling" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-journaling" seriesTitle="Journaling every day is powerful" currentId=id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-typescript" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-typescript" seriesTitle="What's new in TypeScript" currentId=id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-team-management" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-team-management" seriesTitle="Team management tips" currentId=id}}{{/if}}{{/get}}
 {{!-- SERIES-BRANCHES:END --}}
