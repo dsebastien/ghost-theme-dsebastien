@@ -107,7 +107,13 @@ After the YouTube card (~L124): two `{{> "components/topic-section"}}` includes 
 
 ## Tier 2 — Big bets
 
-### 2.1 Replace start.hbs's ~70 hardcoded article links with topic-section strips
+### 2.1 Replace start.hbs's ~70 hardcoded article links with topic-section strips — ✅ DONE 2026-07-18
+
+**Shipped** (ultracode workflow: design → implement → 3-lens review, all clean): the 5 areas' hardcoded `<h4>+<ul>` link walls (~70 links) replaced with 7 live pillar-driven `topic-section` strips — Foundation→pkm-foundations, System→tools-and-systems, Practice→writing-and-thinking (one titleless strip each, limit 6, so each area's own `<h3>` stays the heading); Application→two strips (knowledge-work + zen-productivity, limit 3); Creation→two strips (content-systems + creator-systems, limit 3). Each "See more" points at the matching pillar hub. **No new tagging needed** — reuses the `hash-pillar-*` tags from articles 2.1. Supporting: `topic-section.hbs` `<h2>` now `{{#if title}}`-guarded (omit title → no heading; all 12 existing blog/home callers pass a title, byte-identical output); the `.home-strips` escape rules (card grid + kill `.gh-content` underline/pink + accent-bar titles + See-More) broadened `.homepage .home-strips` → `:is(.homepage, .start-page) .home-strips` so start.hbs reuses the proven homepage pattern with zero homepage regression. Kills slug-rot/404 risk, dup links, off-topic entries, mobile tap walls; areas now self-update. Kept verbatim: layer labels, h3s, Quick Wins, What-You'll-Learn, testimonials, offer-cards, transitions, builder-os-teaser.
+
+**Original spec below.**
+
+### ~~2.1 original~~ Replace start.hbs's ~70 hardcoded article links with topic-section strips
 Each of the five areas (L65-265, L346-488) becomes one `{{> "components/topic-section"}}` call scoped to the layer's topic tags `+tag:blog`, limit=6, compact cards, `seeAllUrl` → the **existing** channels: `/feeds/pkm/` (Foundation/System/Practice split by tag), `/feeds/productivity/` (Application), plus tag routes (`/tag/{slug}/` — native, no query-param filtering) where a channel doesn't fit. Curate each layer's "Quick Win" first-touch article via an internal tag (`#start-foundation` etc.) with a second `{{#get}}` limit=1 — filter syntax `tag:hash-start-foundation` (internal tags need the `hash-` prefix).
 **Kills in one move:** slug rot / 404 risk, duplicate links, crossed Zettelkasten/Overview titles (L163-164), off-topic OpenClaw entries (L365, L440), the 12-18-item mobile tap-target walls. start.hbs drops ~600 → ~250 lines.
 **Real cost (why Tier 2):** a Ghost Admin tagging pass — the layer taxonomy must actually be applied to posts. Content ops, not theme work. Also watch cumulative `{{#get}}` count (~10-12 on the page) — measure render time once.
