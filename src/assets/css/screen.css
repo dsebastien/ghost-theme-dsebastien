@@ -4167,7 +4167,10 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .contextual-offer-hero {
-    @apply block rounded-md no-underline;
+    @apply block rounded-md;
+    /* Raw !important: the offer-card sits inside .gh-content, whose `a { underline }`
+       (0,1,1) beats a plain class (0,1,0). Same reason as .path-router-option. */
+    text-decoration: none !important;
     padding: 16px 20px;
     background-color: var(--background-color);
     border: 1px solid var(--color-border);
@@ -4201,6 +4204,19 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply !mt-4 !mb-0;
     font-size: 1.5rem;
     color: var(--color-secondary-text);
+}
+
+/* Inline links inside the offer card: clean accent links, not the prose
+   underline+pink from .gh-content a (0,2,0 here beats 0,1,1 there). */
+.contextual-offer-magnet a,
+.contextual-offer-knowii a {
+    @apply font-semibold no-underline;
+    color: var(--ghost-accent-color);
+}
+
+.contextual-offer-magnet a:hover,
+.contextual-offer-knowii a:hover {
+    @apply underline;
 }
 
 /* Tags hub (/tags/) + enriched tag pages (Tier 1.2) */
