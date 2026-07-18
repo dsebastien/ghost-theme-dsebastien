@@ -1085,20 +1085,14 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* ---------------------------------------------------------- */
 
 .gh-sidebar-inner {
-    position: sticky;
-    top: calc(var(--grid-gap) / 2);
-    /* Cap to the viewport + internal scroll. The sidebar (About + Knowii CTA +
-       Featured + Browse) is taller than short viewports; without this cap a
-       sticky element taller than the viewport gets clipped — its top edge is
-       cut once the column bottom is reached on scroll (the reported bug). The
-       priority content (About identity + Knowii CTA) is ordered first, so it's
-       always visible; Featured/Browse scroll internally when space runs out.
-       (Reverses the 1.10 "no clip" call, which was only unsafe because Knowii
-       used to render LAST — it now renders near the top.) */
-    max-height: calc(100dvh - var(--grid-gap));
-    overflow-y: auto;
-    scrollbar-width: thin;
-    overscroll-behavior: contain;
+    /* NOT sticky. The sidebar (About + Knowii + Featured + Browse) is taller
+       than many viewports, and a sticky element taller than the viewport can't
+       win: capping it adds an internal scrollbar, and not capping it clips the
+       top edge when the column bottom is reached on scroll. Both were reported
+       as bugs. Normal flow instead: the sidebar scrolls with the page — no
+       scrollbar, nothing clipped, everything reachable. (Trade-off: it no longer
+       follows the reader; a proper follow would need a JS sticky-until-bottom.) */
+    position: static;
 }
 
 .gh-sidebar-title {

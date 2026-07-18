@@ -15,11 +15,15 @@
     </header>
 
     <section class="gh-content gh-canvas is-body">
-        {{!-- SERIES-INDEX:START — developassion-publish inserts new series here --}}
-        {{> "components/series-strip" postsFilter="tag:hash-series-git-tutorial" seriesTitle="Git tutorial for beginners" currentId=""}}
+        {{!-- SERIES-INDEX:START — developassion-publish inserts new series here.
+             Order is pillar-priority: brand-central collections first, off-brand
+             dev series last. --}}
+        {{> "components/series-strip" postsFilter="tag:hash-series-obsidian-deep-dives" seriesTitle="Obsidian deep dives" currentId=""}}
+        {{> "components/series-strip" postsFilter="tag:hash-series-ai-workflows" seriesTitle="AI workflows" currentId=""}}
         {{> "components/series-strip" postsFilter="tag:hash-series-journaling" seriesTitle="Journaling every day is powerful" currentId=""}}
-        {{> "components/series-strip" postsFilter="tag:hash-series-typescript" seriesTitle="What's new in TypeScript" currentId=""}}
         {{> "components/series-strip" postsFilter="tag:hash-series-team-management" seriesTitle="Team management tips" currentId=""}}
+        {{> "components/series-strip" postsFilter="tag:hash-series-git-tutorial" seriesTitle="Git tutorial for beginners" currentId=""}}
+        {{> "components/series-strip" postsFilter="tag:hash-series-typescript" seriesTitle="What's new in TypeScript" currentId=""}}
         {{!-- SERIES-INDEX:END --}}
     </section>
 </main>

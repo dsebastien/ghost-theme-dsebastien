@@ -27,4 +27,6 @@
 {{#get "posts" filter="id:{{id}}+tag:hash-series-journaling" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-journaling" seriesTitle="Journaling every day is powerful" currentId=id}}{{/if}}{{/get}}
 {{#get "posts" filter="id:{{id}}+tag:hash-series-typescript" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-typescript" seriesTitle="What's new in TypeScript" currentId=id}}{{/if}}{{/get}}
 {{#get "posts" filter="id:{{id}}+tag:hash-series-team-management" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-team-management" seriesTitle="Team management tips" currentId=id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-obsidian-deep-dives" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-obsidian-deep-dives" seriesTitle="Obsidian deep dives" currentId=id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-ai-workflows" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-ai-workflows" seriesTitle="AI workflows" currentId=id}}{{/if}}{{/get}}
 {{!-- SERIES-BRANCHES:END --}}

@@ -26,6 +26,16 @@
       "tag": "hash-series-team-management",
       "title": "Team management tips",
       "description": "Team management tips"
+    },
+    "obsidian-deep-dives": {
+      "tag": "hash-series-obsidian-deep-dives",
+      "title": "Obsidian deep dives",
+      "description": "Obsidian deep dives"
+    },
+    "ai-workflows": {
+      "tag": "hash-series-ai-workflows",
+      "title": "AI workflows",
+      "description": "AI workflows"
     }
   }
 }
