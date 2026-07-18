@@ -1,53 +1,51 @@
 {{!--
     Shared series renderer (articles plan Tier 2.5).
 
-    Fetches every post of a series in publish order and renders an ordered
-    outline with the current post marked "You're here".
+    Renders a series's posts (in publish order) as an ordered outline, current
+    post marked "You're here".
 
     Params:
-      * postsFilter — the COMPLETE NQL filter string, e.g.
-        "tag:hash-series-git-tutorial". Passed as a whole-string param and used
-        as `filter=postsFilter` (like pillar-body's `bestFilter`). Do NOT
-        interpolate a partial param inside a filter string (`filter="tag:{{x}}"`)
-        — Ghost does not resolve partial params in mustache-in-filter, which is
-        what silently returned nothing in the first cut.
-      * seriesTitle — human title for the header.
+      * postsFilter — the COMPLETE NQL filter string, e.g. "tag:hash-series-x".
+      * seriesTitle — human title.
       * currentId   — id of the post being viewed ("" on the /series/ index).
+      * onIndex     — true on the /series/ index (series name IS the card title).
 
-    Internal-tag filtering via the Content API works (proven live + by pillars).
+    IMPORTANT: Ghost's {{#get}} block CHANGES the context, so partial params
+    (seriesTitle/onIndex/currentId) are NOT visible by bare name inside it — the
+    header is therefore kept OUTSIDE the list {{#get}}. The count uses its own
+    tiny {{#get}} (pagination.total). Inside the list {{#foreach}} the current-id
+    lives two frames up (get + foreach) → ../../currentId.
 --}}
-{{#get "posts" filter=postsFilter order="published_at asc" limit="50" as |parts|}}
-    {{#if parts}}
-        <nav class="series-nav" aria-label="{{seriesTitle}} series">
-            <div class="series-nav-head">
-                {{#if onIndex}}
-                    {{!-- /series/ index: the series name IS the card title. --}}
-                    <h2 class="series-nav-title series-nav-title-index">📚 {{seriesTitle}}</h2>
-                {{else}}
-                    {{!-- on a post: contextual kicker + link back to the hub. --}}
-                    <span class="series-nav-kicker">📚 Part of a series</span>
-                    <a class="series-nav-title" href="/series/">{{seriesTitle}}</a>
-                {{/if}}
-                <span class="series-nav-count">{{parts.length}} parts</span>
-            </div>
-            <ol class="series-nav-list">
-                {{#foreach parts}}
-                    <li class="series-nav-item{{#match id ../currentId}} is-current{{/match}}">
-                        {{#match id ../currentId}}
-                            <span class="series-nav-part" aria-current="true">
-                                <span class="series-nav-num">{{@number}}</span>
-                                <span class="series-nav-label">{{title}}</span>
-                                <span class="series-nav-here">You're here</span>
-                            </span>
-                        {{else}}
-                            <a class="series-nav-part" href="{{url}}">
-                                <span class="series-nav-num">{{@number}}</span>
-                                <span class="series-nav-label">{{title}}</span>
-                            </a>
-                        {{/match}}
-                    </li>
-                {{/foreach}}
-            </ol>
-        </nav>
-    {{/if}}
-{{/get}}
+<nav class="series-nav" aria-label="{{seriesTitle}} series">
+    <div class="series-nav-head">
+        {{#if onIndex}}
+            {{!-- /series/ index: the series name IS the card title. --}}
+            <h2 class="series-nav-title series-nav-title-index">📚 {{seriesTitle}}</h2>
+        {{else}}
+            {{!-- on a post: contextual kicker + link back to the hub. --}}
+            <span class="series-nav-kicker">📚 Part of a series</span>
+            <a class="series-nav-title" href="/series/">{{seriesTitle}}</a>
+        {{/if}}
+        <span class="series-nav-count">{{#get "posts" filter=postsFilter limit="1"}}{{pagination.total}}{{/get}} parts</span>
+    </div>
+    <ol class="series-nav-list">
+        {{#get "posts" filter=postsFilter order="published_at asc" limit="50" as |parts|}}
+            {{#foreach parts}}
+                <li class="series-nav-item{{#match id ../../currentId}} is-current{{/match}}">
+                    {{#match id ../../currentId}}
+                        <span class="series-nav-part" aria-current="true">
+                            <span class="series-nav-num">{{@number}}</span>
+                            <span class="series-nav-label">{{title}}</span>
+                            <span class="series-nav-here">You're here</span>
+                        </span>
+                    {{else}}
+                        <a class="series-nav-part" href="{{url}}">
+                            <span class="series-nav-num">{{@number}}</span>
+                            <span class="series-nav-label">{{title}}</span>
+                        </a>
+                    {{/match}}
+                </li>
+            {{/foreach}}
+        {{/get}}
+    </ol>
+</nav>
