@@ -524,6 +524,8 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 
 **Vault metadata (2026-07-18):** the vault side now carries the series too. Added optional `series_previous` / `series_next` text properties (bare-title wikilinks) to the `own-articles` note type via `osk-vault-note-properties` (plugin config + `.types` + `TPL Own Article` + `Creations (Base)` displayName), backfilled empty across all 324 article notes (validation 324/324), and populated the prev/next chain for all 4 series' member notes (with each note aliasing its bare title so the links resolve). The publish skill's ghost target now maintains this vault chain whenever a post joins a series (step 2b + hard rule 15).
 
+**On-post collapse (2026-07-18):** big series (Obsidian deep dives = 21 parts, AI workflows = 13) would render a very tall outline on every member post. `src/assets/js/series-collapse.js` (ES5, auto-bundled) collapses the on-post strip to first + last + current ±2 with a "Show all N parts" toggle + "N more" ellipsis rows; runs on `body.post-template` only and skips `.series-index-grid`, so the `/series/` index stays fully expanded. CSS: `.series-nav-item.is-collapsed-hidden`, `.series-nav-ellipsis*`, `.series-nav-toggle`. Threshold: only series > 8 parts collapse. Needs redeploy.
+
 **Deferred:** the `/series/{slug}/` dedicated pages + `/series/` index (per-series channel routes, like pillars needed wrappers — the on-post strip is the high-value bounce-fighting piece and ships without them).
 
 **Original spec below.**

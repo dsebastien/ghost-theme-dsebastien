@@ -4611,6 +4611,44 @@ a.series-nav-part:hover {
     @apply mt-1;
 }
 
+/* On-post collapse (series-collapse.js, post pages only): long series show the
+   current part's neighbourhood + a "Show all" toggle. The /series/ index stays
+   fully expanded. */
+.series-nav-item.is-collapsed-hidden {
+    display: none;
+}
+
+.series-nav-ellipsis {
+    @apply flex items-center gap-3 !my-0;
+    padding: 4px 12px;
+    list-style: none !important;
+    color: var(--color-secondary-text);
+}
+
+.series-nav-ellipsis-dots {
+    @apply shrink-0 inline-flex items-center justify-center;
+    width: 26px;
+    letter-spacing: 0.15em;
+}
+
+.series-nav-ellipsis-label {
+    font-size: 1.2rem;
+}
+
+.series-nav-toggle {
+    @apply mt-3 rounded-md font-semibold cursor-pointer;
+    padding: 6px 14px;
+    font-size: 1.3rem;
+    color: var(--ghost-accent-color);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    transition: background-color 0.15s ease;
+}
+
+.series-nav-toggle:hover {
+    background-color: var(--background-color);
+}
+
 .keep-reading-topic {
     font-size: 1.5rem;
     color: var(--color-secondary-text);
