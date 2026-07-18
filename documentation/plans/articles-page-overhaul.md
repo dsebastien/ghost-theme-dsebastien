@@ -409,7 +409,31 @@ Deferred: separate `#start-here-<pillar>` curated strip (uses featured instead),
 - One-time Ghost admin backfill for `hash-pillar-*` tags. Script it via Admin API.
 - Once pillar hubs exist, point the "See all →" links of the matching `/blog/` topic sections at the pillar hub instead of the raw tag page (one-line change per section thanks to `topic-section.hbs`).
 
-### 2.2 Site search: `/search/` route + cmd-K palette backed by Content API
+### 2.2 Site search — ⚠️ RE-SCOPED 2026-07-18 after a live audit. Search ALREADY EXISTS (Ghost Sodo Search).
+
+**Existing state (audited live 2026-07-18 — the original "build from scratch" spec below was written before this audit and is largely redundant):**
+Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.hbs` is `<button ... data-ghost-search>` (the search icon), included from `navigation.hbs` in 4 responsive spots. Because a `[data-ghost-search]` element is present, Ghost auto-injects `sodo-search@~1.8` (jsdelivr CDN) via `{{ghost_head}}`/`{{ghost_foot}}` — no theme code needed. Clicking the icon opens a working overlay ("Search posts, tags and authors"); tested `obsidian plugins` → correctly ranked posts with highlighted title+excerpt matches, client-side and instant.
+- **What Sodo already covers:** posts (title + excerpt), tags, authors. Ranked, highlighted, fast, zero-maintenance, free. For a 515-post catalog this is genuinely good.
+- **Gaps (what's actually left to do):**
+  1. **No `Cmd/Ctrl-K` shortcut** — opens on click only (theme JS has no `K` keydown; Sodo binds none).
+  2. **Dangling schema** — `src/default.hbs` L111-115 emits a `SearchAction` whose `target` is `https://www.dsebastien.net/search/?q={search_term_string}`, but Sodo is an overlay with **no `/search/` URL**, so that target 404s.
+  3. **No facets** — can't filter by pillar / content type (article vs newsletter vs news — Sodo mixes all three) / year / reading time.
+  4. **Title+excerpt only** — no full-text BODY search.
+
+**Option A — Enhance Sodo (quick win, ~1h, RECOMMENDED first):**
+- Add a global `Cmd/Ctrl-K` (and `/` when focus isn't in an input/textarea/contentEditable) handler that programmatically `.click()`s the `[data-ghost-search]` button. New `src/assets/js/search-shortcut.js` (ES5 — gulp concat/uglify chokes on ES6), `preventDefault`, guard against form fields. It rides the existing concatenated bundle (already loaded site-wide via default.hbs), so no new script tag.
+- Fix the dangling `SearchAction`: since Sodo has no results URL, **remove** the `potentialAction`/`SearchAction` block from default.hbs (honest — this plan's own "Dropped" section already flagged it; Google retired the sitelinks-searchbox rich result, so the schema yields nothing while pointing at a 404). Only keep/point it if Option B ships a real `/search/` page.
+- Optional: add a visible `⌘K` hint to the search button + `aria-keyshortcuts`.
+- **Net:** closes the "search + expected keyboard affordance" gap honestly and cheaply. This is the recommended close for this catalog size.
+
+**Option B — Custom faceted `/search/` page + cmd-K palette (bigger; only if Sodo's gaps bite):** the original build below. Now unlocks the pillar facet via `src/data/pillars.json` and the type facet via `primary_tag`. Adds a real `/search/?q=` URL (which would then validate a SearchAction), faceted filtering, and (optionally) body search.
+- **Prerequisite the original spec missed:** a **Content API key** — create a custom Integration in Ghost Admin → Settings → Integrations (the Content API key is public-safe, read-only; hardcode in the theme JS or pass via `config.custom`/`@custom`). Sodo's internal key is not reusable.
+- Full-text body search needs a prebuilt index (Content API `formats=plaintext` per post at build, or **pagefind** at build time) — the Content API's live `fields` do not include body.
+- **Verdict:** defer unless search analytics show heavy use + demand to filter by pillar/type. The marginal value over Sodo is mostly the facets.
+
+**Original from-scratch spec below (superseded by the audit — keep only if pursuing Option B):**
+
+#### ~~2.2 original~~ Site search: `/search/` route + cmd-K palette backed by Content API
 
 **Build**
 - `configuration/routes.yaml`: add `/search/: { template: search }`.
