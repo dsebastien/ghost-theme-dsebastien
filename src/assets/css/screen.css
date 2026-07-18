@@ -4204,6 +4204,22 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 /* Tags hub (/tags/) + enriched tag pages (Tier 1.2) */
 
+/* Section headings must dominate the (large) intro paragraphs and give each
+   section real breathing room from the cards above. No base .section-title
+   rule reaches this page, so it fell back to a small default h2. */
+.tags-hub .section-title {
+    @apply !text-4xl md:!text-5xl !font-bold !mt-24 !mb-3;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+/* The lead paragraph under a section heading is a subordinate subtitle here. */
+.tags-hub-pillars .gh-article-excerpt {
+    @apply !mt-0 mb-2;
+    font-size: 1.5rem;
+    color: var(--color-secondary-text);
+}
+
 .tags-hub-clusters {
     @apply grid gap-4 mt-4;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
