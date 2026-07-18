@@ -514,7 +514,15 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 **Caveats**
 - Aggressive modals annoy expert readers. Throttling + `@member` suppression is non-negotiable.
 
-### 2.5 First-class Series support
+### 2.5 First-class Series support — ✅ CORE DONE 2026-07-18 (needs a real series + redeploy to show)
+
+**Shipped:** on-post series wayfinding. A "series" = an ordered set of posts sharing one internal Ghost tag `#series-<slug>` (order = publish date). `src/partials/components/series-strip.hbs` fetches a series's posts by that tag and renders an ordered outline with the current part marked "You're here"; `series-nav.hbs` is a `{{#has}}` dispatcher (one branch per series, between `SERIES-BRANCHES` insert markers) mounted at the top of `post.hbs` — empty-safe (renders nothing until a series exists). Only internal-tag-safe queries are used (`{{#get "posts" filter="tag:<internal>"}}` resolves fine — same as pillar-body; it was the routes `data:` binding that couldn't). `src/data/series.json` is the registry + contract. `.series-nav` CSS added.
+
+**Publish-skill integration (the automation half):** `developassion-publish` ghost target is now series-aware (hard rule 15 + workflow step 2b + `scripts/series-sync.mjs`). A vault note's `series: <title>` frontmatter applies the `#series-<slug>` tag on publish. **Adding a post to an existing series = tag only (no theme edit, no redeploy)** because the strip fetches members live; a **new** series creates the tag + registers it in the theme (series.json + a series-nav branch) and needs a redeploy.
+
+**Deferred:** the `/series/{slug}/` dedicated pages + `/series/` index (per-series channel routes, like pillars needed wrappers — the on-post strip is the high-value bounce-fighting piece and ships without them). No series exist yet (0 `#series-*` tags in Ghost) — the system renders nothing until the first series is created; identify multi-part guides (e.g. the Obsidian Properties / Bases series) and create them via the publish skill or an Admin-API backfill.
+
+**Original spec below.**
 
 **Build**
 - Convention: internal tag `#series-<slug>` applied in Ghost admin. Series metadata (order, title, description) lives in `src/data/series.json` (committed).
