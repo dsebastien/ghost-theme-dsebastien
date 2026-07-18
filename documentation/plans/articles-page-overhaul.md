@@ -520,7 +520,11 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 
 **Publish-skill integration (the automation half):** `developassion-publish` ghost target is now series-aware (hard rule 15 + workflow step 2b + `scripts/series-sync.mjs`). A vault note's `series: <title>` frontmatter applies the `#series-<slug>` tag on publish. **Adding a post to an existing series = tag only (no theme edit, no redeploy)** because the strip fetches members live; a **new** series creates the tag + registers it in the theme (series.json + a series-nav branch) and needs a redeploy.
 
-**Deferred:** the `/series/{slug}/` dedicated pages + `/series/` index (per-series channel routes, like pillars needed wrappers — the on-post strip is the high-value bounce-fighting piece and ships without them). No series exist yet (0 `#series-*` tags in Ghost) — the system renders nothing until the first series is created; identify multi-part guides (e.g. the Obsidian Properties / Bases series) and create them via the publish skill or an Admin-API backfill.
+**4 real series seeded live** (internal `#series-<slug>` tags + theme branches + member posts tagged via Admin API): `git-tutorial` (4), `journaling` (6 = 2 authored parts + 4 chronological follow-ups; 1 draft joins on publish), `typescript` (3), `team-management` (3). Helpers added to the publish skill: `series-sync.mjs` (create tag + register theme branch), `apply-series-tag.mjs` (bulk-apply by title match). Skipped: the 6 "Obsidian Starter Kit vN is Live" posts (announcements, not a series) + loose prefix matches.
+
+**Vault metadata (2026-07-18):** the vault side now carries the series too. Added optional `series_previous` / `series_next` text properties (bare-title wikilinks) to the `own-articles` note type via `osk-vault-note-properties` (plugin config + `.types` + `TPL Own Article` + `Creations (Base)` displayName), backfilled empty across all 324 article notes (validation 324/324), and populated the prev/next chain for all 4 series' member notes (with each note aliasing its bare title so the links resolve). The publish skill's ghost target now maintains this vault chain whenever a post joins a series (step 2b + hard rule 15).
+
+**Deferred:** the `/series/{slug}/` dedicated pages + `/series/` index (per-series channel routes, like pillars needed wrappers — the on-post strip is the high-value bounce-fighting piece and ships without them).
 
 **Original spec below.**
 
