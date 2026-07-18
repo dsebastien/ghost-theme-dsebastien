@@ -4496,8 +4496,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .series-nav-title {
     @apply font-bold;
+    /* Raw !important: the title is an <a> inside .gh-content, whose
+       `a { underline; color:pink }` (0,1,1) beats this class (0,1,0). */
+    text-decoration: none !important;
     font-size: 1.6rem;
     color: var(--color-primary-text);
+}
+
+.series-nav-title:hover {
+    color: var(--ghost-accent-color);
 }
 
 .series-nav-count {

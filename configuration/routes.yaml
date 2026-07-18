@@ -18,6 +18,8 @@ routes:
     rss: false
   /tags/:
     template: tags-hub
+  /series/:
+    template: series
   /feeds/:
     template: feeds
 

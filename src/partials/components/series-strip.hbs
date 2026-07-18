@@ -15,12 +15,12 @@
     `data:` binding that cannot (see Tier 2.1 gotchas). Order = published_at asc
     (parts are published in sequence). No manifest needed for membership/order.
 --}}
-{{#get "posts" filter="tag:{{seriesTag}}" order="published_at asc" limit="all" as |parts|}}
+{{#get "posts" filter="tag:{{seriesTag}}" order="published_at asc" limit="50" as |parts|}}
     {{#if parts}}
         <nav class="series-nav" aria-label="{{seriesTitle}} series">
             <div class="series-nav-head">
                 <span class="series-nav-kicker">📚 Part of a series</span>
-                <span class="series-nav-title">{{seriesTitle}}</span>
+                <a class="series-nav-title" href="/series/">{{seriesTitle}}</a>
                 <span class="series-nav-count">{{parts.length}} parts</span>
             </div>
             <ol class="series-nav-list">

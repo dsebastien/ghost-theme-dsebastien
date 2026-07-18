@@ -1,9 +1,10 @@
 {
-  "_comment": "Source of truth for post series (articles-page-overhaul Tier 2.5). A 'series' is an ordered set of posts sharing one internal Ghost tag `#series-<slug>` (slug stored as `hash-series-<slug>`). Order = publish date. NOT read at render time (Ghost themes cannot load arbitrary JSON) — the on-post outline is rendered by src/partials/components/series-nav.hbs (one {{#has}} branch per series) which fetches members live by tag. This file is the registry the `developassion-publish` skill reads/writes to keep the theme + Ghost in sync.",
+  "_comment": "Source of truth for post series (articles-page-overhaul Tier 2.5). A 'series' is an ordered set of posts sharing one internal Ghost tag `#series-<slug>` (slug stored as `hash-series-<slug>`). Order = publish date. NOT read at render time (Ghost themes cannot load arbitrary JSON) — the on-post outline is rendered by src/partials/components/series-nav.hbs (one series-branch call per series) which fetches members live by tag; the /series/ index (src/series.hbs) lists them the same way. Detection uses an id+tag query, NOT {{#has}} (which does not match internal tags). This file is the registry the `developassion-publish` skill reads/writes to keep the theme + Ghost in sync.",
   "_contract": {
     "add_post_to_existing_series": "Apply the `#series-<slug>` internal tag to the post via the Ghost Admin API. No theme edit — series-nav.hbs already fetches members dynamically. Redeploy NOT required.",
-    "create_new_series": "1) Create the internal tag (name `#series-<slug>`, its `description` = the human title) via Admin API and apply it to the member posts. 2) Add an entry to `series` below. 3) Insert one branch into src/partials/components/series-nav.hbs between the SERIES-BRANCHES markers (see that file). 4) Rebuild + redeploy the theme.",
-    "branch_template": "{{#has tag=\"hash-series-<slug>\"}}\n    {{> \"components/series-strip\" seriesTag=\"hash-series-<slug>\" seriesTitle=\"<title>\" currentId=id}}\n{{/has}}"
+    "create_new_series": "1) Create the internal tag (name `#series-<slug>`, its `description` = the human title) via Admin API and apply it to the member posts. 2) Add an entry to `series` below. 3) Insert one line into series-nav.hbs (SERIES-BRANCHES markers) AND one into series.hbs (SERIES-INDEX markers) — series-sync.mjs --theme-repo does both. 4) Rebuild + redeploy the theme.",
+    "nav_branch_template": "{{> \"components/series-branch\" seriesTag=\"hash-series-<slug>\" seriesTitle=\"<title>\"}}",
+    "index_entry_template": "{{> \"components/series-strip\" seriesTag=\"hash-series-<slug>\" seriesTitle=\"<title>\" currentId=\"\"}}"
   },
   "series": {
     "git-tutorial": {

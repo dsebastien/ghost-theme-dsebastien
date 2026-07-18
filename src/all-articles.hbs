@@ -1,8 +1,9 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 {{!-- Channel: /all-articles/ (filter: tag:blog — see configuration/routes.yaml).
-     Utility crawl index for maintenance and search engines: a plain, complete,
-     natively-paginated list of every article. Deliberately not a showcase. --}}
+     Complete, natively-paginated index of every article. Now a scannable card
+     grid with the shared sidebar (About + Knowii + Featured), mirroring /blog/'s
+     layout — still crawler-complete, just no longer a bare text list. --}}
 
 {{#contentFor "meta_description"}}
 <meta name="description" content="Browse every article by Sébastien Dubois. Knowledge management, productivity, AI, software, and personal development, indexed in one place.">
@@ -16,30 +17,19 @@
         <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">{{pagination.total}} articles and counting... 🎉</p>
     </header>
 
-    <section class="gh-content gh-canvas is-body">
-        <ul class="!mx-8 space-y-4 text-2xl">
-            {{#foreach posts}}
-                <li class="border-b border-gray-200 py-4">
-                    <article>
-                        <h2 class="text-2xl font-semibold !mb-2">
-                            <a href="{{url}}" class="capitalize">{{title}}</a>
-                        </h2>
+    <section class="gh-container is-grid has-sidebar gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <main class="gh-main">
+                <div class="gh-feed">
+                    {{#foreach posts}}
+                        {{> "post-card" lazyLoad=true}}
+                    {{/foreach}}
+                </div>
 
-                        <div class="text-md text-gray-500">
-                            <time datetime="{{date format="YYYY-MM-DD"}}">
-                                {{date format="MMMM DD, YYYY"}}
-                            </time>
-                            {{!-- tags.[0] is the content-type marker (blog); tags.[1] is the first topic tag --}}
-                            {{#if tags.[1]}}
-                                <span>&middot;&nbsp;</span>
-                                <a href="{{tags.[1].url}}" class="hover:text-primary transition-colors capitalize">{{tags.[1].name}}</a>
-                            {{/if}}
-                        </div>
-                    </article>
-                </li>
-            {{/foreach}}
-        </ul>
+                {{pagination}}
+            </main>
 
-        {{pagination}}
+            {{> "components/sidebar" showFeatured=true}}
+        </div>
     </section>
 </main>
