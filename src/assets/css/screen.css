@@ -262,13 +262,35 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 @media (max-width: 576px) {
+    /* Stack on mobile: the overlay-button-inside-input pattern is too cramped on
+       narrow screens. Input on top, submit below, both full width + equal. */
     .gh-form {
-        @apply text-2xl;
+        @apply flex-col items-stretch h-auto gap-3 text-2xl bg-transparent;
+    }
+
+    .gh-form:hover {
+        background-color: transparent;
+    }
+
+    .gh-form-input {
+        @apply static inset-auto w-full h-[52px] rounded-md;
+        background-color: var(--color-lighter-gray);
     }
 
     .gh-form .gh-button {
-        min-width: 104px;
+        @apply static right-auto w-full h-[48px];
+        min-width: 0;
         padding-inline: 12px;
+    }
+
+    /* Leading search icon (search forms) would float wrong once stacked. */
+    .gh-form > svg {
+        @apply hidden;
+    }
+
+    /* Error message flows under the stacked button instead of overlapping. */
+    .gh-form [data-members-error] {
+        @apply static w-full mt-0;
     }
 }
 
@@ -2609,6 +2631,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply bg-green-700;
 }
 
+/* Clear the corner ribbon: the badge is absolutely positioned top-right, so
+   the first-in-flow title needs top room or it crowds right under the label. */
+.homepage .offering h3 {
+    @apply mt-7;
+}
+
 .homepage .offering p {
     @apply mt-4 leading-8;
 }
@@ -2884,11 +2912,18 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* ---------------------------------------------------------- */
 
 .path-router {
-    @apply mt-10;
+    /* w-full so the centered question + the options grid share the hero's full
+       width and center on the same axis as the primary button above. Without
+       it the router shrink-wraps and the question drifts left of centre. */
+    @apply mt-10 w-full;
 }
 
 .path-router-question {
-    @apply text-center font-semibold uppercase mb-4;
+    /* w-full + max-width:none overrides the inherited `.hero p { max-w-4xl }`
+       cap that left-aligns this <p> and pushes its centered text off the
+       router's true centre (it sits inside .hero, so .hero p applies). */
+    @apply text-center font-semibold uppercase mb-4 w-full;
+    max-width: none;
     font-size: 1.3rem;
     letter-spacing: 0.05em;
     color: var(--color-secondary-text);
@@ -3768,7 +3803,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .homepage .offering-featured h3 {
-    @apply !text-left !text-3xl md:!text-4xl !mt-0 mb-4;
+    @apply !text-left !text-3xl md:!text-4xl !mt-7 mb-4;
 }
 
 .homepage .offering-featured .value-prop {
