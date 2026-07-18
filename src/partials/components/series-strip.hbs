@@ -1,0 +1,46 @@
+{{!--
+    Shared series renderer (articles plan Tier 2.5).
+
+    Fetches every post sharing a series's internal tag in publish order and
+    renders an ordered outline with the current post marked "You're here".
+    Turns a reader who landed on part 3 into someone who sees the whole journey.
+
+    Params:
+      * seriesTag   — internal tag slug, e.g. "hash-series-obsidian-properties"
+      * seriesTitle — human title, e.g. "The Obsidian Properties Guide"
+      * currentId   — id of the post being viewed (marks the current part)
+
+    Uses only internal-tag-safe queries: {{#get "posts" filter="tag:<internal>"}}
+    resolves internal tags fine (same as pillar-body); it is the routes.yaml
+    `data:` binding that cannot (see Tier 2.1 gotchas). Order = published_at asc
+    (parts are published in sequence). No manifest needed for membership/order.
+--}}
+{{#get "posts" filter="tag:{{seriesTag}}" order="published_at asc" limit="all" as |parts|}}
+    {{#if parts}}
+        <nav class="series-nav" aria-label="{{seriesTitle}} series">
+            <div class="series-nav-head">
+                <span class="series-nav-kicker">📚 Part of a series</span>
+                <span class="series-nav-title">{{seriesTitle}}</span>
+                <span class="series-nav-count">{{parts.length}} parts</span>
+            </div>
+            <ol class="series-nav-list">
+                {{#foreach parts}}
+                    <li class="series-nav-item{{#match id ../currentId}} is-current{{/match}}">
+                        {{#match id ../currentId}}
+                            <span class="series-nav-part" aria-current="true">
+                                <span class="series-nav-num">{{@number}}</span>
+                                <span class="series-nav-label">{{title}}</span>
+                                <span class="series-nav-here">You're here</span>
+                            </span>
+                        {{else}}
+                            <a class="series-nav-part" href="{{url}}">
+                                <span class="series-nav-num">{{@number}}</span>
+                                <span class="series-nav-label">{{title}}</span>
+                            </a>
+                        {{/match}}
+                    </li>
+                {{/foreach}}
+            </ol>
+        </nav>
+    {{/if}}
+{{/get}}

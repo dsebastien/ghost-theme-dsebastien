@@ -1,0 +1,21 @@
+{{!--
+    Series navigation dispatcher (articles plan Tier 2.5).
+
+    One {{#has}} branch per series. Each renders the shared series-strip when the
+    current post carries that series's internal tag (`#series-<slug>`). Internal
+    tags ARE present on the post in theme context (they even leak as card pills —
+    see Tier 2.1), so {{#has tag="hash-series-..."}} matches them.
+
+    Empty until the first series exists — renders nothing, zero visual impact.
+
+    CONTRACT (kept in sync by the `developassion-publish` skill + src/data/series.json):
+      * Membership + order come from the `#series-<slug>` internal tag applied to
+        posts in Ghost; order = publish date. Adding a post to an EXISTING series
+        needs ONLY the tag — no edit here, the strip fetches members dynamically.
+      * Creating a NEW series adds ONE branch below, between the INSERT markers.
+        Keep the markers intact and one blank line between branches.
+
+    currentId=id passes the viewed post's id so the strip can mark "You're here".
+--}}
+{{!-- SERIES-BRANCHES:START — developassion-publish inserts new-series branches here --}}
+{{!-- SERIES-BRANCHES:END --}}

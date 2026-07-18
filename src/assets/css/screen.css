@@ -4472,6 +4472,88 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 /* Keep-reading block on posts (Tier 1.4) */
 
+/* Series wayfinding strip (Tier 2.5): sits at the top of a post that belongs
+   to a series. Accent-bordered outline of the ordered parts with the current
+   one marked. Lives inside .gh-content, so links get explicit no-underline. */
+.series-nav {
+    @apply my-8 rounded-lg;
+    padding: 20px 24px;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+}
+
+.series-nav-head {
+    @apply flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4;
+}
+
+.series-nav-kicker {
+    @apply font-semibold uppercase;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    color: var(--ghost-accent-color);
+}
+
+.series-nav-title {
+    @apply font-bold;
+    font-size: 1.6rem;
+    color: var(--color-primary-text);
+}
+
+.series-nav-count {
+    font-size: 1.2rem;
+    color: var(--color-secondary-text);
+}
+
+.series-nav-list {
+    @apply !list-none !pl-0 !my-0 flex flex-col gap-1;
+    counter-reset: none;
+}
+
+.series-nav-item {
+    @apply !my-0;
+}
+
+.series-nav-part {
+    @apply flex items-center gap-3 rounded-md;
+    padding: 8px 12px;
+    text-decoration: none !important;
+    color: var(--color-primary-text);
+    transition: background-color 0.15s ease;
+}
+
+a.series-nav-part:hover {
+    background-color: var(--background-color);
+}
+
+.series-nav-num {
+    @apply shrink-0 inline-flex items-center justify-center font-bold rounded-full;
+    width: 26px;
+    height: 26px;
+    font-size: 1.2rem;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
+.series-nav-label {
+    font-size: 1.4rem;
+    line-height: 1.35;
+}
+
+.series-nav-item.is-current .series-nav-part {
+    background-color: var(--background-color);
+    font-weight: 600;
+}
+
+.series-nav-here {
+    @apply shrink-0 ml-auto font-semibold uppercase rounded;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
 .keep-reading {
     @apply mt-16;
 }

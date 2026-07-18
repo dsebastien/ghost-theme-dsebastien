@@ -86,6 +86,11 @@
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
 
+            {{!-- Series wayfinding (Tier 2.5): if this post is part of a series,
+                 show the ordered outline up top so a "landed on part 3" reader
+                 sees the whole journey. Renders nothing when not in a series. --}}
+            {{> "components/series-nav"}}
+
             {{!-- Desktop-only side rail while reading (≥1300px): the slim
                  sidebar (About + Featured + Knowii). Hidden via CSS when the
                  post uses wide/full-width cards. Tier 1.10. --}}
