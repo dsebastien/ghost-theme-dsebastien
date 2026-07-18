@@ -25,7 +25,7 @@
 {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "{{pillarName}}",
+    "name": "{{{pillarName}}}",
     "description": "{{pillarIntro}}",
     "isPartOf": { "@type": "WebSite", "name": "{{@site.title}}", "url": "{{@site.url}}" },
     "breadcrumb": {
@@ -33,7 +33,7 @@
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{@site.url}}" },
             { "@type": "ListItem", "position": 2, "name": "Articles", "item": "{{@site.url}}/blog/" },
-            { "@type": "ListItem", "position": 3, "name": "{{pillarName}}" }
+            { "@type": "ListItem", "position": 3, "name": "{{{pillarName}}}" }
         ]
     }
 }
@@ -57,28 +57,26 @@
         </div>
     </section>
 
-    {{!-- Best of this pillar: featured articles first. Guarded so it only
-         shows when there are picks. --}}
-    {{#get "posts" filter=bestFilter include="tags" limit="3" as |picks|}}
-        {{#if picks}}
-            <section class="gh-container is-grid gh-outer pillar-best">
-                <div class="gh-container-inner gh-inner">
-                    <h2 class="gh-container-title">Start with the best</h2>
-                    <div class="gh-feed">
-                        {{#foreach picks}}
-                            {{> "post-card" size="large" lazyLoad=true}}
-                        {{/foreach}}
-                    </div>
-                </div>
-            </section>
-        {{/if}}
-    {{/get}}
-
-    <!-- All articles in this pillar (paginated channel feed) + sidebar -->
+    {{!-- Both feeds live in ONE .gh-container.is-grid.has-sidebar > .gh-main
+         (the proven blog/feed structure). A bare .gh-container without .gh-main
+         collapses the inner grid to ~0 width. Regular cards on non-blog pages
+         keep the topic pill hidden, so the internal #pillar-* tag never leaks. --}}
     <section class="gh-container is-grid has-sidebar gh-outer">
         <div class="gh-container-inner gh-inner">
             <main class="gh-main">
-                <h2 class="gh-container-title">All articles in this pillar</h2>
+                {{!-- Best of this pillar: featured first. Guarded. --}}
+                {{#get "posts" filter=bestFilter include="tags" limit="3" as |picks|}}
+                    {{#if picks}}
+                        <h2 class="gh-container-title">Start with the best</h2>
+                        <div class="gh-feed mt-4">
+                            {{#foreach picks}}
+                                {{> "post-card" lazyLoad=true}}
+                            {{/foreach}}
+                        </div>
+                    {{/if}}
+                {{/get}}
+
+                <h2 class="gh-container-title !mt-16">All articles in this pillar</h2>
                 <div class="gh-feed mt-4">
                     {{#foreach posts}}
                         {{> "post-card" lazyLoad=true}}
