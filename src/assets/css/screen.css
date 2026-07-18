@@ -1085,12 +1085,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* ---------------------------------------------------------- */
 
 .gh-sidebar-inner {
-    /* Base = normal flow (no-JS fallback: scrolls with the page — no scrollbar,
-       nothing clipped). assets/js/sidebar-sticky.js upgrades this to a smart,
-       direction-aware sticky follow that never clips (CSS-only sticky can't do
-       that for a sidebar taller than the viewport — capping adds a scrollbar,
-       not capping clips the top). */
-    position: static;
+    /* Original plain sticky — reverted to this per the owner's call after the
+       max-height (scrollbar) / static / JS-follow experiments all read worse.
+       No max-height, no overflow, no JS. Content (About + Knowii + Featured +
+       Browse links) is unchanged. */
+    position: sticky;
+    top: calc(var(--grid-gap) / 2);
 }
 
 .gh-sidebar-title {
@@ -4528,6 +4528,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .series-nav-title:hover {
     color: var(--ghost-accent-color);
+}
+
+/* On the /series/ index the series name is the card's real title (an <h2>),
+   not the "Part of a series" kicker used on posts. */
+.series-nav-title-index {
+    @apply block font-bold !mt-0 !mb-0;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: var(--color-primary-text);
 }
 
 .series-nav-count {

@@ -20,8 +20,14 @@
     {{#if parts}}
         <nav class="series-nav" aria-label="{{seriesTitle}} series">
             <div class="series-nav-head">
-                <span class="series-nav-kicker">📚 Part of a series</span>
-                <a class="series-nav-title" href="/series/">{{seriesTitle}}</a>
+                {{#if onIndex}}
+                    {{!-- /series/ index: the series name IS the card title. --}}
+                    <h2 class="series-nav-title series-nav-title-index">📚 {{seriesTitle}}</h2>
+                {{else}}
+                    {{!-- on a post: contextual kicker + link back to the hub. --}}
+                    <span class="series-nav-kicker">📚 Part of a series</span>
+                    <a class="series-nav-title" href="/series/">{{seriesTitle}}</a>
+                {{/if}}
                 <span class="series-nav-count">{{parts.length}} parts</span>
             </div>
             <ol class="series-nav-list">
