@@ -18,4 +18,13 @@
     currentId=id passes the viewed post's id so the strip can mark "You're here".
 --}}
 {{!-- SERIES-BRANCHES:START — developassion-publish inserts new-series branches here --}}
+{{#has tag="hash-series-git-tutorial"}}
+    {{> "components/series-strip" seriesTag="hash-series-git-tutorial" seriesTitle="Git tutorial for beginners" currentId=id}}
+{{/has}}
+{{#has tag="hash-series-journaling"}}
+    {{> "components/series-strip" seriesTag="hash-series-journaling" seriesTitle="Journaling every day is powerful" currentId=id}}
+{{/has}}
+{{#has tag="hash-series-typescript"}}
+    {{> "components/series-strip" seriesTag="hash-series-typescript" seriesTitle="What's new in TypeScript" currentId=id}}
+{{/has}}
 {{!-- SERIES-BRANCHES:END --}}

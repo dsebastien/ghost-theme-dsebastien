@@ -5,5 +5,21 @@
     "create_new_series": "1) Create the internal tag (name `#series-<slug>`, its `description` = the human title) via Admin API and apply it to the member posts. 2) Add an entry to `series` below. 3) Insert one branch into src/partials/components/series-nav.hbs between the SERIES-BRANCHES markers (see that file). 4) Rebuild + redeploy the theme.",
     "branch_template": "{{#has tag=\"hash-series-<slug>\"}}\n    {{> \"components/series-strip\" seriesTag=\"hash-series-<slug>\" seriesTitle=\"<title>\" currentId=id}}\n{{/has}}"
   },
-  "series": {}
+  "series": {
+    "git-tutorial": {
+      "tag": "hash-series-git-tutorial",
+      "title": "Git tutorial for beginners",
+      "description": "Git tutorial for beginners"
+    },
+    "journaling": {
+      "tag": "hash-series-journaling",
+      "title": "Journaling every day is powerful",
+      "description": "Journaling every day is powerful"
+    },
+    "typescript": {
+      "tag": "hash-series-typescript",
+      "title": "What's new in TypeScript",
+      "description": "What's new in TypeScript"
+    }
+  }
 }
