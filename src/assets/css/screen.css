@@ -4584,8 +4584,22 @@ a.series-nav-part:hover {
     color: var(--color-white);
 }
 
-.keep-reading {
-    @apply mt-16;
+/* /series/ index: responsive grid of series cards (1 col -> 2 -> 3). Wider
+   than the reading canvas so the columns have room; each series-strip fills its
+   cell (equal-height rows). */
+.series-index-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto;
+    max-width: 1400px;
+    padding-inline: 24px;
+}
+
+.series-index-grid .series-nav {
+    @apply my-0 h-full;
+}
+
+/* Card content can grow; keep the member list from crowding the header. */
+.series-index-grid .series-nav-list {
+    @apply mt-1;
 }
 
 .keep-reading-topic {
