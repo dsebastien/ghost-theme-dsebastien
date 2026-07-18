@@ -1,0 +1,27 @@
+{{!--
+    Scroll-triggered inline capture band (Tier 2.4).
+
+    Rendered HIDDEN inside post.hbs; assets/js/engagement.js relocates it to a
+    mid-to-late anchor in the article body and reveals it once the reader has
+    scrolled ~60% — the proven-attention moment. Capture-focused: ONE topic-
+    matched free lead magnet + the native Ghost members form. Distinct from the
+    generic #mid-article-cta (subscribe band) and the footer contextual-offer
+    (product pitch) — this one trades a topical freebie for the email.
+
+    Topic mapping mirrors contextual-offer.hbs clusters (specific → generic,
+    first match wins) but only picks a headline + magnet — no product, by design.
+    Only rendered for logged-out visitors (post.hbs wraps it in {{#unless @member}}).
+
+    See documentation/plans/articles-page-overhaul.md (Tier 2.4).
+--}}
+<aside id="scroll-capture" class="scroll-capture" data-cta-topic="{{#has tag="obsidian,dataview,obsidian-starter-kit,obsidian-starter-course,templates,note-taking,zettelkasten,evergreen-notes,atomic-notes,tools,tools-and-techniques"}}obsidian{{else has tag="ai,ai-2,ai-skills,claude-code,artificial-intelligence"}}ai{{else has tag="software-development,web-development,front-end,angular,typescript,javascript"}}dev{{else has tag="writing,content-creation"}}writing{{else has tag="productivity,personal-organization,time-management,habits,routines"}}productivity{{else}}pkm{{/has}}" hidden>
+    <div class="scroll-capture-body">
+        <p class="scroll-capture-kicker">Free download</p>
+        <h3 class="scroll-capture-title">
+            {{#has tag="obsidian,dataview,obsidian-starter-kit,obsidian-starter-course,templates,note-taking,zettelkasten,evergreen-notes,atomic-notes,tools,tools-and-techniques"}}Grab the free Beginner's Guide to Obsidian{{else has tag="ai,ai-2,ai-skills,claude-code,artificial-intelligence"}}Grab the free Knowledge System Checklist{{else has tag="software-development,web-development,front-end,angular,typescript,javascript"}}Get thousands of free dev concepts &amp; frameworks{{else has tag="writing,content-creation"}}Grab the free Knowledge System Checklist{{else has tag="productivity,personal-organization,time-management,habits,routines"}}Grab the free Knowledge System Checklist{{else}}Grab the free Knowledge System Checklist{{/has}}
+        </p>
+        <p class="scroll-capture-desc">Subscribe to the newsletter and I'll send you practical systems every week — plus instant access to the guide.</p>
+    </div>
+    {{> "email-subscription" email_field_id="scroll-capture-email"}}
+    <p class="scroll-capture-fineprint">Free. No spam. Unsubscribe anytime.</p>
+</aside>

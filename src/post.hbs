@@ -110,6 +110,13 @@
                 {{/unless}}
             {{/unless}}
 
+            {{!-- Scroll-triggered inline capture (Tier 2.4): hidden source,
+                 relocated + revealed at ~60% scroll by assets/js/engagement.js.
+                 Logged-out only — the topic-matched free lead magnet. --}}
+            {{#unless @member}}
+                {{> "components/scroll-capture"}}
+            {{/unless}}
+
             {{!-- Keep reading: topical loop BEFORE any product signature (Tier 1.4) --}}
             {{> "components/keep-reading"}}
 

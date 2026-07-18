@@ -483,7 +483,18 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 **Caveats**
 - Requires Ghost admin work: tier structure is already in place, but `#tier-<slug>` internal tag conventions must be applied to gated content.
 
-### 2.4 Scroll-triggered inline capture + exit-intent modal, throttled and instrumented
+### 2.4 Scroll-triggered inline capture + exit-intent modal, throttled and instrumented — ✅ DONE 2026-07-18 (needs redeploy)
+
+**Shipped:** new `src/assets/js/engagement.js` (ES5, auto-bundled) does three jobs on post pages, logged-out only (gated on `#subscribe-overlay` / `#scroll-capture`, which Ghost renders only inside `{{#unless @member}}`):
+1. **Scroll-depth instrumentation** — Plausible `Scroll Depth` {depth: 25|50|75|100, path}, once each. Closes the "zero visibility into how far bouncers read" gap.
+2. **Scroll-triggered inline capture** — new hidden partial `src/partials/components/scroll-capture.hbs` (topic-matched free lead magnet headline via the same `{{#has tag=}}` clusters as contextual-offer, + native `email-subscription` form). engagement.js relocates it to the paragraph ~55% through the body **only on articles with ≥6 top-level paragraphs** (short posts drop it to avoid clutter), then reveals it via IntersectionObserver when it scrolls into view (~60% read). Fires `Capture Shown` {slot:'scroll', topic, path}. CSS `.scroll-capture` (+ `.is-visible` fade-in) in screen.css.
+3. **Exit-intent recovery** — reuses the EXISTING subscribe overlay (no new modal) via a new `subscribe-overlay:open` custom event added to `subscribe-overlay.js` (no synthetic `[data-subscribe-overlay]` click → no double Subscribe-Intent log). Arms only once "qualified" (maxScroll ≥50% OR dwell ≥25s); desktop fires on `mouseout` through the viewport top, mobile/all on `visibilitychange:hidden` + `pagehide`. Throttled once / 7 days via `localStorage.ds_exit_intent_shown`, once per page, and suppressed after any `data-members-form` submit (converted flag). Fires `Exit Intent` {device, path}.
+
+**New Plausible goals to create:** `Scroll Depth`, `Capture Shown`, `Exit Intent` (props above). These join the existing CTA Click / Subscribe Intent / Signup / Store Click.
+
+**Design note:** kept the exit-intent as the existing overlay (already styled, member-suppressed, has the form + social proof) rather than a bespoke modal — cheaper, consistent, and the "aggressive modals annoy experts" caveat is handled by the qualify-gate + 7-day throttle + convert-suppression. The scroll capture is a *distinct* offer from the generic `#mid-article-cta` (subscribe band) and the footer contextual-offer (product pitch): it trades a topical freebie for the email at the attention peak.
+
+**Original spec below.**
 
 **Build**
 - `src/assets/js/engagement.js`:
@@ -599,6 +610,6 @@ Caveats: steps 2-4 are Ghost-Admin / brand decisions the owner should approve be
 
 ## The One Thing
 
-**Build Articles 2.4 — on-article exit-intent + scroll-triggered email capture.** The data is unambiguous: 95% of a 16k/mo audience lands on a single Obsidian article and bounces (85%) without subscribing or clicking to the store. Every other surface in this plan serves the ~5% who navigate; 2.4 serves the 95% who don't, on the exact pages they're already reading. It's the highest-leverage unbuilt lever on the site.
+**Deploy 2.4, create its three Plausible goals (`Scroll Depth`, `Capture Shown`, `Exit Intent`), and let it run ~2 weeks — then use the `topic` prop on `Capture Shown` + `CTA Click` to double down on the top-4 Obsidian articles' offers (re-prioritization step 5).** 2.4 is now built and instrumented; the next lever is no longer a build, it's reading the data it produces and pointing the highest-traffic articles at whatever converts. The owner-gated structural moves (simplify tiers Free→Knowii, nav de-clutter, `/projects/`→`/products/`) stay queued behind that measurement.
 
-*(Superseded original: ship Tier 1.0 + Tier 1.3 together — both now DONE.)*
+*(Superseded: build 2.4 — DONE 2026-07-18. Earlier: ship Tier 1.0 + 1.3 — DONE.)*

@@ -4219,6 +4219,52 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply underline;
 }
 
+/* Scroll-triggered inline capture band (Tier 2.4). Sits inside .gh-content,
+   relocated + revealed mid-read by engagement.js. Fades in via .is-visible. */
+.scroll-capture {
+    @apply my-12 rounded-lg;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.scroll-capture.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.scroll-capture-kicker {
+    @apply !mt-0 mb-2 font-semibold uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    color: var(--ghost-accent-color);
+}
+
+.scroll-capture-title {
+    @apply text-2xl font-bold !mt-0 mb-2;
+    color: var(--color-primary-text);
+}
+
+.scroll-capture-desc {
+    @apply mt-1 mb-4;
+    font-size: 1.5rem;
+    color: var(--color-secondary-text);
+}
+
+.scroll-capture .gh-form {
+    @apply mb-0;
+}
+
+.scroll-capture-fineprint {
+    @apply !mt-3 !mb-0;
+    font-size: 1.25rem;
+    color: var(--color-secondary-text);
+}
+
 /* Tags hub (/tags/) + enriched tag pages (Tier 1.2) */
 
 /* Section headings must dominate the (large) intro paragraphs and give each

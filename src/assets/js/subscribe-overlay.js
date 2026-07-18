@@ -74,6 +74,14 @@
             closeOverlay();
         }
     });
+
+    // Public opener so other scripts (e.g. engagement.js exit-intent) can raise
+    // the SAME overlay without duplicating the open/focus/scroll-lock logic or
+    // firing a synthetic [data-subscribe-overlay] click (which would double-log
+    // Subscribe Intent). No-op if already open.
+    document.addEventListener('subscribe-overlay:open', function () {
+        if (!overlay.classList.contains('is-open')) openOverlay();
+    });
 })();
 
 /* Floating subscribe bubble: fade out when the footer's bottom bar is in
