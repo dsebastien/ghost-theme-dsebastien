@@ -2900,10 +2900,19 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 /* !no-underline / explicit colours override .gh-content a (the router lives
    inside the prose column on /start/ and the homepage hero). */
 .path-router-option {
-    @apply flex flex-col gap-2 p-5 rounded-lg !no-underline;
+    @apply flex flex-col gap-2 p-5 rounded-lg;
+    /* Raw !important — the router lives inside .gh-content, whose `a { underline }`
+       (specificity 0,1,1) beats this class (0,1,0). Tailwind's !no-underline did
+       not survive the minified build, so set it explicitly. */
+    text-decoration: none !important;
     border: 1px solid var(--color-border);
     background-color: var(--color-white);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.path-router-option strong,
+.path-router-option span {
+    text-decoration: none;
 }
 
 .path-router-option:hover {

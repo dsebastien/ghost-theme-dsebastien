@@ -1,29 +1,39 @@
-{{!< default}}
 {{!--
-    Pillar hub template (articles-page-overhaul Tier 2.1). Rendered by the 7
-    /pillars/<slug>/ channels in configuration/routes.yaml, each of which binds
-    `data: tag.hash-pillar-<slug>` so {{tag}} here is the pillar's internal tag
-    (name/description are Admin-editable; description drives the hero intro).
-    Per-pillar display name + contextual offer are switched on {{tag.slug}}.
-    Taxonomy + backfill source of truth: src/data/pillars.json.
+    Shared body for the 7 pillar hubs (articles-page-overhaul Tier 2.1).
+    Rendered by the thin src/pillar-<slug>.hbs wrappers, each of which is the
+    `template` of a /pillars/<slug>/ channel in configuration/routes.yaml.
+
+    Why wrappers instead of one template + `data: tag.<slug>`: pillar tags are
+    INTERNAL (visibility:internal) and Ghost's routes `data` resolver uses the
+    Content API, which excludes internal tags — so `data: tag.hash-pillar-*`
+    resolves to nothing and Ghost 404s the whole route. Passing identity via
+    partial params sidesteps that entirely.
+
+    Params (all from the wrapper):
+    * pillarName   — display name, e.g. "PKM Foundations"
+    * pillarEmoji  — leading emoji
+    * pillarIntro  — hero intro paragraph
+    * pillarSlug   — url segment, e.g. "pkm-foundations" (RSS link + offer switch)
+    * bestFilter   — NQL for the "Start with the best" strip, e.g.
+                     "tag:hash-pillar-pkm-foundations+featured:true+tag:blog"
 --}}
 {{#contentFor "meta_description"}}
-<meta name="description" content="{{tag.description}}">
+<meta name="description" content="{{pillarIntro}}">
 {{/contentFor}}
 
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "{{tag.name}}",
-    "description": "{{tag.description}}",
+    "name": "{{pillarName}}",
+    "description": "{{pillarIntro}}",
     "isPartOf": { "@type": "WebSite", "name": "{{@site.title}}", "url": "{{@site.url}}" },
     "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{@site.url}}" },
             { "@type": "ListItem", "position": 2, "name": "Articles", "item": "{{@site.url}}/blog/" },
-            { "@type": "ListItem", "position": 3, "name": "{{tag.name}}" }
+            { "@type": "ListItem", "position": 3, "name": "{{pillarName}}" }
         ]
     }
 }
@@ -35,21 +45,21 @@
     <section class="gh-outer pillar-hero">
         <div class="gh-inner">
             <p class="pillar-kicker"><a href="/blog/">Articles</a> <span aria-hidden="true">›</span> Pillar</p>
-            <h1 class="pillar-title is-title">{{#match tag.slug "hash-pillar-creator-systems"}}🤖 AI &amp; Creator Systems{{else match tag.slug "hash-pillar-content-systems"}}✍️ Content Systems{{else match tag.slug "hash-pillar-tools-and-systems"}}🛠️ Tools &amp; Systems{{else match tag.slug "hash-pillar-writing-and-thinking"}}🧠 Writing &amp; Thinking{{else match tag.slug "hash-pillar-pkm-foundations"}}📚 PKM Foundations{{else match tag.slug "hash-pillar-knowledge-work"}}💼 Knowledge Work{{else match tag.slug "hash-pillar-zen-productivity"}}🧭 Zen Productivity{{else}}{{tag.name}}{{/match}}</h1>
-            {{#if tag.description}}
-                <p class="pillar-intro is-body">{{tag.description}}</p>
+            <h1 class="pillar-title is-title">{{pillarEmoji}} {{pillarName}}</h1>
+            {{#if pillarIntro}}
+                <p class="pillar-intro is-body">{{pillarIntro}}</p>
             {{/if}}
             <p class="pillar-hero-actions">
-                <a class="top-link" href="/pillars/{{#match tag.slug "hash-pillar-pkm-foundations"}}pkm-foundations{{else match tag.slug "hash-pillar-tools-and-systems"}}tools-and-systems{{else match tag.slug "hash-pillar-writing-and-thinking"}}writing-and-thinking{{else match tag.slug "hash-pillar-zen-productivity"}}zen-productivity{{else match tag.slug "hash-pillar-knowledge-work"}}knowledge-work{{else match tag.slug "hash-pillar-content-systems"}}content-systems{{else match tag.slug "hash-pillar-creator-systems"}}creator-systems{{/match}}/rss/">Subscribe via RSS 📡</a>
+                <a class="top-link" href="/pillars/{{pillarSlug}}/rss/">Subscribe via RSS 📡</a>
                 <span class="pillar-dot" aria-hidden="true">·</span>
                 <a class="top-link" href="/tags/">Browse all topics</a>
             </p>
         </div>
     </section>
 
-    {{!-- Best of this pillar: featured articles first (dynamic filter — same
-         pattern as tag.hbs). Guarded so it only shows when there are picks. --}}
-    {{#get "posts" filter="tag:{{tag.slug}}+featured:true+tag:blog" include="tags" limit="3" as |picks|}}
+    {{!-- Best of this pillar: featured articles first. Guarded so it only
+         shows when there are picks. --}}
+    {{#get "posts" filter=bestFilter include="tags" limit="3" as |picks|}}
         {{#if picks}}
             <section class="gh-container is-grid gh-outer pillar-best">
                 <div class="gh-container-inner gh-inner">
@@ -87,7 +97,7 @@
     <!-- Contextual offer for this pillar -->
     <section class="gh-outer pillar-offer-band">
         <div class="gh-inner">
-            {{#match tag.slug "hash-pillar-creator-systems"}}
+            {{#match pillarSlug "creator-systems"}}
                 {{> "components/offer-card" topic="creator-systems"
                     heading="Want AI to be a real thinking partner, not a gimmick?"
                     productEmoji="🤖" productName="AI Ghostwriter Guide"
@@ -96,7 +106,7 @@
                     productId="ai-ghostwriter-guide" productPrice="€49.99"
                     magnetName="Knowledge System Checklist"
                     magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
-            {{else match tag.slug "hash-pillar-content-systems"}}
+            {{else match pillarSlug "content-systems"}}
                 {{> "components/offer-card" topic="content-systems"
                     heading="Want to create content more consistently?"
                     productEmoji="🤖" productName="AI Ghostwriter Guide"
@@ -105,7 +115,7 @@
                     productId="ai-ghostwriter-guide" productPrice="€49.99"
                     magnetName="Knowledge System Checklist"
                     magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
-            {{else match tag.slug "hash-pillar-tools-and-systems"}}
+            {{else match pillarSlug "tools-and-systems"}}
                 {{> "components/offer-card" topic="tools-and-systems"
                     heading="Ready to build a system that actually works?"
                     productEmoji="🚀" productName="Obsidian Starter Kit"
@@ -114,7 +124,7 @@
                     productId="obsidian-starter-kit" productPrice="€199.99-€249.99"
                     magnetName="Beginner's Guide to Obsidian"
                     magnetUrl="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian"}}
-            {{else match tag.slug "hash-pillar-writing-and-thinking"}}
+            {{else match pillarSlug "writing-and-thinking"}}
                 {{> "components/offer-card" topic="writing-and-thinking"
                     heading="Want a note-taking practice that compounds?"
                     productEmoji="📓" productName="Journaling Deep Dive"
@@ -123,7 +133,7 @@
                     productId="journaling-deep-dive" productPrice="€29.99"
                     magnetName="Knowledge System Checklist"
                     magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
-            {{else match tag.slug "hash-pillar-pkm-foundations"}}
+            {{else match pillarSlug "pkm-foundations"}}
                 {{> "components/offer-card" topic="pkm-foundations"
                     heading="Ready to build your knowledge system?"
                     productEmoji="📚" productName="Knowledge Management for Beginners"
@@ -132,7 +142,7 @@
                     productId="knowledge-management-for-beginners" productPrice="€69.99"
                     magnetName="Knowledge System Checklist"
                     magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
-            {{else match tag.slug "hash-pillar-knowledge-work"}}
+            {{else match pillarSlug "knowledge-work"}}
                 {{> "components/offer-card" topic="knowledge-work"
                     heading="Ready to level up your knowledge work?"
                     productEmoji="💼" productName="Knowledge Worker Kit"
@@ -141,7 +151,7 @@
                     productId="knowledge-worker-kit" productPrice="€249.99"
                     magnetName="Knowledge System Checklist"
                     magnetUrl="https://www.dsebastien.net/free-knowledge-management-system-checklist"}}
-            {{else match tag.slug "hash-pillar-zen-productivity"}}
+            {{else match pillarSlug "zen-productivity"}}
                 {{> "components/offer-card" topic="zen-productivity"
                     heading="Ready to get properly organized?"
                     productEmoji="🗂️" productName="Personal Organization 101"

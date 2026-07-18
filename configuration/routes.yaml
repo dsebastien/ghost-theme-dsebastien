@@ -50,52 +50,46 @@ routes:
 
   # 7 content-pillar hubs (articles-page-overhaul Tier 2.1). Channels (NOT
   # collections — collections partition posts and the unfiltered / owns them
-  # all). Each binds its internal #pillar-* tag via `data:` so the shared
-  # pillar.hbs template gets {{tag.name}}/{{tag.description}} for the hero.
+  # all). Each renders its own thin pillar-<slug> wrapper (NOT a `data:` tag
+  # binding — internal tags are excluded from the Content API the data resolver
+  # uses, which 404s the route). See src/partials/components/pillar-body.hbs.
   # Posts are assigned to pillars by the hash-pillar-* backfill (first-match
   # over topic tags; see src/data/pillars.json). Browsable page + RSS at
   # /pillars/<slug>/rss/. Internal tags stay out of /tag/ and post tag lists.
   /pillars/pkm-foundations/:
     controller: channel
     filter: "tag:hash-pillar-pkm-foundations+tag:blog"
-    data: tag.hash-pillar-pkm-foundations
-    template: pillar
+    template: pillar-pkm-foundations
     rss: true
   /pillars/tools-and-systems/:
     controller: channel
     filter: "tag:hash-pillar-tools-and-systems+tag:blog"
-    data: tag.hash-pillar-tools-and-systems
-    template: pillar
+    template: pillar-tools-and-systems
     rss: true
   /pillars/writing-and-thinking/:
     controller: channel
     filter: "tag:hash-pillar-writing-and-thinking+tag:blog"
-    data: tag.hash-pillar-writing-and-thinking
-    template: pillar
+    template: pillar-writing-and-thinking
     rss: true
   /pillars/zen-productivity/:
     controller: channel
     filter: "tag:hash-pillar-zen-productivity+tag:blog"
-    data: tag.hash-pillar-zen-productivity
-    template: pillar
+    template: pillar-zen-productivity
     rss: true
   /pillars/knowledge-work/:
     controller: channel
     filter: "tag:hash-pillar-knowledge-work+tag:blog"
-    data: tag.hash-pillar-knowledge-work
-    template: pillar
+    template: pillar-knowledge-work
     rss: true
   /pillars/content-systems/:
     controller: channel
     filter: "tag:hash-pillar-content-systems+tag:blog"
-    data: tag.hash-pillar-content-systems
-    template: pillar
+    template: pillar-content-systems
     rss: true
   /pillars/creator-systems/:
     controller: channel
     filter: "tag:hash-pillar-creator-systems+tag:blog"
-    data: tag.hash-pillar-creator-systems
-    template: pillar
+    template: pillar-creator-systems
     rss: true
 
 # IMPORTANT: keep the /blog/, /newsletter/, /news/ collections below.
