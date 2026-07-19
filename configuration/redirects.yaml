@@ -4,11 +4,17 @@
   /shop: https://store.dsebastien.net
   /buy: https://store.dsebastien.net
   /products: https://store.dsebastien.net
-  /forge : https://store.dsebastien.net
+  /forge: https://store.dsebastien.net
   /knowledge-forge: https://store.dsebastien.net
   /products/obsidian-starter-kit: https://store.dsebastien.net/product/obsidian-starter-kit
   /obsidian-starter-kit: https://store.dsebastien.net/product/obsidian-starter-kit
   /km-course: https://store.dsebastien.net/product/km-for-beginners
+
+  # === Courses & Coaching (folded into the store; removed from top nav) ===
+  /courses: https://store.dsebastien.net
+  /courses/: https://store.dsebastien.net
+  /coaching: https://store.dsebastien.net/product/pkm-coaching
+  /coaching/: https://store.dsebastien.net/product/pkm-coaching
 
   # === Affiliates ===
   /affiliates: https://developassion.gumroad.com/affiliates
