@@ -3586,16 +3586,18 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 @media (max-width: 576px) {
-    /* Bottom sheet on mobile */
+    /* Full-screen sheet on mobile */
     .subscribe-overlay {
-        @apply items-end p-0;
+        @apply items-stretch p-0;
     }
 
     .subscribe-overlay-panel {
-        @apply rounded-b-none;
+        @apply rounded-none flex flex-col justify-center border-0;
         max-width: none;
-        max-height: 90dvh;
-        padding: 40px 20px 28px;
+        width: 100%;
+        min-height: 100dvh;
+        max-height: 100dvh;
+        padding: 40px 24px;
     }
 
     .subscribe-overlay-title {
