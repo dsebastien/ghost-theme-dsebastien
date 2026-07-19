@@ -1,0 +1,22 @@
+{{!--
+    Compact end-of-article author/credibility card (photo + tight bio + one CTA).
+
+    Replaces the old 3-paragraph prose signature. Renders on ALL viewports — it is
+    the scannable "who is this + one action" box that mobile never had (the desktop
+    side-rail's About card only shows ≥1300px). CTA is tracked via data-cta for the
+    Plausible CTA Click goal (topic = author-box). See post.hbs.
+--}}
+<aside class="author-card">
+    <img class="author-card-photo"
+         src="{{#if @site.logo}}{{@site.logo}}{{else}}{{asset "images/developassion-logo.png"}}{{/if}}"
+         alt="Sébastien Dubois" width="88" height="88" loading="lazy">
+    <div class="author-card-body">
+        <p class="author-card-kicker">Written by</p>
+        <p class="author-card-name">Sébastien Dubois</p>
+        <p class="author-card-bio">Knowledge Management expert, 20+ years in IT. I help knowledge workers escape information overload with systems that actually work — writing about <a href="/tag/personal-knowledge-management/">PKM</a>, <a href="/tag/obsidian/">Obsidian</a>, <a href="/tag/productivity/">productivity</a> and <a href="/tag/knowledge-work/">knowledge work</a>.</p>
+        <div class="author-card-actions">
+            <a class="gh-button author-card-cta" href="/join-the-knowii-community-and-fix-your-information-overload-problem/" data-cta="knowii" data-cta-topic="author-box">Join the Knowii Community</a>
+            <a class="author-card-secondary" href="#/portal/signup" data-subscribe-overlay data-cta="newsletter" data-cta-topic="author-box">or subscribe free →</a>
+        </div>
+    </div>
+</aside>

@@ -548,6 +548,18 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 
 ---
 
+### 2.6 Simplify membership tiers: Free → Knowii — 📋 PLANNED (owner-gated)
+
+**Problem:** the site offers a Ghost-paid "Supporter" tier, but only **13 of 2,716 members** are paid and revenue actually comes from the store/Knowii — so Supporter is monetarily negligible while diluting every subscribe decision (newsletter, Portal, membership-tiers UI) into a 3-way choice.
+
+**Build:** drop the Supporter tier from `src/partials/components/membership-tiers.hbs` (and any Portal/pricing surfaces that render it) so the choice becomes binary: **subscribe free** (newsletter/list growth) **or join Knowii** (the real revenue engine, store-hosted). Keep Ghost's tier data intact (existing Supporters unaffected); this is a presentation change in the theme.
+
+**Files:** `src/partials/components/membership-tiers.hbs` (+ audit `home.hbs`, `newsletter.hbs`, `about` for tier references).
+
+**Why:** removes a low-value decision branch that competes with the two CTAs that matter. A binary free/Knowii choice converts better than a diluted 3-way one.
+
+**Caveat:** brand/commerce decision — confirm with the owner before shipping. Ghost Admin tier config is separate and stays as-is.
+
 ## Tier 3 — Polish
 
 ### 3.1 Sticky reading-progress bar on long-form posts

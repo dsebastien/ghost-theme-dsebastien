@@ -4651,6 +4651,60 @@ a.series-nav-part:hover {
     background-color: var(--background-color);
 }
 
+/* End-of-article author/credibility card (components/author-card.hbs). Compact,
+   scannable, works on every viewport — the mobile equivalent of the desktop
+   side-rail's About card. */
+.author-card {
+    @apply my-8 flex flex-col sm:flex-row gap-5 items-start rounded-lg;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+}
+
+.author-card-photo {
+    @apply rounded-full shrink-0 object-cover !my-0;
+    width: 88px;
+    height: 88px;
+}
+
+.author-card-body {
+    @apply min-w-0;
+}
+
+.author-card-kicker {
+    @apply uppercase font-semibold !mt-0 !mb-0;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--color-secondary-text);
+}
+
+.author-card-name {
+    @apply font-bold !mt-0 !mb-2;
+    font-size: 2rem;
+}
+
+.author-card-bio {
+    @apply !mt-0 !mb-4;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--color-secondary-text);
+}
+
+.author-card-actions {
+    @apply flex flex-wrap items-center gap-x-4 gap-y-2;
+}
+
+.author-card-cta {
+    @apply !mb-0;
+}
+
+.author-card-secondary {
+    font-size: 1.4rem;
+    color: var(--color-secondary-text);
+    text-decoration: underline;
+}
+
 .keep-reading-topic {
     font-size: 1.5rem;
     color: var(--color-secondary-text);
