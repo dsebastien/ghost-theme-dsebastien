@@ -4705,6 +4705,27 @@ a.series-nav-part:hover {
     text-decoration: underline;
 }
 
+/* Freshness badge (Tier 1.8, revealed by assets/js/freshness.js). The [hidden]
+   rules outweigh the display set by @apply, so the badge stays hidden until JS
+   qualifies the post as a genuine refresh. */
+.gh-article-freshness {
+    @apply inline-flex items-center self-start rounded-full font-semibold uppercase mb-3;
+    gap: 4px;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
+.gh-article-freshness[hidden] {
+    display: none;
+}
+
+.gh-article-meta-updated[hidden] {
+    display: none;
+}
+
 .keep-reading-topic {
     font-size: 1.5rem;
     color: var(--color-secondary-text);

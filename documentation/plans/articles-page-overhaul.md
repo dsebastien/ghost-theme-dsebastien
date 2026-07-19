@@ -308,7 +308,11 @@ Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords
 - Ghost emits some Article schema by default — audit and override rather than double up.
 - `wordCount` isn't natively exposed; approximate via `reading_time * 225` or omit.
 
-### 1.8 Freshness signals: `dateModified` + "Updated" badge + `/updated/` feed
+### 1.8 Freshness signals: `dateModified` + "Updated" badge + `/updated/` feed — ✅ BADGE DONE 2026-07-19
+
+**Shipped:** visible "↻ Updated {Mon YYYY}" badge above the post title + an "updated {date}" note in the meta line, revealed by `assets/js/freshness.js` ONLY when `updated_at` is ≥30 days after `published_at` **and** on/after a `2026-07-01` cutoff — the cutoff dodges the 2026-06 site-wide re-timestamp that would otherwise badge the whole back-catalogue. `dateModified` in Article schema is already emitted by Ghost core via `{{ghost_head}}`. Template: `post.hbs` (hidden badge + meta span carrying `data-published`/`data-updated` unix stamps). CSS: `.gh-article-freshness` (+ `[hidden]` specificity guards). **Deferred:** the `/updated/` collection route/feed. **Note:** the badge only tells the truth if cornerstone posts are actually refreshed (and Ghost bumps `updated_at`); raise/remove the JS cutoff once the re-timestamp is no longer a factor. Original spec below.
+
+### ~~1.8 original~~ Freshness signals: `dateModified` + "Updated" badge + `/updated/` feed
 
 **Build**
 - In `src/post.hbs`, when `{{updated_at}}` > `{{published_at}}` + 30d, render both dates + an "Updated" badge above the title + optional "What changed" collapsible fed by a Ghost code-injection field.

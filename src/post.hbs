@@ -48,6 +48,10 @@
             {{#if primary_tag}}
                 <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
             {{/if}}
+            {{!-- Freshness badge (Tier 1.8): hidden; assets/js/freshness.js reveals it
+                 only for genuine refreshes (updated_at ≥30 days after published AND after
+                 the 2026-06 site-wide re-timestamp cutoff). --}}
+            <span class="gh-article-freshness" hidden data-published="{{date format="X"}}" data-updated="{{date updated_at format="X"}}">↻ Updated {{date updated_at format="MMM YYYY"}}</span>
             <h1 class="gh-article-title is-title">{{title}}</h1>
             {{#if custom_excerpt}}
                 <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
@@ -70,6 +74,7 @@
                     <h4 class="gh-article-author-name">{{authors}}</h4>
                     <div class="gh-article-meta-content">
                         <time class="gh-article-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                        <span class="gh-article-meta-updated" hidden><span class="bull">·</span> updated <time datetime="{{date updated_at format="YYYY-MM-DD"}}">{{date updated_at format="DD MMM YYYY"}}</time></span>
                         {{#if reading_time}}
                             <span class="gh-article-meta-length"><span class="bull">—</span> {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
                         {{/if}}
