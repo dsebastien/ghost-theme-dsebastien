@@ -312,6 +312,16 @@ Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords
 
 **Shipped:** visible "↻ Updated {Mon YYYY}" badge above the post title + an "updated {date}" note in the meta line, revealed by `assets/js/freshness.js` ONLY when `updated_at` is ≥30 days after `published_at` **and** on/after a `2026-07-01` cutoff — the cutoff dodges the 2026-06 site-wide re-timestamp that would otherwise badge the whole back-catalogue. `dateModified` in Article schema is already emitted by Ghost core via `{{ghost_head}}`. Template: `post.hbs` (hidden badge + meta span carrying `data-published`/`data-updated` unix stamps). CSS: `.gh-article-freshness` (+ `[hidden]` specificity guards). **Deferred:** the `/updated/` collection route/feed. **Note:** the badge only tells the truth if cornerstone posts are actually refreshed (and Ghost bumps `updated_at`); raise/remove the JS cutoff once the re-timestamp is no longer a factor. Original spec below.
 
+### 1.8b `/updated/` "Recently refreshed" feed — 📋 PLANNED
+
+**Build:** add an `/updated/` route in `configuration/routes.yaml` as a channel — `controller: channel`, `filter: "tag:blog"`, `order: "updated_at desc"`, `template: updated`, `rss: true` — so it lists articles by most-recently-refreshed. New `src/updated.hbs` reusing the card grid + sidebar (clone `all-articles.hbs`/pillar-body structure; `{{> "post-card"}}` + `{{pagination}}`). Cross-link it from the `/blog/` "Recently updated" strip (Tier 1.0 item 6) and optionally the footer.
+
+**Files:** `configuration/routes.yaml` (needs manual upload — Admin API 403s on routes), `src/updated.hbs` (new).
+
+**Why:** gives genuinely-refreshed evergreen content (the ones now carrying the 1.8 "Updated" badge) a dedicated surface + RSS feed — a freshness signal for crawlers/readers and a home for the "Recently updated" strip to point at.
+
+**Caveat:** only as meaningful as the underlying `updated_at` values — same re-timestamp caveat as 1.8. With the 2026-06 mass re-timestamp still in `updated_at`, `order: "updated_at desc"` will surface June-2026 first until real edits accumulate; consider holding this until the badge (1.8) has been live long enough that genuine refreshes dominate the top of the feed.
+
 ### ~~1.8 original~~ Freshness signals: `dateModified` + "Updated" badge + `/updated/` feed
 
 **Build**
