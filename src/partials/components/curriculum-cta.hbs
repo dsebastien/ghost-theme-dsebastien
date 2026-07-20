@@ -1,0 +1,30 @@
+{{!--
+    Curriculum wayfinding (homepage-start-overhaul 2.6): links a post INTO the
+    matching guided /start/ layer so the ~292 articles feed internal PageRank
+    into the /start/ hub and its five child pages, and readers discover the free
+    five-layer curriculum. Rendered in the POST CONTENT FLOW (post.hbs), NOT the
+    desktop-only side rail, so it shows on every viewport (mobile included).
+
+    Keyed on PUBLIC topic tags. {{#has tag=}} cannot see internal hash-* tags —
+    the Content API strips them from the post's tag collection (see
+    series-nav.hbs / contextual-offer.hbs) — so the hash-pillar-* tags used for
+    {{#get}} filters elsewhere would NEVER match here. Tag clusters + branch
+    order mirror src/data/pillars.json `priorityOrder` (creator-systems,
+    content-systems, tools-and-systems, writing-and-thinking, pkm-foundations,
+    knowledge-work, zen-productivity) so the layer we link matches the pillar the
+    post is actually assigned to. Two pillars map to one layer
+    (creator+content -> Creation, knowledge-work+zen -> Application), so those
+    clusters are merged in a single branch. No {{else}} fallback: off-pillar
+    posts (e.g. pure dev articles) and non-post contexts render nothing.
+--}}
+{{#has tag="ai,ai-2,ai-skills,claude-code,creator-systems,indie-hacking,startups,solopreneurship,product-design,design-sprints,innovation,content-creation,content-creation-systems,content-curation,youtube,teaching,sharing,communities,community-knowledge-management"}}
+    {{> "components/curriculum-cta-card" layer="creation" step="Layer 5 of 5" name="Creation"}}
+{{else has tag="obsidian,obsidian-starter-kit,obsidian-starter-course,note-taking,zettelkasten,atomic-notes,evergreen-notes,dataview,templates,tools,tools-and-techniques,para-method,johnny-decimal,plugins,tags,markdown,portability,data-security,data-ownership,data-privacy"}}
+    {{> "components/curriculum-cta-card" layer="system" step="Layer 2 of 5" name="System"}}
+{{else has tag="writing,writing-and-thinking,thinking,journaling,reading,creativity,memory,cognitive-load,logic,problem-solving,decision-making,systems-thinking,concepts,knowledge-capture"}}
+    {{> "components/curriculum-cta-card" layer="practice" step="Layer 3 of 5" name="Practice"}}
+{{else has tag="personal-knowledge-management,knowledge-management,foundations-of-personal-knowledge-management,information-overload,second-brain"}}
+    {{> "components/curriculum-cta-card" layer="foundation" step="Layer 1 of 5" name="Foundation"}}
+{{else has tag="knowledge-work,work,career,leadership,team-management,management,remote-work,project-management,communication,best-practices,workflows,it-infrastructure,productivity,personal-organization,personal-development,habits,routines,time-management,mental-health,wellbeing,stress,mindfulness,goals,happiness,life,life-design,success,procrastination,perfectionism,gratitude,health,attention,prioritization,simplicity,psychology,optimism,positivity,task-management"}}
+    {{> "components/curriculum-cta-card" layer="application" step="Layer 4 of 5" name="Application"}}
+{{/has}}

@@ -1,0 +1,14 @@
+{{!--
+    The curriculum wayfinding card rendered by curriculum-cta.hbs.
+    Params:
+    * layer — /start/<layer>/ slug (foundation|system|practice|application|creation)
+    * step  — human step label, e.g. "Layer 1 of 5"
+    * name  — layer display name, e.g. "Foundation"
+    data-cta / data-cta-topic keep it consistent with the site's Plausible
+    attribution scheme (every CTA carries both).
+--}}
+<aside class="curriculum-cta" data-cta-topic="curriculum-{{layer}}">
+    <span class="curriculum-cta-eyebrow">📈 Part of the Knowledge Mastery curriculum</span>
+    <span class="curriculum-cta-body">This article sits in the <strong>{{name}}</strong> layer ({{step}}) of my free five-layer PKM journey.</span>
+    <a class="curriculum-cta-link" href="/start/{{layer}}/" data-cta="start-layer" data-cta-topic="curriculum-{{layer}}">Follow the {{name}} path →</a>
+</aside>

@@ -96,6 +96,13 @@
                  sees the whole journey. Renders nothing when not in a series. --}}
             {{> "components/series-nav"}}
 
+            {{!-- Curriculum wayfinding (homepage-start-overhaul 2.6): if this
+                 post belongs to a pillar cluster, link into the matching guided
+                 /start/ layer. In the content flow (not the desktop-only side
+                 rail) so it renders on every viewport. Nothing for off-pillar
+                 posts. --}}
+            {{> "components/curriculum-cta"}}
+
             {{!-- Desktop-only side rail while reading (≥1300px): the slim
                  sidebar (About + Featured + Knowii). Hidden via CSS when the
                  post uses wide/full-width cards. Tier 1.10. --}}

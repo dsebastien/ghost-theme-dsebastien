@@ -4669,6 +4669,98 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     color: var(--ghost-accent-color);
 }
 
+/* Curriculum wayfinding strip (homepage-start-overhaul 2.6): links a post into
+   its matching guided /start/ layer. Rendered in the post CONTENT FLOW (not the
+   desktop-only side rail), so it must read well from mobile up. Desktop: eyebrow
+   spans the full first row, body + button share the second row. Mobile: body and
+   button each take a full row and the button goes full-width. text-decoration is
+   forced off with raw !important because this lives inside .gh-content, whose
+   prose rule underlines every <a> (leading-! Tailwind is unreliable post-minify —
+   see the .home-strips note). */
+.curriculum-cta {
+    @apply flex flex-wrap items-center gap-x-5 gap-y-3 rounded-lg mb-10;
+    padding: 16px 20px;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+}
+
+.curriculum-cta-eyebrow {
+    @apply uppercase font-semibold;
+    flex-basis: 100%;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--ghost-accent-color);
+}
+
+.curriculum-cta-body {
+    @apply font-medium;
+    flex: 1 1 55%;
+    min-width: 220px;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--color-primary-text);
+}
+
+/* Compound `.curriculum-cta .curriculum-cta-link` selectors (0,2,0) so both the
+   color and the underline beat the prose rule `.gh-content a` (0,1,1) this block
+   lives inside — same technique as .contextual-offer links above. Hover is
+   scoped too, otherwise the (0,2,0) base would outrank a bare (0,1,1) hover. */
+.curriculum-cta .curriculum-cta-link {
+    @apply whitespace-nowrap font-semibold rounded-md;
+    padding: 0.55em 1.2em;
+    font-size: 1.4rem;
+    border: 1px solid var(--ghost-accent-color);
+    color: var(--ghost-accent-color);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.curriculum-cta .curriculum-cta-link:hover {
+    @apply opacity-100;
+    background-color: var(--ghost-accent-color);
+    color: var(--color-white);
+}
+
+@media (max-width: 767px) {
+    .curriculum-cta {
+        @apply items-stretch;
+        padding: 14px 16px;
+    }
+
+    .curriculum-cta-body {
+        flex-basis: 100%;
+    }
+
+    .curriculum-cta-link {
+        @apply block text-center;
+        flex-basis: 100%;
+    }
+}
+
+/* New-reader prompt above the /blog/ topic nav (homepage-start-overhaul 2.6).
+   Plain centered text — /blog/ is a listing, not .gh-content, so no prose
+   interference. Wraps naturally on narrow screens. */
+.blog-start-prompt {
+    @apply text-center;
+    margin: 0 auto 1.2rem;
+    font-size: 1.5rem;
+}
+
+.blog-start-prompt p {
+    margin: 0;
+}
+
+.blog-start-prompt a {
+    @apply font-semibold no-underline;
+    color: var(--ghost-accent-color);
+}
+
+.blog-start-prompt a:hover {
+    text-decoration: underline;
+}
+
 /* Keep-reading block on posts (Tier 1.4) */
 
 /* Series wayfinding strip (Tier 2.5): sits at the top of a post that belongs
