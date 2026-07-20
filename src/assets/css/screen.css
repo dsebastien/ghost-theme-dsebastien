@@ -3543,7 +3543,9 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .subscribe-overlay-panel {
     @apply relative w-full rounded-lg text-center;
-    max-width: 600px;
+    /* Wide enough to hold the 3 Knowii tier cards; the head (title/form) is
+       re-constrained to a readable width below. */
+    max-width: 960px;
     background-color: var(--background-color);
     border: 1px solid var(--color-border);
     box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
@@ -3552,6 +3554,23 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
        (landscape phones, zoomed laptops) — the page behind is scroll-locked */
     max-height: calc(100dvh - 40px);
     overflow-y: auto;
+}
+
+/* Head (headline + newsletter form) stays readable-width even though the panel
+   is wide for the tiers. */
+.subscribe-overlay-head {
+    @apply mx-auto;
+    max-width: 560px;
+}
+
+.subscribe-overlay-tiers {
+    @apply mt-8 pt-8;
+    border-top: 1px solid var(--color-border);
+}
+
+/* The reused tier grid drops its own top spacing inside the overlay. */
+.subscribe-overlay-tiers .newsletter-tiers h3 {
+    @apply mt-0;
 }
 
 .subscribe-overlay-title {
@@ -3608,7 +3627,9 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     }
 
     .subscribe-overlay-panel {
-        @apply rounded-none flex flex-col justify-center border-0;
+        /* justify-start (not center): the overlay is now tall (form + 3 tiers),
+           so top-align + scroll rather than centre-clip. */
+        @apply rounded-none flex flex-col justify-start border-0;
         max-width: none;
         width: 100%;
         min-height: 100dvh;

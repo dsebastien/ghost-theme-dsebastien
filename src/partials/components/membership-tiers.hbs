@@ -15,12 +15,15 @@
     Parameters:
     * title (optional) — heading text. Defaults to "Membership tiers"
       ("Go further" for logged-in members).
+    * hideFree (optional) — when true, omit the Free/newsletter column. Used in
+      the subscribe overlay, where the inline newsletter form already IS the free
+      option, so the Free card would be redundant.
 --}}
 <section class="newsletter-tiers">
     <h3>{{#if title}}{{title}}{{else}}{{#if @member}}Go further{{else}}Membership tiers{{/if}}{{/if}}</h3>
     <p class="newsletter-tiers-intro">Every Knowii tier includes the private community, live events, expert access, monthly challenges, a 3.8K+ concept knowledge base and my <a href="https://notes.dsebastien.net/" rel="noopener">~10K published notes</a>. Pick the depth that fits you:</p>
     <div class="newsletter-tiers-grid">
-        {{#unless @member}}
+        {{#unless @member}}{{#unless hideFree}}
         <div class="newsletter-tier">
             <h4>Free</h4>
             <p class="newsletter-tier-price">€0</p>
@@ -30,7 +33,7 @@
             </ul>
             <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
         </div>
-        {{/unless}}
+        {{/unless}}{{/unless}}
 
         <div class="newsletter-tier">
             <h4>Explorer</h4>
