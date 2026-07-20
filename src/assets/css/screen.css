@@ -2818,6 +2818,21 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply mt-8 text-center text-lg text-gray-600 italic bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border-t-2 border-gray-200;
 }
 
+/* Link from each /start/ area to its dedicated guided-path page. */
+.start-page .area-deepdive {
+    @apply -mt-2 mb-6 font-semibold;
+    font-size: 1.4rem;
+}
+
+.start-page .area-deepdive a {
+    @apply no-underline;
+    color: var(--ghost-accent-color);
+}
+
+.start-page .area-deepdive a:hover {
+    @apply underline;
+}
+
 /* Builder OS Framework Visual */
 .start-page .builder-os-visual {
     @apply bg-gradient-to-b from-gray-50 to-gray-100 p-8 md:p-12 rounded-lg shadow-lg;
@@ -4546,6 +4561,91 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     border-color: var(--ghost-accent-color);
     color: var(--ghost-accent-color);
     @apply opacity-100;
+}
+
+/* Guided-path pages: /start/<layer>/ (homepage 2.3 / articles 3.3).
+   Reuses .pillar-kicker/.pillar-title/.pillar-intro/.pillar-offer-band and the
+   .start-page .home-strips card styling; only the layer chrome is new here. */
+.start-pillar-hero {
+    @apply !mt-24 mb-4 text-center;
+}
+
+.start-pillar-step {
+    @apply uppercase font-semibold mt-2 mb-4;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--ghost-accent-color);
+}
+
+/* Admin-editable prose block, centered like the article canvas. */
+.start-pillar-content {
+    @apply !mt-10;
+}
+
+.start-pillar-strips {
+    @apply !mt-16;
+}
+
+.start-pillar-strips .gh-container-title {
+    @apply text-center mb-8;
+}
+
+/* Prev / next layer navigation. */
+.start-pillar-nav-band {
+    @apply !mt-16 mb-24;
+}
+
+.start-pillar-nav {
+    @apply flex flex-wrap gap-4 items-stretch;
+}
+
+.start-pillar-nav a {
+    @apply flex-1 flex flex-col gap-1 rounded-lg no-underline;
+    min-width: 240px;
+    padding: 18px 22px;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary-text);
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.start-pillar-nav a:hover {
+    border-color: var(--ghost-accent-color);
+    background-color: var(--color-lighter-gray);
+}
+
+.start-pillar-nav-next {
+    text-align: right;
+}
+
+.start-pillar-nav-spacer {
+    @apply flex-1;
+    min-width: 240px;
+}
+
+.start-pillar-nav-dir {
+    @apply uppercase font-semibold;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary-text);
+}
+
+.start-pillar-nav-name {
+    @apply font-semibold;
+    font-size: 1.6rem;
+    color: var(--color-primary-text);
+}
+
+.start-pillar-nav-home {
+    @apply mt-6 text-center;
+    font-size: 1.4rem;
+}
+
+.start-pillar-nav-home a {
+    color: var(--color-secondary-text);
+}
+
+.start-pillar-nav-home a:hover {
+    color: var(--ghost-accent-color);
 }
 
 /* Keep-reading block on posts (Tier 1.4) */

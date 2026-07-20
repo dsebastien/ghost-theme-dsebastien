@@ -1,6 +1,6 @@
 # Articles Page Overhaul — Plan (remaining work)
 
-Repo: `$WKS/ghost-theme-dsebastien`. Most of Tiers 1–2 shipped 2026-07-17→20 — completed items have been removed from this file. See **[[dSebastien Website (Project)]]** (History + Key decisions + gotchas + build/deploy + Admin-API constraints) for what landed and why. This file tracks only what's left.
+Repo: `$WKS/ghost-theme-dsebastien`. Most of Tiers 1–2 plus 3.3 (the per-layer `/start/{layer}/` guided pages, `custom-start-pillar.hbs`) shipped 2026-07-17→20 — completed items have been removed from this file. See **[[dSebastien Website (Project)]]** (History + Key decisions + gotchas + build/deploy + Admin-API constraints) for what landed and why. This file tracks only what's left.
 
 ## Remaining work
 
@@ -15,9 +15,6 @@ Deferred. Sodo search + the `Cmd/Ctrl-K` (`/`) shortcut already ship; only build
 
 ### 3.2 — Tag description backfill (content, not theme)
 Author descriptions for the top ~30 tags in Ghost Admin → unlocks the richer `tag.hbs` hero + better SEO.
-
-### 3.3 — Per-pillar `/start/{pillar}/` pages
-Shared `custom-start-pillar.hbs` (see homepage plan 2.3): 5 essential reads + tools + one flagship product + one lead magnet per pillar.
 
 ### 3.5 — `#most-read` curation
 Maintain a `#most-read` internal tag (top ~20, refreshed monthly) and surface "Most read on {topic}" in `sidebar.hbs` + pillar hubs. Honest workaround — Ghost exposes no view counts to themes.

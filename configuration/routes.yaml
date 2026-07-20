@@ -9,6 +9,28 @@ routes:
     template: news
   /start/:
     template: start
+  # Five guided-path pages — one per layer of the Knowledge Master's Journey
+  # (homepage-start-overhaul 2.3 / articles 3.3). Each binds a Ghost Page via
+  # `data: page.start-<layer>`; the data key becomes `page` in the template
+  # (see src/custom-start-pillar.hbs). This binding ALSO 301s the page's own
+  # /start-<layer>/ URL to /start/<layer>/, so there's no duplicate content.
+  # The prose is edited in Ghost Admin (the page body) — no redeploy to reword.
+  # Order: foundation → system → practice → application → creation.
+  /start/foundation/:
+    data: page.start-foundation
+    template: custom-start-pillar
+  /start/system/:
+    data: page.start-system
+    template: custom-start-pillar
+  /start/practice/:
+    data: page.start-practice
+    template: custom-start-pillar
+  /start/application/:
+    data: page.start-application
+    template: custom-start-pillar
+  /start/creation/:
+    data: page.start-creation
+    template: custom-start-pillar
   # Utility crawl index — a channel (not a static route) so Ghost paginates
   # natively past any {{#get}} cap and emits link[rel=next/prev] for crawlers.
   /all-articles/:
