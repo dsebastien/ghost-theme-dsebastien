@@ -1,0 +1,40 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!--
+    Custom template for the Knowii Community landing page (slug:
+    join-the-knowii-community-and-fix-your-information-overload-problem).
+    Ghost auto-applies page-{slug}.hbs.
+
+    Appends the membership-tiers comparison band after the content — the same
+    inline tier grid the newsletter page uses — so visitors can compare Free +
+    the three Knowii tiers side by side after reading the pitch. (The per-tier
+    detail embeds live inside the authored content; this band is the at-a-glance
+    comparison.)
+--}}
+{{#post}}
+
+<main class="gh-main">
+    <article class="gh-article {{post_class}}">
+
+        {{#match @page.show_title_and_feature_image}}
+            <header class="gh-article-header gh-canvas">
+                <h1 class="gh-article-title is-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+                {{/if}}
+                {{> "feature-image"}}
+            </header>
+        {{/match}}
+
+        <section class="gh-content gh-canvas is-body">
+            {{content}}
+        </section>
+
+        <section class="gh-canvas is-body about-tiers">
+            {{> "components/membership-tiers" title="Compare membership tiers"}}
+        </section>
+
+    </article>
+</main>
+
+{{/post}}
