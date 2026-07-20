@@ -4744,8 +4744,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
    interference. Wraps naturally on narrow screens. */
 .blog-start-prompt {
     @apply text-center;
-    margin: 0 auto 1.2rem;
+    margin: 2.8rem auto 1.6rem;
     font-size: 1.5rem;
+}
+
+/* Membership tiers band at the foot of each /pillars/<slug>/ hub (mirrors the
+   /start/ pages). Separates it from the "Explore the pillars" chips above and
+   gives the page some breathing room before the footer. */
+.pillar-tiers {
+    @apply !mt-20 mb-24;
 }
 
 .blog-start-prompt p {
