@@ -204,76 +204,17 @@
             <section class="offerings">
                 <h2>Ready to Start? 🧠</h2>
                 <p class="offerings-intro">{{@custom.stat_community_members}} members already building better systems</p>
-                <p class="offerings-subheading">Pick your entry point:</p>
+                {{!-- One canonical offer surface (Tier 2.2 revision): the same
+                     membership-tiers cards as the newsletter page. The Free card
+                     routes into the guided /start/ journey (which captures email);
+                     one-time purchases live on the store via a single link — we no
+                     longer mirror the product catalog here (that was duplicated
+                     across this site and the store, and OSK/Knowii appeared 3–4×).
+                     The old chooser + 7-product grid + second tiers block are gone;
+                     the cta-funnel below stays as the distinct final CTA. --}}
+                {{> "components/membership-tiers" title="Choose how you want to join" freeHref="/start/" freeCtaLabel="Start free →"}}
 
-                {{!-- Three intent-based paths (Tier 2.2). Full catalog collapses below. --}}
-                {{> "components/path-chooser"}}
-
-                <details class="offerings-all">
-                    <summary>See all products &rarr;</summary>
-
-                <!-- BESTSELLER HIGHLIGHT -->
-                <div class="offering-featured">
-                    <span class="badge">MOST POPULAR</span>
-                    <h3>Knowii Community - All-Access Knowledge System</h3>
-                    <p class="value-prop">Everything you need: Community + ALL Courses + Tools + Future Workshops</p>
-                    <ul class="benefits-quick">
-                        <li>✅ Access to ALL courses (Knowledge Management for Beginners, Obsidian Starter Course)</li>
-                        <li>✅ Complete Obsidian Starter Kit + Knowledge Worker Kit</li>
-                        <li>✅ Private community & masterminds</li>
-                        <li>✅ All future workshops and masterclasses</li>
-                        <li>✅ A Knowledge base of over 3,400 valuable concepts, frameworks, mental models, techniques, etc</li>
-                        <li>✅ Knowledge Management System Checklist</li>
-                        <li>✅ Database of Knowledge Management tools</li>
-                    </ul>
-                    <a href="https://store.dsebastien.net/product/knowii-community" target="_blank" rel="noopener" class="cta-large">Learn More →</a>
-                    <p class="guarantee">30-day money-back guarantee • Cancel anytime</p>
-                </div>
-
-                <!-- OTHER PRODUCTS GRID -->
-                <div class="offerings-grid">
-                    <div class="offering">
-                        <span class="badge badge-value">MOST VALUE</span>
-                        <h3>Knowledge Worker Kit 🚀</h3>
-                        <p>Lifetime community access + comprehensive guides + all future workshops. Complete transformation package.</p>
-                        <a href="https://store.dsebastien.net/product/knowledge-worker-kit" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                    <div class="offering">
-                        <span class="badge">FUNDAMENTAL</span>
-                        <h3>Knowledge Management for Beginners 📖</h3>
-                        <p>10+ hours of structured video lessons. Go from information chaos to organized knowledge systems.</p>
-                        <a href="https://store.dsebastien.net/product/knowledge-management-for-beginners" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                    <div class="offering">
-                        <span class="badge">MOST POPULAR</span>
-                        <h3>Obsidian Starter Kit 🪨</h3>
-                        <p>Ready-made <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a> vault with 40+ templates, proven folder structure, and automation. Skip weeks of setup.</p>
-                        <a href="https://store.dsebastien.net/product/obsidian-starter-kit" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                    <div class="offering">
-                        <span class="badge badge-value">MOST VALUE</span>
-                        <h3>Everything Knowledge 📚</h3>
-                        <p>The complete knowledge mastery bundle. Get all courses, kits, guides, and resources in one powerful package.</p>
-                        <a href="https://store.dsebastien.net/product/everything-knowledge-bundle" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                    <div class="offering">
-                        <span class="badge">AI</span>
-                        <h3>AI Ghostwriter Guide 🤖</h3>
-                        <p>Create an AI assistant that writes with your exact voice, style, and expertise. Stop sounding like generic AI.</p>
-                        <a href="https://store.dsebastien.net/product/ai-ghostwriter-guide" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                    <div class="offering">
-                        <span class="badge">NEW</span>
-                        <h3>Knowii Voice AI 🎙️</h3>
-                        <p>Privacy-first voice-to-text that runs AI locally. Capture ideas by speaking, without sending data to the cloud.</p>
-                        <a href="https://voice-ai.knowii.net" target="_blank" rel="noopener">Learn More →</a>
-                    </div>
-                </div>
-
-                <div class="offerings-cta">
-                    <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="link-prominent">View All Products →</a>
-                </div>
-                </details>
+                <p class="offerings-store-link">Prefer one-time purchases? <a href="https://store.dsebastien.net" target="_blank" rel="noopener">Browse all courses, kits &amp; bundles on the store &rarr;</a></p>
             </section>
 
             <!-- Testimonials -->
@@ -373,9 +314,9 @@
                 </div>
             </section>
 
-            <!-- Membership tiers -->
-            <p style="text-align:center; color:#6b7280; margin-top:4rem; margin-bottom:0;">Made it this far? Here's how to join, from free to all-in:</p>
-            {{> "components/membership-tiers" title="Choose your membership"}}
+            {{!-- Membership tiers now live once, up in the offerings section
+                 (the canonical offer). The final CTA below is the distinct
+                 low-friction nudge: newsletter / store / coaching. --}}
 
             <!-- CTA Funnel -->
             <section class="ready-to-start">

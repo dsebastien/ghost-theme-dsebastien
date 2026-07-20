@@ -18,6 +18,11 @@
     * hideFree (optional) — when true, omit the Free/newsletter column. Used in
       the subscribe overlay, where the inline newsletter form already IS the free
       option, so the Free card would be redundant.
+    * freeHref (optional) — override the Free card's CTA target. Default is the
+      Portal signup (#/portal/signup). The home page passes "/start/" so the
+      free path leads into the guided journey (which itself captures email).
+    * freeCtaLabel (optional) — Free card button text (default "Subscribe free →",
+      or "Start free →" when freeHref is set).
 --}}
 <section class="newsletter-tiers">
     <h3>{{#if title}}{{title}}{{else}}{{#if @member}}Go further{{else}}Membership tiers{{/if}}{{/if}}</h3>
@@ -31,7 +36,7 @@
                 <li>✅ New newsletter editions in your inbox</li>
                 <li>✅ All articles &amp; the full archive</li>
             </ul>
-            <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
+            {{#if freeHref}}<a href="{{freeHref}}" class="gh-button newsletter-tier-cta">{{#if freeCtaLabel}}{{freeCtaLabel}}{{else}}Start free →{{/if}}</a>{{else}}<a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">{{#if freeCtaLabel}}{{freeCtaLabel}}{{else}}Subscribe free →{{/if}}</a>{{/if}}
         </div>
         {{/unless}}{{/unless}}
 
