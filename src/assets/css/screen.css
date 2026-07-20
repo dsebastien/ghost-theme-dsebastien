@@ -2833,7 +2833,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 /* Link from each /start/ area to its dedicated guided-path page. */
 .start-page .area-deepdive {
-    @apply -mt-2 mb-6 font-semibold;
+    @apply mt-3 mb-6 font-semibold;
     font-size: 1.4rem;
 }
 
@@ -4753,6 +4753,12 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
    gives the page some breathing room before the footer. */
 .pillar-tiers {
     @apply !mt-20 mb-24;
+}
+
+/* Membership tiers band on the main /start/ page (between the YouTube card and
+   Further Learning). */
+.start-tiers {
+    @apply !mt-16;
 }
 
 .blog-start-prompt p {
