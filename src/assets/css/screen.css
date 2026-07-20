@@ -3542,7 +3542,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .subscribe-overlay-panel {
-    @apply relative w-full rounded-lg text-center;
+    @apply relative w-full rounded-lg text-center flex flex-col;
     /* Wide enough to hold the 3 Knowii tier cards; the head (title/form) is
        re-constrained to a readable width below. */
     max-width: 960px;
@@ -3550,9 +3550,18 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     border: 1px solid var(--color-border);
     box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
     padding: 48px 40px 36px;
-    /* Keep the panel (and its close button) on-screen on short viewports
-       (landscape phones, zoomed laptops) — the page behind is scroll-locked */
+    /* The panel is a fixed frame capped to the viewport; the inner
+       .subscribe-overlay-scroll does the scrolling so the close button (a direct
+       child) stays pinned even through the tall tiers list. */
     max-height: calc(100dvh - 40px);
+    overflow: hidden;
+}
+
+/* Inner scroll region — grows to fill the panel and scrolls when the form +
+   tiers exceed the viewport. min-height:0 lets a flex child actually scroll. */
+.subscribe-overlay-scroll {
+    @apply min-h-0;
+    flex: 1 1 auto;
     overflow-y: auto;
 }
 
@@ -3627,14 +3636,14 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     }
 
     .subscribe-overlay-panel {
-        /* justify-start (not center): the overlay is now tall (form + 3 tiers),
-           so top-align + scroll rather than centre-clip. */
-        @apply rounded-none flex flex-col justify-start border-0;
+        /* Full-screen frame; the inner .subscribe-overlay-scroll scrolls the
+           tall form + tiers while the close button stays pinned. */
+        @apply rounded-none border-0;
         max-width: none;
         width: 100%;
         min-height: 100dvh;
         max-height: 100dvh;
-        padding: 40px 24px;
+        padding: 40px 20px;
     }
 
     .subscribe-overlay-title {

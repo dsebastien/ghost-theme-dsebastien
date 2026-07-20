@@ -16,16 +16,19 @@
 <div id="subscribe-overlay" class="subscribe-overlay" role="dialog" aria-modal="true" aria-labelledby="subscribe-overlay-title" hidden>
     <div class="subscribe-overlay-backdrop" data-subscribe-overlay-close></div>
     <div class="subscribe-overlay-panel">
+        {{!-- Close stays a direct child of the panel (pinned) while the body scrolls. --}}
         <button class="subscribe-overlay-close" aria-label="Close" title="Close" data-subscribe-overlay-close>{{> "icons/close"}}</button>
-        <div class="subscribe-overlay-head">
-            <h2 id="subscribe-overlay-title" class="subscribe-overlay-title is-title">Turn Information Overload into Clear Thinking</h2>
-            <p class="subscribe-overlay-desc">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
-            <p class="subscribe-overlay-social-proof">{{@custom.stat_newsletter_members}} readers already subscribed ✨</p>
-            {{> "email-subscription" email_field_id="overlay-email"}}
-        </div>
-        {{!-- Upsell: the three paid Knowii tiers (Free omitted — the form above is it). --}}
-        <div class="subscribe-overlay-tiers">
-            {{> "components/membership-tiers" hideFree=true title="Or go deeper with Knowii"}}
+        <div class="subscribe-overlay-scroll">
+            <div class="subscribe-overlay-head">
+                <h2 id="subscribe-overlay-title" class="subscribe-overlay-title is-title">Turn Information Overload into Clear Thinking</h2>
+                <p class="subscribe-overlay-desc">Every week, I share practical systems, tools, and frameworks to help you organize your knowledge, leverage AI, and create consistently. No fluff. No spam.</p>
+                <p class="subscribe-overlay-social-proof">{{@custom.stat_newsletter_members}} readers already subscribed ✨</p>
+                {{> "email-subscription" email_field_id="overlay-email"}}
+            </div>
+            {{!-- Upsell: the three paid Knowii tiers (Free omitted — the form above is it). --}}
+            <div class="subscribe-overlay-tiers">
+                {{> "components/membership-tiers" hideFree=true title="Or go deeper with Knowii"}}
+            </div>
         </div>
     </div>
 </div>
