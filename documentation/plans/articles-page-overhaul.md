@@ -580,7 +580,10 @@ Ghost's **Sodo Search is already wired and live**. `src/partials/search-toggle.h
 
 ## Tier 3 — Polish
 
-### 3.1 Sticky reading-progress bar on long-form posts
+### 3.1 Sticky reading-progress bar on long-form posts — ✅ ALREADY EXISTS
+The theme already ships a reading-progress bar: `#reading-progress` (`.reading-progress` + `.reading-progress-fill`) in `default.hbs`, driven by the JS bundle. Nothing to build. The original idea (adding a collapsible subscribe pill to the bar) is superseded by the on-article conversion work already shipped (2.4 scroll/exit capture, mobile author card). Original spec below.
+
+### ~~3.1 original~~ Sticky reading-progress bar on long-form posts
 3px top bar + collapsible subscribe pill that expands to the topic-mapped lead magnet. Replaces the current `sticky-cta.hbs` bottom bar (easy to dismiss, thin on value). Files: `src/partials/components/reading-progress.hbs`, `src/assets/js/progress.js`, `src/post.hbs`.
 
 ### 3.2 Alias generator + tag description backfill
