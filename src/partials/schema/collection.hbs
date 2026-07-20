@@ -1,0 +1,38 @@
+{{!--
+  Reusable CollectionPage (+ optional ItemList) JSON-LD for listing pages (Tier 1.7).
+
+  Params:
+    pageName     — collection title (e.g. "Articles", "Topics")
+    pageDesc     — description (optional)
+    path         — this page's path, e.g. "/blog/"  (url = @site.url + path)
+    sectionName  — optional parent-crumb label (e.g. "Articles")
+    sectionPath  — optional parent-crumb path (e.g. "/blog/")
+    itemsFilter  — optional NQL; when present, adds an ItemList of up to 20 posts.
+
+  Titles are emitted unescaped, matching post.hbs' BreadcrumbList — Ghost has no
+  JSON-escape helper and post titles with literal double-quotes are vanishingly rare.
+--}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{pageName}}",
+    {{#if pageDesc}}"description": "{{pageDesc}}",
+    {{/if}}"url": "{{@site.url}}{{path}}",
+    "isPartOf": { "@type": "WebSite", "name": "{{@site.title}}", "url": "{{@site.url}}" },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{@site.url}}" },
+            {{#if sectionName}}{ "@type": "ListItem", "position": 2, "name": "{{sectionName}}", "item": "{{@site.url}}{{sectionPath}}" },
+            { "@type": "ListItem", "position": 3, "name": "{{pageName}}" }{{else}}{ "@type": "ListItem", "position": 2, "name": "{{pageName}}" }{{/if}}
+        ]
+    }{{#if itemsFilter}},
+    "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [{{#get "posts" filter=itemsFilter order="published_at desc" limit="20" as |items|}}{{#foreach items}}
+            { "@type": "ListItem", "position": {{@number}}, "url": "{{url absolute="true"}}", "name": "{{title}}" }{{#unless @last}},{{/unless}}{{/foreach}}{{/get}}
+        ]
+    }{{/if}}
+}
+</script>

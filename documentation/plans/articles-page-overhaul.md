@@ -283,8 +283,8 @@ Feeds channels scoped +tag:blog, /all-articles/ channelized, protective RSS-coll
 - The routes.yaml comment prevents a future "cleanup" from accidentally killing three live, externally-linked RSS feeds.
 - Nav de-clutter raises click-through to the surfaces that matter (`/blog/`, `/start/`, community).
 
-### 1.7 JSON-LD structured data — ⚠️ MOSTLY PRE-EXISTING; breadcrumb fixed 2026-07-17
-Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords), BreadcrumbList. Fixed: breadcrumb now topical (Home > Articles|Newsletter|News > topic > title; was Home > "Blog" linking the marker tag page). REMAINING: CollectionPage/ItemList on /blog/, tag pages, /tags/ hub; FAQ schema where relevant. CAVEAT: SearchAction targets /search/?q= which does not exist until T2.2. Original spec below.
+### 1.7 JSON-LD structured data — ⚠️ MOSTLY PRE-EXISTING; breadcrumb fixed 2026-07-17; CollectionPage/ItemList done 2026-07-20
+Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords), BreadcrumbList. Fixed: breadcrumb now topical (Home > Articles|Newsletter|News > topic > title; was Home > "Blog" linking the marker tag page). **CollectionPage + ItemList (2026-07-20):** new reusable `src/partials/schema/collection.hbs` (params: pageName/pageDesc/path/sectionName/sectionPath/itemsFilter) emits CollectionPage + BreadcrumbList, plus an ItemList of up to 20 posts when `itemsFilter` is set. Wired into `blog.hbs` (ItemList tag:blog), `tags-hub.hbs` (no ItemList — tag index), `all-articles.hbs` (ItemList tag:blog); `tag.hbs` uses an inline variant driven by `{{tag}}` + native `posts`. Pillars already had CollectionPage. REMAINING: FAQ schema where relevant. CAVEAT: SearchAction targets /search/?q= which does not exist until T2.2. Original spec below.
 
 ### ~~1.7 original~~ JSON-LD structured data (Article + BreadcrumbList + CollectionPage + WebSite/SearchAction + FAQ)
 

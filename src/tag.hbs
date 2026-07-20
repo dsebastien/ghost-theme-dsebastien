@@ -10,6 +10,33 @@
 
 <main class="gh-main gh-outer">
 
+    {{!-- CollectionPage + ItemList JSON-LD (Tier 1.7): tag archive as a machine-
+         legible topic collection. Titles unescaped, matching post.hbs breadcrumb. --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "{{tag.name}}",
+        {{#if tag.description}}"description": "{{tag.description}}",
+        {{/if}}"url": "{{tag.url}}",
+        "isPartOf": { "@type": "WebSite", "name": "{{@site.title}}", "url": "{{@site.url}}" },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{@site.url}}" },
+                { "@type": "ListItem", "position": 2, "name": "Topics", "item": "{{@site.url}}/tags/" },
+                { "@type": "ListItem", "position": 3, "name": "{{tag.name}}" }
+            ]
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [{{#foreach posts}}
+                { "@type": "ListItem", "position": {{@number}}, "url": "{{url absolute="true"}}", "name": "{{title}}" }{{#unless @last}},{{/unless}}{{/foreach}}
+            ]
+        }
+    }
+    </script>
+
     {{#tag}}
         <section class="gh-archive{{#if feature_image}} has-image{{/if}} has-sidebar gh-inner">
             <div class="gh-archive-inner">
