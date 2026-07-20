@@ -2637,6 +2637,87 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply bg-gray-100 p-8 rounded-lg shadow-lg;
 }
 
+/* Path chooser (Tier 2.2): three intent-based cards replacing the product grid
+   as the primary decision. The full catalog lives in the <details> beneath. */
+.homepage .path-chooser {
+    @apply mt-8 grid gap-6 grid-cols-1 md:grid-cols-3 items-stretch;
+}
+
+.homepage .path-choice {
+    @apply relative flex flex-col bg-gray-100 rounded-lg shadow-lg no-underline p-8;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.homepage .path-choice:hover {
+    transform: translateY(-4px);
+    border-color: var(--ghost-accent-color);
+}
+
+/* Community card leads — give it the accent frame at rest. */
+.homepage .path-choice-community {
+    border-color: var(--ghost-accent-color);
+}
+
+.homepage .path-choice-badge {
+    @apply absolute top-0 right-0 bg-pink-600 text-white text-sm font-bold px-4 py-2 rounded-bl-lg rounded-tr-lg;
+}
+
+.homepage .path-choice-kicker {
+    @apply uppercase font-semibold text-gray-500;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+.homepage .path-choice-community .path-choice-kicker {
+    @apply mt-7;
+}
+
+.homepage .path-choice-title {
+    @apply font-bold mt-2 mb-3;
+    font-size: 2rem;
+    color: var(--color-primary-text);
+}
+
+.homepage .path-choice-outcome {
+    @apply leading-8 text-gray-600;
+    flex: 1 1 auto;
+}
+
+.homepage .path-choice-price {
+    @apply block mt-5 font-bold;
+    font-size: 1.7rem;
+    color: var(--color-primary-text);
+}
+
+.homepage .path-choice-cta {
+    @apply inline-block mt-4 font-semibold;
+    color: var(--ghost-accent-color);
+}
+
+.homepage .path-choice:hover .path-choice-cta {
+    @apply underline;
+}
+
+/* Full catalog, collapsed by default beneath the chooser. */
+.homepage .offerings-all {
+    @apply mt-10;
+}
+
+.homepage .offerings-all > summary {
+    @apply cursor-pointer font-semibold text-center list-none;
+    color: var(--ghost-accent-color);
+    font-size: 1.5rem;
+}
+
+.homepage .offerings-all > summary::-webkit-details-marker {
+    display: none;
+}
+
+.homepage .offerings-all[open] > summary {
+    @apply mb-4;
+}
+
 /* Offerings */
 .homepage .offerings-grid {
     @apply mt-8 grid gap-8 grid-cols-1 md:grid-cols-2;

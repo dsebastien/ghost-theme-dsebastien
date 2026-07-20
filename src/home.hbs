@@ -206,6 +206,12 @@
                 <p class="offerings-intro">{{@custom.stat_community_members}} members already building better systems</p>
                 <p class="offerings-subheading">Pick your entry point:</p>
 
+                {{!-- Three intent-based paths (Tier 2.2). Full catalog collapses below. --}}
+                {{> "components/path-chooser"}}
+
+                <details class="offerings-all">
+                    <summary>See all products &rarr;</summary>
+
                 <!-- BESTSELLER HIGHLIGHT -->
                 <div class="offering-featured">
                     <span class="badge">MOST POPULAR</span>
@@ -267,6 +273,7 @@
                 <div class="offerings-cta">
                     <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="link-prominent">View All Products →</a>
                 </div>
+                </details>
             </section>
 
             <!-- Testimonials -->
