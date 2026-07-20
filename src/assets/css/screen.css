@@ -2843,8 +2843,16 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .start-page .layer-bar {
-    @apply flex items-center justify-between rounded-lg px-6 py-4 text-white font-medium shadow-md;
+    @apply flex items-center justify-between rounded-lg px-6 py-4 text-white font-medium shadow-md no-underline;
     transition: transform 0.2s ease;
+}
+
+/* Layer bars are links to the /start/<layer>/ guided pages — keep them white,
+   never the .gh-content accent-underline treatment. */
+.start-page .layer-bar,
+.start-page .layer-bar:hover {
+    color: var(--color-white);
+    text-decoration: none;
 }
 
 .start-page .layer-bar:hover {
