@@ -1,14 +1,11 @@
 # Homepage + Start Page Overhaul — Plan (remaining work)
 
-Repo: `$WKS/ghost-theme-dsebastien`. Targets: `src/home.hbs`, `src/start.hbs`, `configuration/routes.yaml`. Tier 1 (trust bugs, `@custom` stats + live prices, member-aware single-CTA hero, de-commercialized `/start/`, home fresh-content strips), 2.1 (start.hbs's ~70 hardcoded links → live pillar `topic-section` strips), and 2.3 (the five `/start/{layer}/` guided-path pages) shipped 2026-07-17→20 and are removed from this file — see **[[dSebastien Website (Project)]]** for what landed. The old `start-page-improvements.md` was fully absorbed here and deleted. This file tracks only what's left.
+Repo: `$WKS/ghost-theme-dsebastien`. Targets: `src/home.hbs`, `src/start.hbs`, `configuration/routes.yaml`. Tier 1 (trust bugs, `@custom` stats + live prices, member-aware single-CTA hero, de-commercialized `/start/`, home fresh-content strips), 2.1 (start.hbs's ~70 hardcoded links → live pillar `topic-section` strips), 2.2 (home 3-path chooser + collapsed full catalog), and 2.3 (the five `/start/{layer}/` guided-path pages) shipped 2026-07-17→20 and are removed from this file — see **[[dSebastien Website (Project)]]** for what landed. The old `start-page-improvements.md` was fully absorbed here and deleted. This file tracks only what's left.
 
 ## Vision (north star)
 Three pages, three jobs: **`/` convinces + routes** (cold → `/start/`, member → content/community, buyer → store; no price list), **`/start/` teaches** (guided free five-layer curriculum, self-routing by situation, exactly one benefit-framed offer per layer), **`/blog/` feeds** (the magazine front page). Routing = `@member`-tier branching + self-selection routers + topic-keyed contextual offers (Ghost themes can't do per-visitor server logic beyond `@member`).
 
 ## Remaining work
-
-### 2.2 — Collapse home's 7-product grid into a 3-path chooser (`home.hbs`)
-Three cards — Just exploring (free)→`/start/` | Proven system→Obsidian Starter Kit | Ready for community→Knowii — each one product + one outcome + one CTA. Dedicated partial (NOT `post-card` — wrong context object). The 6-product grid survives as a collapsed `<details>` "See all products" beneath.
 
 ### 2.4 — Extract the five-layer framework into `components/layer-stack.hbs`
 One partial with `variant="compact|full"` (`{{#match}}`) replacing the two divergent hardcoded implementations (home steps vs start stack). Home → compact + single CTA to `/start/#area-foundation`; start → the hero diagram, each layer bar an in-page anchor to its area (and now also linkable to the matching `/start/{layer}/` guided page — see 2.3, shipped). Fix the orphan `benefit-item` class (home.hbs). CSS already exists ~`screen.css` L2570+. This is what remains of the "shorten `/start/`" goal now that the per-layer deep-dive pages exist.
@@ -41,4 +38,4 @@ SearchAction JSON-LD (Ghost has no `?s=` results page — Sodo is a client overl
 Plausible goals live. Targets (first 30d post-change vs pre-baseline): `/`→`/start/` CTR ≥8% of unique home visitors; email signup rate on `/`+`/start/` +50%; fewer `/start/`→store clicks but higher store-page conversion (watch store analytics, not just clicks); checklist lead-magnet >0 downloads; start.hbs TTFB delta <100ms with ~10-12 `{{#get}}`.
 
 ## The One Thing
-Ship **2.2 (collapse home's 7-product grid into a 3-path chooser)** — with 2.3's guided paths now live, the home page is the last high-traffic surface still asking visitors to self-serve a product menu instead of routing them (exploring → `/start/`, proven → OSK, community → Knowii).
+Ship **2.6 (make `/start/` a hub that receives PageRank)** — the guided journey and the home chooser both now point *into* `/start/`, but nothing yet links *into* it from the 292 articles and `/blog/`. Add "New to PKM? Start here" from `/blog/` + tag-conditional sidebar links from posts, and standardize one home anchor to "Personal Knowledge Management guide". Cheap, and it compounds SEO into the pages just built.
