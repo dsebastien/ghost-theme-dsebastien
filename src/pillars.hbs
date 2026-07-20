@@ -1,0 +1,106 @@
+{{!< default}}
+{{!--
+    /pillars/ index (homepage-start-overhaul 2.6 follow-up).
+    A hub that links to all 7 pillar archives. Bound as a static route in
+    configuration/routes.yaml (`/pillars/: { template: pillars }`).
+
+    Pillar identity (name/emoji/tagline/slug) is hardcoded here because Ghost
+    themes cannot read src/data/pillars.json at render time — that file drives
+    the backfill + wrappers only. Keep this card list in sync with pillars.json
+    (priorityOrder governs display order below).
+--}}
+{{#contentFor "meta_description"}}
+<meta name="description" content="The seven pillars of my writing on Personal Knowledge Management — from PKM foundations and Obsidian systems to writing, productivity, knowledge work, and AI. Pick a path and go deep.">
+{{/contentFor}}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Pillars",
+    "description": "The seven pillars of my writing on Personal Knowledge Management.",
+    "isPartOf": { "@type": "WebSite", "name": "{{@site.title}}", "url": "{{@site.url}}" },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{@site.url}}" },
+            { "@type": "ListItem", "position": 2, "name": "Articles", "item": "{{@site.url}}/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "Pillars" }
+        ]
+    }
+}
+</script>
+
+<main class="gh-main pillars-index">
+
+    <!-- Editorial hero -->
+    <section class="gh-outer pillar-hero">
+        <div class="gh-inner">
+            <p class="pillar-kicker"><a href="/blog/">Articles</a> <span aria-hidden="true">›</span> Pillars</p>
+            <h1 class="pillar-title is-title">🗂️ The Pillars</h1>
+            <p class="pillar-intro is-body">Everything I write sorts into seven pillars — from the foundations of Personal Knowledge Management to the tools, the thinking practice, and turning it all into work, content, and leverage. Pick the one that fits where you are and go deep.</p>
+            <p class="pillar-hero-actions">
+                <a class="top-link" href="/start/">New here? Start with the guide 🚀</a>
+                <span class="pillar-dot" aria-hidden="true">·</span>
+                <a class="top-link" href="/blog/">Browse all articles</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- The 7 pillars -->
+    <section class="gh-outer pillars-grid-band">
+        <div class="gh-inner">
+            <div class="pillars-grid">
+                <a href="/pillars/pkm-foundations/" class="pillar-card" data-cta="pillar" data-cta-topic="pkm-foundations">
+                    <span class="pillar-card-emoji" aria-hidden="true">📚</span>
+                    <span class="pillar-card-name">PKM Foundations</span>
+                    <span class="pillar-card-tagline">Understand why knowledge management matters — and where to start.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/tools-and-systems/" class="pillar-card" data-cta="pillar" data-cta-topic="tools-and-systems">
+                    <span class="pillar-card-emoji" aria-hidden="true">🛠️</span>
+                    <span class="pillar-card-name">Tools &amp; Systems</span>
+                    <span class="pillar-card-tagline">Build your command center with Obsidian and proven structures.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/writing-and-thinking/" class="pillar-card" data-cta="pillar" data-cta-topic="writing-and-thinking">
+                    <span class="pillar-card-emoji" aria-hidden="true">🧠</span>
+                    <span class="pillar-card-name">Writing &amp; Thinking</span>
+                    <span class="pillar-card-tagline">Turn raw information into connected insight.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/zen-productivity/" class="pillar-card" data-cta="pillar" data-cta-topic="zen-productivity">
+                    <span class="pillar-card-emoji" aria-hidden="true">🧭</span>
+                    <span class="pillar-card-name">Zen Productivity</span>
+                    <span class="pillar-card-tagline">Clarity, focus, and habits that stick — without the overwhelm.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/knowledge-work/" class="pillar-card" data-cta="pillar" data-cta-topic="knowledge-work">
+                    <span class="pillar-card-emoji" aria-hidden="true">💼</span>
+                    <span class="pillar-card-name">Knowledge Work</span>
+                    <span class="pillar-card-tagline">Leverage your system at work and in your career.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/content-systems/" class="pillar-card" data-cta="pillar" data-cta-topic="content-systems">
+                    <span class="pillar-card-emoji" aria-hidden="true">✍️</span>
+                    <span class="pillar-card-name">Content Systems</span>
+                    <span class="pillar-card-tagline">Publish consistently by turning your notes into a content engine.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+                <a href="/pillars/creator-systems/" class="pillar-card" data-cta="pillar" data-cta-topic="creator-systems">
+                    <span class="pillar-card-emoji" aria-hidden="true">🤖</span>
+                    <span class="pillar-card-name">AI &amp; Creator Systems</span>
+                    <span class="pillar-card-tagline">Turn AI and automation into real leverage for building and creating.</span>
+                    <span class="pillar-card-link">Explore →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {{!-- Membership options — same comparison band as the /start/ and pillar
+         pages. The Free column auto-hides for logged-in members. --}}
+    <section class="gh-content gh-canvas is-body pillar-tiers">
+        {{> "components/membership-tiers" title="Go further with a membership"}}
+    </section>
+
+</main>

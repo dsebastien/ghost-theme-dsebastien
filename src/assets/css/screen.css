@@ -4584,6 +4584,57 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply opacity-100;
 }
 
+/* /pillars/ index (homepage 2.6 follow-up): richer cards than .pillar-chip,
+   one per pillar hub — emoji + name + tagline + Explore link. */
+.pillars-grid-band {
+    @apply !mt-12;
+}
+
+.pillars-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.pillar-card {
+    @apply flex flex-col no-underline rounded-2xl;
+    padding: 1.8rem 1.8rem 1.6rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.pillar-card:hover {
+    border-color: var(--ghost-accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    @apply opacity-100;
+}
+
+.pillar-card-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    @apply mb-3;
+}
+
+.pillar-card-name {
+    @apply font-bold;
+    font-size: 1.9rem;
+    color: var(--color-primary-text);
+}
+
+.pillar-card-tagline {
+    @apply mt-2;
+    font-size: 1.5rem;
+    line-height: 1.45;
+    color: var(--color-secondary-text);
+}
+
+.pillar-card-link {
+    @apply mt-4 font-semibold;
+    font-size: 1.45rem;
+    color: var(--ghost-accent-color);
+}
+
 /* Guided-path pages: /start/<layer>/ (homepage 2.3 / articles 3.3).
    Reuses .pillar-kicker/.pillar-title/.pillar-intro/.pillar-offer-band and the
    .start-page .home-strips card styling; only the layer chrome is new here. */

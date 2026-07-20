@@ -90,6 +90,12 @@ routes:
   # Posts are assigned to pillars by the hash-pillar-* backfill (first-match
   # over topic tags; see src/data/pillars.json). Browsable page + RSS at
   # /pillars/<slug>/rss/. Internal tags stay out of /tag/ and post tag lists.
+  #
+  # /pillars/ index — static route linking to all 7 hubs (homepage-start-overhaul
+  # 2.6 follow-up). Plain template (no channel/data binding needed — the card
+  # list is hardcoded in src/pillars.hbs, kept in sync with src/data/pillars.json).
+  /pillars/:
+    template: pillars
   /pillars/pkm-foundations/:
     controller: channel
     filter: "tag:hash-pillar-pkm-foundations+tag:blog"
