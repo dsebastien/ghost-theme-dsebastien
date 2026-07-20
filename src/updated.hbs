@@ -1,0 +1,41 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+{{!-- Channel: /updated/ (filter: tag:blog + updated_at after the 2026-06 re-timestamp
+     cutoff, order: updated_at desc — see configuration/routes.yaml). A "recently
+     refreshed" surface + RSS feed for genuinely-updated evergreen content. Same card
+     grid + sidebar as /all-articles/ and /blog/. Empty until real refreshes accrue. --}}
+
+{{#contentFor "meta_description"}}
+<meta name="description" content="Recently refreshed articles by Sébastien Dubois — evergreen guides on knowledge management, Obsidian, productivity and AI, kept up to date.">
+{{/contentFor}}
+
+<main class="gh-main gh-outer all-articles-page">
+    <header class="!mt-24 gh-article-header gh-canvas hero">
+        <h1 class="gh-article-title is-title text-center text-4xl font-bold">
+            Recently Updated 🔄
+        </h1>
+        <p class="text-4xl leading-relaxed max-w-4xl break-words text-center">Evergreen guides I've refreshed most recently — kept current, not left to rot.</p>
+    </header>
+
+    <section class="gh-container is-grid has-sidebar gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <main class="gh-main">
+                {{#if posts}}
+                    <div class="gh-feed">
+                        {{#foreach posts}}
+                            {{> "post-card" lazyLoad=true}}
+                        {{/foreach}}
+                    </div>
+
+                    {{pagination}}
+                {{else}}
+                    <div class="gh-feed">
+                        <p class="text-3xl leading-relaxed max-w-4xl break-words">No freshly-updated articles just yet — check back soon, or browse the full catalogue in <a href="/all-articles/">All Articles</a>.</p>
+                    </div>
+                {{/if}}
+            </main>
+
+            {{> "components/sidebar" showFeatured=true}}
+        </div>
+    </section>
+</main>

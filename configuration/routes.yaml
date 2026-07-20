@@ -16,6 +16,16 @@ routes:
     filter: "tag:blog"
     template: all-articles
     rss: false
+  # "Recently refreshed" feed (Tier 1.8b). Filtered to genuine post-cutoff edits
+  # (updated_at after the 2026-06 site-wide re-timestamp) so it reflects real
+  # freshness, not the mass re-stamp. Keep this date in sync with the freshness.js
+  # CUTOFF. rss:true -> /updated/rss/.
+  /updated/:
+    controller: channel
+    filter: "tag:blog+updated_at:>'2026-07-01 00:00:00'"
+    order: "updated_at desc"
+    template: updated
+    rss: true
   /tags/:
     template: tags-hub
   /series/:

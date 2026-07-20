@@ -312,7 +312,11 @@ Audit: theme already emits WebSite+SearchAction, Article (dateModified, keywords
 
 **Shipped:** visible "↻ Updated {Mon YYYY}" badge above the post title + an "updated {date}" note in the meta line, revealed by `assets/js/freshness.js` ONLY when `updated_at` is ≥30 days after `published_at` **and** on/after a `2026-07-01` cutoff — the cutoff dodges the 2026-06 site-wide re-timestamp that would otherwise badge the whole back-catalogue. `dateModified` in Article schema is already emitted by Ghost core via `{{ghost_head}}`. Template: `post.hbs` (hidden badge + meta span carrying `data-published`/`data-updated` unix stamps). CSS: `.gh-article-freshness` (+ `[hidden]` specificity guards). **Deferred:** the `/updated/` collection route/feed. **Note:** the badge only tells the truth if cornerstone posts are actually refreshed (and Ghost bumps `updated_at`); raise/remove the JS cutoff once the re-timestamp is no longer a factor. Original spec below.
 
-### 1.8b `/updated/` "Recently refreshed" feed — 📋 PLANNED
+### 1.8b `/updated/` "Recently refreshed" feed — ✅ DONE 2026-07-20
+
+**Shipped:** `/updated/` channel in `routes.yaml` (`filter: "tag:blog+updated_at:>'2026-07-01 00:00:00'"`, `order: "updated_at desc"`, `rss: true` → `/updated/rss/`). The `updated_at` cutoff mirrors the freshness.js CUTOFF, so the feed shows only genuine post-re-timestamp refreshes rather than the whole catalogue restamped to 2026-06. `src/updated.hbs` = the `/all-articles/` card-grid + sidebar layout, with an empty-state fallback (links to `/all-articles/`) until real refreshes accrue. Cross-linked from the footer Content column ("Recently Updated 🔄"). **routes.yaml needs manual upload** (Admin API 403s on routes). Keep the route filter date in sync with `freshness.js` CUTOFF. Original planned spec below.
+
+### ~~1.8b planned~~ `/updated/` "Recently refreshed" feed
 
 **Build:** add an `/updated/` route in `configuration/routes.yaml` as a channel — `controller: channel`, `filter: "tag:blog"`, `order: "updated_at desc"`, `template: updated`, `rss: true` — so it lists articles by most-recently-refreshed. New `src/updated.hbs` reusing the card grid + sidebar (clone `all-articles.hbs`/pillar-body structure; `{{> "post-card"}}` + `{{pagination}}`). Cross-link it from the `/blog/` "Recently updated" strip (Tier 1.0 item 6) and optionally the footer.
 
