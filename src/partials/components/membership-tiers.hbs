@@ -1,9 +1,16 @@
 {{!--
-    Membership tier comparison grid — member-aware.
-    Visible to EVERYONE — logged-in free members are the warmest upgrade
-    audience; only the Free card is redundant for them (hidden via @member).
-    The Supporter card is hidden for paid members (@member.paid).
-    The Knowii Community card is always shown (sold via the store, not Portal).
+    Membership tier grid — Free newsletter + the three Knowii Community tiers.
+    (Supporter tier retired 2026-07-20; also removed in Ghost admin.)
+
+    - Free card: newsletter signup via Portal; hidden for logged-in members
+      (already subscribed) — {{#unless @member}}.
+    - Explorer / Knowledge Builder / Knowledge Master: sold via the store, always
+      shown. Each links to its store variant (quarterly). Prices hydrate live from
+      products-light.json via prices.js (data-price + data-price-variant); the
+      server-rendered €NN.NN/quarter is the no-JS/SEO fallback.
+    - Copy sourced from store-website knowii-community.json (variant descriptions +
+      `contents`): shared benefits live in the intro line, columns show only each
+      tier's differentiators.
 
     Parameters:
     * title (optional) — heading text. Defaults to "Membership tiers"
@@ -11,10 +18,12 @@
 --}}
 <section class="newsletter-tiers">
     <h3>{{#if title}}{{title}}{{else}}{{#if @member}}Go further{{else}}Membership tiers{{/if}}{{/if}}</h3>
+    <p class="newsletter-tiers-intro">Every Knowii tier includes the private community, live events, expert access, monthly challenges, a 3.8K+ concept knowledge base and my <a href="https://notes.dsebastien.net/" rel="noopener">~10K published notes</a>. Pick the depth that fits you:</p>
     <div class="newsletter-tiers-grid">
         {{#unless @member}}
         <div class="newsletter-tier">
             <h4>Free</h4>
+            <p class="newsletter-tier-price">€0</p>
             <ul>
                 <li>✅ New newsletter editions in your inbox</li>
                 <li>✅ All articles &amp; the full archive</li>
@@ -22,28 +31,42 @@
             <a href="#/portal/signup" data-portal="signup" class="gh-button newsletter-tier-cta">Subscribe free →</a>
         </div>
         {{/unless}}
-        {{#unless @member.paid}}
+
         <div class="newsletter-tier">
-            <h4>Supporter</h4>
+            <h4>Explorer</h4>
+            <p class="newsletter-tier-price"><span data-price="knowii-community" data-price-variant="Explorer">€14.99/quarter</span></p>
             <ul>
-                <li>✅ Everything in Free</li>
-                <li>✅ Exclusive discounts</li>
-                <li>✅ Early access to products</li>
-                <li>✅ Support my work as a creator 🌹</li>
+                <li>✅ Community discussions &amp; PKM guidance</li>
+                <li>✅ Tutorials, curated content &amp; resource library</li>
+                <li>✅ Templates to start fast</li>
+                <li>✅ Free bonuses: Knowledge System Checklist &amp; PKM Tools Database</li>
             </ul>
-            <a href="#/portal/signup" data-portal="{{#if @member}}upgrade{{else}}signup{{/if}}" class="gh-button newsletter-tier-cta">Become a Supporter →</a>
+            <a href="https://www.store.dsebastien.net/product/knowii-community?variant=explorer&amp;frequency=quarterly" rel="noopener" data-cta="knowii" data-cta-topic="tier-explorer" class="gh-button newsletter-tier-cta">Join Explorer →</a>
         </div>
-        {{/unless}}
-        <div class="newsletter-tier newsletter-tier-highlight">
-            <span class="newsletter-tier-badge">RECOMMENDED</span>
-            <h4>Knowii Community</h4>
+
+        <div class="newsletter-tier">
+            <h4>Knowledge Builder</h4>
+            <p class="newsletter-tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Builder">€59.99/quarter</span></p>
             <ul>
-                <li>✅ A private community of knowledge workers</li>
-                <li>✅ Everything in Free, plus workshops, courses &amp; tools — depending on the tier you pick</li>
-                <li>✅ Up to €700+ of my products &amp; courses included</li>
-                <li>✅ <span data-price="knowii-community">From €14.99/quarter</span></li>
+                <li>✅ Everything in Explorer</li>
+                <li>✅ Premium workshops &amp; deep dives</li>
+                <li>✅ Obsidian Starter Kit &amp; Course included</li>
+                <li>✅ Newsletter archives &amp; early access — $150+ of products included</li>
             </ul>
-            <a href="https://www.store.dsebastien.net/product/knowii-community" rel="noopener" class="gh-button newsletter-tier-cta">Join Knowii →</a>
+            <a href="https://www.store.dsebastien.net/product/knowii-community?variant=knowledge-builder&amp;frequency=quarterly" rel="noopener" data-cta="knowii" data-cta-topic="tier-knowledge-builder" class="gh-button newsletter-tier-cta">Join as Knowledge Builder →</a>
+        </div>
+
+        <div class="newsletter-tier newsletter-tier-highlight">
+            <span class="newsletter-tier-badge">BEST VALUE</span>
+            <h4>Knowledge Master</h4>
+            <p class="newsletter-tier-price"><span data-price="knowii-community" data-price-variant="Knowledge Master">€119.99/quarter</span></p>
+            <ul>
+                <li>✅ Everything in Knowledge Builder</li>
+                <li>✅ ALL courses &amp; ALL tools — Knowledge Worker Kit, PKM Library, AI Ghostwriter Guide &amp; more</li>
+                <li>✅ Exclusive events: AMAs, group coaching &amp; masterminds</li>
+                <li>✅ ~€700 of products &amp; courses included</li>
+            </ul>
+            <a href="https://www.store.dsebastien.net/product/knowii-community?variant=knowledge-master&amp;frequency=quarterly" rel="noopener" data-cta="knowii" data-cta-topic="tier-knowledge-master" class="gh-button newsletter-tier-cta">Join as Knowledge Master →</a>
         </div>
     </div>
 </section>
