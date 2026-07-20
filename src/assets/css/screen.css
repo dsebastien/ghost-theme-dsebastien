@@ -4749,7 +4749,12 @@ a.series-nav-part:hover {
 }
 
 .author-card-cta {
-    @apply !mb-0;
+    margin-bottom: 0;
+    /* The card sits inside .gh-content, whose `a` rule repaints links with the
+       accent colour + underline — override so the button keeps its white,
+       underline-free label. */
+    color: var(--color-white) !important;
+    text-decoration: none !important;
 }
 
 .author-card-secondary {
