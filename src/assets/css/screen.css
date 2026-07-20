@@ -3582,6 +3582,13 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply mt-0;
 }
 
+/* The overlay panel is text-center; the tier cards must read as normal
+   left-aligned pricing cards so the ✅ checklists line up cleanly (esp. mobile,
+   where cards are full-width). The section heading + intro stay centred. */
+.subscribe-overlay-tiers .newsletter-tier {
+    text-align: left;
+}
+
 .subscribe-overlay-title {
     @apply text-4xl font-bold mb-4;
 }
