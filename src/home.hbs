@@ -54,6 +54,16 @@
                  routed by the hero and skip straight to content below. --}}
             {{#unless @member}}
 
+            {{!-- Answer-first definition block (homepage-start-overhaul 2.5 / GEO).
+                 One self-contained, extractable paragraph answering "what is PKM"
+                 + "who is Sébastien" (E-E-A-T). Positioned high in the DOM, right
+                 after the hero, so answer engines can lift it verbatim. --}}
+            <section class="answer-block">
+                <h2>What is Personal Knowledge Management?</h2>
+                <p><strong>Personal Knowledge Management (PKM)</strong> is the practice of capturing, organizing, connecting, and reusing what you learn, so scattered information becomes durable knowledge you can act on. A good PKM system gives you one reliable place for your notes, ideas, and references, so your past work compounds instead of piling up across a dozen apps. It's the foundation for thinking clearly, learning faster, creating consistently, and using AI as a genuine thinking partner rather than a generic autocomplete.</p>
+                <p>I'm <strong>Sébastien Dubois</strong>, a software engineer, entrepreneur, and knowledge-management expert with {{@custom.stat_years_expertise}} years of experience. I help {{@custom.stat_newsletter_members}} newsletter readers and {{@custom.stat_community_members}} community members build systems that turn overload into output. Everything here is proven, practical, and tool-agnostic: the principles work whether you use Obsidian, Notion, or pen and paper.</p>
+            </section>
+
             <!-- Results Proof Section -->
             <section class="results-proof">
                 <h2>Real Results from Real People</h2>
@@ -170,28 +180,32 @@
             <!-- Approach/Layers -->
             <section class="approach">
                 <h2 style="text-align:center; margin-bottom:2rem;">Five Layers. One System. 🗺️</h2>
-                <div class="approach-steps">
-                    <div class="step">
+                {{!-- Semantic ordered list (homepage-start-overhaul 2.5 / GEO):
+                     the five layers ARE a sequence, so mark them up as an <ol> in
+                     canonical order (Foundation → Creation). This makes the
+                     framework extractable as a numbered list by answer engines. --}}
+                <ol class="approach-steps">
+                    <li class="step">
                         <h3>Foundation 🏗️</h3>
                         <p>Understand why knowledge management matters. Break free from information chaos.</p>
-                    </div>
-                    <div class="step">
+                    </li>
+                    <li class="step">
                         <h3>System 🛠️</h3>
                         <p>Build your command center with the right tools and proven frameworks.</p>
-                    </div>
-                    <div class="step">
+                    </li>
+                    <li class="step">
                         <h3>Practice ✍️</h3>
                         <p>Turn raw information into connected insights through daily habits.</p>
-                    </div>
-                    <div class="step">
+                    </li>
+                    <li class="step">
                         <h3>Application 💼</h3>
                         <p>Use your system at work and in life. Clarity, focus, and balance.</p>
-                    </div>
-                    <div class="step">
+                    </li>
+                    <li class="step">
                         <h3>Creation ⚙️</h3>
                         <p>Turn knowledge into content, products, and impact.</p>
-                    </div>
-                </div>
+                    </li>
+                </ol>
                 <p style="text-align:center; margin-top:2rem;">
                     <a href="/start/" style="color:#d42d70; text-decoration:underline;">Start Your Journey &rarr;</a>
                 </p>

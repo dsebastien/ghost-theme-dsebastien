@@ -2628,9 +2628,33 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply bg-red-700 !text-white;
 }
 
-/* Approach */
+/* Answer-first definition block (2.5 / GEO) — shared by home + start. A quiet,
+   readable callout: accent left-border, subtle tint, constrained measure. */
+.answer-block {
+    @apply !mt-16 !mb-12 rounded-r-lg;
+    border-left: 4px solid var(--ghost-accent-color);
+    background: var(--color-lighter-gray);
+    padding: 1.8rem 2.2rem;
+}
+
+.answer-block h2 {
+    @apply !mt-0 !mb-4;
+}
+
+.answer-block p {
+    @apply mb-4;
+}
+
+.answer-block p:last-child {
+    @apply !mb-0;
+}
+
+/* Approach — semantic <ol> (2.5); reset default list marker + indent so the
+   flex-column layout is unchanged. */
 .homepage .approach-steps {
-    @apply flex flex-col gap-8;
+    @apply flex flex-col gap-8 list-none;
+    padding-inline-start: 0;
+    margin: 0;
 }
 
 .homepage .step {
