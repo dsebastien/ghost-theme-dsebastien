@@ -8,6 +8,10 @@
             <h2>For creators, leaders, and knowledge workers who save everything and find nothing. Turn scattered notes into work that compounds instead of piling up.</h2>
         </header>
 
+        {{!-- Structured-data delta (3.2): Organization + ProfilePage always,
+             FAQPage (mirrors the 7 <details> below) for cold visitors only. --}}
+        {{> "components/json-ld-extras" page="home"}}
+
         <section class="gh-content gh-canvas is-body">
             <!-- Hero -->
             <section class="hero">

@@ -1,0 +1,179 @@
+{{!--
+    Structured-data delta (homepage-start-overhaul 3.2).
+
+    Complements the WebSite + Person (+ sameAs + worksFor stub) graph already in
+    default.hbs. The caller passes `page="home"` or `page="start"` and only that
+    page's block is emitted. Nodes cross-reference the default.hbs graph by @id:
+      Person  → https://www.dsebastien.net/#person
+      WebSite → https://www.dsebastien.net/#website
+      Org     → https://developassion.be/#organization   (stub expanded here)
+
+    GEO note: Google retired FAQ/HowTo *rich results* in 2023, so these earn no
+    SERP enhancement — they are kept purely as machine-readable signals for
+    answer engines (ChatGPT/Perplexity/AI Overviews) that parse schema.org JSON.
+    Keep the FAQ Q&A text in sync with home.hbs's 7 <details>; keep the HowTo
+    steps + anchors in sync with start.hbs's #area-* sections.
+--}}
+{{#match page "home"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://developassion.be/#organization",
+            "name": "DeveloPassion",
+            "alternateName": "DeveloPassion SRL",
+            "url": "https://developassion.be",
+            "logo": "{{@site.url}}{{asset "assets/images/developassion-logo.png"}}",
+            "description": "DeveloPassion helps creators, leaders, and knowledge workers build AI-powered knowledge systems that turn information overload into consistent output.",
+            "founder": { "@id": "https://www.dsebastien.net/#person" },
+            "sameAs": [
+                "https://store.dsebastien.net",
+                "https://www.youtube.com/@dsebastien",
+                "https://x.com/dsebastien",
+                "https://www.linkedin.com/in/sebastiend/"
+            ]
+        },
+        {
+            "@type": "ProfilePage",
+            "@id": "https://www.dsebastien.net/about/#profilepage",
+            "url": "https://www.dsebastien.net/about/",
+            "name": "About Sébastien Dubois",
+            "mainEntity": { "@id": "https://www.dsebastien.net/#person" },
+            "isPartOf": { "@id": "https://www.dsebastien.net/#website" }
+        }
+    ]
+}
+</script>
+{{#unless @member}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.dsebastien.net/#faq",
+    "isPartOf": { "@id": "https://www.dsebastien.net/#website" },
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "I don't have time to learn a new system",
+            "acceptedAnswer": { "@type": "Answer", "text": "That's exactly why you need one. A good system saves you time; it doesn't add to your workload. Most people reclaim hours per week once they stop searching, re-reading, and reinventing. Start with 15 minutes a day. You'll feel the difference within a week." }
+        },
+        {
+            "@type": "Question",
+            "name": "I've tried other systems before and they didn't stick",
+            "acceptedAnswer": { "@type": "Answer", "text": "I've been there too. Most systems fail because they're either too complex or too rigid. Mine are designed to start simple and grow with you. No perfectionism required. The Obsidian Starter Kit gives you a working system on day one. Not a blank canvas and a prayer." }
+        },
+        {
+            "@type": "Question",
+            "name": "Is this only for Obsidian users?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. The principles, frameworks, and mental models I teach work with ANY tool. I use Obsidian and recommend it, but the core ideas apply whether you use Notion, Logseq, Apple Notes, or pen and paper. The system matters more than the tool." }
+        },
+        {
+            "@type": "Question",
+            "name": "I already use ChatGPT/AI. Why do I need this?",
+            "acceptedAnswer": { "@type": "Answer", "text": "AI without a knowledge system is like a sports car without a road. You get fast answers but no compounding value. When you combine AI with a well-organized knowledge base, it becomes a true thinking partner. One that knows YOUR context, YOUR projects, YOUR ideas. That's where the real leverage is." }
+        },
+        {
+            "@type": "Question",
+            "name": "I'm not a creator or content maker",
+            "acceptedAnswer": { "@type": "Answer", "text": "You don't need to be. If you think, learn, decide, or communicate for a living, you're a knowledge worker. These systems help anyone who deals with information: managers, researchers, students, founders, consultants. Everyone creates something, even if it's not content." }
+        },
+        {
+            "@type": "Question",
+            "name": "Can't I just figure this out on my own?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. I did; it took me {{@custom.stat_years_expertise}} years. Everything I share is the shortcut I wish I'd had. The free articles alone will get you far. The courses, kits, and community just compress the timeline from months to days." }
+        },
+        {
+            "@type": "Question",
+            "name": "What if it doesn't work for me?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Every paid product comes with a 30-day money-back guarantee. No questions asked. Try it, apply it, and if it doesn't help, get a full refund. I'd rather you leave happy than stay frustrated." }
+        }
+    ]
+}
+</script>
+{{/unless}}
+{{else match page "start"}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "HowTo",
+            "@id": "https://www.dsebastien.net/start/#howto",
+            "name": "How to Build a Personal Knowledge Management System",
+            "description": "A free five-layer path from information overload to consistent output: Foundation, System, Practice, Application, and Creation.",
+            "totalTime": "P6M",
+            "inLanguage": "en",
+            "author": { "@id": "https://www.dsebastien.net/#person" },
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Foundation",
+                    "text": "Understand why knowledge management matters and learn the core principles of a Personal Knowledge Management system.",
+                    "url": "https://www.dsebastien.net/start/#area-foundation"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "System",
+                    "text": "Choose the right tools and apply proven organizational frameworks to build a system that captures everything without adding complexity.",
+                    "url": "https://www.dsebastien.net/start/#area-system"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 3,
+                    "name": "Practice",
+                    "text": "Process information, connect ideas, and build workflows that turn raw information into connected insights.",
+                    "url": "https://www.dsebastien.net/start/#area-practice"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 4,
+                    "name": "Application",
+                    "text": "Leverage your knowledge system to solve complex problems, advance your career, and maintain balance.",
+                    "url": "https://www.dsebastien.net/start/#area-application"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 5,
+                    "name": "Creation",
+                    "text": "Turn your knowledge into content, products, and impact by building a repeatable creation engine.",
+                    "url": "https://www.dsebastien.net/start/#area-creation"
+                }
+            ]
+        },
+        {
+            "@type": "LearningResource",
+            "@id": "https://www.dsebastien.net/start/#guide",
+            "name": "Your Operating System for Knowledge Mastery",
+            "description": "A free, five-layer guide to building a Personal Knowledge Management system, from information overload to consistent output.",
+            "url": "https://www.dsebastien.net/start/",
+            "learningResourceType": "Guide",
+            "educationalLevel": "Beginner",
+            "isAccessibleForFree": true,
+            "inLanguage": "en",
+            "teaches": [
+                "Personal Knowledge Management",
+                "Note-taking",
+                "Obsidian",
+                "Zettelkasten",
+                "Knowledge work",
+                "Content creation with AI"
+            ],
+            "author": { "@id": "https://www.dsebastien.net/#person" },
+            "provider": { "@id": "https://developassion.be/#organization" },
+            "isPartOf": { "@id": "https://www.dsebastien.net/#website" }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dsebastien.net" },
+                { "@type": "ListItem", "position": 2, "name": "Start Here", "item": "https://www.dsebastien.net/start/" }
+            ]
+        }
+    ]
+}
+</script>
+{{/match}}
