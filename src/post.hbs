@@ -39,6 +39,40 @@
 }
 </script>
 
+{{!-- Enriched article schema (homepage-start-overhaul 4.2 / GEO). Supplements
+     Ghost's generic auto-emitted Article (from {{ghost_head}}) with the fields it
+     omits and — crucially — links the author to the ONE #person entity defined
+     in default.hbs (added in 3.2), so every article's authority consolidates
+     into a single graph node instead of a per-post orphan. publisher → the
+     #organization node, isPartOf → #website. speakable points answer engines at
+     the Key Takeaways box (4.1) + title. Two Article-ish nodes coexist on the
+     page (harmless; ours is richer + @id-linked). {{title}}/{{name}} are
+     HTML-escaped inside JSON here, matching the existing BreadcrumbList above. --}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": "{{url absolute="true"}}#article",
+    "mainEntityOfPage": "{{url absolute="true"}}",
+    "headline": "{{title}}",
+    "url": "{{url absolute="true"}}",
+    "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ssZ"}}",
+    "dateModified": "{{date updated_at format="YYYY-MM-DDTHH:mm:ssZ"}}",
+    "inLanguage": "en",
+    "author": { "@id": "https://www.dsebastien.net/#person" },
+    "publisher": { "@id": "https://developassion.be/#organization" },
+    "isPartOf": { "@id": "https://www.dsebastien.net/#website" },
+    "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".article-tldr", ".gh-article-title"]
+    }{{#if custom_excerpt}},
+    "description": "{{custom_excerpt}}"{{/if}}{{#if feature_image}},
+    "image": "{{img_url feature_image absolute="true"}}"{{/if}}{{#if primary_tag}},
+    "articleSection": "{{primary_tag.name}}"{{/if}}{{#if tags}},
+    "keywords": "{{#foreach tags}}{{name}}{{#unless @last}}, {{/unless}}{{/foreach}}"{{/if}}
+}
+</script>
+
 <main class="gh-main">
 
     <article class="gh-article {{post_class}}">
@@ -53,8 +87,16 @@
                  the 2026-06 site-wide re-timestamp cutoff). --}}
             <span class="gh-article-freshness" hidden data-published="{{date format="X"}}" data-updated="{{date updated_at format="X"}}">↻ Updated {{date updated_at format="MMM YYYY"}}</span>
             <h1 class="gh-article-title is-title">{{title}}</h1>
+            {{!-- Key Takeaways box (homepage-start-overhaul 4.1 / GEO): promote
+                 custom_excerpt into a labeled, visually-distinct summary — the
+                 self-contained chunk answer engines lift into AI Overviews.
+                 Referenced by the speakable spec in the Article schema (4.2).
+                 Graceful: renders nothing when custom_excerpt is empty. --}}
             {{#if custom_excerpt}}
-                <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+                <aside class="article-tldr" aria-label="Key takeaways">
+                    <span class="article-tldr-label">In short</span>
+                    <p class="article-tldr-text is-body">{{custom_excerpt}}</p>
+                </aside>
             {{/if}}
 
             {{#if @custom.show_post_metadata}}
