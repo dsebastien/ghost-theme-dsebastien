@@ -178,11 +178,25 @@
     // Only show TOC for articles with 4+ content headings
     if (headings.length < 4) return;
 
-    // Ensure all headings have IDs
+    // Ensure all headings have IDs. Use readable slugs (not heading-N) so the
+    // anchors are citable by answer engines and stable when sections are added
+    // or reordered — the GEO payoff of a TOC (homepage-start-overhaul 4.3).
+    var usedIds = {};
+    function slugify(text) {
+        return text.toLowerCase().trim()
+            .replace(/[^\w\s-]/g, '')  // drop punctuation/symbols
+            .replace(/[\s_]+/g, '-')   // whitespace/underscores -> hyphen
+            .replace(/-+/g, '-')       // collapse repeats
+            .replace(/^-+|-+$/g, '');  // trim leading/trailing hyphens
+    }
     headings.forEach(function (h, idx) {
-        if (!h.id) {
-            h.id = 'heading-' + idx;
-        }
+        // Respect an id Ghost/the author already assigned.
+        if (h.id) { usedIds[h.id] = true; return; }
+        var base = slugify(h.textContent) || 'section-' + idx;
+        var id = base, n = 2;
+        while (usedIds[id]) { id = base + '-' + n; n++; }  // dedupe collisions
+        usedIds[id] = true;
+        h.id = id;
     });
 
     // Build the TOC element
