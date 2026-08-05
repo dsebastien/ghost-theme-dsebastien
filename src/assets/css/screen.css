@@ -2740,12 +2740,59 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     @apply text-center mb-8;
 }
 
-.homepage .testimonials blockquote {
-    @apply mt-12;
+.homepage .testimonials-grid {
+    @apply grid gap-6 grid-cols-1 md:grid-cols-2 items-start;
 }
 
-.homepage .testimonials blockquote > span {
-    @apply font-medium;
+/* Carries a class, so the global `blockquote:not([class])` rule is bypassed and
+   the accent border is re-declared here on a white card. */
+.homepage .testimonials .testimonial {
+    @apply !m-0 bg-white p-6 !pl-6 rounded-lg shadow-sm;
+    border-left: 4px solid var(--ghost-accent-color);
+}
+
+.homepage .testimonials .testimonial p {
+    @apply !mt-0 text-2xl italic leading-relaxed text-gray-700;
+}
+
+.homepage .testimonials .testimonial cite {
+    @apply block mt-4 not-italic font-semibold text-gray-900;
+}
+
+.homepage .testimonials-more {
+    @apply mt-6;
+}
+
+.homepage .testimonials-more summary {
+    @apply cursor-pointer list-none py-4 text-center text-2xl font-semibold;
+    color: var(--ghost-accent-color);
+}
+
+.homepage .testimonials-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.homepage .testimonials-more summary::before {
+    content: "+";
+    @apply inline-block w-6 font-bold;
+}
+
+.homepage .testimonials-more[open] summary::before {
+    content: "−";
+}
+
+.homepage .testimonials-more .testimonials-grid {
+    @apply mt-2;
+}
+
+.homepage .testimonials .testimonials-all-link {
+    @apply mt-10 text-center;
+    font-size: 1.5rem;
+}
+
+.homepage .testimonials .testimonials-all-link a {
+    color: var(--ghost-accent-color);
+    @apply font-semibold;
 }
 
 .homepage .ready-to-start {
@@ -4195,6 +4242,15 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .start-page .success-story blockquote footer .result {
     @apply text-base text-gray-600;
+}
+
+.start-page .testimonials-all-link {
+    @apply mt-6 text-center text-lg;
+}
+
+.start-page .testimonials-all-link a {
+    color: var(--ghost-accent-color);
+    @apply font-semibold;
 }
 
 /* Start Page - Transformation Timeline */

@@ -9,7 +9,7 @@
         </header>
 
         {{!-- Structured-data delta (3.2): Organization + ProfilePage always,
-             FAQPage (mirrors the 7 <details> below) for cold visitors only. --}}
+             FAQPage (mirrors the FAQ <details> below) for cold visitors only. --}}
         {{> "components/json-ld-extras" page="home"}}
 
         <section class="gh-content gh-canvas is-body">
@@ -19,7 +19,7 @@
                     {{#if @member.paid}}
                         <!-- PAID MEMBER: compact shortcut row, no pitch -->
                         <div class="hero-member-shortcuts">
-                            <a href="https://www.store.dsebastien.net/product/knowii-community" target="_blank" rel="noopener">Community</a>
+                            <a href="https://www.store.dsebastien.net/product/knowii-community/" target="_blank" rel="noopener">Community</a>
                             <a href="/blog/">Latest articles</a>
                             <a href="#/portal/account" data-portal="account">Account</a>
                         </div>
@@ -28,7 +28,7 @@
                         <p class="hero-welcome">Welcome back 👋 Here's what's new — <a href="#home-latest">jump to the latest articles</a>.</p>
 
                         <div class="hero-cta-group">
-                            <a href="https://www.store.dsebastien.net/product/knowii-community" target="_blank" rel="noopener" class="cta gh-button primary">Upgrade to Knowii Community 🚀</a>
+                            <a href="https://www.store.dsebastien.net/product/knowii-community/" target="_blank" rel="noopener" class="cta gh-button primary">Upgrade to Knowii Community 🚀</a>
                         </div>
                     {{/if}}
                 {{else}}
@@ -50,7 +50,7 @@
                         {{!-- Router directly under the primary button; store link is the final fallback --}}
                         {{> "components/path-router" variant="home"}}
 
-                        <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="hero-textlink">or browse the products and courses</a>
+                        <a href="https://www.store.dsebastien.net" target="_blank" rel="noopener" class="hero-textlink">or browse the products and courses</a>
                 {{/if}}
             </section>
 
@@ -233,37 +233,129 @@
                      the cta-funnel below stays as the distinct final CTA. --}}
                 {{> "components/membership-tiers" title="Choose how you want to join" freeHref="/start/" freeCtaLabel="Start free →"}}
 
-                <p class="offerings-store-link">Prefer one-time purchases? <a href="https://store.dsebastien.net" target="_blank" rel="noopener">Browse all courses, kits &amp; bundles on the store &rarr;</a></p>
+                <p class="offerings-store-link">Prefer one-time purchases? <a href="https://www.store.dsebastien.net" target="_blank" rel="noopener">Browse all courses, kits &amp; bundles on the store &rarr;</a></p>
             </section>
 
             <!-- Testimonials -->
             <section class="testimonials">
                 <h2>Testimonials 📣</h2>
-                <blockquote>I love the passion and rigor you bring to your work and PKM — <span>Christina Richards</span></blockquote>
-                <blockquote>Having a working example of a living system like yours is incredibly valuable — <span>Ghada Alhumaid</span></blockquote>
-                <blockquote>Your work feels less like "content" and more like a compass for people trying to navigate the noise of knowledge and turn it into something meaningful — <span>Sarah Feraer</span></blockquote>
-                <blockquote>This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory. Overall, this has been a joy to adopt as a work tool — <span>Dwayne Appleby</span></blockquote>
-                <blockquote>Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement — <span>Julien Dambron</span></blockquote>
-                <blockquote>Great content - got me up to speed with what I was looking for fast ! Sébastien answered some questions by mail also which was much appreciated ! Thanks — <span>Sam Gonzales</span></blockquote>
-                <blockquote>Sebastien's writing is exceptional and I look forward to each new article — <span>Richard Elliott</span></blockquote>
-                <blockquote>Extremely comprehensive and most worthwhile! — <span>Mike Nall</span></blockquote>
-                <blockquote>A very good starting point for your Personal Knowledge Management — <span>Fredrik Nordstrom</span></blockquote>
-                <blockquote>I just had a coaching session with Sébastien Dubois, and it was an incredibly helpful experience. Sébastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner.. — <span>Anonymous</span></blockquote>
-                <blockquote>Thank you for everything you share. It's always relevant, always useful. — <span>Julien Dambron</span></blockquote>
-                <blockquote>I've learned a lot from you and find great value in every resource of yours that I've had time to explore so far. One of the things I really enjoy is how all pieces supports each other and forms a cohesive whole. I simply see that you'd have a lot to offer, not only to knowledge workers but also entrepreneurs, students/scientists, and anyone who's either interested in learning or wants to get more organized... just to name a few groups I can think of right now — <span>Sofia</span></blockquote>
-                <blockquote>Cannot say enough about what you've created - thank you! — <span>jakmark4</span></blockquote>
-                <blockquote>Literally cannot thank you enough for this system and process — <span>Peter Kay</span></blockquote>
-                <blockquote>Thanks for such amazing content — <span>Arnold Kiptoo</span></blockquote>
-                <blockquote>I can't express just how impressed I am with the PKM system you created. It is beautifully thought-out and crafted. This is exactly what I needed. You have an amazing system out of the box — <span>Jaelyn</span></blockquote>
-                <blockquote>What you are doing here is SO useful and helpful, and SO needed in the world. And it's not just the tools and resources you've created, which are amazing, but also that you have created this community for passionate people to come together — <span>Jaelyn</span></blockquote>
-                <blockquote>Don't let the 'Beginners' title fool you. This course is a comprehensive guide to building a fully functional Second Brain. Sebastien goes far beyond simple note-taking; he teaches a complete lifecycle. The sections on automating workflows and the deep dive into integrating AI were absolute game-changers. I walked away not just with a set of notes, but with a 'Life OS' that I can actually trust — <span>Olivier Larue</span></blockquote>
-                <blockquote>As someone who has bounced around trying to find the right Knowledge tool, I've realized many of my issues have been related to complexity. The structure, design and explanations have finally given me the foundation I needed. 100% worth it — <span>Michael Aaron</span></blockquote>
-                <blockquote>I have worked in information systems since the 1980's and stumbled on some of these things haphazardly over the decades. I have never seen all these teachings together before. This is doing a great job of teaching me what I've been looking for since I was fourteen years old — <span>Roger Frei</span></blockquote>
-                <blockquote>Starting as an absolute beginner, this kit allowed me to jump to what I feel is an intermediate level of Obsidian understanding and effective note taking in the span of 1-2 days — <span>Blake Holder</span></blockquote>
-                <blockquote>Sébastien thinks everything from first principles, the systems and ideas we discussed are well thought from multiple angles — <span>Adrian Craciun</span></blockquote>
-                <blockquote>With Sebastien's plentiful offerings and resources, I feel like there is a light at the end of the tunnel, that I might actually one day soon feel comfortable, energized, inspired to actually dwell in Obsidian and build with more intention and understanding — <span>Ronny Khalil</span></blockquote>
-                <blockquote>Overall, it's been really helpful reviewing your resources on PKM and setting up a well-designed Obsidian vault! You explain concepts very clearly and your newsletters are a goldmine! I've barely scratched the surface of everything you've offered. — <span>Arlanna Pugh</span></blockquote>
-                <blockquote>I've been reading and re-reading a lot of the content here… Clarity 101, the PKM library, the Knowledge Worker Kit and honestly it's a goldmine, thank you so much Sebastien 👏 — <span>Filip Colée</span></blockquote>
+
+                {{!-- Featured quotes render up front; the rest sit behind a native
+                      <details> toggle so the section stays scannable on a page that
+                      already carries offerings, FAQ and risk-reversal. Add or remove
+                      quotes freely — nothing here depends on how many there are.
+                      Full set lives on the store: /testimonials/ --}}
+                <div class="testimonials-grid">
+                    <blockquote class="testimonial">
+                        <p>Don't let the 'Beginners' title fool you. This course is a comprehensive guide to building a fully functional Second Brain. Sebastien goes far beyond simple note-taking; he teaches a complete lifecycle. The sections on automating workflows and the deep dive into integrating AI were absolute game-changers. I walked away not just with a set of notes, but with a 'Life OS' that I can actually trust</p>
+                        <cite>Olivier Larue</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>This has been game changing for me in providing a ready to go framework for me to use in keeping track of all the details and random happenings in my work. In particular, the templates have simplified my tasks, enhanced my efficiency, and even seem to have improved my memory. Overall, this has been a joy to adopt as a work tool</p>
+                        <cite>Dwayne Appleby</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>I have worked in information systems since the 1980's and stumbled on some of these things haphazardly over the decades. I have never seen all these teachings together before. This is doing a great job of teaching me what I've been looking for since I was fourteen years old</p>
+                        <cite>Roger Frei</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>As someone who has bounced around trying to find the right Knowledge tool, I've realized many of my issues have been related to complexity. The structure, design and explanations have finally given me the foundation I needed. 100% worth it</p>
+                        <cite>Michael Aaron</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>I can't express just how impressed I am with the PKM system you created. It is beautifully thought-out and crafted. This is exactly what I needed. You have an amazing system out of the box</p>
+                        <cite>Jaelyn</cite>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <p>Starting as an absolute beginner, this kit allowed me to jump to what I feel is an intermediate level of Obsidian understanding and effective note taking in the span of 1-2 days</p>
+                        <cite>Blake Holder</cite>
+                    </blockquote>
+                </div>
+
+                <details class="testimonials-more">
+                    {{!-- Label stays state-neutral: the +/− marker carries open/closed. --}}
+                    <summary>More testimonials</summary>
+                    <div class="testimonials-grid">
+                        <blockquote class="testimonial">
+                            <p>What you are doing here is SO useful and helpful, and SO needed in the world. And it's not just the tools and resources you've created, which are amazing, but also that you have created this community for passionate people to come together</p>
+                            <cite>Jaelyn</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>I've learned a lot from you and find great value in every resource of yours that I've had time to explore so far. One of the things I really enjoy is how all pieces supports each other and forms a cohesive whole. I simply see that you'd have a lot to offer, not only to knowledge workers but also entrepreneurs, students/scientists, and anyone who's either interested in learning or wants to get more organized... just to name a few groups I can think of right now</p>
+                            <cite>Sofia</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>I just had a coaching session with Sébastien Dubois, and it was an incredibly helpful experience. Sébastien's expertise is evident from the start, and he has a remarkable ability to understand my need and to explain complex workflows in a clear and concise manner.</p>
+                            <cite>Anonymous</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Overall, it's been really helpful reviewing your resources on PKM and setting up a well-designed Obsidian vault! You explain concepts very clearly and your newsletters are a goldmine! I've barely scratched the surface of everything you've offered.</p>
+                            <cite>Arlanna Pugh</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>I've been reading and re-reading a lot of the content here… Clarity 101, the PKM library, the Knowledge Worker Kit and honestly it's a goldmine, thank you so much Sebastien 👏</p>
+                            <cite>Filip Colée</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>With Sebastien's plentiful offerings and resources, I feel like there is a light at the end of the tunnel, that I might actually one day soon feel comfortable, energized, inspired to actually dwell in Obsidian and build with more intention and understanding</p>
+                            <cite>Ronny Khalil</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Your work feels less like "content" and more like a compass for people trying to navigate the noise of knowledge and turn it into something meaningful</p>
+                            <cite>Sarah Feraer</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Superbly crafted material that consistently grows and improves with time, demonstrating a relentless commitment to excellence and constant refinement</p>
+                            <cite>Julien Dambron</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Sébastien thinks everything from first principles, the systems and ideas we discussed are well thought from multiple angles</p>
+                            <cite>Adrian Craciun</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Having a working example of a living system like yours is incredibly valuable</p>
+                            <cite>Ghada Alhumaid</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Great content - got me up to speed with what I was looking for fast! Sébastien answered some questions by mail also which was much appreciated! Thanks</p>
+                            <cite>Sam Gonzales</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Sebastien's writing is exceptional and I look forward to each new article</p>
+                            <cite>Richard Elliott</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>I love the passion and rigor you bring to your work and PKM</p>
+                            <cite>Christina Richards</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Literally cannot thank you enough for this system and process</p>
+                            <cite>Peter Kay</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Cannot say enough about what you've created - thank you!</p>
+                            <cite>jakmark4</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Thank you for everything you share. It's always relevant, always useful.</p>
+                            <cite>Julien Dambron</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>A very good starting point for your Personal Knowledge Management</p>
+                            <cite>Fredrik Nordstrom</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Extremely comprehensive and most worthwhile!</p>
+                            <cite>Mike Nall</cite>
+                        </blockquote>
+                        <blockquote class="testimonial">
+                            <p>Thanks for such amazing content</p>
+                            <cite>Arnold Kiptoo</cite>
+                        </blockquote>
+                    </div>
+                </details>
+
+                <p class="testimonials-all-link"><a href="https://www.store.dsebastien.net/testimonials/" target="_blank" rel="noopener" data-cta="testimonials">Read all testimonials &rarr;</a></p>
             </section>
 
             <!-- FAQ Section -->
@@ -354,14 +446,14 @@
                     <!-- Tier 2 + 3 side by side -->
                     <div class="cta-funnel-row">
                         <!-- Tier 2: Paid / Medium commitment -->
-                        <a href="https://store.dsebastien.net" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-secondary !no-underline">
+                        <a href="https://www.store.dsebastien.net" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-secondary !no-underline">
                             <h3>🚀 Courses &amp; Products</h3>
                             <p>Courses, kits, templates, and bundles. From beginner guides to the full knowledge mastery system.</p>
                             <span class="cta-funnel-action">Browse the store &rarr;</span>
                         </a>
 
                         <!-- Tier 3: Premium / High commitment -->
-                        <a href="https://store.dsebastien.net/product/pkm-coaching" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-tertiary !no-underline">
+                        <a href="https://www.store.dsebastien.net/product/pkm-coaching/" target="_blank" rel="noopener" class="cta-funnel-card cta-funnel-tertiary !no-underline">
                             <h3>🦉 1-on-1 Coaching</h3>
                             <p>Personalized session to solve your specific challenges. Get unstuck in 60 minutes.</p>
                             <span class="cta-funnel-action">Book a session &rarr;</span>
