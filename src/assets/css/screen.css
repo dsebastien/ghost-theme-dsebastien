@@ -3528,8 +3528,14 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
        720px reading column; the .gh-sidebar-inner inside it sticks while the
        article scrolls and stops at the end of the content section. */
     .post-side-rail {
-        @apply block absolute top-0 bottom-0 right-0;
-        width: calc((100% - var(--content-width, 720px)) / 2 - 48px);
+        @apply block absolute top-0 bottom-0;
+        /* .gh-canvas > * places children in the [main] column, and a definite
+           grid placement makes that 720px grid AREA the containing block of an
+           abspos child — collapsing the width calc below to 0. Span [full] so
+           100% resolves against the whole canvas. */
+        grid-column: full;
+        right: var(--container-gap);
+        width: calc((100% - var(--content-width, 720px)) / 2 - 48px - var(--container-gap));
         max-width: 320px;
     }
 
