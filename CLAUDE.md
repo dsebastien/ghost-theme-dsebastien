@@ -53,6 +53,10 @@ bun test:ci
 - **Routing**: `configuration/routes.yaml` for custom page routing
 - **Redirects**: `configuration/redirects.yaml` for URL redirects
 
+## Releasing
+
+See `documentation/RELEASING.md` for the release process (test, build, deploy to the live site, verify, rollback). Deployment to the site goes through the Ghost Admin UI or the Admin API (`developassion-theme-deploy` vault skill). **Always ask before uploading the theme to the live site.**
+
 ## Build Process
 
 1. **Development**: `bun dev` runs TailwindCSS watch + Gulp live reload
