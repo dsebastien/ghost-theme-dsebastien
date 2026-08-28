@@ -1564,7 +1564,12 @@ unless a heading is the very first element in the post content */
     letter-spacing: -0.017em;
 }
 
-.gh-content a {
+/* Prose links only — .gh-button CTAs render inside .gh-content too (the post
+   side-rail sidebar, the mid-article CTA), and this rule (0,1,1) would beat
+   .gh-button (0,1,0), turning their white text pink+underlined. :where() keeps
+   the exclusion at zero specificity so the (0,2,0) overrides below (contextual
+   offers, curriculum CTA) still outrank this rule as documented. */
+.gh-content a:where(:not(.gh-button)) {
     @apply underline;
     color: #be2460;
 }
