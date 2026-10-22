@@ -36,6 +36,11 @@
       "tag": "hash-series-ai-workflows",
       "title": "AI workflows",
       "description": "AI workflows"
+    },
+    "the-complete-guide-to-obsidian-search": {
+      "tag": "hash-series-the-complete-guide-to-obsidian-search",
+      "title": "The Complete Guide to Obsidian Search",
+      "description": "The Complete Guide to Obsidian Search"
     }
   }
 }

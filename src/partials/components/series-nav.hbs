@@ -29,4 +29,5 @@
 {{#get "posts" filter="id:{{id}}+tag:hash-series-team-management" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-team-management" seriesTitle="Team management tips" currentId=m.[0].id}}{{/if}}{{/get}}
 {{#get "posts" filter="id:{{id}}+tag:hash-series-obsidian-deep-dives" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-obsidian-deep-dives" seriesTitle="Obsidian deep dives" currentId=m.[0].id}}{{/if}}{{/get}}
 {{#get "posts" filter="id:{{id}}+tag:hash-series-ai-workflows" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-ai-workflows" seriesTitle="AI workflows" currentId=m.[0].id}}{{/if}}{{/get}}
+{{#get "posts" filter="id:{{id}}+tag:hash-series-the-complete-guide-to-obsidian-search" limit="1" as |m|}}{{#if m.[0]}}{{> "components/series-strip" postsFilter="tag:hash-series-the-complete-guide-to-obsidian-search" seriesTitle="The Complete Guide to Obsidian Search" currentId=m.[0].id}}{{/if}}{{/get}}
 {{!-- SERIES-BRANCHES:END --}}

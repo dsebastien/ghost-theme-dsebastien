@@ -12,7 +12,16 @@
 
     See documentation/plans/articles-page-overhaul.md (Tier 1.3).
 --}}
-{{#has tag="obsidian,dataview,obsidian-starter-kit,obsidian-starter-course,templates"}}
+{{#has tag="search,findability"}}
+    {{> "components/offer-card" topic="search"
+        heading="Want to find any note in seconds?"
+        productEmoji="🔎" productName="The Obsidian Search Handbook"
+        productDesc="Names, structure, operators, Bases, plugins and AI search, in one book (PDF + EPUB)."
+        productUrl="https://www.store.dsebastien.net/product/obsidian-search-handbook/"
+        productId="obsidian-search-handbook" productPrice="€29-€49"
+        magnetName="Obsidian Search Cheat Sheet"
+        magnetUrl="https://www.dsebastien.net/free-obsidian-search-cheat-sheet/"}}
+{{else has tag="obsidian,dataview,obsidian-starter-kit,obsidian-starter-course,templates"}}
     {{> "components/offer-card" topic="obsidian"
         heading="Since you're interested in Obsidian:"
         productEmoji="🚀" productName="Obsidian Starter Kit"
