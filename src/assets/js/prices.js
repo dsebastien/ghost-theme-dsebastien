@@ -5,8 +5,10 @@
  * data-price-variant="<variant name>" (e.g. "Knowledge Builder") and
  * data-price-format="amount" (bare "€NN.NN" instead of the full
  * priceDisplay string — used where suffixes like "/quarter" are separate
- * markup). The server-rendered text is the no-JS/SEO fallback and is only
- * replaced when the catalog provides a value.
+ * markup), or data-price-format="included-value" (the summed price of what
+ * the product/tier includes, floored to 50 as "€750+", matching the store's
+ * own value copy). The server-rendered text is the no-JS/SEO fallback and is
+ * only replaced when the catalog provides a value.
  *
  * Requires www.store.dsebastien.net in the site CSP connect-src
  * (configured 2026-07-17). ES5 only — gulp-uglify chokes on ES6.
@@ -40,9 +42,11 @@
                 }
 
                 var variantName = el.getAttribute('data-price-variant');
-                var amountOnly = el.getAttribute('data-price-format') === 'amount';
+                var format = el.getAttribute('data-price-format');
+                var amountOnly = format === 'amount';
                 var price = pricing.price;
                 var display = pricing.priceDisplay;
+                var includedValue = pricing.includedValue;
 
                 if (variantName) {
                     var variant = null;
@@ -56,9 +60,17 @@
                     }
                     price = variant.price;
                     display = variant.priceDisplay;
+                    includedValue = variant.includedValue;
                 }
 
-                var text = amountOnly && typeof price === 'number' ? '€' + price : display;
+                var text;
+                if (format === 'included-value') {
+                    text = typeof includedValue === 'number' && includedValue >= 50
+                        ? '€' + Math.floor(includedValue / 50) * 50 + '+'
+                        : null;
+                } else {
+                    text = amountOnly && typeof price === 'number' ? '€' + price : display;
+                }
                 if (text) {
                     el.textContent = text;
                 }
