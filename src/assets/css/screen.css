@@ -181,6 +181,16 @@ a.top-link {
     transition: 0.3s ease-in-out;
 }
 
+/* Real inputs sit in the flex row next to the button, so a long placeholder or
+   email ellipsizes instead of hiding behind it (upstream Source 6fddad9).
+   Desktop only: the mobile layout below stacks them. */
+@media (min-width: 577px) {
+    input.gh-form-input {
+        @apply static flex-1 min-w-0 pe-4;
+        text-overflow: ellipsis;
+    }
+}
+
 .gh-form-input::placeholder,
 button.gh-form-input {
     color: rgb(0 0 0 / 0.3);
@@ -218,7 +228,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 }
 
 .gh-form .gh-button {
-    @apply absolute right-[6px] h-[44px];
+    @apply relative shrink-0 me-[6px] h-[44px];
     min-width: 132px;
     padding-inline: 24px;
     font-size: inherit;
@@ -278,7 +288,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     }
 
     .gh-form .gh-button {
-        @apply static right-auto w-full h-[48px];
+        @apply static right-auto w-full h-[48px] me-0;
         min-width: 0;
         padding-inline: 12px;
     }
@@ -461,6 +471,11 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
         @apply hidden;
     }
 
+}
+
+/* Hide items until the dropdown script has measured them, but only when
+   scripting runs, or the desktop nav never shows (upstream Source 763e090). */
+@media (min-width: 768px) and (scripting: enabled) {
     .gh-navigation:not(.is-dropdown-loaded) .gh-navigation-menu .nav > li {
         @apply opacity-0;
     }
@@ -719,6 +734,31 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .gh-card-link {
     @apply flex flex-col gap-5;
+    color: var(--color-darker-gray);
+}
+
+/* Only the title is a link (readable in screen readers and text-only
+   browsers); its ::after stretches over the whole card so clicks anywhere
+   still open the post. Ported from upstream Source (aebf481). */
+.gh-card-title-link {
+    color: inherit;
+}
+
+.gh-card-title-link:hover {
+    @apply opacity-100;
+}
+
+.gh-card-title-link::after {
+    content: "";
+    @apply absolute inset-0;
+}
+
+.gh-card-title-link:focus-visible {
+    @apply outline-none;
+}
+
+.gh-card-title-link:focus-visible::after {
+    outline: auto;
 }
 
 .gh-card-link:hover {
@@ -4358,6 +4398,7 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .gh-news-card-link {
     @apply flex flex-col gap-1;
+    color: var(--color-darker-gray);
 }
 
 .gh-news-card-link:hover {

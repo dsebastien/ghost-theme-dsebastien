@@ -12,7 +12,7 @@
     surrounding {{#get}} passes include="tags".
 --}}
 <article class="gh-card gh-card-{{#if size}}{{size}}{{else}}regular{{/if}} {{post_class}}">
-    <a class="gh-card-link" href="{{url}}">
+    <div class="gh-card-link">
         {{#match size "compact"}}{{else}}
             {{#if feature_image}}
                 <figure class="gh-card-image">
@@ -35,7 +35,7 @@
             {{#if tags.[1]}}
                 <p class="gh-card-tag">{{tags.[1].name}}</p>
             {{/if}}
-            <h3 class="gh-card-title is-title">{{title}}</h3>
+            <h3 class="gh-card-title is-title"><a class="gh-card-title-link" href="{{url}}">{{title}}</a></h3>
             {{#if custom_excerpt}}
                 <p class="gh-card-excerpt is-body">{{custom_excerpt}}</p>
             {{/if}}
@@ -61,5 +61,5 @@
                 {{/match}}<!--
          --></footer>
         </div>
-    </a>
+    </div>
 </article>

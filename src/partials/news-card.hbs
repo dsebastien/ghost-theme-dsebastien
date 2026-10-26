@@ -1,5 +1,5 @@
 <article class="gh-news-card {{post_class}}">
-    <a class="gh-news-card-link" href="{{url}}">
+    <div class="gh-news-card-link">
         <div class="gh-news-card-meta">
             <time class="gh-news-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
             {{#unless access}}
@@ -8,7 +8,7 @@
                 {{/has}}
             {{/unless}}
         </div>
-        <h3 class="gh-news-card-title is-title">{{title}}</h3>
+        <h3 class="gh-news-card-title is-title"><a class="gh-card-title-link" href="{{url}}">{{title}}</a></h3>
         {{#if custom_excerpt}}
             <p class="gh-news-card-excerpt is-body">{{custom_excerpt}}</p>
         {{/if}}
@@ -26,5 +26,5 @@
                 {{/foreach}}
             </div>
         {{/if}}
-    </a>
+    </div>
 </article>
