@@ -58,7 +58,7 @@
             },
             "stat_community_members": {
                 "type": "text",
-                "default": "450+"
+                "default": "500+"
             },
             "stat_years_expertise": {
                 "type": "text",
@@ -71,6 +71,10 @@
             "stat_hours_saved": {
                 "type": "text",
                 "default": "10K+"
+            },
+            "stat_public_notes": {
+                "type": "text",
+                "default": "20K+"
             },
             "header_and_footer_color": {
                 "type": "select",
