@@ -9,7 +9,7 @@
     <h2 id="keep-reading">Keep reading</h2>
 
     {{#if tags.[1]}}
-        {{#get "posts" filter="tag:blog+tag:{{tags.[1].slug}}+id:-{{id}}" include="tags" order="featured:desc, published_at desc" limit=3 as |related|}}
+        {{#get "posts" filter="tag:blog+tag:{{tags.[1].slug}}+id:-{{id}}" include="tags,authors" order="featured:desc, published_at desc" limit=3 as |related|}}
             {{#if related.length}}
                 <p class="keep-reading-topic">More on <a href="/tag/{{tags.[1].slug}}/">{{tags.[1].name}}</a>:</p>
                 <div class="gh-feed keep-reading-feed">

@@ -53,7 +53,7 @@
     {{/tag}}
 
     {{!-- Curation without new admin concepts: featured articles in this tag --}}
-    {{#get "posts" filter="tag:{{tag.slug}}+featured:true" include="tags" limit=3 as |best|}}
+    {{#get "posts" filter="tag:{{tag.slug}}+featured:true" include="tags,authors" limit=3 as |best|}}
         {{#if best.length}}
             <section class="gh-inner tag-best-of">
                 <h2 class="section-title">Start with the best</h2>

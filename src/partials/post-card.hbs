@@ -8,8 +8,9 @@
     The topic pill uses tags.[1] — the FIRST TOPIC tag. tags.[0]/primary_tag is the
     content-TYPE marker (blog/newsletter/news), never a topic (see
     documentation/plans/articles-page-overhaul.md, Audit findings). Note that
-    tags are only present in channel/collection contexts or when the
-    surrounding {{#get}} passes include="tags".
+    tags and authors are only present in channel/collection contexts or
+    when the surrounding {{#get}} passes include="tags,authors"; the byline
+    is skipped when authors are missing.
 --}}
 <article class="gh-card gh-card-{{#if size}}{{size}}{{else}}regular{{/if}} {{post_class}}">
     <div class="gh-card-link">
@@ -50,9 +51,9 @@
                         {{> "icons/lock"}}
                     {{/has}}
                 {{/unless}}<!--
-             -->{{#if @custom.show_author}}
+             -->{{#if @custom.show_author}}{{#if authors}}
                     <span class="gh-card-author">{{{t "By {authors}" authors=(authors autolink="false" separator=", ") }}}</span>
-                {{/if}}
+                {{/if}}{{/if}}
                 {{#if @custom.show_publish_date}}
                     <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
                 {{/if}}

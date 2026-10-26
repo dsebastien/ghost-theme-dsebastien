@@ -65,7 +65,7 @@
         <div class="gh-container-inner gh-inner">
             <main class="gh-main">
                 {{!-- Best of this pillar: featured first. Guarded. --}}
-                {{#get "posts" filter=bestFilter include="tags" limit="3" as |picks|}}
+                {{#get "posts" filter=bestFilter include="tags,authors" limit="3" as |picks|}}
                     {{#if picks}}
                         <h2 class="gh-container-title">Start with the best</h2>
                         <div class="gh-feed mt-4">

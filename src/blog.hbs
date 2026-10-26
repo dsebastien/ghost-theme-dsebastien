@@ -73,8 +73,8 @@
                     Hero zone (Tier 1.0): newest featured article as the hero card,
                     the next two featured as "Editor's picks" (large). Curation
                     lever = Ghost's featured flag (13 posts, all articles — audit).
-                    include="tags" is required for the topic pill — {{#get}} does
-                    not load tag relations by default. imageSizes matches the
+                    include="tags,authors" is required for the topic pill and the
+                    byline — {{#get}} does not load relations by default. imageSizes matches the
                     full-width (hero) and half-width (large) grid slots.
                     Guards: {{#get}} renders its block even for empty results
                     ({{else}} only fires on API error), so the hero div and the
@@ -84,7 +84,7 @@
                     because that would also hide the ~10 featured-but-not-in-hero
                     articles from topic sections).
                 --}}
-                {{#get "posts" filter="featured:true+tag:blog" include="tags" limit=3 as |featuredPosts|}}
+                {{#get "posts" filter="featured:true+tag:blog" include="tags,authors" limit=3 as |featuredPosts|}}
                     {{#if featuredPosts}}
                         <div class="gh-feed blog-hero">
                             {{#foreach featuredPosts to="1"}}
@@ -106,7 +106,7 @@
                 --}}
                 <h2 class="section-title">{{t "Latest"}}</h2>
                 <div class="gh-feed mt-4">
-                    {{#get "posts" filter="tag:blog+featured:false" include="tags" limit=5 as |latestPosts|}}
+                    {{#get "posts" filter="tag:blog+featured:false" include="tags,authors" limit=5 as |latestPosts|}}
                         {{#foreach latestPosts}}
                             {{> "post-card" size="compact"}}
                         {{/foreach}}

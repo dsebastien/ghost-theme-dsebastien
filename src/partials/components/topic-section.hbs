@@ -17,8 +17,8 @@
 --}}
 {{#if title}}<h2 class="section-title">{{title}}</h2>{{/if}}
 <div id="{{anchor}}" class="gh-feed mt-4">
-    {{!-- include="tags" is required for the topic pill — {{#get}} does not load tag relations by default --}}
-    {{#get "posts" filter=topicFilter include="tags" limit=limit as |sectionPosts|}}
+    {{!-- include="tags,authors" is required for the topic pill and the byline — {{#get}} does not load relations by default --}}
+    {{#get "posts" filter=topicFilter include="tags,authors" limit=limit as |sectionPosts|}}
         {{#foreach sectionPosts}}
             {{> "post-card"}}
         {{/foreach}}
