@@ -159,15 +159,149 @@
     setTimeout(function () { observer.disconnect(); }, 10000);
 })();
 
-/* Sticky Table of Contents for long articles (posts and newsletters only) */
+/* Section anchors: every article h2/h3 gets a stable id and a link button
+   that copies the section URL (posts only). Runs before the TOC so both
+   share the same ids. ES5 only. */
+(function () {
+    if (!document.body.classList.contains('post-template')) return;
+
+    var content = document.querySelector('.gh-content');
+    if (!content) return;
+
+    // Direct children only: skips headings in the side rail, CTAs and cards.
+    var SKIP = { 'about-sebastien': true, 'ready-to-get-to-the-next-level': true };
+    var all = content.querySelectorAll(':scope > h2, :scope > h3');
+    var headings = [];
+    for (var i = 0; i < all.length; i++) {
+        if (!SKIP[all[i].id]) headings.push(all[i]);
+    }
+    if (!headings.length) return;
+
+    // Readable slug ids (citable by answer engines, stable when sections
+    // move). Ghost already sets ids on most headings; only fill the gaps.
+    function slugify(text) {
+        return text.toLowerCase().trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_]+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-+|-+$/g, '');
+    }
+    headings.forEach(function (h, idx) {
+        if (h.id) return;
+        var base = slugify(h.textContent) || 'section-' + (idx + 1);
+        var id = base, n = 2;
+        while (document.getElementById(id)) { id = base + '-' + n; n++; }
+        h.id = id;
+    });
+
+    var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+
+    headings.forEach(function (h) {
+        var a = document.createElement('a');
+        a.className = 'heading-anchor';
+        a.href = '#' + h.id;
+        a.setAttribute('aria-label', 'Copy link to section: ' + h.textContent.trim());
+        a.setAttribute('title', 'Copy link to this section');
+        a.innerHTML = ICON;
+
+        // Glue the button to the last word so it never wraps onto a line
+        // of its own. Only when the heading ends in plain text.
+        var last = h.lastChild;
+        var match = last && last.nodeType === 3 && /(\S+)\s*$/.exec(last.nodeValue);
+        if (match) {
+            last.nodeValue = last.nodeValue.slice(0, match.index);
+            var wrap = document.createElement('span');
+            wrap.className = 'heading-anchor-wrap';
+            wrap.appendChild(document.createTextNode(match[1]));
+            wrap.appendChild(a);
+            h.appendChild(wrap);
+        } else {
+            h.appendChild(a);
+        }
+    });
+
+    var toast = null, toastTimer = null;
+    function showToast(text) {
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'section-link-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+        toast.textContent = text;
+        // Force a reflow so the transition replays on repeated copies
+        void toast.offsetWidth;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('is-visible'); }, 2000);
+    }
+
+    function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        return ok;
+    }
+
+    function copy(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text).then(
+                function () { return true; },
+                function () { return fallbackCopy(text); }
+            );
+        }
+        return { then: function (cb) { cb(fallbackCopy(text)); } };
+    }
+
+    content.addEventListener('click', function (e) {
+        var anchor = e.target.closest && e.target.closest('.heading-anchor');
+        if (!anchor) return;
+        e.preventDefault();
+
+        var id = anchor.getAttribute('href').slice(1);
+        // Clean URL: no query string (drops ref/utm params from shared links)
+        var url = location.origin + location.pathname + '#' + id;
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+        var heading = document.getElementById(id);
+        if (heading) heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        copy(url).then(function (ok) {
+            showToast(ok ? 'Link copied' : 'Press and hold the link to copy it');
+        });
+
+        try {
+            if (window.plausible) window.plausible('Section Link Copy', { props: { section: id, path: location.pathname } });
+        } catch (err) { /* analytics must never break the page */ }
+    });
+
+    // The browser scrolls to the hash before this script runs; when the id
+    // was just assigned above, do the scroll now.
+    if (location.hash) {
+        var target = null;
+        try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) { target = null; }
+        if (target && headings.indexOf(target) !== -1) target.scrollIntoView({ block: 'start' });
+    }
+})();
+
+/* Table of Contents for long articles (posts and newsletters only):
+   inline collapsible box at the top of the article, plus a sticky bar on
+   mobile/tablet that shows the current section and opens the full list. */
 (function () {
     if (!document.body.classList.contains('post-template') && !document.body.classList.contains('tag-template')) return;
 
     var content = document.querySelector('.gh-content');
     if (!content) return;
 
-    // Only use h2s from the article content, exclude signature headings
-    var allH2s = content.querySelectorAll('h2');
+    // Direct-child h2s only (side rail, "Keep reading" and CTA headings are
+    // nested), excluding the signature headings
+    var allH2s = content.querySelectorAll(':scope > h2');
     var headings = [];
     for (var i = 0; i < allH2s.length; i++) {
         var id = allH2s[i].id;
@@ -178,62 +312,68 @@
     // Only show TOC for articles with 4+ content headings
     if (headings.length < 4) return;
 
-    // Ensure all headings have IDs. Use readable slugs (not heading-N) so the
-    // anchors are citable by answer engines and stable when sections are added
-    // or reordered — the GEO payoff of a TOC (homepage-start-overhaul 4.3).
-    var usedIds = {};
+    // Ids are normally set already (by Ghost or the section-anchors block).
+    // Fallback for tag pages, which that block does not handle.
     function slugify(text) {
         return text.toLowerCase().trim()
-            .replace(/[^\w\s-]/g, '')  // drop punctuation/symbols
-            .replace(/[\s_]+/g, '-')   // whitespace/underscores -> hyphen
-            .replace(/-+/g, '-')       // collapse repeats
-            .replace(/^-+|-+$/g, '');  // trim leading/trailing hyphens
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_]+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-+|-+$/g, '');
     }
     headings.forEach(function (h, idx) {
-        // Respect an id Ghost/the author already assigned.
-        if (h.id) { usedIds[h.id] = true; return; }
-        var base = slugify(h.textContent) || 'section-' + idx;
-        var id = base, n = 2;
-        while (usedIds[id]) { id = base + '-' + n; n++; }  // dedupe collisions
-        usedIds[id] = true;
-        h.id = id;
+        if (h.id) return;
+        var base = slugify(h.textContent) || 'section-' + (idx + 1);
+        var nid = base, n = 2;
+        while (document.getElementById(nid)) { nid = base + '-' + n; n++; }
+        h.id = nid;
     });
 
-    // Build the TOC element
+    function headingText(h) {
+        return h.textContent.trim();
+    }
+
+    var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+    function buildList(className) {
+        var list = document.createElement('ol');
+        list.className = className;
+        headings.forEach(function (h) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = headingText(h);
+            a.className = 'article-toc-link';
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+        return list;
+    }
+
+    // Inline TOC
     var toc = document.createElement('nav');
     toc.className = 'article-toc';
     toc.setAttribute('aria-label', 'Table of contents');
 
     var toggle = document.createElement('button');
+    toggle.type = 'button';
     toggle.className = 'article-toc-toggle';
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.innerHTML = '<span class="article-toc-toggle-label">Contents</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+    toggle.innerHTML = '<span class="article-toc-toggle-label">Contents</span>' + CHEVRON;
     toc.appendChild(toggle);
 
-    var list = document.createElement('ol');
-    list.className = 'article-toc-list';
-    headings.forEach(function (h) {
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        a.href = '#' + h.id;
-        a.textContent = h.textContent;
-        a.className = 'article-toc-link';
-        li.appendChild(a);
-        list.appendChild(li);
-    });
+    var list = buildList('article-toc-list');
     toc.appendChild(list);
 
-    // Insert into the page — place as first child of .gh-content so it
-    // participates in the .gh-canvas grid (needed for col-[main] on mobile)
+    // First child of .gh-content so it participates in the .gh-canvas grid
+    // (needed for col-[main] on mobile)
     content.insertBefore(toc, content.firstChild);
 
-    // Toggle
     toggle.addEventListener('click', function () {
         var expanded = toc.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', expanded);
     });
 
-    // Close mobile TOC when a link is clicked
     list.addEventListener('click', function (e) {
         if (e.target.classList.contains('article-toc-link')) {
             toc.classList.remove('is-open');
@@ -241,39 +381,88 @@
         }
     });
 
-    // Highlight current section on scroll
+    // Sticky bar (hidden by CSS on wide screens)
+    var bar = document.createElement('nav');
+    bar.className = 'article-toc-sticky';
+    bar.setAttribute('aria-label', 'Table of contents');
+
+    var barToggle = document.createElement('button');
+    barToggle.type = 'button';
+    barToggle.className = 'article-toc-sticky-toggle';
+    barToggle.setAttribute('aria-expanded', 'false');
+    barToggle.innerHTML = '<span class="article-toc-sticky-label">Contents</span><span class="article-toc-sticky-current"></span>' + CHEVRON;
+    bar.appendChild(barToggle);
+
+    var barCurrent = barToggle.querySelector('.article-toc-sticky-current');
+    var barList = buildList('article-toc-sticky-list');
+    bar.appendChild(barList);
+    document.body.appendChild(bar);
+
+    function closeBar() {
+        bar.classList.remove('is-open');
+        barToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    barToggle.addEventListener('click', function () {
+        var expanded = bar.classList.toggle('is-open');
+        barToggle.setAttribute('aria-expanded', expanded);
+        if (expanded) {
+            var active = barList.querySelector('.is-active');
+            if (active) barList.scrollTop = active.offsetTop - barList.clientHeight / 2;
+        }
+    });
+    barList.addEventListener('click', function (e) {
+        if (e.target.classList.contains('article-toc-link')) closeBar();
+    });
+    document.addEventListener('click', function (e) {
+        if (bar.classList.contains('is-open') && !bar.contains(e.target)) closeBar();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && bar.classList.contains('is-open')) {
+            closeBar();
+            barToggle.focus();
+        }
+    });
+
+    // Highlight current section; show the sticky bar between the inline TOC
+    // and the end of the article
     var tocLinks = list.querySelectorAll('.article-toc-link');
+    var barLinks = barList.querySelectorAll('.article-toc-link');
     var ticking = false;
+    var lastCurrent = -2;
 
-    function updateActive() {
-        var scrollY = window.scrollY;
+    function update() {
         var current = null;
-
         for (var j = 0; j < headings.length; j++) {
-            if (headings[j].getBoundingClientRect().top <= 80) {
-                current = j;
-            }
+            if (headings[j].getBoundingClientRect().top <= 80) current = j;
         }
 
-        tocLinks.forEach(function (link, idx) {
-            if (idx === current) {
-                link.classList.add('is-active');
-            } else {
-                link.classList.remove('is-active');
+        if (current !== lastCurrent) {
+            for (var k = 0; k < headings.length; k++) {
+                tocLinks[k].classList.toggle('is-active', k === current);
+                barLinks[k].classList.toggle('is-active', k === current);
             }
-        });
+            barCurrent.textContent = current === null ? '' : headingText(headings[current]);
+            lastCurrent = current;
+        }
+
+        var visible = toc.getBoundingClientRect().bottom < 0 &&
+            content.getBoundingClientRect().bottom > window.innerHeight / 2;
+        if (!visible && bar.classList.contains('is-open')) closeBar();
+        bar.classList.toggle('is-visible', visible);
 
         ticking = false;
     }
 
     window.addEventListener('scroll', function () {
         if (!ticking) {
-            requestAnimationFrame(updateActive);
+            requestAnimationFrame(update);
             ticking = true;
         }
     }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
 
-    updateActive();
+    update();
 })();
 
 /* Mid-article CTA: inject CTAs at regular intervals throughout long articles */

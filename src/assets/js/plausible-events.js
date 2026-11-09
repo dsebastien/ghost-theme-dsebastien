@@ -8,6 +8,7 @@
  *   Subscribe Intent props: path            (overlay/portal signup opened)
  *   Signup           props: form, path      (native members form submitted)
  *   Store Click      props: product, path   (outbound to the store)
+ *   Section Link Copy props: section, path (heading link button; fired in main.js)
  *
  * ES5 only — gulp-uglify chokes on ES6.
  */

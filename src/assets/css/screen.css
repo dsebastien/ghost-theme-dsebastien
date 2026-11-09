@@ -3557,6 +3557,156 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     font-weight: 700;
 }
 
+/* Sticky TOC bar (mobile/tablet): shows the current section once the inline
+   TOC has scrolled away; tap to open the full list. Built in main.js. */
+.article-toc-sticky {
+    @apply hidden;
+}
+
+@media (max-width: 1023px) {
+    .article-toc-sticky {
+        @apply block fixed left-0 right-0 invisible opacity-0;
+        top: 3px; /* below the reading progress bar */
+        z-index: 2999998;
+        background-color: var(--background-color, #fff);
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 2px 12px rgb(0 0 0 / 0.08);
+        transform: translateY(-110%);
+        transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s linear 0.25s;
+    }
+
+    .article-toc-sticky.is-visible {
+        @apply visible opacity-100;
+        transform: translateY(0);
+        transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s;
+    }
+
+    /* Keep it out of the way while the mobile menu is open */
+    body:has(.gh-navigation.is-open) .article-toc-sticky {
+        @apply invisible opacity-0;
+    }
+
+    .article-toc-sticky-toggle {
+        @apply flex items-center gap-3 w-full border-0 bg-transparent cursor-pointer text-left;
+        padding: 10px max(4vmin, 20px);
+        font-size: 1.4rem;
+        color: var(--color-primary-text);
+    }
+
+    .article-toc-sticky-label {
+        @apply shrink-0 font-semibold;
+    }
+
+    .article-toc-sticky-current {
+        @apply flex-1 min-w-0 truncate;
+        color: var(--color-secondary-text);
+    }
+
+    .article-toc-sticky-current:not(:empty)::before {
+        content: "·";
+        margin-right: 0.75rem;
+    }
+
+    .article-toc-sticky-toggle svg {
+        @apply w-4 h-4 shrink-0;
+        transition: transform 0.2s;
+    }
+
+    .article-toc-sticky.is-open .article-toc-sticky-toggle svg {
+        transform: rotate(180deg);
+    }
+
+    .article-toc-sticky-list {
+        @apply hidden m-0 overflow-y-auto;
+        list-style: none;
+        max-height: 60vh;
+        padding: 0 0 8px;
+        overscroll-behavior: contain;
+    }
+
+    .article-toc-sticky.is-open .article-toc-sticky-list {
+        @apply block;
+    }
+
+    .article-toc-sticky-list .article-toc-link {
+        padding: 10px max(4vmin, 20px);
+        border-left: 2px solid transparent;
+    }
+
+    .article-toc-sticky-list .article-toc-link.is-active {
+        border-left-color: var(--ghost-accent-color);
+    }
+}
+
+/* Section anchors: link button after each article h2/h3; click copies the
+   section URL. Built in main.js. */
+.post-template .gh-content > :is(h2, h3) {
+    scroll-margin-top: 24px;
+}
+
+@media (max-width: 1023px) {
+    .post-template .gh-content > :is(h2, h3) {
+        scroll-margin-top: 64px; /* clear the sticky TOC bar */
+    }
+}
+
+.gh-content .heading-anchor {
+    @apply inline-flex items-center justify-center align-middle no-underline opacity-0;
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 0.3em;
+    border-radius: 4px;
+    color: var(--color-secondary-text);
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.gh-content .heading-anchor svg {
+    width: 0.65em;
+    height: 0.65em;
+}
+
+/* Last word + button never break apart, so the button cannot wrap alone */
+.heading-anchor-wrap {
+    white-space: nowrap;
+}
+
+.gh-content > :is(h2, h3):hover .heading-anchor,
+.gh-content .heading-anchor:focus-visible {
+    @apply opacity-100;
+}
+
+.gh-content .heading-anchor:hover {
+    color: var(--ghost-accent-color);
+}
+
+/* Touch screens have no hover: keep the button visible but quiet */
+@media (hover: none) {
+    .gh-content .heading-anchor {
+        opacity: 0.5;
+    }
+}
+
+.section-link-toast {
+    @apply fixed pointer-events-none opacity-0;
+    left: 50%;
+    bottom: 24px;
+    z-index: 3000001; /* above the sticky CTA bar */
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--background-color, #fff);
+    background: var(--color-darker-gray);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.16);
+    transform: translate(-50%, 12px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section-link-toast.is-visible {
+    @apply opacity-100;
+    transform: translate(-50%, 0);
+}
+
 /* Post side rail (desktop): slim sidebar reused while reading
 /* ---------------------------------------------------------- */
 
