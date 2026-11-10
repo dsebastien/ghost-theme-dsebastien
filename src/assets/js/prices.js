@@ -6,7 +6,7 @@
  * data-price-format="amount" (bare "€NN.NN" instead of the full
  * priceDisplay string — used where suffixes like "/quarter" are separate
  * markup), or data-price-format="included-value" (the summed price of what
- * the product/tier includes, floored to 50 as "€750+", matching the store's
+ * the product/tier includes, floored to 50 as "€950+", matching the store's
  * own value copy). The server-rendered text is the no-JS/SEO fallback and is
  * only replaced when the catalog provides a value.
  *
