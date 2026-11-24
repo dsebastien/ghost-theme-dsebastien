@@ -1,0 +1,12 @@
+{{!-- One layer of components/layer-stack.hbs. Not for direct use. --}}
+{{#match variant "full"}}
+    <a class="layer-bar layer-{{slug}}" href="{{#match target "area"}}#area-{{slug}}{{else}}/start/{{slug}}/{{/match}}">
+        <span class="layer-bar-name">{{name}}</span>
+        <span class="layer-bar-desc">{{desc}}</span>
+    </a>
+{{else}}
+    <li class="step">
+        <h3>{{name}} {{emoji}}</h3>
+        <p>{{desc}}</p>
+    </li>
+{{/match}}

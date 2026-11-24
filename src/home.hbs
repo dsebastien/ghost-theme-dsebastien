@@ -125,7 +125,7 @@
                     <h3>🤖 AI That Knows Your Context</h3>
                     <p>Point AI at your knowledge base and it understands YOUR projects, YOUR vocabulary, YOUR goals. That's real leverage; not generic ChatGPT answers.</p>
                 </div>
-                <div class="benefit-item">
+                <div class="identity-item">
                     <h3>🧭 End-of-Day Calm</h3>
                     <p>Close your laptop knowing everything is captured, organized, and waiting for you tomorrow. No open loops rattling around your head at 2 AM.</p>
                 </div>
@@ -176,35 +176,7 @@
             <!-- Approach/Layers -->
             <section class="approach">
                 <h2 style="text-align:center; margin-bottom:2rem;">Five Layers. One System. 🗺️</h2>
-                {{!-- Semantic ordered list (homepage-start-overhaul 2.5 / GEO):
-                     the five layers ARE a sequence, so mark them up as an <ol> in
-                     canonical order (Foundation → Creation). This makes the
-                     framework extractable as a numbered list by answer engines. --}}
-                <ol class="approach-steps">
-                    <li class="step">
-                        <h3>Foundation 🏗️</h3>
-                        <p>Understand why knowledge management matters. Break free from information chaos.</p>
-                    </li>
-                    <li class="step">
-                        <h3>System 🛠️</h3>
-                        <p>Build your command center with the right tools and proven frameworks.</p>
-                    </li>
-                    <li class="step">
-                        <h3>Practice ✍️</h3>
-                        <p>Turn raw information into connected insights through daily habits.</p>
-                    </li>
-                    <li class="step">
-                        <h3>Application 💼</h3>
-                        <p>Use your system at work and in life. Clarity, focus, and balance.</p>
-                    </li>
-                    <li class="step">
-                        <h3>Creation ⚙️</h3>
-                        <p>Turn knowledge into content, products, and impact.</p>
-                    </li>
-                </ol>
-                <p style="text-align:center; margin-top:2rem;">
-                    <a href="/start/" style="color:#d42d70; text-decoration:underline;">Start Your Journey &rarr;</a>
-                </p>
+                {{> "components/layer-stack" variant="compact"}}
             </section>
 
             {{!-- Commerce stack: hidden for logged-in members (routed by the hero,

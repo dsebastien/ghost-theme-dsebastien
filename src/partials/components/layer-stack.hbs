@@ -1,0 +1,27 @@
+{{!--
+    The five layers of the Knowledge Master's Journey, in ONE place
+    (homepage-start-overhaul 2.4). Edit the layer names and descriptions here,
+    never in home.hbs or start.hbs.
+
+    Params:
+      variant  "compact" (home: numbered steps + one CTA to /start/#area-foundation)
+               or "full" (start: the coloured stack diagram)
+      target   full only. "guide" (default): each bar links to its /start/<layer>/
+               guided page. "area": each bar is an in-page anchor to #area-<layer>.
+
+    The layers are listed once, in canonical order (Foundation -> Creation).
+    The compact variant renders them as an <ol> in that order (extractable as a
+    numbered list by answer engines, see 2.5). The full variant renders the
+    same order and the CSS (.layer-stack: flex-col-reverse) draws Foundation at
+    the bottom of the stack.
+--}}
+{{#match variant "full"}}<div class="layer-stack">{{else}}<ol class="approach-steps">{{/match}}
+    {{> "components/layer-item" variant=variant target=target slug="foundation" name="Foundation" emoji="🏗️" desc="Understand why knowledge management matters. Break free from information chaos."}}
+    {{> "components/layer-item" variant=variant target=target slug="system" name="System" emoji="🛠️" desc="Build your command center with the right tools and proven frameworks."}}
+    {{> "components/layer-item" variant=variant target=target slug="practice" name="Practice" emoji="✍️" desc="Turn raw information into connected insights through daily habits."}}
+    {{> "components/layer-item" variant=variant target=target slug="application" name="Application" emoji="💼" desc="Use your system at work and in life. Clarity, focus, and balance."}}
+    {{> "components/layer-item" variant=variant target=target slug="creation" name="Creation" emoji="⚙️" desc="Turn knowledge into content, products, and impact."}}
+{{#match variant "full"}}</div>{{else}}</ol>
+<p class="approach-cta" style="text-align:center; margin-top:2rem;">
+    <a href="/start/#area-foundation" style="color:#d42d70; text-decoration:underline;">Start Your Journey &rarr;</a>
+</p>{{/match}}
