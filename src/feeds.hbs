@@ -94,20 +94,17 @@
             </li>
         </ul>
 
+        {{!-- ===== Pillar feeds (generated from src/data/pillars.json) ===== --}}
+        <h2 class="text-3xl font-bold !mt-12 !mb-2">Feeds by pillar 🧭</h2>
+        <p class="text-gray-600 !mt-0">Each <a href="/pillars/">content pillar</a> has its own page and feed. Follow the areas you care about most.</p>
+        {{> "generated/pillar-feeds"}}
+
         {{!-- ===== Per-tag feeds ===== --}}
         <h2 class="text-3xl font-bold !mt-12 !mb-2">Any topic you like 🏷️</h2>
         <p class="text-gray-600 !mt-0">
             <strong>Every tag on this site has its own RSS feed.</strong> Just append <code>rss/</code>
-            to any tag URL — for example <a class="top-link" href="{{@site.url}}/tag/obsidian/rss/"><code>{{@site.url}}/tag/obsidian/rss/</code></a>.
-            A few popular ones:
+            to any tag URL. For example: <a class="top-link" href="{{@site.url}}/tag/obsidian/rss/"><code>{{@site.url}}/tag/obsidian/rss/</code></a>.
         </p>
-        <ul class="!mx-0 space-y-2 !list-none">
-            <li><a class="top-link" href="{{@site.url}}/tag/obsidian/rss/"><code>{{@site.url}}/tag/obsidian/rss/</code></a></li>
-            <li><a class="top-link" href="{{@site.url}}/tag/note-taking/rss/"><code>{{@site.url}}/tag/note-taking/rss/</code></a></li>
-            <li><a class="top-link" href="{{@site.url}}/tag/writing/rss/"><code>{{@site.url}}/tag/writing/rss/</code></a></li>
-            <li><a class="top-link" href="{{@site.url}}/tag/learning/rss/"><code>{{@site.url}}/tag/learning/rss/</code></a></li>
-            <li><a class="top-link" href="{{@site.url}}/tag/angular/rss/"><code>{{@site.url}}/tag/angular/rss/</code></a></li>
-        </ul>
         <p class="!mt-4"><a href="/tags/">Browse all topics {{> "icons/arrow"}}</a></p>
 
         {{!-- ===== How to subscribe ===== --}}
