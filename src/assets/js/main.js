@@ -518,6 +518,22 @@
     var dismissed = false;
     var ticking = false;
 
+    // Inline signup surfaces (lead magnets, members forms): the bar stays
+    // hidden while one of them is visible.
+    var formsInView = new Set();
+    if ('IntersectionObserver' in window) {
+        var formObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) formsInView.add(entry.target);
+                else formsInView.delete(entry.target);
+            });
+            update();
+        });
+        document.querySelectorAll('.lead-magnet, form[data-members-form]').forEach(function (el) {
+            if (!stickyCta.contains(el)) formObserver.observe(el);
+        });
+    }
+
     function update() {
         if (dismissed) {
             ticking = false;
@@ -528,8 +544,9 @@
         var docHeight = document.documentElement.scrollHeight - window.innerHeight;
         var percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
-        // Show after 30% scroll, hide in last 5% (footer area)
-        if (percent > 30 && percent < 95) {
+        // Show after 30% scroll, hide in last 5% (footer area), and hide while
+        // an inline signup form is on screen so two asks never stack.
+        if (percent > 30 && percent < 95 && formsInView.size === 0) {
             stickyCta.classList.add('is-visible');
             document.body.classList.add('has-sticky-cta');
         } else {
