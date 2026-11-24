@@ -4,7 +4,7 @@
     offer-card. Order: specific → generic, first match wins. Replaces the old
     15-branch signature cascade (see git history of post.hbs).
 
-    Tag clusters mirror the /blog/ topic sections — including the ai-2/ai-skills/
+    Tag clusters mirror the /blog/ topic sections — including the ai/ai-skills/
     claude-code cluster the old cascade missed (recent AI posts fell through).
 
     Listing pages (blog.hbs section bands, tag pages) should call offer-card
@@ -30,7 +30,7 @@
         productId="obsidian-starter-kit" productPrice="€279.99-€299.99"
         magnetName="Beginner's Guide to Obsidian"
         magnetUrl="https://www.dsebastien.net/free-beginners-guide-to-mastering-obsidian/"}}
-{{else has tag="ai,ai-2,ai-skills,claude-code,artificial-intelligence"}}
+{{else has tag="ai,ai-skills,claude-code,artificial-intelligence"}}
     {{> "components/offer-card" topic="ai"
         heading="Want AI to be a real thinking partner, not a gimmick?"
         productEmoji="🤖" productName="AI Ghostwriter Guide"

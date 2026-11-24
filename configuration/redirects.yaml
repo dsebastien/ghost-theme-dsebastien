@@ -23,6 +23,9 @@
   ^/affiliate-program: https://developassion.gumroad.com/affiliates
 
   # === Internal Redirects ===
+  # AI tag merge (2026-11-24): the duplicate tag ai-2 ("AI") was merged into ai.
+  ^/tag/ai-2/rss/?$: /tag/ai/rss/
+  ^/tag/ai-2(/.*)?$: /tag/ai/
   ^/author/dsebastien: /about/
   ^/articles: /blog/
   ^/all-tags: /tags/

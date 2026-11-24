@@ -1,5 +1,5 @@
 {
-  "_comment": "Source of truth for the 7 content pillars (articles-page-overhaul Tier 2.1). Drives (a) the hash-pillar-* internal-tag backfill script, and (b) the hand-authored per-pillar blocks in src/pillar.hbs. NOT read at render time — Ghost themes cannot load arbitrary JSON. `tags` is an ORDERED priority list: the backfill assigns each post to the FIRST pillar whose cluster contains one of the post's topic tags. The legacy software-development cluster (software-development, front-end, web-development, angular, typescript, javascript, css, git, kotlin, spring-boot, react, etc.) is intentionally NOT mapped to any pillar — it stays discoverable via /feeds/dev/ and /blog/ but is off-brand for the PKM pillars.",
+  "_comment": "Source of truth for the 7 content pillars (articles-page-overhaul Tier 2.1). Drives (a) the hash-pillar-* internal-tag backfill script, (b) the hand-authored per-pillar blocks in src/pillar.hbs, and (c) the pillar feed list of the /feeds/ page, which the build generates into partials/generated/pillar-feeds.hbs (gulpfile.js pillarFeeds). NOT read at render time — Ghost themes cannot load arbitrary JSON. `tags` is an ORDERED priority list: the backfill assigns each post to the FIRST pillar whose cluster contains one of the post's topic tags. The legacy software-development cluster (software-development, front-end, web-development, angular, typescript, javascript, css, git, kotlin, spring-boot, react, etc.) is intentionally NOT mapped to any pillar — it stays discoverable via /feeds/dev/ and /blog/ but is off-brand for the PKM pillars.",
   "priorityOrder": [
     "creator-systems",
     "content-systems",
@@ -17,7 +17,7 @@
       "tagName": "#pillar-creator-systems",
       "tagline": "Turn AI and automation into real leverage for building and creating.",
       "description": "Where knowledge work meets building. How to use AI as a genuine thinking partner, automate the busywork, and turn your systems into an engine for creating products, tools, and a business — without losing the plot.",
-      "tags": ["ai", "ai-2", "ai-skills", "claude-code", "creator-systems", "indie-hacking", "startups", "solopreneurship", "product-design", "design-sprints", "innovation"],
+      "tags": ["ai", "ai-skills", "claude-code", "creator-systems", "indie-hacking", "startups", "solopreneurship", "product-design", "design-sprints", "innovation"],
       "offer": {
         "topic": "creator-systems",
         "heading": "Want AI to be a real thinking partner, not a gimmick?",

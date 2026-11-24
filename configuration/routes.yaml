@@ -67,7 +67,7 @@ routes:
     template: feed-pkm
   /feeds/ai/:
     controller: channel
-    filter: "tag:[ai,ai-2,claude-code,ai-skills]+tag:blog"
+    filter: "tag:[ai,claude-code,ai-skills]+tag:blog"
     template: feed-ai
   /feeds/productivity/:
     controller: channel
