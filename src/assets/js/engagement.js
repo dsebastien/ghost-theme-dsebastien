@@ -12,8 +12,11 @@
  *      a topic-matched free lead magnet + native Ghost members form.
  *   3. Exit-intent recovery — once the reader is "qualified" (scrolled >=50% OR
  *      dwelled >=25s), raise the existing subscribe overlay on desktop
- *      mouseleave-toward-top or mobile tab-hide/pagehide. Throttled to once per
- *      7 days via localStorage, once per page, suppressed after a conversion.
+ *      mouseleave-toward-top only. Throttled to once per 7 days via
+ *      localStorage, once per page, suppressed after a conversion. No trigger on
+ *      tab-hide/pagehide (removed 2026-11-24): it fired when the visitor was
+ *      already gone, so they met a popup when they came back to the tab, and
+ *      it brought almost no signups.
  *
  * Reuses the existing overlay via the "subscribe-overlay:open" custom event
  * (see subscribe-overlay.js) — no synthetic click, no duplicated open logic.
@@ -191,15 +194,4 @@
         });
     }
 
-    // Mobile / all: tab hidden or page being unloaded after real dwell.
-    if (overlay) {
-        document.addEventListener('visibilitychange', function () {
-            if (document.visibilityState === 'hidden') maybeShowExitIntent('mobile');
-        });
-        // pagehide is more reliable than beforeunload on mobile; the overlay
-        // won't render in time on a true unload, but tab-switch (bfcache) works.
-        window.addEventListener('pagehide', function () {
-            maybeShowExitIntent('mobile');
-        });
-    }
 })();
